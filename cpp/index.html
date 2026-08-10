@@ -1,1 +1,350 @@
-PLACEHOLDER_CPP
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Syntax Reference — Polyglot</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">{ }</span><span class="logo-text">Polyglot Syntax</span></a>
+      <nav class="lang-nav">
+        <a href="../python/index.html" class="lang-btn python">Python</a>
+        <a href="../rust/index.html" class="lang-btn rust">Rust</a>
+        <a href="index.html" class="lang-btn cpp active">C++</a>
+        <a href="../csharp/index.html" class="lang-btn csharp">C#</a>
+      </nav>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
+    </div>
+  </header>
+
+  <div class="lang-layout container">
+    <aside class="sidebar">
+      <h3>Basics</h3>
+      <a href="#types">Data Types</a>
+      <a href="#variables">Variables & Literals</a>
+      <a href="#operators">Operators</a>
+      <a href="#control">Control Flow</a>
+      <a href="#functions">Functions</a>
+      <h3>Memory & Types</h3>
+      <a href="#pointers">Pointers & Smart Pointers</a>
+      <a href="#raii">RAII & Special Members</a>
+      <a href="#classes">Structs & Classes</a>
+      <a href="#inheritance">Inheritance</a>
+      <h3>Templates & Modern</h3>
+      <a href="#templates">Templates</a>
+      <a href="#lambdas">Lambdas</a>
+      <a href="#modern">Modern C++</a>
+      <h3>Library</h3>
+      <a href="#containers">STL Containers</a>
+      <a href="#algorithms">Iterators & Algorithms</a>
+      <a href="#complexity">Complexity Tables</a>
+      <a href="#exceptions">Exceptions</a>
+      <a href="#concurrency">Concurrency</a>
+      <a href="#headers">Key Headers</a>
+      <a href="#patterns">Design Patterns</a>
+    </aside>
+
+    <article class="content">
+      <h1>C++ Pocket Reference</h1>
+      <span class="lang-tag cpp">C++20 / C++23 · focused on modern idioms</span>
+
+      <section class="topic" id="types">
+        <h2>Data Types</h2>
+        <h3>Fundamental Types</h3>
+        <pre><code>bool  char  wchar_t  char8_t  char16_t  char32_t
+short  int  long  long long
+float  double  long double
+void  auto  decltype(x)</code></pre>
+        <h3>Fixed-Width (cstdint)</h3>
+        <pre><code>int8_t / uint8_t … int64_t / uint64_t
+size_t  ptrdiff_t  intptr_t / uintptr_t</code></pre>
+        <h3>Storage & Specifiers</h3>
+        <pre><code>const  volatile  constexpr  consteval
+mutable  static  extern  inline  thread_local</code></pre>
+      </section>
+
+      <section class="topic" id="variables">
+        <h2>Variables & Literals</h2>
+        <pre><code>int a = 42;
+auto x = 10;
+int& ref = a;
+int&& rref = 42;
+nullptr;
+std::string str = "hello"s;
+0xFF  0b1010  1'000'000  42uz</code></pre>
+      </section>
+
+      <section class="topic" id="operators">
+        <h2>Operators</h2>
+        <pre><code>+ - * / %   = += -= *= /= %=
+== != ⟨ ⟩ ⟨= ⟩=   ⟨=⟩        // spaceship C++20
+&& || !   & | ^ ~ ⟨⟨ ⟩⟩
+*p  &x  p-⟩m  o.m  new T  delete p
+static_cast⟨T⟩(x)  dynamic_cast⟨T*⟩(p)
+const_cast  reinterpret_cast  std::bit_cast</code></pre>
+      </section>
+
+      <section class="topic" id="control">
+        <h2>Control Flow</h2>
+        <pre><code>if (int x = get(); x ⟩ 0) { ... }
+for (auto& v : vec) { ... }
+for (auto&& [k, v] : map) { ... }
+switch (x) { case 1: ...; break; default: ...; }
+int v = cond ? 1 : 0;</code></pre>
+      </section>
+
+      <section class="topic" id="functions">
+        <h2>Functions</h2>
+        <pre><code>int add(int a, int b = 0);
+void byVal(int x);
+void byRef(int& x);
+void byCRef(const int& x);
+void byRRef(int&& x);
+inline int sq(int x) { return x * x; }
+constexpr int cube(int x) { return x * x * x; }
+consteval int pure(int x) { return x * 2; }
+auto mul(int a, int b) -⟩ int { return a * b; }
+void f() noexcept;</code></pre>
+      </section>
+
+      <section class="topic" id="pointers">
+        <h2>Pointers & Smart Pointers</h2>
+        <pre><code>int* p = nullptr;
+p = new int(42);  delete p;
+
+auto up = std::make_unique⟨int⟩(42);
+auto up2 = std::move(up);
+
+auto sp = std::make_shared⟨int⟩(7);
+std::weak_ptr⟨int⟩ wp = sp;
+if (auto locked = wp.lock()) { /* use */ }
+
+std::move(x);  std::forward⟨T⟩(x);</code></pre>
+        <div class="callout callout-default"><strong>★ Ownership defaults</strong>
+          <code class="inline">std::unique_ptr⟨T⟩</code> — default exclusive ownership ·
+          <code class="inline">std::shared_ptr⟨T⟩</code> — only when shared ownership is required ·
+          <code class="inline">std::weak_ptr⟨T⟩</code> — non-owning observer
+        </div>
+        <div class="decision-tree">Need ownership?
+  │
+  ├─ exclusive → unique_ptr⟨T⟩
+  └─ shared
+       ├─ owning → shared_ptr⟨T⟩
+       └─ observe only → weak_ptr⟨T⟩</div>
+        <div class="callout callout-mistake"><strong>Common mistake</strong>
+          <code class="inline">std::move(x)</code> only casts to an rvalue — it does not move by itself.
+          Prefer RAII / smart pointers over raw <code class="inline">new</code>/<code class="inline">delete</code>.
+        </div>
+      </section>
+
+      <section class="topic" id="raii">
+        <h2>Special Member Functions & Rules</h2>
+        <pre><code>Foo();  Foo(const Foo&);  Foo(Foo&&);
+Foo& operator=(const Foo&);  Foo& operator=(Foo&&);
+~Foo();
+Foo() = default;
+Foo(const Foo&) = delete;</code></pre>
+        <div class="callout callout-default"><strong>★ Preferred design</strong>
+          Rule of Zero > Rule of Five > Rule of Three.
+          Let the compiler generate special members; manage resources with smart pointers and STL containers.
+        </div>
+        <h3>Rule of Zero (preferred)</h3>
+        <pre><code>class Widget {
+  std::string name_;
+  std::vector⟨int⟩ data_;
+  std::unique_ptr⟨Impl⟩ impl_;
+};</code></pre>
+      </section>
+
+      <section class="topic" id="classes">
+        <h2>Structs & Classes</h2>
+        <pre><code>struct Point {
+  double x, y;
+  Point(double x, double y) : x(x), y(y) {}
+};
+class Animal {
+public:
+  Animal(std::string n) : name_(std::move(n)) {}
+  virtual void speak() const;
+  virtual ~Animal() = default;
+private:
+  std::string name_;
+};</code></pre>
+      </section>
+
+      <section class="topic" id="inheritance">
+        <h2>Inheritance & Polymorphism</h2>
+        <pre><code>class Dog : public Animal {
+  void speak() const override { std::cout ⟨⟨ "Woof\n"; }
+};
+class Shape {
+  virtual double area() const = 0;
+  virtual ~Shape() = default;
+};
+if (auto* d = dynamic_cast⟨Dog*⟩(ptr)) { d-⟩speak(); }</code></pre>
+      </section>
+
+      <section class="topic" id="templates">
+        <h2>Templates</h2>
+        <pre><code>template⟨typename T⟩
+T maxOf(T a, T b) { return a ⟩ b ? a : b; }
+
+template⟨typename T⟩
+class Box {
+  T val_;
+public:
+  explicit Box(T v) : val_(v) {}
+  T get() const { return val_; }
+};
+
+template⟨typename... Args⟩
+void log(Args&&... args) { (std::cout ⟨⟨ ... ⟨⟨ args); }
+
+template⟨typename T⟩
+concept Numeric = std::integral⟨T⟩ || std::floating_point⟨T⟩;
+template⟨Numeric T⟩
+T add(T a, T b) { return a + b; }</code></pre>
+      </section>
+
+      <section class="topic" id="lambdas">
+        <h2>Lambda Expressions</h2>
+        <pre><code>auto add = [](int a, int b) { return a + b; };
+[]  [=]  [&]  [x, &y]  [this]  [*this]
+auto id = [](auto x) { return x; };
+auto tmpl = []⟨typename T⟩(T x) { return x; };
+auto counter = [n = 0]() mutable { return ++n; };</code></pre>
+      </section>
+
+      <section class="topic" id="modern">
+        <h2>Modern C++ Highlights</h2>
+        <p class="note">Key additions: structured bindings <span class="ver">C++17</span>,
+          concepts & ranges <span class="ver">C++20</span>,
+          <code class="inline">std::expected</code> & <code class="inline">std::print</code> <span class="ver">C++23</span></p>
+        <pre><code>void f(int&);  void f(int&&);
+f(std::move(a));
+
+template⟨typename T⟩
+void wrapper(T&& arg) { target(std::forward⟨T⟩(arg)); }
+
+auto [k, v] = *map.begin();
+std::optional⟨int⟩ opt = 42;
+std::variant⟨int, float, std::string⟩ var;
+std::string_view sv = "hello";
+std::span⟨int⟩ sp{arr};
+std::ranges::sort(v);
+auto operator⟨=⟩(const Foo&) const = default;</code></pre>
+      </section>
+
+      <section class="topic" id="containers">
+        <h2>STL Containers</h2>
+        <pre><code>std::vector⟨T⟩          // ★ default choice
+std::array⟨T,N⟩  std::deque⟨T⟩  std::list⟨T⟩
+std::map⟨K,V⟩  std::unordered_map⟨K,V⟩
+std::set⟨T⟩  std::unordered_set⟨T⟩
+std::stack⟨T⟩  std::queue⟨T⟩  std::priority_queue⟨T⟩
+
+v.push_back(x);  v.emplace_back(args...);
+v.size();  v.empty();  v.reserve(n);</code></pre>
+        <div class="callout callout-default"><strong>★ Default container</strong>
+          <code class="inline">std::vector⟨T⟩</code> is almost always the right default.
+          Switch only when profiling shows a real bottleneck.
+        </div>
+      </section>
+
+      <section class="topic" id="algorithms">
+        <h2>Iterators & Algorithms</h2>
+        <pre><code>v.begin() / v.end()  v.rbegin() / v.rend()
+std::sort  std::find  std::find_if
+std::count  std::copy  std::transform
+std::unique  std::accumulate
+std::min_element  std::binary_search
+std::for_each  std::any_of  std::all_of
+std::ranges::sort(v);  std::ranges::find(v, val);</code></pre>
+      </section>
+
+      <section class="topic" id="complexity">
+        <h2>Container Complexity (selected)</h2>
+        <table>
+          <thead>
+            <tr><th>Container</th><th>Access</th><th>Find</th><th>Insert (end)</th><th>Insert (mid)</th><th>Erase</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>vector</td><td>O(1)</td><td>O(n)</td><td>O(1)*</td><td>O(n)</td><td>O(n)</td></tr>
+            <tr><td>deque</td><td>O(1)</td><td>O(n)</td><td>O(1)*</td><td>O(n)</td><td>O(n)</td></tr>
+            <tr><td>list</td><td>—</td><td>O(n)</td><td>O(1)†</td><td>O(1)†</td><td>O(1)†</td></tr>
+            <tr><td>map / set</td><td>—</td><td>O(log n)</td><td>O(log n)</td><td>—</td><td>O(log n)</td></tr>
+            <tr><td>unordered_map</td><td>—</td><td>O(1)*</td><td>O(1)*</td><td>—</td><td>O(1)*</td></tr>
+          </tbody>
+        </table>
+        <p>* amortized / average &nbsp; † with iterator</p>
+      </section>
+
+      <section class="topic" id="exceptions">
+        <h2>Exception Handling</h2>
+        <pre><code>try {
+  throw std::runtime_error("oops");
+} catch (const std::exception& e) {
+  std::cerr ⟨⟨ e.what();
+} catch (...) { }
+noexcept  noexcept(expr)</code></pre>
+      </section>
+
+      <section class="topic" id="concurrency">
+        <h2>Concurrency (C++11+)</h2>
+        <pre><code>std::thread t(fn, arg1);
+t.join();  t.detach();
+std::mutex mtx;
+{ std::lock_guard⟨std::mutex⟩ lk(mtx); /* critical */ }
+auto fut = std::async(std::launch::async, fn);
+int res = fut.get();
+std::atomic⟨int⟩ counter{0};  counter++;</code></pre>
+      </section>
+
+      <section class="topic" id="headers">
+        <h2>Key Standard Library Headers</h2>
+        <table>
+          <thead><tr><th>Header</th><th>Contents</th></tr></thead>
+          <tbody>
+            <tr><td><code class="inline">＜iostream＞</code></td><td>cin / cout / cerr</td></tr>
+            <tr><td><code class="inline">＜string＞</code> <code class="inline">＜string_view＞</code></td><td>strings / views</td></tr>
+            <tr><td><code class="inline">＜vector＞</code> <code class="inline">＜array＞</code> <code class="inline">＜map＞</code></td><td>containers</td></tr>
+            <tr><td><code class="inline">＜algorithm＞</code> <code class="inline">＜numeric＞</code></td><td>algorithms</td></tr>
+            <tr><td><code class="inline">＜memory＞</code></td><td>smart pointers</td></tr>
+            <tr><td><code class="inline">＜optional＞</code> <code class="inline">＜variant＞</code></td><td>C++17 vocabulary</td></tr>
+            <tr><td><code class="inline">＜ranges＞</code> <code class="inline">＜concepts＞</code></td><td>C++20</td></tr>
+            <tr><td><code class="inline">＜thread＞</code> <code class="inline">＜mutex＞</code></td><td>concurrency</td></tr>
+            <tr><td><code class="inline">＜format＞</code> <code class="inline">＜print＞</code></td><td>C++20 / C++23</td></tr>
+            <tr><td><code class="inline">＜expected＞</code> <code class="inline">＜filesystem＞</code></td><td>C++23 / C++17</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="topic" id="patterns">
+        <h2>Selected Design Patterns</h2>
+        <pre><code>// Meyer's singleton (thread-safe since C++11)
+class Logger {
+  Logger() = default;
+public:
+  static Logger& instance() {
+    static Logger inst;
+    return inst;
+  }
+  Logger(const Logger&) = delete;
+};
+// Prefer composition; RAII is the core pattern</code></pre>
+      </section>
+    </article>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">GitHub</a> · C++ reference</p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
