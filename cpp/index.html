@@ -134,10 +134,10 @@ std::move(x);  std::forward&lt;T&gt;(x);</code></pre>
         </div>
         <div class="decision-tree">Need ownership?
   │
-  ├─ exclusive -> unique_ptr<T>
+  ├─ exclusive -&gt; unique_ptr&lt;T&gt;
   └─ shared
-       ├─ owning -> shared_ptr<T>
-       └─ observe only -> weak_ptr<T></div>
+       ├─ owning -&gt; shared_ptr&lt;T&gt;
+       └─ observe only -&gt; weak_ptr&lt;T&gt;</div>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           <code class="inline">std::move(x)</code> only casts to an rvalue — it does not move by itself.
           Prefer RAII / smart pointers over raw <code class="inline">new</code>/<code class="inline">delete</code>.
