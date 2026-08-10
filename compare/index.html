@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Languages — Polyglot Syntax Reference</title>
+  <meta name="description" content="Side-by-side syntax comparison for Python, Rust, C++, and C#.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">{ }</span><span class="logo-text">Polyglot Syntax</span></a>
+      <nav class="lang-nav">
+        <a href="../python/index.html" class="lang-btn python">Python</a>
+        <a href="../rust/index.html" class="lang-btn rust">Rust</a>
+        <a href="../cpp/index.html" class="lang-btn cpp">C++</a>
+        <a href="../csharp/index.html" class="lang-btn csharp">C#</a>
+        <a href="index.html" class="lang-btn" style="color:var(--accent);border:1px solid var(--accent);">Compare</a>
+      </nav>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
+    </div>
+  </header>
+
+  <main class="container" style="max-width:1100px;padding-bottom:4rem;">
+    <div class="compare-hero">
+      <h1>Same Concept, Different Language</h1>
+      <p>Jump between Python, Rust, C++, and C# without losing your place.
+         Every row is the idiomatic way to express the same idea.</p>
+    </div>
+
+    <nav class="compare-toc">
+      <a href="#basics">Basics</a>
+      <a href="#types">Types & Null</a>
+      <a href="#collections">Collections</a>
+      <a href="#functions">Functions</a>
+      <a href="#oop">OOP & Data</a>
+      <a href="#ownership">Ownership</a>
+      <a href="#errors">Errors</a>
+      <a href="#async">Async</a>
+      <a href="#iteration">Iteration</a>
+      <a href="#patterns">Patterns</a>
+      <a href="#side-by-side">Side-by-side</a>
+    </nav>
+
+    <section class="compare-section" id="basics">
+      <h2>Basics</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Variable</td><td><code>x = 42</code></td><td><code>let x = 42;</code></td><td><code>auto x = 42;</code></td><td><code>var x = 42;</code></td></tr>
+          <tr><td class="concept">Mutable</td><td><code>x = 42</code> (always)</td><td><code>let mut x = 42;</code></td><td><code>int x = 42;</code></td><td><code>int x = 42;</code></td></tr>
+          <tr><td class="concept">Constant</td><td><code>X = 42</code> (convention)</td><td><code>const X: i32 = 42;</code></td><td><code>constexpr int X = 42;</code></td><td><code>const int X = 42;</code></td></tr>
+          <tr><td class="concept">String literal</td><td><code>"hello"</code></td><td><code>"hello"</code> → <code>&str</code></td><td><code>"hello"</code> / <code>"hello"s</code></td><td><code>"hello"</code></td></tr>
+          <tr><td class="concept">Print</td><td><code>print(x)</code></td><td><code>println!("{x}");</code></td><td><code>std::cout << x;</code></td><td><code>Console.WriteLine(x);</code></td></tr>
+          <tr><td class="concept">Comment</td><td><code># comment</code></td><td><code>// comment</code></td><td><code>// comment</code></td><td><code>// comment</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="types">
+      <h2>Types & Nullability</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Integer</td><td><code>int</code></td><td><code>i32</code></td><td><code>int</code></td><td><code>int</code></td></tr>
+          <tr><td class="concept">Float</td><td><code>float</code></td><td><code>f64</code></td><td><code>double</code></td><td><code>double</code></td></tr>
+          <tr><td class="concept">String (owned)</td><td><code>str</code></td><td><code>String</code></td><td><code>std::string</code></td><td><code>string</code></td></tr>
+          <tr><td class="concept">String (borrowed)</td><td>—</td><td><code>&str</code></td><td><code>std::string_view</code></td><td><code>ReadOnlySpan<char></code></td></tr>
+          <tr><td class="concept">Null / absence</td><td><code>None</code></td><td><code>Option<T></code></td><td><code>nullptr</code> / <code>optional</code></td><td><code>null</code> / <code>T?</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="collections">
+      <h2>Collections</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Dynamic array ★</td><td><code>list</code></td><td><code>Vec<T></code></td><td><code>std::vector<T></code></td><td><code>List<T></code></td></tr>
+          <tr><td class="concept">Key → value ★</td><td><code>dict</code></td><td><code>HashMap<K,V></code></td><td><code>std::unordered_map</code></td><td><code>Dictionary<K,V></code></td></tr>
+          <tr><td class="concept">Unique set</td><td><code>set</code></td><td><code>HashSet<T></code></td><td><code>std::unordered_set</code></td><td><code>HashSet<T></code></td></tr>
+          <tr><td class="concept">Queue</td><td><code>deque</code></td><td><code>VecDeque<T></code></td><td><code>std::deque<T></code></td><td><code>Queue<T></code></td></tr>
+        </tbody>
+      </table>
+      <p class="idiom-note">★ = default choice in idiomatic code for that language.</p>
+    </section>
+
+    <section class="compare-section" id="functions">
+      <h2>Functions & Lambdas</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Define function</td><td><code>def f(x):</code></td><td><code>fn f(x: i32)</code></td><td><code>int f(int x)</code></td><td><code>int F(int x)</code></td></tr>
+          <tr><td class="concept">Lambda</td><td><code>lambda x: x*x</code></td><td><code>|x| x * x</code></td><td><code>[](int x){ return x*x; }</code></td><td><code>x => x * x</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="oop">
+      <h2>OOP & Data Modeling</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Class</td><td><code>class Foo:</code></td><td><code>struct</code> + <code>impl</code></td><td><code>class Foo</code></td><td><code>class Foo</code></td></tr>
+          <tr><td class="concept">Value / data bag ★</td><td><code>@dataclass</code></td><td><code>struct</code> + derive</td><td><code>struct</code></td><td><code>record</code></td></tr>
+          <tr><td class="concept">Interface</td><td><code>Protocol</code></td><td><code>trait</code></td><td>abstract / concepts</td><td><code>interface</code></td></tr>
+          <tr><td class="concept">Generics</td><td><code>list[T]</code></td><td><code><T: Trait></code></td><td><code>template<typename T></code></td><td><code><T></code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="ownership">
+      <h2>Ownership & Memory</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Exclusive own</td><td>GC</td><td><code>T</code> / <code>Box<T></code></td><td><code>unique_ptr<T></code></td><td>GC</td></tr>
+          <tr><td class="concept">Shared own</td><td>GC</td><td><code>Arc<T></code></td><td><code>shared_ptr<T></code></td><td>GC</td></tr>
+          <tr><td class="concept">Borrow / view</td><td>everything is ref</td><td><code>&T</code> / <code>&mut T</code></td><td><code>T&</code> / <code>string_view</code></td><td><code>ref</code> / <code>Span<T></code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="errors">
+      <h2>Error Handling</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Throw / raise</td><td><code>raise ValueError()</code></td><td><code>return Err(...)</code></td><td><code>throw runtime_error()</code></td><td><code>throw new Exception()</code></td></tr>
+          <tr><td class="concept">Catch</td><td><code>except E as e:</code></td><td><code>match result</code></td><td><code>catch (const E&)</code></td><td><code>catch (E e)</code></td></tr>
+          <tr><td class="concept">Result type</td><td>—</td><td><code>Result<T,E></code> ★</td><td><code>std::expected</code></td><td>exceptions ★</td></tr>
+          <tr><td class="concept">Propagate</td><td>unhandled raise</td><td><code>?</code> ★</td><td>unhandled throw</td><td>unhandled throw</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="async">
+      <h2>Async / Concurrency</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Async fn</td><td><code>async def f():</code></td><td><code>async fn f()</code></td><td>coroutines C++20</td><td><code>async Task F()</code></td></tr>
+          <tr><td class="concept">Await</td><td><code>await f()</code></td><td><code>f().await</code></td><td><code>co_await</code></td><td><code>await f()</code></td></tr>
+          <tr><td class="concept">Task / future</td><td><code>asyncio.Task</code></td><td>Future (tokio)</td><td><code>std::future</code></td><td><code>Task<T></code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="iteration">
+      <h2>Iteration</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">For-each</td><td><code>for x in xs:</code></td><td><code>for x in &xs</code></td><td><code>for (auto& x : xs)</code></td><td><code>foreach (var x in xs)</code></td></tr>
+          <tr><td class="concept">Map</td><td><code>[f(x) for x in xs]</code></td><td><code>.iter().map(f)</code></td><td><code>views::transform</code></td><td><code>.Select(f)</code></td></tr>
+          <tr><td class="concept">Filter</td><td><code>[x for x in xs if p]</code></td><td><code>.iter().filter(p)</code></td><td><code>views::filter</code></td><td><code>.Where(p)</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="patterns">
+      <h2>Pattern Matching</h2>
+      <table class="compare-table">
+        <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
+        <tbody>
+          <tr><td class="concept">Match / switch</td><td><code>match x:</code></td><td><code>match x { }</code> ★</td><td><code>switch</code></td><td><code>x switch { }</code></td></tr>
+          <tr><td class="concept">Destructure</td><td><code>a, b = pair</code></td><td><code>let (a, b) = pair;</code></td><td><code>auto [a,b] = pair;</code></td><td><code>var (a, b) = pair;</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="compare-section" id="side-by-side">
+      <h2>Side-by-Side Examples</h2>
+
+      <h3 style="margin:1.5rem 0 0.5rem;font-size:1.05rem;color:var(--accent);">Iterate a collection</h3>
+      <div class="quad-grid">
+        <div class="quad-card"><div class="quad-card-header python">Python</div><pre><code>for item in items:
+    print(item)
+
+for i, item in enumerate(items):
+    print(i, item)</code></pre></div>
+        <div class="quad-card"><div class="quad-card-header rust">Rust</div><pre><code>for item in &items {
+    println!("{item}");
+}
+for (i, item) in items.iter().enumerate() {
+    println!("{i}: {item}");
+}</code></pre></div>
+        <div class="quad-card"><div class="quad-card-header cpp">C++</div><pre><code>for (const auto& item : items) {
+  std::cout << item;
+}</code></pre></div>
+        <div class="quad-card"><div class="quad-card-header csharp">C#</div><pre><code>foreach (var item in items) {
+    Console.WriteLine(item);
+}</code></pre></div>
+      </div>
+
+      <h3 style="margin:1.5rem 0 0.5rem;font-size:1.05rem;color:var(--accent);">Map / filter</h3>
+      <div class="quad-grid">
+        <div class="quad-card"><div class="quad-card-header python">Python</div><pre><code>squares = [x*x for x in nums]
+evens = [x for x in nums if x % 2 == 0]</code></pre></div>
+        <div class="quad-card"><div class="quad-card-header rust">Rust</div><pre><code>let squares: Vec<_> = nums.iter()
+    .map(|x| x * x).collect();
+let evens: Vec<_> = nums.iter()
+    .filter(|x| *x % 2 == 0).copied().collect();</code></pre></div>
+        <div class="quad-card"><div class="quad-card-header cpp">C++</div><pre><code>auto squares = nums
+  | std::views::transform([](int x){ return x*x; });
+auto evens = nums
+  | std::views::filter([](int x){ return x%2==0; });</code></pre></div>
+        <div class="quad-card"><div class="quad-card-header csharp">C#</div><pre><code>var squares = nums.Select(x => x * x).ToList();
+var evens = nums.Where(x => x % 2 == 0).ToList();</code></pre></div>
+      </div>
+
+      <h3 style="margin:1.5rem 0 0.5rem;font-size:1.05rem;color:var(--accent);">Ownership (C++ ↔ Rust)</h3>
+      <div class="pair-grid">
+        <div class="pair-card"><div class="pair-card-header"><span>C++</span></div><pre><code>std::unique_ptr<T>
+std::shared_ptr<T>
+std::weak_ptr<T>
+T& / const T&</code></pre></div>
+        <div class="pair-card"><div class="pair-card-header"><span>Rust</span></div><pre><code>Box<T>  (or owned T)
+Arc<T>  (or Rc<T>)
+Weak<T>
+&T / &mut T</code></pre></div>
+      </div>
+
+      <h3 style="margin:1.5rem 0 0.5rem;font-size:1.05rem;color:var(--accent);">Data bags (Python ↔ C#)</h3>
+      <div class="pair-grid">
+        <div class="pair-card"><div class="pair-card-header"><span>Python</span></div><pre><code>@dataclass
+NamedTuple
+dict / list
+Optional[T] / T | None</code></pre></div>
+        <div class="pair-card"><div class="pair-card-header"><span>C#</span></div><pre><code>record
+record struct
+Dictionary / List
+T?</code></pre></div>
+      </div>
+    </section>
+
+    <p style="margin-top:2rem;color:var(--text-muted);font-size:0.9rem;">
+      Dive deeper:
+      <a href="../python/index.html" style="color:var(--accent)">Python</a> ·
+      <a href="../rust/index.html" style="color:var(--accent)">Rust</a> ·
+      <a href="../cpp/index.html" style="color:var(--accent)">C++</a> ·
+      <a href="../csharp/index.html" style="color:var(--accent)">C#</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">GitHub</a> · Cross-language comparison</p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
