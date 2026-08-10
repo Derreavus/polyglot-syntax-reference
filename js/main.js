@@ -148,7 +148,11 @@
   ];
 
   function escapeHtml(s) {
-    return String(s).replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">").replace(/"/g, """);
+    return String(s)
+      .replace(/&/g, "\u0026amp;")
+      .replace(/</g, "\u0026lt;")
+      .replace(/>/g, "\u0026gt;")
+      .replace(/"/g, "\u0026quot;");
   }
 
   function ensurePalette() {
@@ -204,7 +208,7 @@
           .map((x) => x.item);
       }
       if (!currentHits.length) {
-        results.innerHTML = '<div class="cmd-empty">No matches for \u201C' + escapeHtml(q) + '\u201D</div>';
+        results.innerHTML = '<div class="cmd-empty">No matches</div>';
         return;
       }
       currentHits.forEach((item, idx) => {
@@ -261,18 +265,31 @@
     overlay.addEventListener("click", function (e) { if (e.target === overlay) closePalette(); });
 
     document.addEventListener("keydown", function (e) {
-      if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+      const isK = e.key === "k" || e.key === "K" || e.code === "KeyK";
+      const mod = e.metaKey || e.ctrlKey;
+      if (mod && isK) {
         e.preventDefault();
-        if (overlay.hidden) openPalette(); else closePalette();
+        e.stopPropagation();
+        if (typeof e.stopImmediatePropagation === "function") e.stopImmediatePropagation();
+        if (overlay.hidden) openPalette();
+        else closePalette();
+        return;
       }
-      if (e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      if (mod && e.shiftKey && (e.key === "p" || e.key === "P" || e.code === "KeyP")) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (overlay.hidden) openPalette();
+        else closePalette();
+        return;
+      }
+      if (e.key === "/" && !mod && !e.altKey) {
         const tag = (e.target && e.target.tagName) || "";
-        if (tag !== "INPUT" && tag !== "TEXTAREA" && !e.target.isContentEditable) {
+        if (tag !== "INPUT" && tag !== "TEXTAREA" && !(e.target && e.target.isContentEditable)) {
           e.preventDefault();
           openPalette();
         }
       }
-    });
+    }, true);
 
     injectSearchTrigger(openPalette);
   }
@@ -284,8 +301,8 @@
     btn.id = "search-trigger";
     btn.className = "search-trigger";
     btn.type = "button";
-    btn.setAttribute("aria-label", "Search (Ctrl+K)");
-    btn.innerHTML = '<span class="search-trigger-label">Search</span> <kbd>Ctrl K</kbd>';
+    btn.setAttribute("aria-label", "Search");
+    btn.innerHTML = '<span class="search-trigger-label">Search</span> <kbd>/</kbd>';
     btn.addEventListener("click", openFn);
     const theme = document.getElementById("theme-toggle");
     if (theme) headerInner.insertBefore(btn, theme); else headerInner.appendChild(btn);
