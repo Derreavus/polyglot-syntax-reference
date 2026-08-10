@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -84,16 +84,16 @@ std::string str = "hello"s;
       <section class="topic" id="operators">
         <h2>Operators</h2>
         <pre><code>+ - * / %   = += -= *= /= %=
-== != ⟨ ⟩ ⟨= ⟩=   ⟨=⟩        // spaceship C++20
-&& || !   & | ^ ~ ⟨⟨ ⟩⟩
-*p  &x  p-⟩m  o.m  new T  delete p
-static_cast⟨T⟩(x)  dynamic_cast⟨T*⟩(p)
+== != < > <= >=   <=>        // spaceship C++20
+&& || !   & | ^ ~ << >>
+*p  &x  p->m  o.m  new T  delete p
+static_cast<T>(x)  dynamic_cast<T*>(p)
 const_cast  reinterpret_cast  std::bit_cast</code></pre>
       </section>
 
       <section class="topic" id="control">
         <h2>Control Flow</h2>
-        <pre><code>if (int x = get(); x ⟩ 0) { ... }
+        <pre><code>if (int x = get(); x > 0) { ... }
 for (auto& v : vec) { ... }
 for (auto&& [k, v] : map) { ... }
 switch (x) { case 1: ...; break; default: ...; }
@@ -110,7 +110,7 @@ void byRRef(int&& x);
 inline int sq(int x) { return x * x; }
 constexpr int cube(int x) { return x * x * x; }
 consteval int pure(int x) { return x * 2; }
-auto mul(int a, int b) -⟩ int { return a * b; }
+auto mul(int a, int b) -> int { return a * b; }
 void f() noexcept;</code></pre>
       </section>
 
@@ -119,25 +119,25 @@ void f() noexcept;</code></pre>
         <pre><code>int* p = nullptr;
 p = new int(42);  delete p;
 
-auto up = std::make_unique⟨int⟩(42);
+auto up = std::make_unique<int>(42);
 auto up2 = std::move(up);
 
-auto sp = std::make_shared⟨int⟩(7);
-std::weak_ptr⟨int⟩ wp = sp;
+auto sp = std::make_shared<int>(7);
+std::weak_ptr<int> wp = sp;
 if (auto locked = wp.lock()) { /* use */ }
 
-std::move(x);  std::forward⟨T⟩(x);</code></pre>
+std::move(x);  std::forward<T>(x);</code></pre>
         <div class="callout callout-default"><strong>★ Ownership defaults</strong>
-          <code class="inline">std::unique_ptr⟨T⟩</code> — default exclusive ownership ·
-          <code class="inline">std::shared_ptr⟨T⟩</code> — only when shared ownership is required ·
-          <code class="inline">std::weak_ptr⟨T⟩</code> — non-owning observer
+          <code class="inline">std::unique_ptr<T></code> — default exclusive ownership ·
+          <code class="inline">std::shared_ptr<T></code> — only when shared ownership is required ·
+          <code class="inline">std::weak_ptr<T></code> — non-owning observer
         </div>
         <div class="decision-tree">Need ownership?
   │
-  ├─ exclusive → unique_ptr⟨T⟩
+  ├─ exclusive -> unique_ptr<T>
   └─ shared
-       ├─ owning → shared_ptr⟨T⟩
-       └─ observe only → weak_ptr⟨T⟩</div>
+       ├─ owning -> shared_ptr<T>
+       └─ observe only -> weak_ptr<T></div>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           <code class="inline">std::move(x)</code> only casts to an rvalue — it does not move by itself.
           Prefer RAII / smart pointers over raw <code class="inline">new</code>/<code class="inline">delete</code>.
@@ -158,8 +158,8 @@ Foo(const Foo&) = delete;</code></pre>
         <h3>Rule of Zero (preferred)</h3>
         <pre><code>class Widget {
   std::string name_;
-  std::vector⟨int⟩ data_;
-  std::unique_ptr⟨Impl⟩ impl_;
+  std::vector<int> data_;
+  std::unique_ptr<Impl> impl_;
 };</code></pre>
       </section>
 
@@ -182,21 +182,21 @@ private:
       <section class="topic" id="inheritance">
         <h2>Inheritance & Polymorphism</h2>
         <pre><code>class Dog : public Animal {
-  void speak() const override { std::cout ⟨⟨ "Woof\n"; }
+  void speak() const override { std::cout << "Woof\n"; }
 };
 class Shape {
   virtual double area() const = 0;
   virtual ~Shape() = default;
 };
-if (auto* d = dynamic_cast⟨Dog*⟩(ptr)) { d-⟩speak(); }</code></pre>
+if (auto* d = dynamic_cast<Dog*>(ptr)) { d->speak(); }</code></pre>
       </section>
 
       <section class="topic" id="templates">
         <h2>Templates</h2>
-        <pre><code>template⟨typename T⟩
-T maxOf(T a, T b) { return a ⟩ b ? a : b; }
+        <pre><code>template<typename T>
+T maxOf(T a, T b) { return a > b ? a : b; }
 
-template⟨typename T⟩
+template<typename T>
 class Box {
   T val_;
 public:
@@ -204,12 +204,12 @@ public:
   T get() const { return val_; }
 };
 
-template⟨typename... Args⟩
-void log(Args&&... args) { (std::cout ⟨⟨ ... ⟨⟨ args); }
+template<typename... Args>
+void log(Args&&... args) { (std::cout << ... << args); }
 
-template⟨typename T⟩
-concept Numeric = std::integral⟨T⟩ || std::floating_point⟨T⟩;
-template⟨Numeric T⟩
+template<typename T>
+concept Numeric = std::integral<T> || std::floating_point<T>;
+template<Numeric T>
 T add(T a, T b) { return a + b; }</code></pre>
       </section>
 
@@ -218,7 +218,7 @@ T add(T a, T b) { return a + b; }</code></pre>
         <pre><code>auto add = [](int a, int b) { return a + b; };
 []  [=]  [&]  [x, &y]  [this]  [*this]
 auto id = [](auto x) { return x; };
-auto tmpl = []⟨typename T⟩(T x) { return x; };
+auto tmpl = []<typename T>(T x) { return x; };
 auto counter = [n = 0]() mutable { return ++n; };</code></pre>
       </section>
 
@@ -230,30 +230,30 @@ auto counter = [n = 0]() mutable { return ++n; };</code></pre>
         <pre><code>void f(int&);  void f(int&&);
 f(std::move(a));
 
-template⟨typename T⟩
-void wrapper(T&& arg) { target(std::forward⟨T⟩(arg)); }
+template<typename T>
+void wrapper(T&& arg) { target(std::forward<T>(arg)); }
 
 auto [k, v] = *map.begin();
-std::optional⟨int⟩ opt = 42;
-std::variant⟨int, float, std::string⟩ var;
+std::optional<int> opt = 42;
+std::variant<int, float, std::string> var;
 std::string_view sv = "hello";
-std::span⟨int⟩ sp{arr};
+std::span<int> sp{arr};
 std::ranges::sort(v);
-auto operator⟨=⟩(const Foo&) const = default;</code></pre>
+auto operator<=>(const Foo&) const = default;</code></pre>
       </section>
 
       <section class="topic" id="containers">
         <h2>STL Containers</h2>
-        <pre><code>std::vector⟨T⟩          // ★ default choice
-std::array⟨T,N⟩  std::deque⟨T⟩  std::list⟨T⟩
-std::map⟨K,V⟩  std::unordered_map⟨K,V⟩
-std::set⟨T⟩  std::unordered_set⟨T⟩
-std::stack⟨T⟩  std::queue⟨T⟩  std::priority_queue⟨T⟩
+        <pre><code>std::vector<T>          // ★ default choice
+std::array<T,N>  std::deque<T>  std::list<T>
+std::map<K,V>  std::unordered_map<K,V>
+std::set<T>  std::unordered_set<T>
+std::stack<T>  std::queue<T>  std::priority_queue<T>
 
 v.push_back(x);  v.emplace_back(args...);
 v.size();  v.empty();  v.reserve(n);</code></pre>
         <div class="callout callout-default"><strong>★ Default container</strong>
-          <code class="inline">std::vector⟨T⟩</code> is almost always the right default.
+          <code class="inline">std::vector<T></code> is almost always the right default.
           Switch only when profiling shows a real bottleneck.
         </div>
       </section>
@@ -291,7 +291,7 @@ std::ranges::sort(v);  std::ranges::find(v, val);</code></pre>
         <pre><code>try {
   throw std::runtime_error("oops");
 } catch (const std::exception& e) {
-  std::cerr ⟨⟨ e.what();
+  std::cerr << e.what();
 } catch (...) { }
 noexcept  noexcept(expr)</code></pre>
       </section>
@@ -301,10 +301,10 @@ noexcept  noexcept(expr)</code></pre>
         <pre><code>std::thread t(fn, arg1);
 t.join();  t.detach();
 std::mutex mtx;
-{ std::lock_guard⟨std::mutex⟩ lk(mtx); /* critical */ }
+{ std::lock_guard<std::mutex> lk(mtx); /* critical */ }
 auto fut = std::async(std::launch::async, fn);
 int res = fut.get();
-std::atomic⟨int⟩ counter{0};  counter++;</code></pre>
+std::atomic<int> counter{0};  counter++;</code></pre>
       </section>
 
       <section class="topic" id="headers">
@@ -357,7 +357,7 @@ Base b = Derived{};
 auto y = std::move(x);  // move ctor does the work
 
 // Prefer unique_ptr; shared_ptr only for true shared ownership
-void f(const std::vector⟨int⟩& v);  // avoid accidental copies
+void f(const std::vector<int>& v);  // avoid accidental copies
 
 // span / string_view do not own data
 </code></pre>

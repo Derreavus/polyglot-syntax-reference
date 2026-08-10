@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -52,8 +52,8 @@
           <tr><td class="concept">Variable</td><td><code>x = 42</code></td><td><code>let x = 42;</code></td><td><code>auto x = 42;</code></td><td><code>var x = 42;</code></td></tr>
           <tr><td class="concept">Mutable</td><td><code>x = 42</code> (always)</td><td><code>let mut x = 42;</code></td><td><code>int x = 42;</code></td><td><code>int x = 42;</code></td></tr>
           <tr><td class="concept">Constant</td><td><code>X = 42</code> (convention)</td><td><code>const X: i32 = 42;</code></td><td><code>constexpr int X = 42;</code></td><td><code>const int X = 42;</code></td></tr>
-          <tr><td class="concept">String literal</td><td><code>"hello"</code></td><td><code>"hello"</code> → <code>&str</code></td><td><code>"hello"</code> / <code>"hello"s</code></td><td><code>"hello"</code></td></tr>
-          <tr><td class="concept">Print</td><td><code>print(x)</code></td><td><code>println!("{x}");</code></td><td><code>std::cout ⟨⟨ x;</code></td><td><code>Console.WriteLine(x);</code></td></tr>
+          <tr><td class="concept">String literal</td><td><code>"hello"</code></td><td><code>"hello"</code> -> <code>&str</code></td><td><code>"hello"</code> / <code>"hello"s</code></td><td><code>"hello"</code></td></tr>
+          <tr><td class="concept">Print</td><td><code>print(x)</code></td><td><code>println!("{x}");</code></td><td><code>std::cout << x;</code></td><td><code>Console.WriteLine(x);</code></td></tr>
           <tr><td class="concept">Comment</td><td><code># comment</code></td><td><code>// comment</code></td><td><code>// comment</code></td><td><code>// comment</code></td></tr>
         </tbody>
       </table>
@@ -67,8 +67,8 @@
           <tr><td class="concept">Integer</td><td><code>int</code></td><td><code>i32</code></td><td><code>int</code></td><td><code>int</code></td></tr>
           <tr><td class="concept">Float</td><td><code>float</code></td><td><code>f64</code></td><td><code>double</code></td><td><code>double</code></td></tr>
           <tr><td class="concept">String (owned)</td><td><code>str</code></td><td><code>String</code></td><td><code>std::string</code></td><td><code>string</code></td></tr>
-          <tr><td class="concept">String (borrowed)</td><td>—</td><td><code>&str</code></td><td><code>std::string_view</code></td><td><code>ReadOnlySpan⟨char⟩</code></td></tr>
-          <tr><td class="concept">Null / absence</td><td><code>None</code></td><td><code>Option⟨T⟩</code></td><td><code>nullptr</code> / <code>optional</code></td><td><code>null</code> / <code>T?</code></td></tr>
+          <tr><td class="concept">String (borrowed)</td><td>—</td><td><code>&str</code></td><td><code>std::string_view</code></td><td><code>ReadOnlySpan<char></code></td></tr>
+          <tr><td class="concept">Null / absence</td><td><code>None</code></td><td><code>Option<T></code></td><td><code>nullptr</code> / <code>optional</code></td><td><code>null</code> / <code>T?</code></td></tr>
         </tbody>
       </table>
     </section>
@@ -78,10 +78,10 @@
       <table class="compare-table">
         <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
         <tbody>
-          <tr><td class="concept">Dynamic array ★</td><td><code>list</code></td><td><code>Vec⟨T⟩</code></td><td><code>std::vector⟨T⟩</code></td><td><code>List⟨T⟩</code></td></tr>
-          <tr><td class="concept">Key → value ★</td><td><code>dict</code></td><td><code>HashMap⟨K,V⟩</code></td><td><code>std::unordered_map</code></td><td><code>Dictionary⟨K,V⟩</code></td></tr>
-          <tr><td class="concept">Unique set</td><td><code>set</code></td><td><code>HashSet⟨T⟩</code></td><td><code>std::unordered_set</code></td><td><code>HashSet⟨T⟩</code></td></tr>
-          <tr><td class="concept">Queue</td><td><code>deque</code></td><td><code>VecDeque⟨T⟩</code></td><td><code>std::deque⟨T⟩</code></td><td><code>Queue⟨T⟩</code></td></tr>
+          <tr><td class="concept">Dynamic array ★</td><td><code>list</code></td><td><code>Vec<T></code></td><td><code>std::vector<T></code></td><td><code>List<T></code></td></tr>
+          <tr><td class="concept">Key -> value ★</td><td><code>dict</code></td><td><code>HashMap<K,V></code></td><td><code>std::unordered_map</code></td><td><code>Dictionary<K,V></code></td></tr>
+          <tr><td class="concept">Unique set</td><td><code>set</code></td><td><code>HashSet<T></code></td><td><code>std::unordered_set</code></td><td><code>HashSet<T></code></td></tr>
+          <tr><td class="concept">Queue</td><td><code>deque</code></td><td><code>VecDeque<T></code></td><td><code>std::deque<T></code></td><td><code>Queue<T></code></td></tr>
         </tbody>
       </table>
       <p class="idiom-note">★ = default choice in idiomatic code for that language.</p>
@@ -93,7 +93,7 @@
         <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
         <tbody>
           <tr><td class="concept">Define function</td><td><code>def f(x):</code></td><td><code>fn f(x: i32)</code></td><td><code>int f(int x)</code></td><td><code>int F(int x)</code></td></tr>
-          <tr><td class="concept">Lambda</td><td><code>lambda x: x*x</code></td><td><code>|x| x * x</code></td><td><code>[](int x){ return x*x; }</code></td><td><code>x =⟩ x * x</code></td></tr>
+          <tr><td class="concept">Lambda</td><td><code>lambda x: x*x</code></td><td><code>|x| x * x</code></td><td><code>[](int x){ return x*x; }</code></td><td><code>x => x * x</code></td></tr>
         </tbody>
       </table>
     </section>
@@ -106,7 +106,7 @@
           <tr><td class="concept">Class</td><td><code>class Foo:</code></td><td><code>struct</code> + <code>impl</code></td><td><code>class Foo</code></td><td><code>class Foo</code></td></tr>
           <tr><td class="concept">Value / data bag ★</td><td><code>@dataclass</code></td><td><code>struct</code> + derive</td><td><code>struct</code></td><td><code>record</code></td></tr>
           <tr><td class="concept">Interface</td><td><code>Protocol</code></td><td><code>trait</code></td><td>abstract / concepts</td><td><code>interface</code></td></tr>
-          <tr><td class="concept">Generics</td><td><code>list[T]</code></td><td><code>⟨T: Trait⟩</code></td><td><code>template⟨typename T⟩</code></td><td><code>⟨T⟩</code></td></tr>
+          <tr><td class="concept">Generics</td><td><code>list[T]</code></td><td><code><T: Trait></code></td><td><code>template<typename T></code></td><td><code><T></code></td></tr>
         </tbody>
       </table>
     </section>
@@ -116,9 +116,9 @@
       <table class="compare-table">
         <thead><tr><th>Concept</th><th class="lang-python">Python</th><th class="lang-rust">Rust</th><th class="lang-cpp">C++</th><th class="lang-csharp">C#</th></tr></thead>
         <tbody>
-          <tr><td class="concept">Exclusive own</td><td>GC</td><td><code>T</code> / <code>Box⟨T⟩</code></td><td><code>unique_ptr⟨T⟩</code></td><td>GC</td></tr>
-          <tr><td class="concept">Shared own</td><td>GC</td><td><code>Arc⟨T⟩</code></td><td><code>shared_ptr⟨T⟩</code></td><td>GC</td></tr>
-          <tr><td class="concept">Borrow / view</td><td>everything is ref</td><td><code>&T</code> / <code>&mut T</code></td><td><code>T&</code> / <code>string_view</code></td><td><code>ref</code> / <code>Span⟨T⟩</code></td></tr>
+          <tr><td class="concept">Exclusive own</td><td>GC</td><td><code>T</code> / <code>Box<T></code></td><td><code>unique_ptr<T></code></td><td>GC</td></tr>
+          <tr><td class="concept">Shared own</td><td>GC</td><td><code>Arc<T></code></td><td><code>shared_ptr<T></code></td><td>GC</td></tr>
+          <tr><td class="concept">Borrow / view</td><td>everything is ref</td><td><code>&T</code> / <code>&mut T</code></td><td><code>T&</code> / <code>string_view</code></td><td><code>ref</code> / <code>Span<T></code></td></tr>
         </tbody>
       </table>
     </section>
@@ -130,7 +130,7 @@
         <tbody>
           <tr><td class="concept">Throw / raise</td><td><code>raise ValueError()</code></td><td><code>return Err(...)</code></td><td><code>throw runtime_error()</code></td><td><code>throw new Exception()</code></td></tr>
           <tr><td class="concept">Catch</td><td><code>except E as e:</code></td><td><code>match result</code></td><td><code>catch (const E&)</code></td><td><code>catch (E e)</code></td></tr>
-          <tr><td class="concept">Result type</td><td>—</td><td><code>Result⟨T,E⟩</code> ★</td><td><code>std::expected</code></td><td>exceptions ★</td></tr>
+          <tr><td class="concept">Result type</td><td>—</td><td><code>Result<T,E></code> ★</td><td><code>std::expected</code></td><td>exceptions ★</td></tr>
           <tr><td class="concept">Propagate</td><td>unhandled raise</td><td><code>?</code> ★</td><td>unhandled throw</td><td>unhandled throw</td></tr>
         </tbody>
       </table>
@@ -143,7 +143,7 @@
         <tbody>
           <tr><td class="concept">Async fn</td><td><code>async def f():</code></td><td><code>async fn f()</code></td><td>coroutines C++20</td><td><code>async Task F()</code></td></tr>
           <tr><td class="concept">Await</td><td><code>await f()</code></td><td><code>f().await</code></td><td><code>co_await</code></td><td><code>await f()</code></td></tr>
-          <tr><td class="concept">Task / future</td><td><code>asyncio.Task</code></td><td>Future (tokio)</td><td><code>std::future</code></td><td><code>Task⟨T⟩</code></td></tr>
+          <tr><td class="concept">Task / future</td><td><code>asyncio.Task</code></td><td>Future (tokio)</td><td><code>std::future</code></td><td><code>Task<T></code></td></tr>
         </tbody>
       </table>
     </section>
@@ -188,7 +188,7 @@ for (i, item) in items.iter().enumerate() {
     println!("{i}: {item}");
 }</code></pre></div>
         <div class="quad-card"><div class="quad-card-header cpp">C++</div><pre><code>for (const auto& item : items) {
-  std::cout ⟨⟨ item;
+  std::cout << item;
 }</code></pre></div>
         <div class="quad-card"><div class="quad-card-header csharp">C#</div><pre><code>foreach (var item in items) {
     Console.WriteLine(item);
@@ -199,27 +199,27 @@ for (i, item) in items.iter().enumerate() {
       <div class="quad-grid">
         <div class="quad-card"><div class="quad-card-header python">Python</div><pre><code>squares = [x*x for x in nums]
 evens = [x for x in nums if x % 2 == 0]</code></pre></div>
-        <div class="quad-card"><div class="quad-card-header rust">Rust</div><pre><code>let squares: Vec⟨_⟩ = nums.iter()
+        <div class="quad-card"><div class="quad-card-header rust">Rust</div><pre><code>let squares: Vec<_> = nums.iter()
     .map(|x| x * x).collect();
-let evens: Vec⟨_⟩ = nums.iter()
+let evens: Vec<_> = nums.iter()
     .filter(|x| *x % 2 == 0).copied().collect();</code></pre></div>
         <div class="quad-card"><div class="quad-card-header cpp">C++</div><pre><code>auto squares = nums
   | std::views::transform([](int x){ return x*x; });
 auto evens = nums
   | std::views::filter([](int x){ return x%2==0; });</code></pre></div>
-        <div class="quad-card"><div class="quad-card-header csharp">C#</div><pre><code>var squares = nums.Select(x =⟩ x * x).ToList();
-var evens = nums.Where(x =⟩ x % 2 == 0).ToList();</code></pre></div>
+        <div class="quad-card"><div class="quad-card-header csharp">C#</div><pre><code>var squares = nums.Select(x => x * x).ToList();
+var evens = nums.Where(x => x % 2 == 0).ToList();</code></pre></div>
       </div>
 
       <h3 style="margin:1.5rem 0 0.5rem;font-size:1.05rem;color:var(--accent);">Ownership (C++ ↔ Rust)</h3>
       <div class="pair-grid">
-        <div class="pair-card"><div class="pair-card-header"><span>C++</span></div><pre><code>std::unique_ptr⟨T⟩
-std::shared_ptr⟨T⟩
-std::weak_ptr⟨T⟩
+        <div class="pair-card"><div class="pair-card-header"><span>C++</span></div><pre><code>std::unique_ptr<T>
+std::shared_ptr<T>
+std::weak_ptr<T>
 T& / const T&</code></pre></div>
-        <div class="pair-card"><div class="pair-card-header"><span>Rust</span></div><pre><code>Box⟨T⟩  (or owned T)
-Arc⟨T⟩  (or Rc⟨T⟩)
-Weak⟨T⟩
+        <div class="pair-card"><div class="pair-card-header"><span>Rust</span></div><pre><code>Box<T>  (or owned T)
+Arc<T>  (or Rc<T>)
+Weak<T>
 &T / &mut T</code></pre></div>
       </div>
 

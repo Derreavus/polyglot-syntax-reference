@@ -144,7 +144,7 @@ section.topic h2 {
 }
 section.topic h3 { font-size: 1.05rem; margin: 1.4rem 0 0.5rem; color: var(--accent); }
 
-pre, code { font-family: var(--mono); font-size: 0.85rem; }
+pre, code { font-family: var(--mono); font-size: 0.85rem; font-variant-ligatures: none; font-feature-settings: "liga" 0, "clig" 0, "calt" 0; }
 pre {
   background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
   padding: 1rem 1.1rem; overflow-x: auto; margin: 0.75rem 0 1rem; line-height: 1.5;
