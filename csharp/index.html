@@ -362,8 +362,9 @@ var list = q.ToList();         // materialize once
 // Nullable suppression — use sparingly
 string s = maybe!;
 
-// Avoid boxing in hot paths
-object o = 42;
+// Avoid boxing in hot paths — allocates on the heap
+object o = 42;          // BAD in a loop: boxes every iteration
+List&lt;int&gt; nums = [];    // GOOD: generics avoid boxing entirely
 </code></pre>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           Prefer <code class="inline">await</code> over <code class="inline">.Result</code>/<code class="inline">.Wait()</code>.
