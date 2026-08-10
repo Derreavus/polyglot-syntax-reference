@@ -19,16 +19,11 @@ import sys
 from pathlib import Path
 from urllib.parse import urlparse, unquote
 
+from language_registry import language_slugs
+
 ROOT = Path(__file__).resolve().parents[1]
 
-REQUIRED_PAGES = [
-    "index.html",
-    "python/index.html",
-    "rust/index.html",
-    "cpp/index.html",
-    "csharp/index.html",
-    "compare/index.html",
-]
+REQUIRED_PAGES = ["index.html", "compare/index.html"] + [f"{slug}/index.html" for slug in language_slugs()]
 
 
 def collect_html_files() -> list[Path]:

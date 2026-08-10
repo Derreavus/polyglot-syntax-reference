@@ -12,13 +12,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="../index.html" class="logo"><span class="logo-mark">{ }</span><span class="logo-text">Polyglot Syntax</span></a>
-      <nav class="lang-nav">
-        <a href="../python/index.html" class="lang-btn python">Python</a>
-        <a href="../rust/index.html" class="lang-btn rust">Rust</a>
-        <a href="../cpp/index.html" class="lang-btn cpp">C++</a>
-        <a href="../csharp/index.html" class="lang-btn csharp">C#</a>
-        <a href="index.html" class="lang-btn" style="color:var(--accent);border:1px solid var(--accent);">Compare</a>
-      </nav>
+      <nav class="lang-nav" aria-label="Language navigation"></nav>
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
     </div>
   </header>
@@ -26,8 +20,7 @@
   <main class="container" style="max-width:1100px;padding-bottom:4rem;">
     <div class="compare-hero">
       <h1>Same Concept, Different Language</h1>
-      <p>Jump between Python, Rust, C++, and C# without losing your place.
-         Every row is the idiomatic way to express the same idea.</p>
+      <p id="compare-language-summary">Jump between the supported languages without losing your place.</p>
     </div>
 
     <nav class="compare-toc">
@@ -250,6 +243,7 @@ T?</code></pre></div>
       <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">GitHub</a> · Cross-language comparison</p>
     </div>
   </footer>
+  <script src="../js/site-data.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>

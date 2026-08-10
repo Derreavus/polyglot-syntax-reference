@@ -134,6 +134,36 @@ You do not need to be an expert in every language covered. The reference is inte
 
 ---
 
+## Language Registry
+
+The site now uses a single authoritative language registry in [js/site-data.js](js/site-data.js). The registry defines the currently supported languages and their display order:
+
+- Python
+- Rust
+- C++
+- C#
+
+Each entry includes:
+
+- `name` — displayed name
+- `slug` — URL segment and page folder
+- `status` — support state for the site
+- `order` — display order in navigation and cards
+
+Navigation and homepage cards are generated from that registry, and validation scripts read the same source so the site does not maintain a second hard-coded language list.
+
+### Adding a new language
+
+To add a future language:
+
+1. Add the language entry to the registry.
+2. Create the language page under its slug folder, keeping the same static HTML structure.
+3. Add the language-specific content and any required section IDs.
+4. Ensure the page is referenced by the registry-driven navigation and homepage generation.
+5. Run the validation scripts to confirm the site still passes.
+
+This keeps the architecture static-site friendly and avoids introducing a framework.
+
 ## Project Philosophy
 
 ### Familiar concepts first

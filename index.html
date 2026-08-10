@@ -17,13 +17,7 @@
         <span class="logo-mark">{ }</span>
         <span class="logo-text">Polyglot Syntax</span>
       </a>
-      <nav class="lang-nav">
-        <a href="python/index.html" class="lang-btn python">Python</a>
-        <a href="rust/index.html" class="lang-btn rust">Rust</a>
-        <a href="cpp/index.html" class="lang-btn cpp">C++</a>
-        <a href="csharp/index.html" class="lang-btn csharp">C#</a>
-        <a href="compare/index.html" class="lang-btn" style="color:var(--accent);border:1px solid var(--accent);">Compare</a>
-      </nav>
+      <nav class="lang-nav" aria-label="Language navigation"></nav>
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
     </div>
   </header>
@@ -39,32 +33,7 @@
           common gotchas — no matter which language you're working in.
         </p>
 
-        <div class="hero-cards">
-          <a href="python/index.html" class="hero-card python">
-            <h2>Python</h2>
-            <p>Readable and versatile. Explore types, collections, async, typing, and the standard library.</p>
-          </a>
-
-          <a href="rust/index.html" class="hero-card rust">
-            <h2>Rust</h2>
-            <p>Ownership, borrowing, traits, and zero-cost abstractions. Safe systems programming without a GC.</p>
-          </a>
-
-          <a href="cpp/index.html" class="hero-card cpp">
-            <h2>C++</h2>
-            <p>Modern C++ from fundamentals through templates, RAII, the STL, and C++20/23 features.</p>
-          </a>
-
-          <a href="csharp/index.html" class="hero-card csharp">
-            <h2>C#</h2>
-            <p>Expressive and powerful. Explore LINQ, async/await, generics, records, and the .NET libraries.</p>
-          </a>
-
-          <a href="compare/index.html" class="hero-card" style="border-color:var(--accent);">
-            <h2 style="color:var(--accent);">Compare</h2>
-            <p>Same concept, different language — compare syntax and approaches across languages.</p>
-          </a>
-        </div>
+        <div class="hero-cards" aria-label="Language cards"></div>
       </div>
     </section>
 
@@ -98,6 +67,7 @@
     </div>
   </footer>
 
+  <script src="js/site-data.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

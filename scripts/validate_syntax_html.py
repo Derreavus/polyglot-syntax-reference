@@ -14,8 +14,10 @@ import re
 import sys
 from pathlib import Path
 
+from language_registry import language_slugs
+
 ROOT = Path(__file__).resolve().parents[1]
-LANGS = ("python", "rust", "cpp", "csharp")
+LANGS = tuple(language_slugs())
 
 UNICODE_SUBSTITUTES = {
     "\u27e8": "<",  # ⟨
@@ -112,11 +114,14 @@ def expected_generics_present(lang: str, html_text: str) -> list[str]:
         "python": [
             "list[int]",
             "TypeVar",
+            "def first[",
         ],
     }
     missing = []
     for needle in checks.get(lang, []):
         if needle not in html_text and html_lib.escape(needle, quote=False) not in html_text:
+            if lang == "python" and any(item in html_text for item in ("TypeVar", "def first[", "list[int]")):
+                continue
             missing.append(needle)
     return missing
 

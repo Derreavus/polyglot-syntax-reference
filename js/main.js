@@ -26,19 +26,43 @@
   }
 
   const path = location.pathname;
-  let currentLang = null;
-  if (path.includes("/python")) currentLang = "python";
-  else if (path.includes("/rust")) currentLang = "rust";
-  else if (path.includes("/cpp")) currentLang = "cpp";
-  else if (path.includes("/csharp")) currentLang = "csharp";
+  const registry = Array.isArray(window.POLYGLOT_LANGUAGES) ? window.POLYGLOT_LANGUAGES.slice() : [];
 
-  const LANG_META = {
-    python: { label: "Python", path: "python/index.html" },
-    rust: { label: "Rust", path: "rust/index.html" },
-    cpp: { label: "C++", path: "cpp/index.html" },
-    csharp: { label: "C#", path: "csharp/index.html" },
-  };
+  function getPageInfo() {
+    const pageSegments = path.split("/").filter(Boolean);
+    const lastSegment = pageSegments[pageSegments.length - 1] || "";
+    const isIndexPage = lastSegment === "index.html" || pageSegments.length === 0;
+    const currentPageSegment = isIndexPage && pageSegments.length > 1 ? pageSegments[pageSegments.length - 2] : (isIndexPage ? null : lastSegment);
+    const isNestedPage = pageSegments.length > 1 && lastSegment === "index.html";
+    return {
+      pageSegments: pageSegments,
+      isIndexPage: isIndexPage,
+      isNestedPage: isNestedPage,
+      currentPageSegment: currentPageSegment,
+    };
+  }
+
+  function getCurrentLang() {
+    const pageInfo = getPageInfo();
+    if (!pageInfo.currentPageSegment) return null;
+    return registry.some(function (lang) { return lang.slug === pageInfo.currentPageSegment; }) ? pageInfo.currentPageSegment : null;
+  }
+
+  let currentLang = getCurrentLang();
   const basePrefix = currentLang ? "../" : "";
+
+  function buildLangMeta() {
+    const meta = {};
+    registry.forEach(function (lang) {
+      meta[lang.slug] = {
+        label: lang.name,
+        path: lang.slug + "/index.html",
+      };
+    });
+    return meta;
+  }
+
+  const LANG_META = buildLangMeta();
 
   const CONCEPTS = {
     types: { python: { id: "types" }, rust: { id: "types" }, cpp: { id: "types" }, csharp: { id: "types" } },
@@ -153,6 +177,67 @@
       .replace(/</g, "\u0026lt;")
       .replace(/>/g, "\u0026gt;")
       .replace(/"/g, "\u0026quot;");
+  }
+
+  function navPathFor(slug) {
+    const isNestedPage = getPageInfo().isNestedPage;
+    return (isNestedPage ? "../" : "") + slug + "/index.html";
+  }
+
+  function renderLanguageNavigation() {
+    const navs = document.querySelectorAll(".lang-nav");
+    if (!navs.length) return;
+
+    const isComparePage = path.split("/").filter(Boolean).includes("compare");
+    const ordered = registry;
+
+    navs.forEach(function (nav) {
+      nav.innerHTML = "";
+      ordered.forEach(function (lang) {
+        const link = document.createElement("a");
+        link.href = navPathFor(lang.slug);
+        link.className = "lang-btn " + lang.slug + (currentLang === lang.slug ? " active" : "");
+        link.textContent = lang.name;
+        nav.appendChild(link);
+      });
+
+      const compareLink = document.createElement("a");
+      if (isComparePage) {
+        compareLink.href = "index.html";
+      } else if (currentLang) {
+        compareLink.href = "../compare/index.html";
+      } else {
+        compareLink.href = "compare/index.html";
+      }
+      compareLink.className = "lang-btn" + (isComparePage ? " active" : "");
+      compareLink.style.color = "var(--accent)";
+      compareLink.style.border = "1px solid var(--accent)";
+      compareLink.textContent = "Compare";
+      nav.appendChild(compareLink);
+    });
+  }
+
+  function renderHomepageCards() {
+    const homepageCards = document.querySelector(".hero-cards");
+    if (!homepageCards) return;
+
+    const isNestedPage = getPageInfo().isNestedPage;
+
+    homepageCards.innerHTML = "";
+    registry.forEach(function (lang) {
+      const card = document.createElement("a");
+      card.href = (isNestedPage ? "../" : "") + lang.slug + "/index.html";
+      card.className = "hero-card " + lang.slug;
+      card.innerHTML = "<h2>" + escapeHtml(lang.name) + "</h2><p>" + escapeHtml(lang.description || "") + "</p>";
+      homepageCards.appendChild(card);
+    });
+
+    const compareCard = document.createElement("a");
+    compareCard.href = (isNestedPage ? "../" : "") + "compare/index.html";
+    compareCard.className = "hero-card";
+    compareCard.style.borderColor = "var(--accent)";
+    compareCard.innerHTML = '<h2 style="color:var(--accent);">Compare</h2><p>Same concept, different language — compare syntax and approaches across languages.</p>';
+    homepageCards.appendChild(compareCard);
   }
 
   function ensurePalette() {
@@ -310,6 +395,8 @@
     if (old) old.remove();
   }
 
+  renderLanguageNavigation();
+  renderHomepageCards();
   ensurePalette();
 
   function addCopyButtons() {
