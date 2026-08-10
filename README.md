@@ -1,78 +1,232 @@
 # Polyglot Syntax Reference
 
-In-depth interactive syntax reference for **Python**, **Rust**, **C++**, and **C#**.
+A quick reference for anyone who works with multiple programming languages.
 
-Designed for developers who learn by switching between languages. Each language page follows a consistent structure so you can jump from one language to another and immediately find the equivalent concept.
+Polyglot Syntax Reference makes it easier to switch between programming languages by organizing equivalent syntax, concepts, patterns, and common gotchas into a consistent reference format.
 
-## Live Site
+## Website
 
-**https://derreavus.github.io/polyglot-syntax-reference/**
+**[Open Polyglot Syntax Reference](https://derreavus.github.io/polyglot-syntax-reference/)**
 
-## Structure
+The website is the primary way to use the reference.
 
-```
-├── index.html              # Landing page
-├── css/style.css           # Shared dark/light theme
-├── js/main.js              # Theme, search (Ctrl+K), copy buttons
-├── python/index.html       # Python 3.12+ reference
-├── rust/index.html         # Rust reference
-├── cpp/index.html          # C++20/23 reference
-├── csharp/index.html       # C# 12 / .NET 8+ reference
-├── compare/index.html      # Cross-language concept matrices
-├── scripts/
-│   ├── validate_syntax_html.py
-│   ├── validate_links.py
-│   └── validate_html_smoke.py
-└── .github/workflows/ci.yml
-```
+---
 
-## Topics Covered (per language)
+## What Is Polyglot Syntax Reference?
 
-- Data types & literals
-- Variables, operators, control flow
-- Functions / methods / closures
-- Ownership / memory model (where relevant)
-- Classes, structs, records, traits / interfaces
-- Inheritance, polymorphism, generics
-- Collections & algorithms
+Polyglot Syntax Reference is designed for programmers who already know one or more programming languages and need a quick way to remember how familiar concepts are expressed in another language.
+
+Instead of searching through full language documentation for something like:
+
+- “How do I make a dictionary in Rust?”
+- “What's the C++ equivalent of this Python pattern?”
+- “How does C# handle async?”
+- “What's the syntax for generics in Rust again?”
+
+Polyglot provides a concise reference organized around the concepts and syntax you're likely to need.
+
+It is a **quick reference and comparison tool**, not a replacement for official language documentation.
+
+---
+
+## Why “Polyglot”?
+
+The same programming concept can look very different between languages.
+
+| Language | Common type |
+| --- | --- |
+| Python | `dict` |
+| Rust | `HashMap<K, V>` |
+| C++ | `std::unordered_map<K, V>` |
+| C# | `Dictionary<TKey, TValue>` |
+
+Polyglot Syntax Reference presents these concepts in a consistent format so you can quickly translate what you already know into another language.
+
+---
+
+## Languages
+
+Currently covered:
+
+- **C++**
+- **C#**
+- **Python**
+- **Rust**
+
+The project is intentionally focused on building a strong reference for the currently supported languages before expanding into additional languages.
+
+---
+
+## Features
+
+### Consistent language pages
+
+Each language follows a similar organizational structure, so once you know where to find something in one language, you can find the equivalent information in another.
+
+### Quick syntax reference
+
+Concise examples for common language features, syntax, operators, collections, control flow, functions, types, and other frequently referenced concepts.
+
+### Cross-language comparisons
+
+Compare how different languages approach the same programming concept without searching each language's documentation separately.
+
+### Search and keyboard navigation
+
+Use the site's search to quickly find syntax and concepts across the reference. Press `Ctrl+K` to access search without manually browsing the site.
+
+### Copyable examples
+
+Code examples are designed to be copied directly and use the actual syntax of the language rather than visual substitutes.
+
+### Version information
+
+Language features include version information where relevant, so you can identify when particular syntax or functionality was introduced.
+
+### Practical guidance
+
+Where useful, reference entries include:
+
+- When to use something
+- When to avoid it
+- Common mistakes
+- Recommended defaults
+- Language-specific gotchas
+
+---
+
+## How It Is Organized
+
+The reference is organized around the things programmers commonly need to look up rather than attempting to reproduce complete language documentation.
+
+Typical sections include:
+
+- Basics
+- Variables and types
+- Operators
+- Control flow
+- Functions
+- Collections
+- Generics / templates
 - Error handling
-- Concurrency / async
-- Key standard library highlights
-- Modern language features
+- Object-oriented programming
+- Asynchronous programming
+- Common patterns
+- Standard libraries
+- Language-specific gotchas
 
-## Validation (Phase 5)
+The exact organization varies where a language's design requires it, but the overall goal is to keep concepts easy to locate across languages.
 
-From the repo root:
+---
+
+## Who Is It For?
+
+Polyglot Syntax Reference is useful for anyone who switches between programming languages, including:
+
+- Developers working with multiple languages
+- Developers learning a new language
+- Students studying multiple languages
+- Hobbyist programmers
+- Developers returning to a language they have not used recently
+- Anyone who occasionally forgets the exact syntax for something
+
+You do not need to be an expert in every language covered. The reference is intended to help bridge the gap between what you already know and the syntax you need to remember.
+
+---
+
+## Project Philosophy
+
+### Familiar concepts first
+
+The reference focuses on concepts programmers are likely to already understand and shows how those concepts are expressed in each language.
+
+### Concise over comprehensive
+
+The goal is not to document every feature of every language. It is to provide the information most useful when you need a quick answer.
+
+### Practical over academic
+
+Examples should demonstrate how syntax is actually used rather than only showing isolated grammar rules.
+
+### Consistent where possible
+
+Similar concepts should be presented in similar ways across languages, making cross-language comparison easier.
+
+### Accurate over clever
+
+Examples should use valid, current syntax and avoid misleading shortcuts or language-specific tricks unless they are clearly identified.
+
+---
+
+## Project Status
+
+Polyglot Syntax Reference currently focuses on C++, C#, Python, and Rust.
+
+The project continues to evolve, with a focus on content accuracy, practical guidance, validated examples, accessibility, and cross-language navigation.
+
+---
+
+## Contributing
+
+Contributions are welcome.
+
+Useful contributions include:
+
+- Correcting inaccurate information
+- Fixing outdated syntax
+- Improving examples
+- Adding useful gotchas
+- Improving cross-language comparisons
+- Improving accessibility
+- Fixing bugs
+- Improving the site's tooling and validation
+- Proposing useful additions to the reference
+
+When adding or changing examples, prioritize:
+
+1. Correctness
+2. Clarity
+3. Practical usefulness
+4. Consistency with the existing reference
+5. Current language standards and conventions
+
+Avoid adding content solely to increase the size of the reference.
+
+---
+
+## Development
+
+The project is a static website.
+
+To work on the project locally:
 
 ```bash
-python3 scripts/validate_syntax_html.py   # generics, structure, version badges
-python3 scripts/validate_links.py         # internal links + fragments
-python3 scripts/validate_html_smoke.py    # well-formed HTML smoke checks
+git clone https://github.com/Derreavus/polyglot-syntax-reference.git
+cd polyglot-syntax-reference
 ```
 
-GitHub Actions (`.github/workflows/ci.yml`) runs all three on every push and pull request to `main`.
+Then follow the project's existing development and build instructions.
 
-### What the syntax linter catches
+Before submitting changes, run the available validation and CI checks to ensure that:
 
-- Stripped generics (`Vec>`, `List>`, empty type args)
-- Raw ASCII angle brackets inside code blocks that browsers treat as HTML tags
-- Missing language version badges / sidebars / topic sections
-- Compare-page raw `Vec<T>` / `<T>` that would disappear in the browser
+- HTML remains valid
+- Internal links work
+- Syntax content remains correctly formatted
+- Code examples have not been corrupted
+- Unsupported Unicode syntax substitutions have not been introduced
 
-### Correctness notes
-
-Never put raw `<T>` in HTML — the browser treats it as a tag and strips it.
-
-Use actual source syntax in the source text, and HTML-escape the code content when writing static HTML:
-
-| Form | Example |
-|------|---------|
-| HTML source | `Vec&lt;T&gt;` |
-| Browser display | `Vec<T>` |
-| Copy/paste result | `Vec<T>` |
-
-Do not use Unicode lookalikes such as `⟨⟩`, `＜＞`, `≤`, `≥`, `→`, or `⇒` for programming-language syntax.
+---
 
 ## License
 
-MIT — feel free to fork and extend.
+Polyglot Syntax Reference is licensed under the MIT License.
+
+See [`LICENSE`](LICENSE) for the full license text.
+
+---
+
+## Repository
+
+**GitHub:** [Derreavus/polyglot-syntax-reference](https://github.com/Derreavus/polyglot-syntax-reference)
+
+**Website:** [derreavus.github.io/polyglot-syntax-reference](https://derreavus.github.io/polyglot-syntax-reference/)
