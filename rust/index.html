@@ -87,7 +87,7 @@ let b: bool = true;
 let c: char = 'R';
 
 // i8/u8 … i128/u128, isize/usize · f32, f64
-"42".parse::<i32>().unwrap();
+"42".parse::&lt;i32&gt;().unwrap();
 42.to_string();
 42 as f64;
 
@@ -101,12 +101,12 @@ let unit: () = ();</code></pre>
       <section class="topic" id="variables">
         <h2>Variables & Assignment</h2>
         <p>Immutable by default. Add <code class="inline">mut</code> to reassign. Shadowing reuses a name (even with a new type).</p>
-        <pre><code>let name = "Leo";             // &str, immutable
+        <pre><code>let name = "Leo";             // &amp;str, immutable
 let mut age = 7;
 age += 1;
 
 const MAX_AGE: u32 = 120;
-static GREETING: &str = "Hi!";
+static GREETING: &amp;str = "Hi!";
 
 let x = 5;
 let x = x * 2;                // shadow
@@ -118,7 +118,7 @@ let Point { x, y } = p;</code></pre>
 
       <section class="topic" id="strings">
         <h2>Strings</h2>
-        <pre><code>let s1: &str = "Hello";
+        <pre><code>let s1: &amp;str = "Hello";
 let s2 = String::from("World");
 let s3 = "Hi".to_string();
 
@@ -127,17 +127,17 @@ let s3 = "Hi".to_string();
 "Python".len();               // bytes
 " a ".trim();
 "abc".replace("bc", "ha");
-"a b".split(' ').collect::<Vec<_>>();
+"a b".split(' ').collect::&lt;Vec&lt;_&gt;&gt;();
 ["a", "b"].join("-");
 
 let text = "Python";
-&text[0..1];
-text.chars().rev().collect::<String>();
+&amp;text[0..1];
+text.chars().rev().collect::&lt;String&gt;();
 
 format!("Hello, {name}!");
 println!("{:?}", age);</code></pre>
         <div class="callout callout-use"><strong>When to use</strong>
-          Parameters: prefer <code class="inline">&str</code>.
+          Parameters: prefer <code class="inline">&amp;str</code>.
           Ownership / mutation: <code class="inline">String</code>.
           Building text: <code class="inline">format!</code> or <code class="inline">push_str</code>.
         </div>
@@ -146,8 +146,8 @@ println!("{:?}", age);</code></pre>
       <section class="topic" id="control">
         <h2>Control Flow</h2>
         <p>No truthiness — conditions must be <code class="inline">bool</code>. <code class="inline">if</code> is an expression.</p>
-        <pre><code>let category = if age < 13 { "child" }
-else if age < 20 { "teenager" }
+        <pre><code>let category = if age &lt; 13 { "child" }
+else if age &lt; 20 { "teenager" }
 else { "adult" };
 
 let mut count = 0;
@@ -160,30 +160,30 @@ let result = loop {
 while condition { ... }
 for i in 0..5 { ... }
 for i in 0..=5 { ... }
-for fruit in &fruits { ... }
+for fruit in &amp;fruits { ... }
 for (i, fruit) in fruits.iter().enumerate() { ... }
 
 'outer: for x in 0..5 {
     for y in 0..5 {
-        if x * y > 6 { break 'outer; }
+        if x * y &gt; 6 { break 'outer; }
     }
 }</code></pre>
       </section>
 
       <section class="topic" id="functions">
         <h2>Functions & Closures</h2>
-        <pre><code>fn greet() -> String { "Hello!".to_string() }
-fn greet_person(name: &str) -> String { format!("Hello, {name}!") }
-fn add(x: i32, y: i32) -> i32 { x + y }  // no semicolon = return
+        <pre><code>fn greet() -&gt; String { "Hello!".to_string() }
+fn greet_person(name: &amp;str) -&gt; String { format!("Hello, {name}!") }
+fn add(x: i32, y: i32) -&gt; i32 { x + y }  // no semicolon = return
 
-fn min_max(nums: &[i32]) -> (i32, i32) {
+fn min_max(nums: &amp;[i32]) -&gt; (i32, i32) {
     (*nums.iter().min().unwrap(), *nums.iter().max().unwrap())
 }
 
 let square = |x: i32| x * x;
-let sq: Vec<i32> = nums.iter().map(|x| x * x).collect();
+let sq: Vec&lt;i32&gt; = nums.iter().map(|x| x * x).collect();
 
-fn make_adder(n: i32) -> impl Fn(i32) -> i32 {
+fn make_adder(n: i32) -&gt; impl Fn(i32) -&gt; i32 {
     move |x| x + n
 }</code></pre>
       </section>
@@ -198,17 +198,17 @@ println!("{s2}");
 let n1 = 5;                   // i32 is Copy
 let n2 = n1;                  // both valid
 
-fn print_len(s: &String) -> usize { s.len() }
-print_len(&s);                // borrow, s still valid
+fn print_len(s: &amp;String) -&gt; usize { s.len() }
+print_len(&amp;s);                // borrow, s still valid
 
-fn add_world(s: &mut String) { s.push_str(", world"); }
+fn add_world(s: &amp;mut String) { s.push_str(", world"); }
 let mut s = String::from("hello");
-add_world(&mut s);
+add_world(&amp;mut s);
 
-// either one &mut OR any number of & — never both
+// either one &amp;mut OR any number of &amp; — never both
 let s3 = s2.clone();</code></pre>
         <div class="callout callout-default"><strong>★ Ownership defaults</strong>
-          Prefer borrowing (<code class="inline">&T</code> / <code class="inline">&mut T</code>) over cloning.
+          Prefer borrowing (<code class="inline">&amp;T</code> / <code class="inline">&amp;mut T</code>) over cloning.
           Own with <code class="inline">T</code> only when you need exclusive ownership.
         </div>
         <div class="decision-tree">Need ownership?
@@ -226,13 +226,13 @@ let s3 = s2.clone();</code></pre>
 
       <section class="topic" id="lifetimes">
         <h2>Lifetimes</h2>
-        <pre><code>fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
-    if x.len() > y.len() { x } else { y }
+        <pre><code>fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
+    if x.len() &gt; y.len() { x } else { y }
 }
 
-struct Excerpt<'a> { part: &'a str }
-impl<'a> Excerpt<'a> {
-    fn level(&self) -> i32 { 3 }
+struct Excerpt&lt;'a&gt; { part: &amp;'a str }
+impl&lt;'a&gt; Excerpt&lt;'a&gt; {
+    fn level(&amp;self) -&gt; i32 { 3 }
 }
 // 'static = whole program (string literals)</code></pre>
       </section>
@@ -241,10 +241,10 @@ impl<'a> Excerpt<'a> {
         <h2>Structs & Enums</h2>
         <pre><code>struct Dog { name: String, age: u8 }
 impl Dog {
-    fn new(name: &str, age: u8) -> Self {
+    fn new(name: &amp;str, age: u8) -&gt; Self {
         Self { name: name.to_string(), age }
     }
-    fn bark(&self) -> String { format!("{} says Woof!", self.name) }
+    fn bark(&amp;self) -&gt; String { format!("{} says Woof!", self.name) }
 }
 
 struct Point(i32, i32);       // tuple struct
@@ -252,23 +252,23 @@ enum Animal {
     Dog(String),
     Cat { name: String, lives: u8 },
 }
-let some: Option<i32> = Some(5);
-let none: Option<i32> = None;</code></pre>
+let some: Option&lt;i32&gt; = Some(5);
+let none: Option&lt;i32&gt; = None;</code></pre>
       </section>
 
       <section class="topic" id="traits">
         <h2>Traits & Generics</h2>
         <pre><code>trait Shape {
-    fn area(&self) -> f64;
-    fn name(&self) -> &str { "shape" }
+    fn area(&amp;self) -&gt; f64;
+    fn name(&amp;self) -&gt; &amp;str { "shape" }
 }
 impl Shape for Circle {
-    fn area(&self) -> f64 { std::f64::consts::PI * self.radius.powi(2) }
+    fn area(&amp;self) -&gt; f64 { std::f64::consts::PI * self.radius.powi(2) }
 }
 
-fn largest<T: PartialOrd + Copy>(list: &[T]) -> T { ... }
-fn print_shape(shape: &impl Shape) { ... }
-let shapes: Vec<Box<dyn Shape>> = vec![...];
+fn largest&lt;T: PartialOrd + Copy&gt;(list: &amp;[T]) -&gt; T { ... }
+fn print_shape(shape: &amp;impl Shape) { ... }
+let shapes: Vec&lt;Box&lt;dyn Shape&gt;&gt; = vec![...];
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Default)]
 struct Point { x: i32, y: i32 }</code></pre>
@@ -277,68 +277,68 @@ struct Point { x: i32, y: i32 }</code></pre>
       <section class="topic" id="pattern">
         <h2>Pattern Matching</h2>
         <pre><code>match n {
-    1 => println!("one"),
-    2 | 3 => println!("two or three"),
-    4..=9 => println!("four through nine"),
-    _ => println!("something else"),
+    1 =&gt; println!("one"),
+    2 | 3 =&gt; println!("two or three"),
+    4..=9 =&gt; println!("four through nine"),
+    _ =&gt; println!("something else"),
 }
 
 if let Some(v) = maybe_value { println!("Got {v}"); }
 
 match n {
-    x if x < 0 => println!("negative"),
-    x if x % 2 == 0 => println!("even"),
-    _ => println!("odd"),
+    x if x &lt; 0 =&gt; println!("negative"),
+    x if x % 2 == 0 =&gt; println!("even"),
+    _ =&gt; println!("odd"),
 }</code></pre>
       </section>
 
       <section class="topic" id="collections">
         <h2>Collections</h2>
-        <pre><code>let mut nums: Vec<i32> = Vec::new();
+        <pre><code>let mut nums: Vec&lt;i32&gt; = Vec::new();
 let mut nums = vec![5];
 nums.push(10);
-nums.pop();                   // Option<T>
+nums.pop();                   // Option&lt;T&gt;
 
 use std::collections::{HashMap, HashSet};
 let mut pet = HashMap::new();
 pet.insert("name", "Leo");
-pet.get("age");               // Option<&V>
+pet.get("age");               // Option&lt;&amp;V&gt;
 *pet.entry("hits").or_insert(0) += 1;
 
 use std::collections::BTreeMap; // sorted keys</code></pre>
         <div class="callout callout-default"><strong>★ Defaults</strong>
-          <code class="inline">Vec<T></code> — default collection ·
+          <code class="inline">Vec&lt;T&gt;</code> — default collection ·
           <code class="inline">String</code> — owned text ·
-          <code class="inline">&str</code> — default borrowed text parameter ·
-          <code class="inline">HashMap<K,V></code> — key/value
+          <code class="inline">&amp;str</code> — default borrowed text parameter ·
+          <code class="inline">HashMap&lt;K,V&gt;</code> — key/value
         </div>
       </section>
 
       <section class="topic" id="iterators">
         <h2>Iterators</h2>
         <p>Lazy — nothing runs until a consuming adapter.</p>
-        <pre><code>let squares: Vec<i32> = (0..10).map(|x| x * x).collect();
-let evens: Vec<i32> = (0..20).filter(|x| x % 2 == 0).collect();
+        <pre><code>let squares: Vec&lt;i32&gt; = (0..10).map(|x| x * x).collect();
+let evens: Vec&lt;i32&gt; = (0..20).filter(|x| x % 2 == 0).collect();
 let total: i32 = (1..=1000).sum();
-words.iter().any(|w| w.len() > 4);
+words.iter().any(|w| w.len() &gt; 4);
 (1..=5).fold(1, |acc, x| acc * x);
 names.iter().zip(ages.iter());</code></pre>
       </section>
 
       <section class="topic" id="error">
         <h2>Error Handling</h2>
-        <p>No exceptions. Recoverable: <code class="inline">Result<T, E></code>. Unrecoverable: <code class="inline">panic!</code>.</p>
-        <pre><code>fn divide(a: f64, b: f64) -> Result<f64, String> {
+        <p>No exceptions. Recoverable: <code class="inline">Result&lt;T, E&gt;</code>. Unrecoverable: <code class="inline">panic!</code>.</p>
+        <pre><code>fn divide(a: f64, b: f64) -&gt; Result&lt;f64, String&gt; {
     if b == 0.0 { return Err("Cannot divide by zero!".into()); }
     Ok(a / b)
 }
 
 match divide(10.0, 0.0) {
-    Ok(r) => println!("Result: {r}"),
-    Err(e) => println!("{e}"),
+    Ok(r) =&gt; println!("Result: {r}"),
+    Err(e) =&gt; println!("{e}"),
 }
 
-fn read_number() -> Result<i32, Box<dyn std::error::Error>> {
+fn read_number() -&gt; Result&lt;i32, Box&lt;dyn std::error::Error&gt;&gt; {
     let s = std::fs::read_to_string("num.txt")?;
     let n: i32 = s.trim().parse()?;
     Ok(n)
@@ -347,8 +347,8 @@ fn read_number() -> Result<i32, Box<dyn std::error::Error>> {
 result.unwrap_or(0);
 Some(4).map(|n| n * 2);</code></pre>
         <div class="callout callout-default"><strong>★ Error handling defaults</strong>
-          <code class="inline">Result<T, E></code> recoverable ·
-          <code class="inline">Option<T></code> absence ·
+          <code class="inline">Result&lt;T, E&gt;</code> recoverable ·
+          <code class="inline">Option&lt;T&gt;</code> absence ·
           <code class="inline">?</code> to propagate ·
           Prefer <code class="inline">unwrap_or</code> / <code class="inline">ok_or</code> over bare <code class="inline">unwrap()</code> in libraries.
         </div>
@@ -405,7 +405,7 @@ let counter = Arc::new(Mutex::new(0));
       <section class="topic" id="advanced">
         <h2>Advanced Idioms</h2>
         <pre><code>struct Meters(f64);           // newtype
-type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
+type Result&lt;T&gt; = std::result::Result&lt;T, Box&lt;dyn std::error::Error&gt;&gt;;
 use std::cell::RefCell;
 use std::borrow::Cow;
 // Pin, unsafe, FFI, macros when needed</code></pre>
@@ -417,7 +417,7 @@ use std::borrow::Cow;
 let s2 = s1.clone();   // only when you need ownership
 
 // Borrowing across mutation
-let r = &v[0];
+let r = &amp;v[0];
 v.push(1);             // error while r lives
 
 // unwrap in libraries
@@ -429,7 +429,7 @@ std::thread::sleep(...);  // use tokio::time::sleep
 // Mutex poisoning after panic
 let guard = mutex.lock().unwrap();
 
-// Prefer &T / &mut T; Arc only for shared ownership across threads
+// Prefer &amp;T / &amp;mut T; Arc only for shared ownership across threads
 </code></pre>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           <code class="inline">clone()</code> and <code class="inline">unwrap()</code> silence the compiler but hide design issues.

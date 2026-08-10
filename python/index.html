@@ -75,23 +75,23 @@ x, y = 1, 2
 x, y = y, x
 a = b = c = 0
 x += 1
-if (n := len(items)) > 10: print(n)
+if (n := len(items)) &gt; 10: print(n)
 first, *rest, last = [1, 2, 3, 4, 5]</code></pre>
       </section>
 
       <section class="topic" id="operators">
         <h2>Operators</h2>
         <pre><code>+ - * / // % **
-== != < > <= >=
+== != &lt; &gt; &lt;= &gt;=
 is  is not  in  not in
 and  or  not
-& | ^ ~ << >>
-1 < x <= 10</code></pre>
+&amp; | ^ ~ &lt;&lt; &gt;&gt;
+1 &lt; x &lt;= 10</code></pre>
       </section>
 
       <section class="topic" id="control">
         <h2>Control Flow</h2>
-        <pre><code>if x > 0: ...
+        <pre><code>if x &gt; 0: ...
 elif x == 0: ...
 else: ...
 
@@ -107,7 +107,7 @@ value = a if condition else b</code></pre>
 
       <section class="topic" id="functions">
         <h2>Functions</h2>
-        <pre><code>def add(a: int, b: int = 0) -> int:
+        <pre><code>def add(a: int, b: int = 0) -&gt; int:
     return a + b
 
 def log(*args, **kwargs): ...
@@ -123,11 +123,11 @@ def func(): ...</code></pre>
         <pre><code>class Animal:
     def __init__(self, name: str):
         self.name = name
-    def speak(self) -> str:
+    def speak(self) -&gt; str:
         raise NotImplementedError
 
 class Dog(Animal):
-    def speak(self) -> str:
+    def speak(self) -&gt; str:
         return f"{self.name} says Woof!"</code></pre>
       </section>
 
@@ -150,7 +150,7 @@ class Point:
         <pre><code>from typing import TypeVar, Protocol
 from collections.abc import Sequence
 
-def first(seq: Sequence[T]) -> T | None: ...
+def first(seq: Sequence[T]) -&gt; T | None: ...
 T = TypeVar("T")</code></pre>
       </section>
 
@@ -175,7 +175,7 @@ d = {k: v for k, v in pairs}</code></pre>
       <section class="topic" id="iterators">
         <h2>Iterators & Generators</h2>
         <pre><code>def countdown(n):
-    while n > 0:
+    while n &gt; 0:
         yield n
         n -= 1
 from itertools import count, chain, islice</code></pre>
@@ -201,7 +201,7 @@ raise ValueError("bad")</code></pre>
       <section class="topic" id="async">
         <h2>Async / Await</h2>
         <pre><code>import asyncio
-async def fetch(url: str) -> str: ...
+async def fetch(url: str) -&gt; str: ...
 async def main():
     await asyncio.gather(fetch("a"), fetch("b"))
 asyncio.run(main())</code></pre>
@@ -267,7 +267,7 @@ list(g); list(g)  # second is []
       <section class="topic" id="ecosystem">
         <h2>Ecosystem & Tooling</h2>
         <pre><code># Environments
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv &amp;&amp; source .venv/bin/activate
 uv venv
 
 # Install
@@ -275,7 +275,7 @@ pip install package
 uv add package
 
 # Lint / format / types / test
-ruff check . && ruff format .
+ruff check . &amp;&amp; ruff format .
 mypy . / pyright
 pytest
 

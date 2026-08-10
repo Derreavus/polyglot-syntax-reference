@@ -74,8 +74,8 @@ mutable  static  extern  inline  thread_local</code></pre>
         <h2>Variables & Literals</h2>
         <pre><code>int a = 42;
 auto x = 10;
-int& ref = a;
-int&& rref = 42;
+int&amp; ref = a;
+int&amp;&amp; rref = 42;
 nullptr;
 std::string str = "hello"s;
 0xFF  0b1010  1'000'000  42uz</code></pre>
@@ -84,18 +84,18 @@ std::string str = "hello"s;
       <section class="topic" id="operators">
         <h2>Operators</h2>
         <pre><code>+ - * / %   = += -= *= /= %=
-== != < > <= >=   <=>        // spaceship C++20
-&& || !   & | ^ ~ << >>
-*p  &x  p->m  o.m  new T  delete p
-static_cast<T>(x)  dynamic_cast<T*>(p)
+== != &lt; &gt; &lt;= &gt;=   &lt;=&gt;        // spaceship C++20
+&amp;&amp; || !   &amp; | ^ ~ &lt;&lt; &gt;&gt;
+*p  &amp;x  p-&gt;m  o.m  new T  delete p
+static_cast&lt;T&gt;(x)  dynamic_cast&lt;T*&gt;(p)
 const_cast  reinterpret_cast  std::bit_cast</code></pre>
       </section>
 
       <section class="topic" id="control">
         <h2>Control Flow</h2>
-        <pre><code>if (int x = get(); x > 0) { ... }
-for (auto& v : vec) { ... }
-for (auto&& [k, v] : map) { ... }
+        <pre><code>if (int x = get(); x &gt; 0) { ... }
+for (auto&amp; v : vec) { ... }
+for (auto&amp;&amp; [k, v] : map) { ... }
 switch (x) { case 1: ...; break; default: ...; }
 int v = cond ? 1 : 0;</code></pre>
       </section>
@@ -104,13 +104,13 @@ int v = cond ? 1 : 0;</code></pre>
         <h2>Functions</h2>
         <pre><code>int add(int a, int b = 0);
 void byVal(int x);
-void byRef(int& x);
-void byCRef(const int& x);
-void byRRef(int&& x);
+void byRef(int&amp; x);
+void byCRef(const int&amp; x);
+void byRRef(int&amp;&amp; x);
 inline int sq(int x) { return x * x; }
 constexpr int cube(int x) { return x * x * x; }
 consteval int pure(int x) { return x * 2; }
-auto mul(int a, int b) -> int { return a * b; }
+auto mul(int a, int b) -&gt; int { return a * b; }
 void f() noexcept;</code></pre>
       </section>
 
@@ -119,18 +119,18 @@ void f() noexcept;</code></pre>
         <pre><code>int* p = nullptr;
 p = new int(42);  delete p;
 
-auto up = std::make_unique<int>(42);
+auto up = std::make_unique&lt;int&gt;(42);
 auto up2 = std::move(up);
 
-auto sp = std::make_shared<int>(7);
-std::weak_ptr<int> wp = sp;
+auto sp = std::make_shared&lt;int&gt;(7);
+std::weak_ptr&lt;int&gt; wp = sp;
 if (auto locked = wp.lock()) { /* use */ }
 
-std::move(x);  std::forward<T>(x);</code></pre>
+std::move(x);  std::forward&lt;T&gt;(x);</code></pre>
         <div class="callout callout-default"><strong>★ Ownership defaults</strong>
-          <code class="inline">std::unique_ptr<T></code> — default exclusive ownership ·
-          <code class="inline">std::shared_ptr<T></code> — only when shared ownership is required ·
-          <code class="inline">std::weak_ptr<T></code> — non-owning observer
+          <code class="inline">std::unique_ptr&lt;T&gt;</code> — default exclusive ownership ·
+          <code class="inline">std::shared_ptr&lt;T&gt;</code> — only when shared ownership is required ·
+          <code class="inline">std::weak_ptr&lt;T&gt;</code> — non-owning observer
         </div>
         <div class="decision-tree">Need ownership?
   │
@@ -146,11 +146,11 @@ std::move(x);  std::forward<T>(x);</code></pre>
 
       <section class="topic" id="raii">
         <h2>Special Member Functions & Rules</h2>
-        <pre><code>Foo();  Foo(const Foo&);  Foo(Foo&&);
-Foo& operator=(const Foo&);  Foo& operator=(Foo&&);
+        <pre><code>Foo();  Foo(const Foo&amp;);  Foo(Foo&amp;&amp;);
+Foo&amp; operator=(const Foo&amp;);  Foo&amp; operator=(Foo&amp;&amp;);
 ~Foo();
 Foo() = default;
-Foo(const Foo&) = delete;</code></pre>
+Foo(const Foo&amp;) = delete;</code></pre>
         <div class="callout callout-default"><strong>★ Preferred design</strong>
           Rule of Zero > Rule of Five > Rule of Three.
           Let the compiler generate special members; manage resources with smart pointers and STL containers.
@@ -158,8 +158,8 @@ Foo(const Foo&) = delete;</code></pre>
         <h3>Rule of Zero (preferred)</h3>
         <pre><code>class Widget {
   std::string name_;
-  std::vector<int> data_;
-  std::unique_ptr<Impl> impl_;
+  std::vector&lt;int&gt; data_;
+  std::unique_ptr&lt;Impl&gt; impl_;
 };</code></pre>
       </section>
 
@@ -182,21 +182,21 @@ private:
       <section class="topic" id="inheritance">
         <h2>Inheritance & Polymorphism</h2>
         <pre><code>class Dog : public Animal {
-  void speak() const override { std::cout << "Woof\n"; }
+  void speak() const override { std::cout &lt;&lt; "Woof\n"; }
 };
 class Shape {
   virtual double area() const = 0;
   virtual ~Shape() = default;
 };
-if (auto* d = dynamic_cast<Dog*>(ptr)) { d->speak(); }</code></pre>
+if (auto* d = dynamic_cast&lt;Dog*&gt;(ptr)) { d-&gt;speak(); }</code></pre>
       </section>
 
       <section class="topic" id="templates">
         <h2>Templates</h2>
-        <pre><code>template<typename T>
-T maxOf(T a, T b) { return a > b ? a : b; }
+        <pre><code>template&lt;typename T&gt;
+T maxOf(T a, T b) { return a &gt; b ? a : b; }
 
-template<typename T>
+template&lt;typename T&gt;
 class Box {
   T val_;
 public:
@@ -204,21 +204,21 @@ public:
   T get() const { return val_; }
 };
 
-template<typename... Args>
-void log(Args&&... args) { (std::cout << ... << args); }
+template&lt;typename... Args&gt;
+void log(Args&amp;&amp;... args) { (std::cout &lt;&lt; ... &lt;&lt; args); }
 
-template<typename T>
-concept Numeric = std::integral<T> || std::floating_point<T>;
-template<Numeric T>
+template&lt;typename T&gt;
+concept Numeric = std::integral&lt;T&gt; || std::floating_point&lt;T&gt;;
+template&lt;Numeric T&gt;
 T add(T a, T b) { return a + b; }</code></pre>
       </section>
 
       <section class="topic" id="lambdas">
         <h2>Lambda Expressions</h2>
         <pre><code>auto add = [](int a, int b) { return a + b; };
-[]  [=]  [&]  [x, &y]  [this]  [*this]
+[]  [=]  [&amp;]  [x, &amp;y]  [this]  [*this]
 auto id = [](auto x) { return x; };
-auto tmpl = []<typename T>(T x) { return x; };
+auto tmpl = []&lt;typename T&gt;(T x) { return x; };
 auto counter = [n = 0]() mutable { return ++n; };</code></pre>
       </section>
 
@@ -227,33 +227,33 @@ auto counter = [n = 0]() mutable { return ++n; };</code></pre>
         <p class="note">Key additions: structured bindings <span class="ver">C++17</span>,
           concepts & ranges <span class="ver">C++20</span>,
           <code class="inline">std::expected</code> & <code class="inline">std::print</code> <span class="ver">C++23</span></p>
-        <pre><code>void f(int&);  void f(int&&);
+        <pre><code>void f(int&amp;);  void f(int&amp;&amp;);
 f(std::move(a));
 
-template<typename T>
-void wrapper(T&& arg) { target(std::forward<T>(arg)); }
+template&lt;typename T&gt;
+void wrapper(T&amp;&amp; arg) { target(std::forward&lt;T&gt;(arg)); }
 
 auto [k, v] = *map.begin();
-std::optional<int> opt = 42;
-std::variant<int, float, std::string> var;
+std::optional&lt;int&gt; opt = 42;
+std::variant&lt;int, float, std::string&gt; var;
 std::string_view sv = "hello";
-std::span<int> sp{arr};
+std::span&lt;int&gt; sp{arr};
 std::ranges::sort(v);
-auto operator<=>(const Foo&) const = default;</code></pre>
+auto operator&lt;=&gt;(const Foo&amp;) const = default;</code></pre>
       </section>
 
       <section class="topic" id="containers">
         <h2>STL Containers</h2>
-        <pre><code>std::vector<T>          // ★ default choice
-std::array<T,N>  std::deque<T>  std::list<T>
-std::map<K,V>  std::unordered_map<K,V>
-std::set<T>  std::unordered_set<T>
-std::stack<T>  std::queue<T>  std::priority_queue<T>
+        <pre><code>std::vector&lt;T&gt;          // ★ default choice
+std::array&lt;T,N&gt;  std::deque&lt;T&gt;  std::list&lt;T&gt;
+std::map&lt;K,V&gt;  std::unordered_map&lt;K,V&gt;
+std::set&lt;T&gt;  std::unordered_set&lt;T&gt;
+std::stack&lt;T&gt;  std::queue&lt;T&gt;  std::priority_queue&lt;T&gt;
 
 v.push_back(x);  v.emplace_back(args...);
 v.size();  v.empty();  v.reserve(n);</code></pre>
         <div class="callout callout-default"><strong>★ Default container</strong>
-          <code class="inline">std::vector<T></code> is almost always the right default.
+          <code class="inline">std::vector&lt;T&gt;</code> is almost always the right default.
           Switch only when profiling shows a real bottleneck.
         </div>
       </section>
@@ -290,8 +290,8 @@ std::ranges::sort(v);  std::ranges::find(v, val);</code></pre>
         <h2>Exception Handling</h2>
         <pre><code>try {
   throw std::runtime_error("oops");
-} catch (const std::exception& e) {
-  std::cerr << e.what();
+} catch (const std::exception&amp; e) {
+  std::cerr &lt;&lt; e.what();
 } catch (...) { }
 noexcept  noexcept(expr)</code></pre>
       </section>
@@ -301,10 +301,10 @@ noexcept  noexcept(expr)</code></pre>
         <pre><code>std::thread t(fn, arg1);
 t.join();  t.detach();
 std::mutex mtx;
-{ std::lock_guard<std::mutex> lk(mtx); /* critical */ }
+{ std::lock_guard&lt;std::mutex&gt; lk(mtx); /* critical */ }
 auto fut = std::async(std::launch::async, fn);
 int res = fut.get();
-std::atomic<int> counter{0};  counter++;</code></pre>
+std::atomic&lt;int&gt; counter{0};  counter++;</code></pre>
       </section>
 
       <section class="topic" id="headers">
@@ -312,16 +312,16 @@ std::atomic<int> counter{0};  counter++;</code></pre>
         <table>
           <thead><tr><th>Header</th><th>Contents</th></tr></thead>
           <tbody>
-            <tr><td><code class="inline">＜iostream＞</code></td><td>cin / cout / cerr</td></tr>
-            <tr><td><code class="inline">＜string＞</code> <code class="inline">＜string_view＞</code></td><td>strings / views</td></tr>
-            <tr><td><code class="inline">＜vector＞</code> <code class="inline">＜array＞</code> <code class="inline">＜map＞</code></td><td>containers</td></tr>
-            <tr><td><code class="inline">＜algorithm＞</code> <code class="inline">＜numeric＞</code></td><td>algorithms</td></tr>
-            <tr><td><code class="inline">＜memory＞</code></td><td>smart pointers</td></tr>
-            <tr><td><code class="inline">＜optional＞</code> <code class="inline">＜variant＞</code></td><td>C++17 vocabulary</td></tr>
-            <tr><td><code class="inline">＜ranges＞</code> <code class="inline">＜concepts＞</code></td><td>C++20</td></tr>
-            <tr><td><code class="inline">＜thread＞</code> <code class="inline">＜mutex＞</code></td><td>concurrency</td></tr>
-            <tr><td><code class="inline">＜format＞</code> <code class="inline">＜print＞</code></td><td>C++20 / C++23</td></tr>
-            <tr><td><code class="inline">＜expected＞</code> <code class="inline">＜filesystem＞</code></td><td>C++23 / C++17</td></tr>
+            <tr><td><code class="inline">&lt;iostream&gt;</code></td><td>cin / cout / cerr</td></tr>
+            <tr><td><code class="inline">&lt;string&gt;</code> <code class="inline">&lt;string_view&gt;</code></td><td>strings / views</td></tr>
+            <tr><td><code class="inline">&lt;vector&gt;</code> <code class="inline">&lt;array&gt;</code> <code class="inline">&lt;map&gt;</code></td><td>containers</td></tr>
+            <tr><td><code class="inline">&lt;algorithm&gt;</code> <code class="inline">&lt;numeric&gt;</code></td><td>algorithms</td></tr>
+            <tr><td><code class="inline">&lt;memory&gt;</code></td><td>smart pointers</td></tr>
+            <tr><td><code class="inline">&lt;optional&gt;</code> <code class="inline">&lt;variant&gt;</code></td><td>C++17 vocabulary</td></tr>
+            <tr><td><code class="inline">&lt;ranges&gt;</code> <code class="inline">&lt;concepts&gt;</code></td><td>C++20</td></tr>
+            <tr><td><code class="inline">&lt;thread&gt;</code> <code class="inline">&lt;mutex&gt;</code></td><td>concurrency</td></tr>
+            <tr><td><code class="inline">&lt;format&gt;</code> <code class="inline">&lt;print&gt;</code></td><td>C++20 / C++23</td></tr>
+            <tr><td><code class="inline">&lt;expected&gt;</code> <code class="inline">&lt;filesystem&gt;</code></td><td>C++23 / C++17</td></tr>
           </tbody>
         </table>
       </section>
@@ -332,11 +332,11 @@ std::atomic<int> counter{0};  counter++;</code></pre>
 class Logger {
   Logger() = default;
 public:
-  static Logger& instance() {
+  static Logger&amp; instance() {
     static Logger inst;
     return inst;
   }
-  Logger(const Logger&) = delete;
+  Logger(const Logger&amp;) = delete;
 };
 // Prefer composition; RAII is the core pattern</code></pre>
       </section>
@@ -357,7 +357,7 @@ Base b = Derived{};
 auto y = std::move(x);  // move ctor does the work
 
 // Prefer unique_ptr; shared_ptr only for true shared ownership
-void f(const std::vector<int>& v);  // avoid accidental copies
+void f(const std::vector&lt;int&gt;&amp; v);  // avoid accidental copies
 
 // span / string_view do not own data
 </code></pre>

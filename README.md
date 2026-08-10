@@ -63,14 +63,15 @@ GitHub Actions (`.github/workflows/ci.yml`) runs all three on every push and pul
 
 Never put raw `<T>` in HTML — the browser treats it as a tag and strips it.
 
-Safe forms that survive HTML parsing:
+Use actual source syntax in the source text, and HTML-escape the code content when writing static HTML:
 
 | Form | Example |
 |------|---------|
-| HTML entities | `Vec<T>` |
-| Math brackets | `Vec⟨T⟩` |
-| Fullwidth brackets | `Vec＜T＞` |
-| Square brackets (compare page) | `Vec[T]` |
+| HTML source | `Vec&lt;T&gt;` |
+| Browser display | `Vec<T>` |
+| Copy/paste result | `Vec<T>` |
+
+Do not use Unicode lookalikes such as `⟨⟩`, `＜＞`, `≤`, `≥`, `→`, or `⇒` for programming-language syntax.
 
 ## License
 

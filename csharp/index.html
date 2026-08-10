@@ -97,9 +97,9 @@ _ = SomeMethod();</code></pre>
         <h2>Operators</h2>
         <pre><code>+ - * / %  ++ --
 = += -= *= /= %=
-== != < > <= >=
-&& || !
-& | ^ ~ << >>
+== != &lt; &gt; &lt;= &gt;=
+&amp;&amp; || !
+&amp; | ^ ~ &lt;&lt; &gt;&gt;
 
 x?.Prop   x ?? y   x ??= y
 x is null / x is not null
@@ -113,16 +113,16 @@ arr[^1]   arr[1..^1]</code></pre>
 switch (x) {
     case 1: ...; break;
     case 2 or 3: ...; break;
-    case > 10 and < 20: ...; break;
+    case &gt; 10 and &lt; 20: ...; break;
     default: ...; break;
 }
 var result = x switch {
-    1 => "one",
-    > 10 => "big",
-    _ => "other"
+    1 =&gt; "one",
+    &gt; 10 =&gt; "big",
+    _ =&gt; "other"
 };
 
-for (int i = 0; i < n; i++) { ... }
+for (int i = 0; i &lt; n; i++) { ... }
 foreach (var item in collection) { ... }
 while (cond) { ... }
 using var stream = File.OpenRead(path);  // C# 8+</code></pre>
@@ -130,7 +130,7 @@ using var stream = File.OpenRead(path);  // C# 8+</code></pre>
 
       <section class="topic" id="methods">
         <h2>Methods</h2>
-        <pre><code>public int Add(int a, int b = 0) => a + b;
+        <pre><code>public int Add(int a, int b = 0) =&gt; a + b;
 void Swap(ref int a, ref int b) { ... }
 bool TryParse(string s, out int result) { ... }
 void Process(in LargeStruct s) { ... }
@@ -138,7 +138,7 @@ void Log(params string[] messages) { ... }
 
 public static class StringExt {
     public static bool IsBlank(this string? s)
-        => string.IsNullOrWhiteSpace(s);
+        =&gt; string.IsNullOrWhiteSpace(s);
 }</code></pre>
       </section>
 
@@ -146,17 +146,17 @@ public static class StringExt {
         <h2>Classes & Structs</h2>
         <pre><code>public class Animal {
     private readonly string _name;
-    public Animal(string name) => _name = name;
+    public Animal(string name) =&gt; _name = name;
     public virtual void Speak() { ... }
 }
 public struct Point {
     public double X { get; }
     public double Y { get; }
-    public Point(double x, double y) => (X, Y) = (x, y);
+    public Point(double x, double y) =&gt; (X, Y) = (x, y);
 }
 // Primary constructors (C# 12)
 public class Person(string name, int age) {
-    public string Name => name;
+    public string Name =&gt; name;
 }</code></pre>
       </section>
 
@@ -185,7 +185,7 @@ public record Order {
       <section class="topic" id="inheritance">
         <h2>Inheritance & Interfaces</h2>
         <pre><code>public class Dog : Animal {
-    public override void Speak() => Console.WriteLine("Woof");
+    public override void Speak() =&gt; Console.WriteLine("Woof");
 }
 public interface IShape {
     double Area { get; }
@@ -193,7 +193,7 @@ public interface IShape {
 }
 public class Circle : IShape {
     public double Radius { get; }
-    public double Area => Math.PI * Radius * Radius;
+    public double Area =&gt; Math.PI * Radius * Radius;
     public void Draw() { ... }
 }
 // Default interface methods (C# 8+)</code></pre>
@@ -204,10 +204,10 @@ public class Circle : IShape {
         <pre><code>public string Name { get; set; } = "";
 public string Id { get; init; }
 public int Count { get; private set; }
-public string FullName => $"{First} {Last}";
+public string FullName =&gt; $"{First} {Last}";
 public string this[int index] {
-    get => _items[index];
-    set => _items[index] = value;
+    get =&gt; _items[index];
+    set =&gt; _items[index] = value;
 }
 public event EventHandler? SomethingHappened;</code></pre>
       </section>
@@ -216,13 +216,13 @@ public event EventHandler? SomethingHappened;</code></pre>
         <h2>LINQ</h2>
         <pre><code>using System.Linq;
 var adults = people
-    .Where(p => p.Age >= 18)
-    .OrderBy(p => p.LastName)
-    .Select(p => p.Name)
+    .Where(p =&gt; p.Age &gt;= 18)
+    .OrderBy(p =&gt; p.LastName)
+    .Select(p =&gt; p.Name)
     .ToList();
 
 var q = from p in people
-        where p.Age >= 18
+        where p.Age &gt;= 18
         orderby p.LastName
         select p.Name;
 
@@ -236,16 +236,16 @@ var q = from p in people
 
       <section class="topic" id="async">
         <h2>Async / Await</h2>
-        <pre><code>public async Task<string> FetchAsync(string url) {
+        <pre><code>public async Task&lt;string&gt; FetchAsync(string url) {
     using var client = new HttpClient();
     return await client.GetStringAsync(url);
 }
-public async Task ProcessManyAsync(IEnumerable<string> urls) {
+public async Task ProcessManyAsync(IEnumerable&lt;string&gt; urls) {
     string[] results = await Task.WhenAll(urls.Select(FetchAsync));
 }
-public async ValueTask<int> GetCachedAsync() { ... }
-public async IAsyncEnumerable<int> GenerateAsync() {
-    for (int i = 0; i < 10; i++) {
+public async ValueTask&lt;int&gt; GetCachedAsync() { ... }
+public async IAsyncEnumerable&lt;int&gt; GenerateAsync() {
+    for (int i = 0; i &lt; 10; i++) {
         await Task.Delay(100);
         yield return i;
     }
@@ -260,43 +260,43 @@ await foreach (var n in GenerateAsync()) { ... }</code></pre>
 
       <section class="topic" id="pattern">
         <h2>Pattern Matching</h2>
-        <pre><code>if (obj is Person { Age: > 18, Name: var n }) { ... }
-string Describe(object o) => o switch {
-    int i when i > 0 => "positive int",
-    string { Length: > 0 } s => $"non-empty {s}",
-    Person { Age: >= 18 } => "adult",
-    null => "null",
-    _ => "something else"
+        <pre><code>if (obj is Person { Age: &gt; 18, Name: var n }) { ... }
+string Describe(object o) =&gt; o switch {
+    int i when i &gt; 0 =&gt; "positive int",
+    string { Length: &gt; 0 } s =&gt; $"non-empty {s}",
+    Person { Age: &gt;= 18 } =&gt; "adult",
+    null =&gt; "null",
+    _ =&gt; "something else"
 };
 if (arr is [1, 2, .. var rest]) { ... }  // C# 11</code></pre>
       </section>
 
       <section class="topic" id="generics">
         <h2>Generics</h2>
-        <pre><code>public class Box<T> where T : class, new() {
+        <pre><code>public class Box&lt;T&gt; where T : class, new() {
     public T Value { get; set; } = new();
 }
-IEnumerable<out T>              // covariant
-IComparer<in T>                 // contravariant
-public static T Add<T>(T a, T b) where T : INumber<T>
-    => a + b;                   // generic math C# 11</code></pre>
+IEnumerable&lt;out T&gt;              // covariant
+IComparer&lt;in T&gt;                 // contravariant
+public static T Add&lt;T&gt;(T a, T b) where T : INumber&lt;T&gt;
+    =&gt; a + b;                   // generic math C# 11</code></pre>
       </section>
 
       <section class="topic" id="collections">
         <h2>Collections</h2>
-        <pre><code>List<T>  Dictionary<TKey,TValue>  HashSet<T>
-Queue<T>  Stack<T>  LinkedList<T>
-ImmutableList<T>  ConcurrentDictionary<...>
+        <pre><code>List&lt;T&gt;  Dictionary&lt;TKey,TValue&gt;  HashSet&lt;T&gt;
+Queue&lt;T&gt;  Stack&lt;T&gt;  LinkedList&lt;T&gt;
+ImmutableList&lt;T&gt;  ConcurrentDictionary&lt;...&gt;
 
-Span<int> span = stackalloc int[64];
-List<int> list = [1, 2, 3];       // C# 12 collection expressions
+Span&lt;int&gt; span = stackalloc int[64];
+List&lt;int&gt; list = [1, 2, 3];       // C# 12 collection expressions
 int[] arr = [..list, 4, 5];
 var last = arr[^1];
 var middle = arr[1..^1];</code></pre>
         <div class="callout callout-default"><strong>★ Defaults</strong>
-          <code class="inline">List<T></code> — default collection ·
-          <code class="inline">Dictionary<TKey,TValue></code> — key/value ·
-          <code class="inline">HashSet<T></code> — unique membership
+          <code class="inline">List&lt;T&gt;</code> — default collection ·
+          <code class="inline">Dictionary&lt;TKey,TValue&gt;</code> — key/value ·
+          <code class="inline">HashSet&lt;T&gt;</code> — unique membership
         </div>
       </section>
 
@@ -312,15 +312,15 @@ throw;  // rethrow preserving stack</code></pre>
 
       <section class="topic" id="memory">
         <h2>Spans, Memory & Performance</h2>
-        <pre><code>Span<byte> buffer = stackalloc byte[256];
-Memory<byte> mem = new byte[1024];
-var pool = ArrayPool<byte>.Shared;
+        <pre><code>Span&lt;byte&gt; buffer = stackalloc byte[256];
+Memory&lt;byte&gt; mem = new byte[1024];
+var pool = ArrayPool&lt;byte&gt;.Shared;
 byte[] buf = pool.Rent(4096);
 try { ... } finally { pool.Return(buf); }
 ref struct Utf8Parser { ... }</code></pre>
         <div class="callout callout-use"><strong>When to use</strong>
-          <code class="inline">Span<T></code> — stack-only, high-perf slices ·
-          <code class="inline">Memory<T></code> — heap-compatible, usable across <code class="inline">await</code> ·
+          <code class="inline">Span&lt;T&gt;</code> — stack-only, high-perf slices ·
+          <code class="inline">Memory&lt;T&gt;</code> — heap-compatible, usable across <code class="inline">await</code> ·
           Prefer them to avoid allocations in hot paths.
         </div>
       </section>
@@ -342,7 +342,7 @@ public class Person {
         <pre><code>[Obsolete("Use NewMethod")]
 [JsonPropertyName("id")]
 var type = typeof(Person);
-Expression<Func<int, bool>> expr = x => x > 5;
+Expression&lt;Func&lt;int, bool&gt;&gt; expr = x =&gt; x &gt; 5;
 // Source generators, unsafe, P/Invoke when needed</code></pre>
       </section>
 
