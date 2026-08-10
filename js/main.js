@@ -32,8 +32,9 @@
     const pageSegments = path.split("/").filter(Boolean);
     const lastSegment = pageSegments[pageSegments.length - 1] || "";
     const isIndexPage = lastSegment === "index.html" || pageSegments.length === 0;
-    const currentPageSegment = isIndexPage && pageSegments.length > 1 ? pageSegments[pageSegments.length - 2] : (isIndexPage ? null : lastSegment);
-    const isNestedPage = pageSegments.length > 1 && lastSegment === "index.html";
+    const parentSegment = isIndexPage && pageSegments.length > 1 ? pageSegments[pageSegments.length - 2] : null;
+    const currentPageSegment = isIndexPage ? parentSegment : lastSegment;
+    const isNestedPage = Boolean(parentSegment) && (parentSegment === "compare" || registry.some(function (lang) { return lang.slug === parentSegment; }));
     return {
       pageSegments: pageSegments,
       isIndexPage: isIndexPage,
@@ -49,7 +50,7 @@
   }
 
   let currentLang = getCurrentLang();
-  const basePrefix = currentLang ? "../" : "";
+  const basePrefix = getPageInfo().isNestedPage ? "../" : "";
 
   function buildLangMeta() {
     const meta = {};
