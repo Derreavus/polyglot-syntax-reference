@@ -53,93 +53,66 @@
 
       <section class="topic" id="types">
         <h2>Data Types</h2>
-        <pre><code>// Value types (stack / inline)
+        <pre><code>// Value types
 bool, byte, sbyte, short, ushort
 int, uint, long, ulong
-float, double, decimal          // decimal is 128-bit precise
+float, double, decimal
 char, enum, struct
 
-// Reference types (heap)
+// Reference types
 string, object, dynamic
 class, interface, delegate, record, array
 
-// Nullable value types
 int? n = null;
 n.HasValue; n.Value; n.GetValueOrDefault();
-
-// Nullable reference types (enabled by default in modern projects)
-string? maybe = null;           // warning if used without check
-
-// Built-in aliases map to System types (int → System.Int32, etc.)</code></pre>
+string? maybe = null;         // nullable reference types</code></pre>
+        <div class="callout callout-use"><strong>Nullable reference types</strong>
+          <code class="inline">string</code> vs <code class="inline">string?</code> ·
+          <code class="inline">?</code> annotation ·
+          <code class="inline">!</code> null-forgiving (sparingly) ·
+          <code class="inline">??</code> / <code class="inline">??=</code> ·
+          <code class="inline">?.</code> null-conditional
+        </div>
       </section>
 
       <section class="topic" id="variables">
         <h2>Variables & Literals</h2>
         <pre><code>int a = 42;
-var inferred = 42;              // type inferred at compile time
-const int Max = 100;            // compile-time constant
-readonly int Id;                // set in ctor only
+var inferred = 42;
+const int Max = 100;
+readonly int Id;
 
-// Literals
-0xFF                            // hex
-0b1010                          // binary
-1_000_000                       // digit separator
-42L  42UL  3.14F  3.14M         // suffixes (long, ulong, float, decimal)
-"hello"  @"verbatim\path"  $"interpolated {a}"
-"""
-raw string literal
-(C# 11+)
-"""
-
-// Default values
-default(int)                    // 0
-default                         // target-typed (C# 9+)
-
-// Discard
+0xFF  0b1010  1_000_000
+42L  42UL  3.14F  3.14M
+"hello"  $@"path"  $"interp {a}"
+"""raw string (C# 11+)"""
+default(int);  default;
 _ = SomeMethod();</code></pre>
       </section>
 
       <section class="topic" id="operators">
         <h2>Operators</h2>
-        <pre><code>// Arithmetic & assignment
-+ - * / %  ++ --
+        <pre><code>+ - * / %  ++ --
 = += -= *= /= %=
-
-// Comparison & logical
 == != < > <= >=
-&& || !                         // short-circuit
-& | ^ ~ << >>                   // bitwise / non-short-circuit
+&& || !
+& | ^ ~ << >>
 
-// Null-related
-x?.Prop                         // null-conditional
-x ?? y                          // null-coalescing
-x ??= y                         // null-coalescing assignment
+x?.Prop   x ?? y   x ??= y
 x is null / x is not null
-
-// Pattern & type
-is  as
-switch expressions
-with                            // record non-destructive mutation
-
-// Range & index (C# 8+)
-arr[^1]                         // last element
-arr[1..^1]                      // slice</code></pre>
+arr[^1]   arr[1..^1]</code></pre>
       </section>
 
       <section class="topic" id="control">
         <h2>Control Flow</h2>
-        <pre><code>if (cond) { ... }
-else if (cond) { ... }
-else { ... }
+        <pre><code>if (cond) { ... } else if (cond) { ... } else { ... }
 
-// switch statement & expression
 switch (x) {
     case 1: ...; break;
     case 2 or 3: ...; break;
     case > 10 and < 20: ...; break;
     default: ...; break;
 }
-
 var result = x switch {
     1 => "one",
     > 10 => "big",
@@ -149,44 +122,21 @@ var result = x switch {
 for (int i = 0; i < n; i++) { ... }
 foreach (var item in collection) { ... }
 while (cond) { ... }
-do { ... } while (cond);
-
-// using declaration (C# 8+) — disposed at end of scope
-using var stream = File.OpenRead(path);
-
-// using statement still available for explicit blocks</code></pre>
+using var stream = File.OpenRead(path);  // C# 8+</code></pre>
       </section>
 
       <section class="topic" id="methods">
         <h2>Methods</h2>
-        <pre><code>public int Add(int a, int b = 0) {
-    return a + b;
-}
-
-// Expression-bodied
-public int Square(int x) => x * x;
-
-// Ref / out / in parameters
+        <pre><code>public int Add(int a, int b = 0) => a + b;
 void Swap(ref int a, ref int b) { ... }
 bool TryParse(string s, out int result) { ... }
-void Process(in LargeStruct s) { ... }  // readonly ref
-
-// Params
+void Process(in LargeStruct s) { ... }
 void Log(params string[] messages) { ... }
 
-// Local functions
-public void Outer() {
-    int Local(int x) => x * 2;
-    // can capture outer variables
-}
-
-// Extension methods
 public static class StringExt {
     public static bool IsBlank(this string? s)
         => string.IsNullOrWhiteSpace(s);
-}
-
-// Default interface methods, static abstract members in interfaces (C# 11)</code></pre>
+}</code></pre>
       </section>
 
       <section class="topic" id="classes">
@@ -196,43 +146,37 @@ public static class StringExt {
     public Animal(string name) => _name = name;
     public virtual void Speak() { ... }
 }
-
 public struct Point {
     public double X { get; }
     public double Y { get; }
     public Point(double x, double y) => (X, Y) = (x, y);
 }
-
 // Primary constructors (C# 12)
 public class Person(string name, int age) {
     public string Name => name;
-    public int Age => age;
-}
-
-// Static classes, partial classes, sealed, abstract, file-local types (C# 11)
-
-// Object initializers
-var p = new Person { Name = "Ada", Age = 36 };</code></pre>
+}</code></pre>
       </section>
 
       <section class="topic" id="records">
-        <h2>Records (C# 9+)</h2>
-        <pre><code>// Immutable reference type with value equality
-public record Person(string Name, int Age);
-
+        <h2>Records <span class="ver">C# 9+</span></h2>
+        <pre><code>public record Person(string Name, int Age);
 var p1 = new Person("Ada", 36);
-var p2 = p1 with { Age = 37 };      // non-destructive mutation
+var p2 = p1 with { Age = 37 };
 
-// Record struct (C# 10)
 public readonly record struct Point(double X, double Y);
 
-// Positional vs nominal
 public record Order {
     public required string Id { get; init; }
     public decimal Total { get; init; }
-}
-
-// Equality, deconstruction, ToString all generated</code></pre>
+}</code></pre>
+        <div class="callout callout-use"><strong>When to use</strong>
+          <code class="inline">record</code> — value-oriented data with value equality ·
+          <code class="inline">class</code> — identity / behavior ·
+          <code class="inline">struct</code> / <code class="inline">record struct</code> — small value types
+        </div>
+        <div class="callout callout-default"><strong>★ Value-oriented data</strong>
+          Prefer <code class="inline">record</code> for immutable DTOs and domain values.
+        </div>
       </section>
 
       <section class="topic" id="inheritance">
@@ -240,79 +184,51 @@ public record Order {
         <pre><code>public class Dog : Animal {
     public override void Speak() => Console.WriteLine("Woof");
 }
-
 public interface IShape {
     double Area { get; }
     void Draw();
 }
-
 public class Circle : IShape {
     public double Radius { get; }
     public double Area => Math.PI * Radius * Radius;
     public void Draw() { ... }
 }
-
-// Default interface methods (C# 8+)
-public interface ILogger {
-    void Log(string msg);
-    void LogError(string msg) => Log($"ERROR: {msg}");
-}
-
-// Explicit interface implementation
-void IShape.Draw() { ... }
-
-// Multiple interface inheritance is allowed; single class inheritance</code></pre>
+// Default interface methods (C# 8+)</code></pre>
       </section>
 
       <section class="topic" id="properties">
         <h2>Properties, Indexers & Events</h2>
         <pre><code>public string Name { get; set; } = "";
-public string Id { get; init; }         // init-only (C# 9+)
+public string Id { get; init; }
 public int Count { get; private set; }
-
-// Computed / expression-bodied
 public string FullName => $"{First} {Last}";
-
-// Indexer
 public string this[int index] {
     get => _items[index];
     set => _items[index] = value;
 }
-
-// Events
-public event EventHandler? SomethingHappened;
-protected virtual void OnSomething()
-    => SomethingHappened?.Invoke(this, EventArgs.Empty);
-
-// Auto-properties, field-backed, required members (C# 11)</code></pre>
+public event EventHandler? SomethingHappened;</code></pre>
       </section>
 
       <section class="topic" id="linq">
         <h2>LINQ</h2>
         <pre><code>using System.Linq;
-
 var adults = people
     .Where(p => p.Age >= 18)
     .OrderBy(p => p.LastName)
     .Select(p => p.Name)
     .ToList();
 
-// Query syntax
 var q = from p in people
         where p.Age >= 18
         orderby p.LastName
         select p.Name;
 
-// Common operators
-Any, All, Count, First, FirstOrDefault
-Single, SingleOrDefault
-Select, SelectMany, Where
-OrderBy, ThenBy, GroupBy
-Join, GroupJoin, Aggregate
-ToList, ToArray, ToDictionary, ToHashSet
-
-// Deferred execution — query is not run until enumerated
-// PLINQ: AsParallel() for data-parallel queries</code></pre>
+// Any, All, Count, First, FirstOrDefault, Select, Where,
+// OrderBy, GroupBy, Join, Aggregate, ToList, ToDictionary</code></pre>
+        <div class="callout callout-mistake"><strong>Common mistake</strong>
+          LINQ is deferred — runs when enumerated. Multiple enumeration can repeat work
+          or hit a disposed context. Materialize with <code class="inline">ToList()</code> / <code class="inline">ToArray()</code> when needed.
+        </div>
       </section>
 
       <section class="topic" id="async">
@@ -321,36 +237,27 @@ ToList, ToArray, ToDictionary, ToHashSet
     using var client = new HttpClient();
     return await client.GetStringAsync(url);
 }
-
 public async Task ProcessManyAsync(IEnumerable<string> urls) {
-    var tasks = urls.Select(FetchAsync);
-    string[] results = await Task.WhenAll(tasks);
+    string[] results = await Task.WhenAll(urls.Select(FetchAsync));
 }
-
-// ValueTask for hot paths that often complete synchronously
 public async ValueTask<int> GetCachedAsync() { ... }
-
-// IAsyncEnumerable (C# 8+)
 public async IAsyncEnumerable<int> GenerateAsync() {
     for (int i = 0; i < 10; i++) {
         await Task.Delay(100);
         yield return i;
     }
 }
-
-await foreach (var n in GenerateAsync()) { ... }
-
-// ConfigureAwait, CancellationToken, Task.Run, etc.</code></pre>
+await foreach (var n in GenerateAsync()) { ... }</code></pre>
+        <div class="callout callout-mistake"><strong>Common mistake</strong>
+          Avoid <code class="inline">.Result</code> / <code class="inline">.Wait()</code> — can deadlock.
+          Prefer <code class="inline">await</code>. Pass <code class="inline">CancellationToken</code>.
+          Prefer <code class="inline">async Task</code> over <code class="inline">async void</code> (except event handlers).
+        </div>
       </section>
 
       <section class="topic" id="pattern">
         <h2>Pattern Matching</h2>
-        <pre><code>// Type pattern + property pattern
-if (obj is Person { Age: > 18, Name: var n }) {
-    Console.WriteLine(n);
-}
-
-// Switch expression with patterns
+        <pre><code>if (obj is Person { Age: > 18, Name: var n }) { ... }
 string Describe(object o) => o switch {
     int i when i > 0 => "positive int",
     string { Length: > 0 } s => $"non-empty {s}",
@@ -358,12 +265,7 @@ string Describe(object o) => o switch {
     null => "null",
     _ => "something else"
 };
-
-// List patterns (C# 11)
-if (arr is [1, 2, .. var rest]) { ... }
-if (arr is [var first, .., var last]) { ... }
-
-// Relational, logical, parenthesized patterns also supported</code></pre>
+if (arr is [1, 2, .. var rest]) { ... }  // C# 11</code></pre>
       </section>
 
       <section class="topic" id="generics">
@@ -371,136 +273,74 @@ if (arr is [var first, .., var last]) { ... }
         <pre><code>public class Box<T> where T : class, new() {
     public T Value { get; set; } = new();
 }
-
-public interface IRepository<T> where T : IEntity {
-    Task<T?> GetAsync(int id);
-}
-
-// Covariance / contravariance
 IEnumerable<out T>              // covariant
 IComparer<in T>                 // contravariant
-
-// Generic math (C# 11 / .NET 7+)
 public static T Add<T>(T a, T b) where T : INumber<T>
-    => a + b;
-
-// Constraints: class, struct, notnull, unmanaged, new(), base class, interface, etc.</code></pre>
+    => a + b;                   // generic math C# 11</code></pre>
       </section>
 
       <section class="topic" id="collections">
         <h2>Collections</h2>
-        <pre><code>// Common
-List<T>                 // dynamic array
-Dictionary<TKey,TValue>
-HashSet<T>
-Queue<T>  Stack<T>
-LinkedList<T>
+        <pre><code>List<T>  Dictionary<TKey,TValue>  HashSet<T>
+Queue<T>  Stack<T>  LinkedList<T>
+ImmutableList<T>  ConcurrentDictionary<...>
 
-// Immutable / concurrent
-ImmutableList<T>, ImmutableDictionary<...>
-ConcurrentDictionary<...>, ConcurrentQueue<T>
-
-// Spans (stackalloc / slices)
 Span<int> span = stackalloc int[64];
-ReadOnlySpan<char> slice = str.AsSpan(1, 3);
-
-// Collection expressions (C# 12)
-List<int> list = [1, 2, 3];
+List<int> list = [1, 2, 3];       // C# 12 collection expressions
 int[] arr = [..list, 4, 5];
-
-// Index & Range
 var last = arr[^1];
 var middle = arr[1..^1];</code></pre>
+        <div class="callout callout-default"><strong>★ Defaults</strong>
+          <code class="inline">List<T></code> — default collection ·
+          <code class="inline">Dictionary<TKey,TValue></code> — key/value ·
+          <code class="inline">HashSet<T></code> — unique membership
+        </div>
       </section>
 
       <section class="topic" id="exceptions">
         <h2>Exceptions</h2>
-        <pre><code>try {
-    ...
-} catch (ArgumentNullException ex) {
-    ...
-} catch (Exception ex) when (ex.Message.Contains("timeout")) {
-    ...                             // exception filter
-} finally {
-    ...
-}
-
+        <pre><code>try { ... }
+catch (ArgumentNullException ex) { ... }
+catch (Exception ex) when (ex.Message.Contains("timeout")) { ... }
+finally { ... }
 throw new InvalidOperationException("msg");
-throw;                              // rethrow preserving stack
-
-// Custom
-public class AppException : Exception {
-    public AppException(string msg) : base(msg) { }
-}
-
-// Exception dispatch, AggregateException for Task.WhenAll, etc.</code></pre>
+throw;  // rethrow preserving stack</code></pre>
       </section>
 
       <section class="topic" id="memory">
         <h2>Spans, Memory & Performance</h2>
-        <pre><code>// Span<T> — stack-only, no heap allocation
-Span<byte> buffer = stackalloc byte[256];
-
-// Memory<T> — can live on the heap, usable across async
+        <pre><code>Span<byte> buffer = stackalloc byte[256];
 Memory<byte> mem = new byte[1024];
-
-// ArrayPool to reduce GC pressure
 var pool = ArrayPool<byte>.Shared;
 byte[] buf = pool.Rent(4096);
-try { ... }
-finally { pool.Return(buf); }
-
-// ref struct (cannot be boxed or captured by lambdas)
-ref struct Utf8Parser { ... }
-
-// stackalloc, fixed, unsafe, NativeMemory, etc. for advanced scenarios</code></pre>
+try { ... } finally { pool.Return(buf); }
+ref struct Utf8Parser { ... }</code></pre>
+        <div class="callout callout-use"><strong>When to use</strong>
+          <code class="inline">Span<T></code> — stack-only, high-perf slices ·
+          <code class="inline">Memory<T></code> — heap-compatible, usable across <code class="inline">await</code> ·
+          Prefer them to avoid allocations in hot paths.
+        </div>
       </section>
 
       <section class="topic" id="dotnet">
         <h2>.NET Highlights</h2>
-        <pre><code>// Top-level statements (C# 9+)
-Console.WriteLine("Hello");
-
-// Global usings & file-scoped namespaces
+        <pre><code>Console.WriteLine("Hello");   // top-level statements
 global using System.Text.Json;
 namespace MyApp;
-
-// Required members (C# 11)
 public class Person {
-    public required string Name { get; init; }
+    public required string Name { get; init; }  // C# 11
 }
-
-// Source generators, Minimal APIs, Native AOT
-// System.Text.Json, System.Threading.Channels
-// Microsoft.Extensions.* (DI, Logging, Configuration)
-// Entity Framework Core, ASP.NET Core
-
-// Common packages
-// Microsoft.Extensions.DependencyInjection
-// Serilog / NLog
-// FluentValidation, AutoMapper, MediatR, etc.</code></pre>
+// Minimal APIs, Native AOT, System.Text.Json,
+// Microsoft.Extensions.* (DI, Logging, Config)</code></pre>
       </section>
 
       <section class="topic" id="advanced">
         <h2>Advanced Topics</h2>
-        <pre><code>// Attributes
-[Obsolete("Use NewMethod instead")]
-[Serializable]
+        <pre><code>[Obsolete("Use NewMethod")]
 [JsonPropertyName("id")]
-
-// Reflection
 var type = typeof(Person);
-var props = type.GetProperties();
-
-// Expression trees (used by LINQ providers, EF Core)
 Expression<Func<int, bool>> expr = x => x > 5;
-
-// Source generators, interceptors (C# 12 experimental)
-// Unsafe code, fixed buffers, function pointers
-// Native interop (P/Invoke, ComWrappers, LibraryImport)
-
-// Prefer high-level safe abstractions first;
-// drop to Span/Memory/unsafe only when profiling demands it.</code></pre>
+// Source generators, unsafe, P/Invoke when needed</code></pre>
       </section>
     </article>
   </div>
