@@ -55,442 +55,216 @@
       <section class="topic" id="types">
         <h2>Data Types</h2>
         <h3>Fundamental Types</h3>
-        <pre><code>bool          // true / false
-char          // 8-bit character
-wchar_t       // wide character
-char8_t       // UTF-8 (C++20)
-char16_t      // UTF-16
-char32_t      // UTF-32
-short         // 16-bit integer
-int           // 32-bit (usually)
-long          // 32/64-bit
-long long     // 64-bit
-float         // 32-bit IEEE float
-double        // 64-bit IEEE float
-long double   // 80/128-bit
-void          // no type
-auto          // type deduction
-decltype(x)   // type of expression</code></pre>
-
+        <pre><code>bool  char  wchar_t  char8_t  char16_t  char32_t
+short  int  long  long long
+float  double  long double
+void  auto  decltype(x)</code></pre>
         <h3>Fixed-Width (<cstdint>)</h3>
-        <pre><code>int8_t / uint8_t      // 8-bit
-int16_t / uint16_t    // 16-bit
-int32_t / uint32_t    // 32-bit
-int64_t / uint64_t    // 64-bit
-size_t                // unsigned size
-ptrdiff_t             // pointer difference
-intptr_t / uintptr_t  // integer large enough for pointer</code></pre>
-
+        <pre><code>int8_t / uint8_t … int64_t / uint64_t
+size_t  ptrdiff_t  intptr_t / uintptr_t</code></pre>
         <h3>Storage & Specifiers</h3>
-        <pre><code>const int x = 5;          // immutable
-volatile int x;           // may change externally
-constexpr int x = 5;      // compile-time constant
-consteval int f();        // must be compile-time (C++20)
-mutable int x;            // modifiable in const object
-static int x;             // static storage duration
-extern int x;             // external linkage
-inline int fn() { ... }   // ODR-friendly definition
-thread_local int x;       // per-thread storage</code></pre>
+        <pre><code>const  volatile  constexpr  consteval
+mutable  static  extern  inline  thread_local</code></pre>
       </section>
 
       <section class="topic" id="variables">
         <h2>Variables & Literals</h2>
         <pre><code>int a = 42;
-float f = 3.14f;
-double d = 3.14e2;
-char c = 'A';
-bool b = true;
-auto x = 10;                    // deduced as int
-int arr[3] = {1, 2, 3};
-const char* s = "hello";
-std::string str = "hello"s;     // C++14 string literal
-nullptr;                        // null pointer constant
-int& ref = a;                   // reference (must bind)
-int&& rref = 42;                // rvalue reference</code></pre>
-
-        <h3>Numeric Literals</h3>
-        <pre><code>0xFF          // hex
-0b1010        // binary (C++14)
-0755          // octal
-1'000'000     // digit separator (C++14)
-1ULL          // unsigned long long
-1.0L          // long double
-42uz          // size_t literal (C++23)</code></pre>
+auto x = 10;
+int& ref = a;
+int&& rref = 42;
+nullptr;
+std::string str = "hello"s;
+0xFF  0b1010  1'000'000  42uz</code></pre>
       </section>
 
       <section class="topic" id="operators">
         <h2>Operators</h2>
-        <div class="grid-2">
-          <div>
-            <h3>Arithmetic & Assignment</h3>
-            <pre><code>+  -  *  /  %
-=  +=  -=  *=  /=  %=
-++  --</code></pre>
-          </div>
-          <div>
-            <h3>Comparison & Logical</h3>
-            <pre><code>==  !=  <  >  <=  >=
-<=>                 // spaceship (C++20)
-&&  ||  !</code></pre>
-          </div>
-        </div>
-        <h3>Bitwise</h3>
-        <pre><code>&  |  ^  ~  <<  >></code></pre>
-        <h3>Pointer / Memory</h3>
-        <pre><code>*p          // dereference
-&x          // address-of
-p->m        // member via pointer
-o.m         // member access
-new T       // allocate
-delete p    // destroy & deallocate
-delete[] p  // array form
-sizeof(T)   // size in bytes
-alignof(T)  // alignment</code></pre>
-        <h3>Cast Operators</h3>
-        <pre><code>static_cast<double>(x)
-dynamic_cast<Base*>(ptr)     // RTTI, may return nullptr
-const_cast<int*>(cp)
-reinterpret_cast<void*>(p)
-std::bit_cast<T>(v)          // C++20, pure bit reinterpret</code></pre>
+        <pre><code>+ - * / %   = += -= *= /= %=
+== != < > <= >=   <=>        // spaceship C++20
+&& || !   & | ^ ~ << >>
+*p  &x  p->m  o.m  new T  delete p
+static_cast<T>(x)  dynamic_cast<T*>(p)
+const_cast  reinterpret_cast  std::bit_cast</code></pre>
       </section>
 
       <section class="topic" id="control">
         <h2>Control Flow</h2>
-        <pre><code>// if / else if / else  (also if-init C++17)
-if (int x = get(); x > 0) {
-  doA();
-} else if (x == 0) {
-  doB();
-} else {
-  doC();
-}
-
-// while / do-while
-while (cond) { /* ... */ }
-do { /* ... */ } while (cond);
-
-// classic for / range-for
-for (int i = 0; i < 10; ++i) { use(i); }
-for (auto& v : vec) { /* ... */ }
-for (auto&& [k, v] : map) { /* structured binding */ }
-
-// switch (C++17 init)
-switch (x) {
-  case 1: doA(); break;
-  case 2: doB(); [[fallthrough]];
-  default: doC();
-}
-
-// ternary & jumps
-int v = cond ? 1 : 0;
-break;  continue;  return val;
-goto label;          // avoid in modern code</code></pre>
+        <pre><code>if (int x = get(); x > 0) { ... }
+for (auto& v : vec) { ... }
+for (auto&& [k, v] : map) { ... }
+switch (x) { case 1: ...; break; default: ...; }
+int v = cond ? 1 : 0;</code></pre>
       </section>
 
       <section class="topic" id="functions">
         <h2>Functions</h2>
-        <pre><code>// Declaration / Definition
-int add(int a, int b);          // declaration
-int add(int a, int b) {         // definition
-  return a + b;
-}
-
-// Default arguments
-void log(int level = 0, bool verbose = false);
-
-// Overloading
-int    fn(int);
-double fn(double);
-
-// Pass modes
-void byVal(int x);              // copy
-void byRef(int& x);             // can modify caller
-void byPtr(int* x);             // nullable
-void byCRef(const int& x);      // read-only, no copy
-void byRRef(int&& x);           // binds rvalues
-
-// Inline / constexpr / consteval
+        <pre><code>int add(int a, int b = 0);
+void byVal(int x);
+void byRef(int& x);
+void byCRef(const int& x);
+void byRRef(int&& x);
 inline int sq(int x) { return x * x; }
 constexpr int cube(int x) { return x * x * x; }
-consteval int pure(int x) { return x * 2; }  // C++20
-
-// Trailing return type & auto
+consteval int pure(int x) { return x * 2; }
 auto mul(int a, int b) -> int { return a * b; }
-auto ded(int a, int b) { return a + b; }     // C++14
-
-// noexcept
-void f() noexcept;
-void g() noexcept(noexcept(expr));</code></pre>
+void f() noexcept;</code></pre>
       </section>
 
       <section class="topic" id="pointers">
         <h2>Pointers & Smart Pointers</h2>
-        <pre><code>// Raw pointers (prefer smart pointers)
-int* p = nullptr;
-p = new int(42);
-*p = 10;
-delete p;
-int* arr = new int[5];
-delete[] arr;
+        <pre><code>int* p = nullptr;
+p = new int(42);  delete p;
 
-// unique_ptr — exclusive ownership
 auto up = std::make_unique<int>(42);
-*up = 99;
-auto up2 = std::move(up);       // transfer ownership
+auto up2 = std::move(up);
 
-// shared_ptr — shared ownership
 auto sp = std::make_shared<int>(7);
-auto sp2 = sp;                  // ref-count +1
-
-// weak_ptr — non-owning observer
 std::weak_ptr<int> wp = sp;
-if (auto locked = wp.lock()) {
-  // use *locked safely
-}
+if (auto locked = wp.lock()) { /* use */ }
 
-// Move utilities
-std::move(x);                   // cast to rvalue
-std::forward<T>(x);             // perfect forwarding</code></pre>
-        <div class="note">RAII: resources are acquired in the constructor and released in the destructor. Prefer this over manual new/delete.</div>
+std::move(x);  std::forward<T>(x);</code></pre>
+        <div class="callout callout-default"><strong>★ Ownership defaults</strong>
+          <code class="inline">std::unique_ptr<T></code> — default exclusive ownership ·
+          <code class="inline">std::shared_ptr<T></code> — only when shared ownership is required ·
+          <code class="inline">std::weak_ptr<T></code> — non-owning observer
+        </div>
+        <div class="decision-tree">Need ownership?
+  │
+  ├─ exclusive → unique_ptr<T>
+  └─ shared
+       ├─ owning → shared_ptr<T>
+       └─ observe only → weak_ptr<T></div>
+        <div class="callout callout-mistake"><strong>Common mistake</strong>
+          <code class="inline">std::move(x)</code> only casts to an rvalue — it does not move by itself.
+          Prefer RAII / smart pointers over raw <code class="inline">new</code>/<code class="inline">delete</code>.
+        </div>
       </section>
 
       <section class="topic" id="raii">
         <h2>Special Member Functions & Rules</h2>
-        <pre><code>Foo();                          // default ctor
-Foo(const Foo&);                // copy ctor
-Foo(Foo&&);                     // move ctor
-Foo& operator=(const Foo&);     // copy assignment
-Foo& operator=(Foo&&);          // move assignment
-~Foo();                         // destructor
-
-Foo() = default;                // ask compiler to generate
-Foo(const Foo&) = delete;       // disable</code></pre>
-
+        <pre><code>Foo();  Foo(const Foo&);  Foo(Foo&&);
+Foo& operator=(const Foo&);  Foo& operator=(Foo&&);
+~Foo();
+Foo() = default;
+Foo(const Foo&) = delete;</code></pre>
+        <div class="callout callout-default"><strong>★ Preferred design</strong>
+          Rule of Zero > Rule of Five > Rule of Three.
+          Let the compiler generate special members; manage resources with smart pointers and STL containers.
+        </div>
         <h3>Rule of Zero (preferred)</h3>
-        <p>Design classes so the compiler can generate all special members. Use smart pointers and STL containers for resource management.</p>
         <pre><code>class Widget {
   std::string name_;
   std::vector<int> data_;
   std::unique_ptr<Impl> impl_;
-  // no user-declared special members needed
+  // no user-declared special members
 };</code></pre>
-
-        <h3>Rule of Five (C++11+)</h3>
-        <p>If you define any of destructor, copy ctor, copy assign, move ctor, or move assign, define (or delete) all five. Mark move operations <code class="inline">noexcept</code>.</p>
-
-        <h3>Rule of Three (pre-C++11)</h3>
-        <p>If you define any of dtor, copy ctor, copy assign — define all three.</p>
       </section>
 
       <section class="topic" id="classes">
         <h2>Structs & Classes</h2>
         <pre><code>struct Point {
   double x, y;
-  Point(double x, double y) : x(x), y(y) {}  // member initializer list
+  Point(double x, double y) : x(x), y(y) {}
 };
-Point p{1.0, 2.0};          // direct-list initialization
-
 class Animal {
 public:
   Animal(std::string n) : name_(std::move(n)) {}
   virtual void speak() const;
   virtual ~Animal() = default;
-  const std::string& getName() const { return name_; }
 private:
   std::string name_;
 };</code></pre>
-        <div class="note">Prefer member initializer lists over assignment in the constructor body. Initialization order follows declaration order, not the order in the initializer list.</div>
       </section>
 
       <section class="topic" id="inheritance">
         <h2>Inheritance & Polymorphism</h2>
         <pre><code>class Dog : public Animal {
-public:
-  Dog(std::string n) : Animal(std::move(n)) {}
-  void speak() const override {
-    std::cout << "Woof\n";
-  }
+  void speak() const override { std::cout << "Woof\n"; }
 };
-
-// Abstract base / pure virtual
 class Shape {
-public:
   virtual double area() const = 0;
   virtual ~Shape() = default;
 };
-
-// Access: public / protected / private
-// Multiple inheritance
-class D : public B, public C {};
-
-// Virtual inheritance (solve diamond)
-class Bird : virtual public Animal {};
-class Fish : virtual public Animal {};
-class Platypus : public Bird, public Fish {};  // single Animal subobject
-
-// RTTI
-if (auto* d = dynamic_cast<Dog*>(ptr)) {
-  d->speak();
-}
-typeid(obj).name();
-
-// Ctor / dtor order: base first, then derived; reverse on destruction</code></pre>
+if (auto* d = dynamic_cast<Dog*>(ptr)) { d->speak(); }</code></pre>
       </section>
 
       <section class="topic" id="templates">
         <h2>Templates</h2>
-        <pre><code>// Function template
-template<typename T>
-T maxOf(T a, T b) {
-  return a > b ? a : b;
-}
-maxOf<int>(3, 7);
+        <pre><code>template<typename T>
+T maxOf(T a, T b) { return a > b ? a : b; }
 
-// Class template
 template<typename T>
 class Box {
+  T val_;
 public:
   explicit Box(T v) : val_(v) {}
   T get() const { return val_; }
-private:
-  T val_;
 };
 
-// Variadic template + fold expression (C++17)
 template<typename... Args>
-void log(Args&&... args) {
-  (std::cout << ... << args);
-}
+void log(Args&&... args) { (std::cout << ... << args); }
 
-// Concepts (C++20)
 template<typename T>
 concept Numeric = std::integral<T> || std::floating_point<T>;
-
 template<Numeric T>
-T add(T a, T b) { return a + b; }
-
-// Full / partial specialization, SFINAE / enable_if still exist but concepts are preferred</code></pre>
+T add(T a, T b) { return a + b; }</code></pre>
       </section>
 
       <section class="topic" id="lambdas">
         <h2>Lambda Expressions</h2>
-        <pre><code>// [capture](params) -> ret { body }
-auto add = [](int a, int b) { return a + b; };
-
-// Capture modes
-[]          // capture nothing
-[=]         // all by value
-[&]         // all by reference
-[x, &y]     // x by value, y by ref
-[this]      // capture this pointer
-[*this]     // capture copy of *this (C++17)
-
-// Generic lambda (C++14) / template lambda (C++20)
+        <pre><code>auto add = [](int a, int b) { return a + b; };
+[]  [=]  [&]  [x, &y]  [this]  [*this]
 auto id = [](auto x) { return x; };
 auto tmpl = []<typename T>(T x) { return x; };
-
-// Immediately invoked
-int r = [](int x){ return x * 2; }(5);
-
-// Mutable lambda (can modify by-value captures)
 auto counter = [n = 0]() mutable { return ++n; };</code></pre>
       </section>
 
       <section class="topic" id="modern">
         <h2>Modern C++ Highlights</h2>
-        <pre><code>// Rvalue references & move semantics
-void f(int&);     // lvalue ref
-void f(int&&);    // rvalue ref
+        <p class="note">Key additions: structured bindings <span class="ver">C++17</span>,
+          concepts & ranges <span class="ver">C++20</span>,
+          <code class="inline">std::expected</code> & <code class="inline">std::print</code> <span class="ver">C++23</span></p>
+        <pre><code>void f(int&);  void f(int&&);
 f(std::move(a));
 
-// Perfect forwarding
 template<typename T>
-void wrapper(T&& arg) {
-  target(std::forward<T>(arg));
-}
+void wrapper(T&& arg) { target(std::forward<T>(arg)); }
 
-// Structured bindings (C++17)
 auto [k, v] = *map.begin();
-for (auto& [key, val] : myMap) { ... }
-
-// std::optional / variant / any (C++17)
 std::optional<int> opt = 42;
-if (opt) use(*opt);
-opt.value_or(0);
-
 std::variant<int, float, std::string> var;
-std::get<int>(var);
-std::visit(visitor, var);
-
-// string_view / span (non-owning)
 std::string_view sv = "hello";
 std::span<int> sp{arr};
-
-// Ranges (C++20)
 std::ranges::sort(v);
-std::ranges::find(v, val);
-auto even = v | std::views::filter([](int x){ return x%2==0; });
-
-// Three-way comparison
-auto operator<=>(const Foo&) const = default;
-
-// Coroutines (C++20), modules (C++20), std::expected (C++23), std::print (C++23)</code></pre>
+auto operator<=>(const Foo&) const = default;</code></pre>
       </section>
 
       <section class="topic" id="containers">
         <h2>STL Containers</h2>
-        <h3>Sequence</h3>
-        <pre><code>std::vector<T>          // dynamic array (default choice)
-std::array<T,N>         // fixed-size, stack
-std::deque<T>           // double-ended queue
-std::list<T>            // doubly-linked
-std::forward_list<T>    // singly-linked
-std::string             // char sequence</code></pre>
-        <h3>Associative</h3>
-        <pre><code>std::map<K,V>           // sorted key→value
-std::multimap<K,V>
-std::set<T>             // sorted unique
-std::multiset<T>
-std::unordered_map<K,V> // hash map
-std::unordered_set<T></code></pre>
-        <h3>Adapters</h3>
-        <pre><code>std::stack<T>           // LIFO
-std::queue<T>           // FIFO
-std::priority_queue<T>  // max-heap</code></pre>
-        <h3>Common Operations</h3>
-        <pre><code>v.push_back(x);
-v.emplace_back(args...);   // construct in-place
-v.pop_back();
-v.size();  v.empty();
-v.front(); v.back();
-v[i];  v.at(i);            // at() bounds-checked
-v.insert(it, x);
-v.erase(it);
-v.clear();
-v.reserve(n);              // vector/string only</code></pre>
+        <pre><code>std::vector<T>          // ★ default choice
+std::array<T,N>  std::deque<T>  std::list<T>
+std::map<K,V>  std::unordered_map<K,V>
+std::set<T>  std::unordered_set<T>
+std::stack<T>  std::queue<T>  std::priority_queue<T>
+
+v.push_back(x);  v.emplace_back(args...);
+v.size();  v.empty();  v.reserve(n);</code></pre>
+        <div class="callout callout-default"><strong>★ Default container</strong>
+          <code class="inline">std::vector<T></code> is almost always the right default.
+          Switch only when profiling shows a real bottleneck.
+        </div>
       </section>
 
       <section class="topic" id="algorithms">
         <h2>Iterators & Algorithms</h2>
-        <pre><code>v.begin() / v.end()     // forward
-v.rbegin() / v.rend()   // reverse
-v.cbegin() / v.cend()   // const
-
-// <algorithm> essentials
-std::sort(b, e);
-std::sort(b, e, cmp);
-std::find(b, e, val);
-std::find_if(b, e, pred);
-std::count / count_if
-std::copy / transform / reverse
-std::unique / accumulate
-std::min_element / max_element
-std::binary_search / lower_bound
-std::for_each / any_of / all_of / none_of
-
-// C++20 Ranges versions exist for most
-std::ranges::sort(v);
-std::ranges::find(v, val);</code></pre>
+        <pre><code>v.begin() / v.end()  v.rbegin() / v.rend()
+std::sort  std::find  std::find_if
+std::count  std::copy  std::transform
+std::unique  std::accumulate
+std::min_element  std::binary_search
+std::for_each  std::any_of  std::all_of
+std::ranges::sort(v);  std::ranges::find(v, val);</code></pre>
       </section>
 
       <section class="topic" id="complexity">
@@ -508,7 +282,6 @@ std::ranges::find(v, val);</code></pre>
           </tbody>
         </table>
         <p>* amortized / average &nbsp; † with iterator</p>
-        <div class="note">Default choice is almost always <code class="inline">std::vector</code>. Switch only when profiling shows a bottleneck. Remember iterator invalidation rules (especially vector reallocation and unordered_map rehash).</div>
       </section>
 
       <section class="topic" id="exceptions">
@@ -517,84 +290,44 @@ std::ranges::find(v, val);</code></pre>
   throw std::runtime_error("oops");
 } catch (const std::exception& e) {
   std::cerr << e.what();
-} catch (...) {
-  // catch-all
-}
-
-noexcept                    // function never throws
-noexcept(expr)              // conditional
-
-// Common types (<stdexcept>)
-std::exception
-std::runtime_error
-std::logic_error
-std::out_of_range
-std::invalid_argument
-std::bad_alloc</code></pre>
+} catch (...) { }
+noexcept  noexcept(expr)
+// std::exception, runtime_error, logic_error, out_of_range, bad_alloc</code></pre>
       </section>
 
       <section class="topic" id="concurrency">
         <h2>Concurrency (C++11+)</h2>
-        <pre><code>// Thread
-std::thread t(fn, arg1);
-t.join();                   // wait
-t.detach();                 // fire-and-forget
-std::this_thread::sleep_for(200ms);
-
-// Mutex
+        <pre><code>std::thread t(fn, arg1);
+t.join();  t.detach();
 std::mutex mtx;
-{
-  std::lock_guard<std::mutex> lk(mtx);
-  // critical section
-}
-std::unique_lock<std::mutex> ul(mtx);
-
-// Async / Future
+{ std::lock_guard<std::mutex> lk(mtx); /* critical */ }
 auto fut = std::async(std::launch::async, fn);
 int res = fut.get();
-
-// Atomic
-std::atomic<int> counter{0};
-counter++;                  // lock-free
-counter.fetch_add(1, std::memory_order_relaxed);
-
-// condition_variable, jthread (C++20), stop_token, etc.</code></pre>
+std::atomic<int> counter{0};  counter++;</code></pre>
       </section>
 
       <section class="topic" id="headers">
         <h2>Key Standard Library Headers</h2>
         <table>
-          <thead>
-            <tr><th>Header</th><th>Contents</th></tr>
-          </thead>
+          <thead><tr><th>Header</th><th>Contents</th></tr></thead>
           <tbody>
-            <tr><td><code class="inline">&lt;iostream&gt;</code></td><td>cin / cout / cerr — console I/O</td></tr>
-            <tr><td><code class="inline">&lt;fstream&gt;</code></td><td>ifstream, ofstream — file streams</td></tr>
-            <tr><td><code class="inline">&lt;sstream&gt;</code></td><td>stringstream — string streams</td></tr>
-            <tr><td><code class="inline">&lt;string&gt;</code></td><td>std::string, std::wstring</td></tr>
-            <tr><td><code class="inline">&lt;string_view&gt;</code></td><td>Non-owning string view (C++17)</td></tr>
-            <tr><td><code class="inline">&lt;span&gt;</code></td><td>Non-owning contiguous view (C++20)</td></tr>
-            <tr><td><code class="inline">&lt;vector&gt;</code> <code class="inline">&lt;array&gt;</code> <code class="inline">&lt;list&gt;</code> <code class="inline">&lt;deque&gt;</code></td><td>Sequence containers</td></tr>
-            <tr><td><code class="inline">&lt;map&gt;</code> <code class="inline">&lt;unordered_map&gt;</code> <code class="inline">&lt;set&gt;</code> <code class="inline">&lt;unordered_set&gt;</code></td><td>Associative containers</td></tr>
-            <tr><td><code class="inline">&lt;algorithm&gt;</code></td><td>sort, find, transform…</td></tr>
-            <tr><td><code class="inline">&lt;numeric&gt;</code></td><td>accumulate, iota, gcd…</td></tr>
-            <tr><td><code class="inline">&lt;memory&gt;</code></td><td>unique/shared/weak_ptr</td></tr>
-            <tr><td><code class="inline">&lt;utility&gt;</code></td><td>pair, move, forward, swap</td></tr>
-            <tr><td><code class="inline">&lt;optional&gt;</code> <code class="inline">&lt;variant&gt;</code> <code class="inline">&lt;any&gt;</code></td><td>C++17 vocabulary types</td></tr>
-            <tr><td><code class="inline">&lt;ranges&gt;</code> <code class="inline">&lt;concepts&gt;</code></td><td>Ranges & concepts (C++20)</td></tr>
-            <tr><td><code class="inline">&lt;thread&gt;</code> <code class="inline">&lt;mutex&gt;</code> <code class="inline">&lt;atomic&gt;</code> <code class="inline">&lt;future&gt;</code></td><td>Concurrency</td></tr>
-            <tr><td><code class="inline">&lt;chrono&gt;</code></td><td>Time points & durations</td></tr>
-            <tr><td><code class="inline">&lt;format&gt;</code></td><td>std::format (C++20)</td></tr>
-            <tr><td><code class="inline">&lt;print&gt;</code></td><td>std::print (C++23)</td></tr>
-            <tr><td><code class="inline">&lt;expected&gt;</code></td><td>Error-or-value (C++23)</td></tr>
-            <tr><td><code class="inline">&lt;filesystem&gt;</code></td><td>Path & directory iteration (C++17)</td></tr>
+            <tr><td><code class="inline"><iostream></code></td><td>cin / cout / cerr</td></tr>
+            <tr><td><code class="inline"><string></code> <code class="inline"><string_view></code></td><td>strings / views</td></tr>
+            <tr><td><code class="inline"><vector></code> <code class="inline"><array></code> <code class="inline"><map></code></td><td>containers</td></tr>
+            <tr><td><code class="inline"><algorithm></code> <code class="inline"><numeric></code></td><td>algorithms</td></tr>
+            <tr><td><code class="inline"><memory></code></td><td>smart pointers</td></tr>
+            <tr><td><code class="inline"><optional></code> <code class="inline"><variant></code></td><td>C++17 vocabulary</td></tr>
+            <tr><td><code class="inline"><ranges></code> <code class="inline"><concepts></code></td><td>C++20</td></tr>
+            <tr><td><code class="inline"><thread></code> <code class="inline"><mutex></code> <code class="inline"><atomic></code></td><td>concurrency</td></tr>
+            <tr><td><code class="inline"><format></code> <code class="inline"><print></code></td><td>C++20 / C++23</td></tr>
+            <tr><td><code class="inline"><expected></code> <code class="inline"><filesystem></code></td><td>C++23 / C++17</td></tr>
           </tbody>
         </table>
       </section>
 
       <section class="topic" id="patterns">
-        <h2>Selected Design Patterns (modern C++)</h2>
-        <pre><code>// Singleton (Meyer's — thread-safe since C++11)
+        <h2>Selected Design Patterns</h2>
+        <pre><code>// Meyer's singleton (thread-safe since C++11)
 class Logger {
   Logger() = default;
 public:
@@ -604,16 +337,8 @@ public:
   }
   Logger(const Logger&) = delete;
 };
-
-// Factory
-std::unique_ptr<Shape> create(const std::string& type) {
-  if (type == "circle") return std::make_unique<Circle>();
-  return std::make_unique<Square>();
-}
-
-// RAII itself is the most important pattern in C++
-// Prefer composition over inheritance when possible
-// CRTP, Pimpl, type erasure are common advanced techniques</code></pre>
+// Factory → unique_ptr<Shape>
+// Prefer composition; RAII is the core pattern</code></pre>
       </section>
     </article>
   </div>
