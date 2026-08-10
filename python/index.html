@@ -147,11 +147,15 @@ class Point:
 
       <section class="topic" id="typing">
         <h2>Type Hints</h2>
-        <pre><code>from typing import TypeVar, Protocol
-from collections.abc import Sequence
+        <pre><code>from collections.abc import Sequence
 
-def first(seq: Sequence[T]) -&gt; T | None: ...
-T = TypeVar("T")</code></pre>
+# PEP 695 generic syntax (3.12+)
+def first[T](seq: Sequence[T]) -&gt; T | None: ...
+
+# Structural typing
+from typing import Protocol
+class Sized(Protocol):
+    def __len__(self) -&gt; int: ...</code></pre>
       </section>
 
       <section class="topic" id="collections">
