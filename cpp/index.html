@@ -563,26 +563,33 @@ counter.fetch_add(1, std::memory_order_relaxed);
 
       <section class="topic" id="headers">
         <h2>Key Standard Library Headers</h2>
-        <pre><code><iostream>     cin / cout / cerr
-<fstream>      file streams
-<sstream>      string streams
-<string>       std::string
-<string_view>  non-owning view (C++17)
-<span>         contiguous view (C++20)
-<vector> <array> <list> <deque>
-<map> <unordered_map> <set> <unordered_set>
-<algorithm>    sort, find, transform…
-<numeric>      accumulate, iota, gcd
-<memory>       smart pointers
-<utility>      pair, move, forward, swap
-<optional> <variant> <any>
-<ranges> <concepts>
-<thread> <mutex> <atomic> <future>
-<chrono>       time
-<format>       std::format (C++20)
-<print>        std::print (C++23)
-<expected>     error-or-value (C++23)
-<filesystem>   path & directory (C++17)</code></pre>
+        <table>
+          <thead>
+            <tr><th>Header</th><th>Contents</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code class="inline"><iostream></code></td><td>cin / cout / cerr — console I/O</td></tr>
+            <tr><td><code class="inline"><fstream></code></td><td>ifstream, ofstream — file streams</td></tr>
+            <tr><td><code class="inline"><sstream></code></td><td>stringstream — string streams</td></tr>
+            <tr><td><code class="inline"><string></code></td><td>std::string, std::wstring</td></tr>
+            <tr><td><code class="inline"><string_view></code></td><td>Non-owning string view (C++17)</td></tr>
+            <tr><td><code class="inline"><span></code></td><td>Non-owning contiguous view (C++20)</td></tr>
+            <tr><td><code class="inline"><vector></code> <code class="inline"><array></code> <code class="inline"><list></code> <code class="inline"><deque></code></td><td>Sequence containers</td></tr>
+            <tr><td><code class="inline"><map></code> <code class="inline"><unordered_map></code> <code class="inline"><set></code> <code class="inline"><unordered_set></code></td><td>Associative containers</td></tr>
+            <tr><td><code class="inline"><algorithm></code></td><td>sort, find, transform…</td></tr>
+            <tr><td><code class="inline"><numeric></code></td><td>accumulate, iota, gcd…</td></tr>
+            <tr><td><code class="inline"><memory></code></td><td>unique/shared/weak_ptr</td></tr>
+            <tr><td><code class="inline"><utility></code></td><td>pair, move, forward, swap</td></tr>
+            <tr><td><code class="inline"><optional></code> <code class="inline"><variant></code> <code class="inline"><any></code></td><td>C++17 vocabulary types</td></tr>
+            <tr><td><code class="inline"><ranges></code> <code class="inline"><concepts></code></td><td>Ranges & concepts (C++20)</td></tr>
+            <tr><td><code class="inline"><thread></code> <code class="inline"><mutex></code> <code class="inline"><atomic></code> <code class="inline"><future></code></td><td>Concurrency</td></tr>
+            <tr><td><code class="inline"><chrono></code></td><td>Time points & durations</td></tr>
+            <tr><td><code class="inline"><format></code></td><td>std::format (C++20)</td></tr>
+            <tr><td><code class="inline"><print></code></td><td>std::print (C++23)</td></tr>
+            <tr><td><code class="inline"><expected></code></td><td>Error-or-value (C++23)</td></tr>
+            <tr><td><code class="inline"><filesystem></code></td><td>Path & directory iteration (C++17)</td></tr>
+          </tbody>
+        </table>
       </section>
 
       <section class="topic" id="patterns">
