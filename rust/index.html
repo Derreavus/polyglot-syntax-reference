@@ -131,7 +131,7 @@ let s3 = "Hi".to_string();
 ["a", "b"].join("-");
 
 let text = "Python";
-&amp;text[0..1];
+&amp;text[0..1];  // panics if the boundary isn't on a char boundary (non-ASCII risk)
 text.chars().rev().collect::&lt;String&gt;();
 
 format!("Hello, {name}!");
@@ -213,11 +213,11 @@ let s3 = s2.clone();</code></pre>
         </div>
         <div class="decision-tree">Need ownership?
   │
-  ├─ no -> borrow
-  │         ├─ read-only -> &T
-  │         └─ mutate    -> &mut T
-  └─ yes -> move T
-            └─ shared ownership? -> Arc<T> (or Rc<T> single-threaded)</div>
+  ├─ no -&gt; borrow
+  │         ├─ read-only -&gt; &amp;T
+  │         └─ mutate    -&gt; &amp;mut T
+  └─ yes -&gt; move T
+            └─ shared ownership? -&gt; Arc&lt;T&gt; (or Rc&lt;T&gt; single-threaded)</div>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           Don't <code class="inline">clone()</code> just to silence the borrow checker —
           prefer a borrow or a redesign.
@@ -266,9 +266,13 @@ impl Shape for Circle {
     fn area(&amp;self) -&gt; f64 { std::f64::consts::PI * self.radius.powi(2) }
 }
 
-fn largest&lt;T: PartialOrd + Copy&gt;(list: &amp;[T]) -&gt; T { ... }
-fn print_shape(shape: &amp;impl Shape) { ... }
-let shapes: Vec&lt;Box&lt;dyn Shape&gt;&gt; = vec![...];
+fn largest&lt;T: PartialOrd + Copy&gt;(list: &amp;[T]) -&gt; T {
+    // ...
+}
+fn print_shape(shape: &amp;impl Shape) {
+    // ...
+}
+let shapes: Vec&lt;Box&lt;dyn Shape&gt;&gt; = vec![Box::new(circle), Box::new(square)];
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Default)]
 struct Point { x: i32, y: i32 }</code></pre>
@@ -426,8 +430,12 @@ value.unwrap();        // prefer ? / unwrap_or / ok_or
 // Blocking inside async
 std::thread::sleep(...);  // use tokio::time::sleep
 
-// Mutex poisoning after panic
-let guard = mutex.lock().unwrap();
+// Mutex poisoning — a panic while holding the lock poisons it;
+// later .lock() calls return Err instead of panicking silently
+let guard = match mutex.lock() {
+    Ok(g) =&gt; g,
+    Err(poisoned) =&gt; poisoned.into_inner(), // recover the data anyway
+};
 
 // Prefer &amp;T / &amp;mut T; Arc only for shared ownership across threads
 </code></pre>
