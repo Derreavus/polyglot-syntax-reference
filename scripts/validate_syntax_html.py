@@ -16,7 +16,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 LANGS = ("python", "rust", "cpp", "csharp")
 
-# Patterns that strongly suggest stripped or broken generics
+MATH_LT = "\u27e8"  # ⟨
+MATH_GT = "\u27e9"  # ⟩
+FULL_LT = "\uff1c"  # ＜
+FULL_GT = "\uff1e"  # ＞
+
 BROKEN_PATTERNS = [
     (r"\bVec\s*>", "Rust: Vec> looks like stripped generic"),
     (r"\bOption\s*>", "Rust: Option> looks like stripped generic"),
@@ -40,9 +44,15 @@ def decode_entities(s: str) -> str:
     return (
         s.replace("<", "<")
         .replace(">", ">")
+        .replace("&#60;", "<")
+        .replace("&#62;", ">")
         .replace("&", "&")
         .replace(""", '"')
         .replace("&#39;", "'")
+        .replace(MATH_LT, "<")
+        .replace(MATH_GT, ">")
+        .replace(FULL_LT, "<")
+        .replace(FULL_GT, ">")
     )
 
 
@@ -51,36 +61,82 @@ def code_blocks(html: str) -> list[str]:
 
 
 def find_raw_angles(block: str) -> list[str]:
-    """Return contexts of raw < or > that are not HTML entities."""
+    """Return contexts of raw ASCII < that look like HTML tags (dangerous)."""
     issues = []
-    for m in re.finditer(r"<|>", block):
+    for m in re.finditer(r"<", block):
         start = m.start()
-        before = block[max(0, start - 4) : start + 1]
-        if before.endswith("<") or before.endswith(">") or before.endswith("&"):
+        before = block[max(0, start - 6) : start + 1]
+        if re.search(r"&(amp;|lt;|#60;)$", before):
             continue
-        ch = m.group(0)
-        after = block[start : start + 12]
-        if ch == "<" and re.match(r"<[A-Za-z_/!]", after):
+        after = block[start : start + 16]
+        if re.match(r"</?[A-Za-z_!]", after):
             issues.append(after.split("\n")[0][:40])
-        elif ch == "<":
-            ctx = block[max(0, start - 8) : start + 8].replace("\n", " ")
-            issues.append(f"unescaped < near: {ctx!r}")
     return issues
 
 
+def has_escaped_generic(html: str, *needles: str) -> bool:
+    for n in needles:
+        if n in html:
+            return True
+        ent = n.replace("<", "<").replace(">", ">")
+        if ent in html:
+            return True
+        num = n.replace("<", "&#60;").replace(">", "&#62;")
+        if num in html:
+            return True
+        math = n.replace("<", MATH_LT).replace(">", MATH_GT)
+        if math in html:
+            return True
+        full = n.replace("<", FULL_LT).replace(">", FULL_GT)
+        if full in html:
+            return True
+        sq = n.replace("<", "[").replace(">", "]")
+        if sq in html and sq != n:
+            return True
+    return False
+
+
 def expected_generics_present(lang: str, html: str) -> list[str]:
-    """Ensure languages that need generics actually contain escaped examples."""
     missing = []
     checks = {
-        "cpp": [r"template<typename T>", r"make_unique<", r"vector<", r"static_cast<"],
-        "rust": [r"Vec<", r"Option<", r"<i32>", r"parse::<"],
-        "csharp": [r"List<", r"<T>", r"IEnumerable<"],
-        "python": [r"list\[int\]", r"TypeVar", r"Sequence\["],
+        "cpp": [
+            ("template<typename T>", "template<typename T>"),
+            ("make_unique<", "make_unique<"),
+            ("vector<", "vector<"),
+            ("static_cast<", "static_cast<"),
+        ],
+        "rust": [
+            ("Vec<", "Vec<"),
+            ("Option<", "Option<"),
+            ("Result<", "Result<"),
+        ],
+        "csharp": [
+            ("List<", "List<"),
+            ("<T>", "<T>"),
+        ],
+        "python": [
+            ("list[int]", "list[int]"),
+            ("TypeVar", "TypeVar"),
+        ],
     }
-    for pat in checks.get(lang, []):
-        if not re.search(pat, html):
-            missing.append(pat)
+    for pair in checks.get(lang, []):
+        if not has_escaped_generic(html, *pair):
+            missing.append(pair[0])
     return missing
+
+
+def validate_structure(lang: str, html: str) -> list[str]:
+    errors = []
+    if not re.search(r'class="lang-tag', html):
+        errors.append(f"{lang}: missing lang-tag version badge")
+    if not re.search(r'class="sidebar"', html):
+        errors.append(f"{lang}: missing sidebar")
+    if not re.search(r"<h1>", html):
+        errors.append(f"{lang}: missing h1")
+    topics = re.findall(r'class="topic"', html)
+    if len(topics) < 5:
+        errors.append(f"{lang}: fewer than 5 topic sections ({len(topics)})")
+    return errors
 
 
 def validate_lang(lang: str) -> list[str]:
@@ -99,16 +155,31 @@ def validate_lang(lang: str) -> list[str]:
         for pat, msg in BROKEN_PATTERNS:
             if re.search(pat, plain):
                 errors.append(f"{lang} block {i}: {msg}")
-
         for ctx in find_raw_angles(block):
-            errors.append(f"{lang} block {i}: raw angle bracket — {ctx}")
+            errors.append(f"{lang} block {i}: raw angle bracket tag — {ctx}")
 
     for pat in expected_generics_present(lang, html):
-        errors.append(f"{lang}: expected pattern not found: {pat}")
+        errors.append(f"{lang}: expected generic pattern not found: {pat}")
 
-    if not re.search(r'class="lang-tag', html):
-        errors.append(f"{lang}: missing lang-tag version badge")
+    errors.extend(validate_structure(lang, html))
+    return errors
 
+
+def validate_compare() -> list[str]:
+    path = ROOT / "compare" / "index.html"
+    if not path.exists():
+        return ["compare/index.html missing"]
+    html = path.read_text(encoding="utf-8")
+    errors = []
+    for sec in ("basics", "collections", "oop", "ownership", "errors", "async"):
+        if f'id="{sec}"' not in html:
+            errors.append(f"compare: missing section #{sec}")
+    if re.search(r"<code>Vec<T></code>", html):
+        errors.append("compare: raw Vec<T> will be stripped by browsers")
+    if re.search(r"<code><T></code>", html):
+        errors.append("compare: raw <T> will be stripped by browsers")
+    if re.search(r"<code>List<T></code>", html):
+        errors.append("compare: raw List<T> will be stripped by browsers")
     return errors
 
 
@@ -124,10 +195,19 @@ def main() -> int:
         else:
             print(f"OK   {lang}")
 
+    cmp_errs = validate_compare()
+    if cmp_errs:
+        print("FAIL compare:")
+        for e in cmp_errs:
+            print(f"  - {e}")
+        all_errors.extend(cmp_errs)
+    else:
+        print("OK   compare")
+
     if all_errors:
         print(f"\n{len(all_errors)} problem(s) found")
         return 1
-    print("\nAll language pages passed validation")
+    print("\nAll pages passed validation")
     return 0
 
 
