@@ -1,1 +1,420 @@
-PLACEHOLDER_RUST
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rust Syntax Reference — Polyglot</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">{ }</span><span class="logo-text">Polyglot Syntax</span></a>
+      <nav class="lang-nav">
+        <a href="../python/index.html" class="lang-btn python">Python</a>
+        <a href="index.html" class="lang-btn rust active">Rust</a>
+        <a href="../cpp/index.html" class="lang-btn cpp">C++</a>
+        <a href="../csharp/index.html" class="lang-btn csharp">C#</a>
+      </nav>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
+    </div>
+  </header>
+
+  <div class="lang-layout container">
+    <aside class="sidebar">
+      <h3>Basics</h3>
+      <a href="#getting-started">Getting Started</a>
+      <a href="#types">Data Types</a>
+      <a href="#variables">Variables</a>
+      <a href="#strings">Strings</a>
+      <a href="#control">Control Flow</a>
+      <a href="#functions">Functions & Closures</a>
+      <h3>Ownership</h3>
+      <a href="#ownership">Ownership & Borrowing</a>
+      <a href="#lifetimes">Lifetimes</a>
+      <h3>Data Modeling</h3>
+      <a href="#structs">Structs & Enums</a>
+      <a href="#traits">Traits & Generics</a>
+      <a href="#pattern">Pattern Matching</a>
+      <h3>Collections & Error</h3>
+      <a href="#collections">Collections</a>
+      <a href="#iterators">Iterators</a>
+      <a href="#error">Error Handling</a>
+      <a href="#modules">Modules & Cargo</a>
+      <a href="#io">File I/O</a>
+      <a href="#concurrency">Concurrency</a>
+      <a href="#advanced">Advanced Idioms</a>
+    </aside>
+
+    <article class="content">
+      <h1>Rust Pocket Reference</h1>
+      <span class="lang-tag rust">Edition 2024 · focused on idiomatic safe Rust</span>
+
+      <section class="topic" id="getting-started">
+        <h2>Getting Started</h2>
+        <pre><code># Install toolchain
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+rustc --version
+cargo --version
+
+cargo new my_project
+cd my_project
+cargo run
+cargo build --release
+cargo test
+cargo check
+cargo clippy
+cargo fmt
+cargo add serde
+cargo doc --open
+
+rustc main.rs</code></pre>
+        <div class="note">Prefer Cargo for almost everything. Book: <code class="inline">doc.rust-lang.org/book</code>.</div>
+      </section>
+
+      <section class="topic" id="types">
+        <h2>Data Types</h2>
+        <p>Statically typed; compiler usually infers. Integers default to <code class="inline">i32</code>, floats to <code class="inline">f64</code>. <code class="inline">char</code> is a Unicode scalar (4 bytes).</p>
+        <pre><code>let i: i32 = 42;
+let u: u8 = 255;
+let f: f64 = 3.14;
+let b: bool = true;
+let c: char = 'R';
+
+// i8/u8 … i128/u128, isize/usize · f32, f64
+"42".parse::⟨i32⟩().unwrap();
+42.to_string();
+42 as f64;
+
+let tup: (i32, f64, char) = (1, 2.0, 'a');
+let (x, y, z) = tup;
+let arr: [i32; 3] = [1, 2, 3];
+let zeros = [0; 5];
+let unit: () = ();</code></pre>
+      </section>
+
+      <section class="topic" id="variables">
+        <h2>Variables & Assignment</h2>
+        <p>Immutable by default. Add <code class="inline">mut</code> to reassign. Shadowing reuses a name (even with a new type).</p>
+        <pre><code>let name = "Leo";             // &str, immutable
+let mut age = 7;
+age += 1;
+
+const MAX_AGE: u32 = 120;
+static GREETING: &str = "Hi!";
+
+let x = 5;
+let x = x * 2;                // shadow
+let x = x.to_string();        // new type OK
+
+let (a, b) = (1, 2);
+let Point { x, y } = p;</code></pre>
+      </section>
+
+      <section class="topic" id="strings">
+        <h2>Strings</h2>
+        <pre><code>let s1: &str = "Hello";
+let s2 = String::from("World");
+let s3 = "Hi".to_string();
+
+"me".to_string() + "ow!";
+"Meow!".repeat(3);
+"Python".len();               // bytes
+" a ".trim();
+"abc".replace("bc", "ha");
+"a b".split(' ').collect::⟨Vec⟨_⟩⟩();
+["a", "b"].join("-");
+
+let text = "Python";
+&text[0..1];
+text.chars().rev().collect::⟨String⟩();
+
+format!("Hello, {name}!");
+println!("{:?}", age);</code></pre>
+        <div class="callout callout-use"><strong>When to use</strong>
+          Parameters: prefer <code class="inline">&str</code>.
+          Ownership / mutation: <code class="inline">String</code>.
+          Building text: <code class="inline">format!</code> or <code class="inline">push_str</code>.
+        </div>
+      </section>
+
+      <section class="topic" id="control">
+        <h2>Control Flow</h2>
+        <p>No truthiness — conditions must be <code class="inline">bool</code>. <code class="inline">if</code> is an expression.</p>
+        <pre><code>let category = if age ⟨ 13 { "child" }
+else if age ⟨ 20 { "teenager" }
+else { "adult" };
+
+let mut count = 0;
+let result = loop {
+    count += 1;
+    if count == 3 { continue; }
+    if count == 10 { break count * 2; }
+};
+
+while condition { ... }
+for i in 0..5 { ... }
+for i in 0..=5 { ... }
+for fruit in &fruits { ... }
+for (i, fruit) in fruits.iter().enumerate() { ... }
+
+'outer: for x in 0..5 {
+    for y in 0..5 {
+        if x * y ⟩ 6 { break 'outer; }
+    }
+}</code></pre>
+      </section>
+
+      <section class="topic" id="functions">
+        <h2>Functions & Closures</h2>
+        <pre><code>fn greet() -⟩ String { "Hello!".to_string() }
+fn greet_person(name: &str) -⟩ String { format!("Hello, {name}!") }
+fn add(x: i32, y: i32) -⟩ i32 { x + y }  // no semicolon = return
+
+fn min_max(nums: &[i32]) -⟩ (i32, i32) {
+    (*nums.iter().min().unwrap(), *nums.iter().max().unwrap())
+}
+
+let square = |x: i32| x * x;
+let sq: Vec⟨i32⟩ = nums.iter().map(|x| x * x).collect();
+
+fn make_adder(n: i32) -⟩ impl Fn(i32) -⟩ i32 {
+    move |x| x + n
+}</code></pre>
+      </section>
+
+      <section class="topic" id="ownership">
+        <h2>Ownership & Borrowing</h2>
+        <p>Every value has one owner. Non-<code class="inline">Copy</code> assignment <em>moves</em>; the old binding is invalid.</p>
+        <pre><code>let s1 = String::from("hello");
+let s2 = s1;                  // move — s1 invalid
+println!("{s2}");
+
+let n1 = 5;                   // i32 is Copy
+let n2 = n1;                  // both valid
+
+fn print_len(s: &String) -⟩ usize { s.len() }
+print_len(&s);                // borrow, s still valid
+
+fn add_world(s: &mut String) { s.push_str(", world"); }
+let mut s = String::from("hello");
+add_world(&mut s);
+
+// either one &mut OR any number of & — never both
+let s3 = s2.clone();</code></pre>
+        <div class="callout callout-default"><strong>★ Ownership defaults</strong>
+          Prefer borrowing (<code class="inline">&T</code> / <code class="inline">&mut T</code>) over cloning.
+          Own with <code class="inline">T</code> only when you need exclusive ownership.
+        </div>
+        <div class="decision-tree">Need ownership?
+  │
+  ├─ no → borrow
+  │         ├─ read-only → &T
+  │         └─ mutate    → &mut T
+  └─ yes → move T
+            └─ shared ownership? → Arc⟨T⟩ (or Rc⟨T⟩ single-threaded)</div>
+        <div class="callout callout-mistake"><strong>Common mistake</strong>
+          Don't <code class="inline">clone()</code> just to silence the borrow checker —
+          prefer a borrow or a redesign.
+        </div>
+      </section>
+
+      <section class="topic" id="lifetimes">
+        <h2>Lifetimes</h2>
+        <pre><code>fn longest⟨'a⟩(x: &'a str, y: &'a str) -⟩ &'a str {
+    if x.len() ⟩ y.len() { x } else { y }
+}
+
+struct Excerpt⟨'a⟩ { part: &'a str }
+impl⟨'a⟩ Excerpt⟨'a⟩ {
+    fn level(&self) -⟩ i32 { 3 }
+}
+// 'static = whole program (string literals)</code></pre>
+      </section>
+
+      <section class="topic" id="structs">
+        <h2>Structs & Enums</h2>
+        <pre><code>struct Dog { name: String, age: u8 }
+impl Dog {
+    fn new(name: &str, age: u8) -⟩ Self {
+        Self { name: name.to_string(), age }
+    }
+    fn bark(&self) -⟩ String { format!("{} says Woof!", self.name) }
+}
+
+struct Point(i32, i32);       // tuple struct
+enum Animal {
+    Dog(String),
+    Cat { name: String, lives: u8 },
+}
+let some: Option⟨i32⟩ = Some(5);
+let none: Option⟨i32⟩ = None;</code></pre>
+      </section>
+
+      <section class="topic" id="traits">
+        <h2>Traits & Generics</h2>
+        <pre><code>trait Shape {
+    fn area(&self) -⟩ f64;
+    fn name(&self) -⟩ &str { "shape" }
+}
+impl Shape for Circle {
+    fn area(&self) -⟩ f64 { std::f64::consts::PI * self.radius.powi(2) }
+}
+
+fn largest⟨T: PartialOrd + Copy⟩(list: &[T]) -⟩ T { ... }
+fn print_shape(shape: &impl Shape) { ... }
+let shapes: Vec⟨Box⟨dyn Shape⟩⟩ = vec![...];
+
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Default)]
+struct Point { x: i32, y: i32 }</code></pre>
+      </section>
+
+      <section class="topic" id="pattern">
+        <h2>Pattern Matching</h2>
+        <pre><code>match n {
+    1 =⟩ println!("one"),
+    2 | 3 =⟩ println!("two or three"),
+    4..=9 =⟩ println!("four through nine"),
+    _ =⟩ println!("something else"),
+}
+
+if let Some(v) = maybe_value { println!("Got {v}"); }
+
+match n {
+    x if x ⟨ 0 =⟩ println!("negative"),
+    x if x % 2 == 0 =⟩ println!("even"),
+    _ =⟩ println!("odd"),
+}</code></pre>
+      </section>
+
+      <section class="topic" id="collections">
+        <h2>Collections</h2>
+        <pre><code>let mut nums: Vec⟨i32⟩ = Vec::new();
+let mut nums = vec![5];
+nums.push(10);
+nums.pop();                   // Option⟨T⟩
+
+use std::collections::{HashMap, HashSet};
+let mut pet = HashMap::new();
+pet.insert("name", "Leo");
+pet.get("age");               // Option⟨&V⟩
+*pet.entry("hits").or_insert(0) += 1;
+
+use std::collections::BTreeMap; // sorted keys</code></pre>
+        <div class="callout callout-default"><strong>★ Defaults</strong>
+          <code class="inline">Vec⟨T⟩</code> — default collection ·
+          <code class="inline">String</code> — owned text ·
+          <code class="inline">&str</code> — default borrowed text parameter ·
+          <code class="inline">HashMap⟨K,V⟩</code> — key/value
+        </div>
+      </section>
+
+      <section class="topic" id="iterators">
+        <h2>Iterators</h2>
+        <p>Lazy — nothing runs until a consuming adapter.</p>
+        <pre><code>let squares: Vec⟨i32⟩ = (0..10).map(|x| x * x).collect();
+let evens: Vec⟨i32⟩ = (0..20).filter(|x| x % 2 == 0).collect();
+let total: i32 = (1..=1000).sum();
+words.iter().any(|w| w.len() ⟩ 4);
+(1..=5).fold(1, |acc, x| acc * x);
+names.iter().zip(ages.iter());</code></pre>
+      </section>
+
+      <section class="topic" id="error">
+        <h2>Error Handling</h2>
+        <p>No exceptions. Recoverable: <code class="inline">Result⟨T, E⟩</code>. Unrecoverable: <code class="inline">panic!</code>.</p>
+        <pre><code>fn divide(a: f64, b: f64) -⟩ Result⟨f64, String⟩ {
+    if b == 0.0 { return Err("Cannot divide by zero!".into()); }
+    Ok(a / b)
+}
+
+match divide(10.0, 0.0) {
+    Ok(r) =⟩ println!("Result: {r}"),
+    Err(e) =⟩ println!("{e}"),
+}
+
+fn read_number() -⟩ Result⟨i32, Box⟨dyn std::error::Error⟩⟩ {
+    let s = std::fs::read_to_string("num.txt")?;
+    let n: i32 = s.trim().parse()?;
+    Ok(n)
+}
+
+result.unwrap_or(0);
+Some(4).map(|n| n * 2);</code></pre>
+        <div class="callout callout-default"><strong>★ Error handling defaults</strong>
+          <code class="inline">Result⟨T, E⟩</code> recoverable ·
+          <code class="inline">Option⟨T⟩</code> absence ·
+          <code class="inline">?</code> to propagate ·
+          Prefer <code class="inline">unwrap_or</code> / <code class="inline">ok_or</code> over bare <code class="inline">unwrap()</code> in libraries.
+        </div>
+      </section>
+
+      <section class="topic" id="modules">
+        <h2>Modules & Cargo</h2>
+        <pre><code>mod shapes;                   // shapes.rs or shapes/mod.rs
+pub struct Public;
+pub(crate) struct CrateVisible;
+use std::io::{self, Write};
+use std::collections::HashMap as Map;
+
+// Cargo.toml
+[package]
+name = "my_project"
+edition = "2024"
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+anyhow = "1"</code></pre>
+      </section>
+
+      <section class="topic" id="io">
+        <h2>File I/O</h2>
+        <pre><code>use std::fs;
+use std::io::{BufRead, BufReader, Write};
+
+let content = fs::read_to_string("file.txt")?;
+for line in BufReader::new(fs::File::open("file.txt")?).lines() {
+    println!("{}", line?.trim());
+}
+fs::write("output.txt", "Hello\n")?;
+use std::path::Path;
+Path::new("/tmp/data.txt").exists();</code></pre>
+      </section>
+
+      <section class="topic" id="concurrency">
+        <h2>Concurrency</h2>
+        <pre><code>use std::thread;
+use std::sync::{Arc, Mutex, mpsc};
+
+let handle = thread::spawn(|| { println!("hi"); });
+handle.join().unwrap();
+
+let (tx, rx) = mpsc::channel();
+thread::spawn(move || { tx.send("hello").unwrap(); });
+println!("{}", rx.recv().unwrap());
+
+let counter = Arc::new(Mutex::new(0));
+// clone Arc into threads, lock Mutex to mutate
+// async: usually tokio</code></pre>
+      </section>
+
+      <section class="topic" id="advanced">
+        <h2>Advanced Idioms</h2>
+        <pre><code>struct Meters(f64);           // newtype
+type Result⟨T⟩ = std::result::Result⟨T, Box⟨dyn std::error::Error⟩⟩;
+use std::cell::RefCell;
+use std::borrow::Cow;
+// Pin, unsafe, FFI, macros when needed</code></pre>
+      </section>
+    </article>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">GitHub</a> · Rust reference</p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
