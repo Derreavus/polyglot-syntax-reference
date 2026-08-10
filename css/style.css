@@ -195,7 +195,6 @@ th {
 }
 .pdf-btn:hover { opacity: 0.85; color: var(--bg); }
 
-/* Phase 2 */
 .search-trigger {
   display: inline-flex; align-items: center; gap: 0.4rem;
   padding: 0.3rem 0.65rem; border: 1px solid var(--border); border-radius: 6px;
@@ -300,3 +299,78 @@ pre.code-block:hover .copy-btn, .copy-btn:focus { opacity: 1; }
 .breadcrumbs a:hover { color: var(--accent); }
 .bc-sep { margin: 0 0.35rem; opacity: 0.5; }
 .bc-current { color: var(--text); font-weight: 500; }
+
+/* Phase 3 — Reference quality callouts */
+.ver {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-family: var(--mono);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.default-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--accent);
+}
+
+.callout {
+  border-radius: 6px;
+  padding: 0.65rem 0.9rem;
+  margin: 0.75rem 0 1rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.callout strong {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+.callout-use {
+  background: color-mix(in srgb, #3b82f6 10%, var(--bg-elevated));
+  border-left: 3px solid #3b82f6;
+}
+.callout-use strong { color: #60a5fa; }
+.callout-avoid {
+  background: color-mix(in srgb, #f59e0b 10%, var(--bg-elevated));
+  border-left: 3px solid #f59e0b;
+}
+.callout-avoid strong { color: #fbbf24; }
+.callout-default {
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg-elevated));
+  border-left: 3px solid var(--accent);
+}
+.callout-default strong { color: var(--accent); }
+.callout-mistake {
+  background: color-mix(in srgb, #ef4444 10%, var(--bg-elevated));
+  border-left: 3px solid #ef4444;
+}
+.callout-mistake strong { color: #f87171; }
+
+.decision-tree {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin: 0.75rem 0 1rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
