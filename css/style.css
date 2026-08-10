@@ -59,7 +59,7 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .logo {
@@ -107,6 +107,134 @@ body {
   border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
+}
+
+/* Search */
+.search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 260px;
+  margin: 0 0.75rem;
+}
+
+.search-wrap input {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem 0.4rem 2rem;
+  font-size: 0.875rem;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.search-wrap input:focus {
+  border-color: var(--accent);
+}
+
+.search-wrap input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-wrap::before {
+  content: "⌕";
+  position: absolute;
+  left: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+#search-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 200;
+}
+
+#search-results[hidden] {
+  display: none;
+}
+
+.search-hit {
+  display: block;
+  padding: 0.55rem 0.85rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-hit:last-child {
+  border-bottom: none;
+}
+
+.search-hit:hover {
+  background: var(--bg-elevated);
+  color: var(--accent);
+}
+
+.search-empty {
+  padding: 0.75rem 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* Cross-language "Also in" bar */
+.xlang-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: -0.5rem 0 1rem;
+  font-size: 0.8rem;
+}
+
+.xlang-label {
+  color: var(--text-muted);
+  margin-right: 0.15rem;
+}
+
+.xlang-link {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.75rem;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: all 0.12s;
+}
+
+.xlang-link:hover {
+  color: #fff;
+}
+
+.xlang-link.python:hover { background: var(--python); border-color: var(--python); }
+.xlang-link.rust:hover   { background: var(--rust); border-color: var(--rust); color: #1a1a1a; }
+.xlang-link.cpp:hover    { background: var(--cpp); border-color: var(--cpp); }
+.xlang-link.csharp:hover { background: var(--csharp); border-color: var(--csharp); }
+
+@media (max-width: 700px) {
+  .search-wrap {
+    max-width: 140px;
+    margin: 0 0.35rem;
+  }
+  .lang-nav {
+    display: none;
+  }
 }
 
 /* Hero */
