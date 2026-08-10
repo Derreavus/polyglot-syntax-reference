@@ -56,322 +56,219 @@
         <pre><code># Install toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Check versions
 rustc --version
 cargo --version
 
-# Create & run a project
 cargo new my_project
 cd my_project
 cargo run
 cargo build --release
 cargo test
-cargo check          # fast type-check, no binary
-cargo clippy         # extra lints
-cargo fmt            # format
-cargo add serde      # add dependency
-cargo doc --open     # generate & open docs
+cargo check
+cargo clippy
+cargo fmt
+cargo add serde
+cargo doc --open
 
-# Single-file compile (rare)
 rustc main.rs</code></pre>
-        <div class="note">Prefer Cargo for almost everything. The full language book lives at <code class="inline">doc.rust-lang.org/book</code>.</div>
+        <div class="note">Prefer Cargo for almost everything. Book: <code class="inline">doc.rust-lang.org/book</code>.</div>
       </section>
 
       <section class="topic" id="types">
         <h2>Data Types</h2>
-        <p>Rust is statically typed; the compiler usually infers types. Integers default to <code class="inline">i32</code>, floats to <code class="inline">f64</code>. <code class="inline">char</code> is a full Unicode scalar value (4 bytes).</p>
-        <pre><code>// Scalar types
-let i: i32 = 42;              // signed 32-bit
-let u: u8 = 255;              // unsigned 8-bit
-let f: f64 = 3.14;            // 64-bit float
+        <p>Statically typed; compiler usually infers. Integers default to <code class="inline">i32</code>, floats to <code class="inline">f64</code>. <code class="inline">char</code> is a Unicode scalar (4 bytes).</p>
+        <pre><code>let i: i32 = 42;
+let u: u8 = 255;
+let f: f64 = 3.14;
 let b: bool = true;
-let c: char = 'R';            // Unicode scalar
+let c: char = 'R';
 
-// Integer sizes: i8/u8, i16/u16, i32/u32, i64/u64, i128/u128, isize/usize
-// Floating: f32, f64
+// i8/u8 … i128/u128, isize/usize · f32, f64
+"42".parse::<i32>().unwrap();
+42.to_string();
+42 as f64;
 
-// Type conversion
-"42".parse::<i32>().unwrap(); // 42
-42.to_string();               // "42"
-42 as f64;                    // 42.0 (as is a cast)
-
-// Compound
 let tup: (i32, f64, char) = (1, 2.0, 'a');
-let (x, y, z) = tup;          // destructure
+let (x, y, z) = tup;
 let arr: [i32; 3] = [1, 2, 3];
-let zeros = [0; 5];           // [0, 0, 0, 0, 0]
-
-// Unit type
+let zeros = [0; 5];
 let unit: () = ();</code></pre>
       </section>
 
       <section class="topic" id="variables">
         <h2>Variables & Assignment</h2>
-        <p>Variables are <strong>immutable by default</strong>. Add <code class="inline">mut</code> to allow reassignment. Shadowing lets you reuse a name (even with a new type).</p>
+        <p>Immutable by default. Add <code class="inline">mut</code> to reassign. Shadowing reuses a name (even with a new type).</p>
         <pre><code>let name = "Leo";             // &str, immutable
-let mut age = 7;              // mutable
-age += 1;                     // OK
+let mut age = 7;
+age += 1;
 
-const MAX_AGE: u32 = 120;     // must have explicit type, compile-time
-static GREETING: &str = "Hi!"; // 'static lifetime
+const MAX_AGE: u32 = 120;
+static GREETING: &str = "Hi!";
 
-// Shadowing
 let x = 5;
-let x = x * 2;                // still immutable, new binding
-let x = x.to_string();        // new type is fine
+let x = x * 2;                // shadow
+let x = x.to_string();        // new type OK
 
-// Destructuring assignment
 let (a, b) = (1, 2);
 let Point { x, y } = p;</code></pre>
       </section>
 
       <section class="topic" id="strings">
         <h2>Strings</h2>
-        <p><code class="inline">String</code> is owned, growable, heap-allocated. <code class="inline">&str</code> is a borrowed string slice (often a view into a <code class="inline">String</code> or a literal). Prefer <code class="inline">&str</code> for function parameters when you do not need ownership.</p>
-        <pre><code>let s1: &str = "Hello";                 // borrowed slice
+        <pre><code>let s1: &str = "Hello";
 let s2 = String::from("World");
-let s3 = "Hi".to_string();              // also owned
+let s3 = "Hi".to_string();
 
-// Operations
-"me".to_string() + "ow!";               // "meow!"
+"me".to_string() + "ow!";
 "Meow!".repeat(3);
-"Python".len();                         // 6 (bytes, not chars)
-"a".to_uppercase();                     // "A"
-" a ".trim();                           // "a"
-"abc".replace("bc", "ha");              // "aha"
-"a b".split(' ').collect::<Vec<_>>();   // ["a", "b"]
-["a", "b"].join("-");                   // "a-b"
+"Python".len();               // bytes
+" a ".trim();
+"abc".replace("bc", "ha");
+"a b".split(' ').collect::<Vec<_>>();
+["a", "b"].join("-");
 
-// Indexing is byte-based — be careful with Unicode
 let text = "Python";
-&text[0..1];                            // "P"
-&text[..3];                             // "Pyt"
-&text[3..];                             // "hon"
-text.chars().rev().collect::<String>(); // "nohtyP"
+&text[0..1];
+text.chars().rev().collect::<String>();
 
-// Formatting
-let name = "Aubrey";
-let age = 2;
-format!("Hello, {name}!");              // captured variables
-format!("{name} is {age}");
-println!("{:?}", age);                  // Debug
-println!("{:#?}", complex);             // pretty Debug</code></pre>
+format!("Hello, {name}!");
+println!("{:?}", age);</code></pre>
+        <div class="callout callout-use"><strong>When to use</strong>
+          Parameters: prefer <code class="inline">&str</code>.
+          Ownership / mutation: <code class="inline">String</code>.
+          Building text: <code class="inline">format!</code> or <code class="inline">push_str</code>.
+        </div>
       </section>
 
       <section class="topic" id="control">
         <h2>Control Flow</h2>
-        <p>Rust has no truthiness — conditions must be <code class="inline">bool</code>. <code class="inline">if</code> is an expression.</p>
-        <pre><code>let category = if age < 13 {
-    "child"
-} else if age < 20 {
-    "teenager"
-} else {
-    "adult"
-};
+        <p>No truthiness — conditions must be <code class="inline">bool</code>. <code class="inline">if</code> is an expression.</p>
+        <pre><code>let category = if age < 13 { "child" }
+else if age < 20 { "teenager" }
+else { "adult" };
 
-// loop runs forever until break; can return a value
 let mut count = 0;
 let result = loop {
     count += 1;
-    if count == 3 { continue; }         // skip rest of body
-    if count == 10 { break count * 2; } // result = 20
+    if count == 3 { continue; }
+    if count == 10 { break count * 2; }
 };
 
-// while
 while condition { ... }
-
-// for — anything implementing IntoIterator
-for i in 0..5 { ... }                   // 0,1,2,3,4
-for i in 0..=5 { ... }                  // inclusive
+for i in 0..5 { ... }
+for i in 0..=5 { ... }
 for fruit in &fruits { ... }
-for (i, fruit) in fruits.iter().enumerate() {
-    println!("{i}: {fruit}");
-}
+for (i, fruit) in fruits.iter().enumerate() { ... }
 
-// Labeled loops
 'outer: for x in 0..5 {
     for y in 0..5 {
         if x * y > 6 { break 'outer; }
-        println!("{x},{y}");
     }
 }</code></pre>
       </section>
 
       <section class="topic" id="functions">
         <h2>Functions & Closures</h2>
-        <pre><code>fn greet() -> String {
-    "Hello!".to_string()
-}
+        <pre><code>fn greet() -> String { "Hello!".to_string() }
+fn greet_person(name: &str) -> String { format!("Hello, {name}!") }
+fn add(x: i32, y: i32) -> i32 { x + y }  // no semicolon = return
 
-fn greet_person(name: &str) -> String {
-    format!("Hello, {name}!")
-}
-
-fn add(x: i32, y: i32) -> i32 {
-    x + y                               // no semicolon = return value
-}
-
-// Multiple return values via tuple
 fn min_max(nums: &[i32]) -> (i32, i32) {
     (*nums.iter().min().unwrap(), *nums.iter().max().unwrap())
 }
-let (lo, hi) = min_max(&[1, 5, 3]);
 
-// Closures
 let square = |x: i32| x * x;
-square(5);                              // 25
-
-let nums = vec![1, 2, 3, 4];
 let sq: Vec<i32> = nums.iter().map(|x| x * x).collect();
 
-// Returning closures (move captures ownership)
 fn make_adder(n: i32) -> impl Fn(i32) -> i32 {
     move |x| x + n
-}
-let add5 = make_adder(5);
-add5(10);                               // 15
-
-// Fn / FnMut / FnOnce traits describe what a closure can do</code></pre>
+}</code></pre>
       </section>
 
       <section class="topic" id="ownership">
         <h2>Ownership & Borrowing</h2>
-        <p>Every value has exactly one owner. When the owner goes out of scope the value is dropped. Assigning a non-<code class="inline">Copy</code> value <em>moves</em> it; the old variable becomes invalid.</p>
+        <p>Every value has one owner. Non-<code class="inline">Copy</code> assignment <em>moves</em>; the old binding is invalid.</p>
         <pre><code>let s1 = String::from("hello");
-let s2 = s1;                            // move — s1 is now invalid
-// println!("{s1}");                    // compile error
-println!("{s2}");                       // OK
+let s2 = s1;                  // move — s1 invalid
+println!("{s2}");
 
-let n1 = 5;                             // i32 is Copy
-let n2 = n1;                            // copy — both remain valid
-println!("{n1} {n2}");
+let n1 = 5;                   // i32 is Copy
+let n2 = n1;                  // both valid
 
-// Borrowing — shared (immutable)
 fn print_len(s: &String) -> usize { s.len() }
-let s = String::from("hello");
-print_len(&s);                          // borrow only, no ownership taken
-println!("{s}");                        // s is still valid
+print_len(&s);                // borrow, s still valid
 
-// Mutable borrow — exclusive
-fn add_world(s: &mut String) {
-    s.push_str(", world");
-}
+fn add_world(s: &mut String) { s.push_str(", world"); }
 let mut s = String::from("hello");
 add_world(&mut s);
 
-// Rules: either one &mut OR any number of & at a time — no data races
-
-// Cloning when you really need a deep copy
+// either one &mut OR any number of & — never both
 let s3 = s2.clone();</code></pre>
-        <div class="note">RAII is automatic: resources are acquired when the value is created and released when it is dropped (end of scope, or explicit <code class="inline">drop(v)</code>).</div>
+        <div class="callout callout-default"><strong>★ Ownership defaults</strong>
+          Prefer borrowing (<code class="inline">&T</code> / <code class="inline">&mut T</code>) over cloning.
+          Own with <code class="inline">T</code> only when you need exclusive ownership.
+        </div>
+        <div class="decision-tree">Need ownership?
+  │
+  ├─ no → borrow
+  │         ├─ read-only → &T
+  │         └─ mutate    → &mut T
+  └─ yes → move T
+            └─ shared ownership? → Arc<T> (or Rc<T> single-threaded)</div>
+        <div class="callout callout-mistake"><strong>Common mistake</strong>
+          Don't <code class="inline">clone()</code> just to silence the borrow checker —
+          prefer a borrow or a redesign.
+        </div>
       </section>
 
       <section class="topic" id="lifetimes">
         <h2>Lifetimes</h2>
-        <pre><code>// 'a says: the returned reference lives as long as the shorter of the two inputs
-fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+        <pre><code>fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() { x } else { y }
 }
 
-// Lifetime elision covers most common cases so you often omit annotations.
-// Structs that hold references need explicit lifetimes.
-struct Excerpt<'a> {
-    part: &'a str,
-}
-
+struct Excerpt<'a> { part: &'a str }
 impl<'a> Excerpt<'a> {
     fn level(&self) -> i32 { 3 }
-    fn announce_and_return_part(&self, announcement: &str) -> &str {
-        println!("Attention: {announcement}");
-        self.part
-    }
 }
-
-// 'static is the lifetime of the entire program (string literals have it)</code></pre>
+// 'static = whole program (string literals)</code></pre>
       </section>
 
       <section class="topic" id="structs">
         <h2>Structs & Enums</h2>
-        <pre><code>struct Dog {
-    name: String,
-    age: u8,
-}
-
+        <pre><code>struct Dog { name: String, age: u8 }
 impl Dog {
     fn new(name: &str, age: u8) -> Self {
         Self { name: name.to_string(), age }
     }
-    fn bark(&self) -> String {
-        format!("{} says Woof!", self.name)
-    }
-    fn have_birthday(&mut self) {
-        self.age += 1;
-    }
+    fn bark(&self) -> String { format!("{} says Woof!", self.name) }
 }
 
-let my_dog = Dog::new("Frieda", 3);
-my_dog.bark();
-
-// Tuple struct
-struct Point(i32, i32);
-let p = Point(3, 4);
-p.0; p.1;
-
-// Unit-like struct
-struct AlwaysEqual;
-
-// Enum — one of several variants (can hold data)
+struct Point(i32, i32);       // tuple struct
 enum Animal {
     Dog(String),
     Cat { name: String, lives: u8 },
 }
-let pet = Animal::Cat { name: "Leo".into(), lives: 9 };
-
-// Option<T> and Result<T, E> are just enums
-let some_value: Option<i32> = Some(5);
-let no_value: Option<i32> = None;</code></pre>
+let some: Option<i32> = Some(5);
+let none: Option<i32> = None;</code></pre>
       </section>
 
       <section class="topic" id="traits">
         <h2>Traits & Generics</h2>
         <pre><code>trait Shape {
     fn area(&self) -> f64;
-    fn name(&self) -> &str { "shape" }  // default implementation
+    fn name(&self) -> &str { "shape" }
 }
-
-struct Circle { radius: f64 }
 impl Shape for Circle {
-    fn area(&self) -> f64 {
-        std::f64::consts::PI * self.radius.powi(2)
-    }
+    fn area(&self) -> f64 { std::f64::consts::PI * self.radius.powi(2) }
 }
 
-// Generic function with trait bounds
-fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
-    let mut max = list[0];
-    for &item in list {
-        if item > max { max = item; }
-    }
-    max
-}
-largest(&[3, 7, 2]);                    // 7
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T { ... }
+fn print_shape(shape: &impl Shape) { ... }
+let shapes: Vec<Box<dyn Shape>> = vec![...];
 
-// impl Trait sugar (argument position)
-fn print_shape(shape: &impl Shape) {
-    println!("Area: {}", shape.area());
-}
-
-// Trait objects for dynamic dispatch / mixed types
-let shapes: Vec<Box<dyn Shape>> = vec![
-    Box::new(Circle { radius: 1.0 }),
-];
-for s in &shapes { println!("{}", s.area()); }
-
-// Derive common traits
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Default)]
-struct Point { x: i32, y: i32 }
-
-// Associated types, supertraits, etc. are also available</code></pre>
+struct Point { x: i32, y: i32 }</code></pre>
       </section>
 
       <section class="topic" id="pattern">
@@ -380,116 +277,56 @@ struct Point { x: i32, y: i32 }
     1 => println!("one"),
     2 | 3 => println!("two or three"),
     4..=9 => println!("four through nine"),
-    _ => println!("something else"),     // required for exhaustiveness
+    _ => println!("something else"),
 }
 
-// Destructuring
-let point = (0, 5);
-match point {
-    (0, 0) => println!("origin"),
-    (0, y) => println!("on y-axis at {y}"),
-    (x, _) => println!("x = {x}"),
-}
+if let Some(v) = maybe_value { println!("Got {v}"); }
 
-// if let / while let — concise single-pattern
-let maybe_value: Option<i32> = Some(7);
-if let Some(v) = maybe_value {
-    println!("Got {v}");
-}
-
-// Match guards
 match n {
     x if x < 0 => println!("negative"),
     x if x % 2 == 0 => println!("even"),
     _ => println!("odd"),
-}
-
-// Struct destructuring & @ bindings
-struct Point { x: i32, y: i32 }
-let p = Point { x: 0, y: 7 };
-let Point { x, y } = p;
-match y {
-    n @ 1..=9 => println!("single digit: {n}"),
-    _ => println!("other"),
 }</code></pre>
       </section>
 
       <section class="topic" id="collections">
         <h2>Collections</h2>
-        <pre><code>// Vec<T> — growable array (most common choice)
-let mut nums: Vec<i32> = Vec::new();
-let mut nums = vec![5];                 // macro shorthand
+        <pre><code>let mut nums: Vec<i32> = Vec::new();
+let mut nums = vec![5];
 nums.push(10);
-nums.insert(0, 99);
-let last = nums.pop();                  // Option<T>
-nums.remove(0);
+nums.pop();                   // Option<T>
 
-let fruits = vec!["banana", "apple", "orange"];
-fruits[0];                              // "banana"
-fruits.contains(&"apple");              // true
-fruits.len();
-
-// Iterating & slicing
-for fruit in &fruits { println!("{fruit}"); }
-let mid = &fruits[1..];                 // ["apple", "orange"]
-
-// HashMap / HashSet
 use std::collections::{HashMap, HashSet};
 let mut pet = HashMap::new();
 pet.insert("name", "Leo");
-pet.insert("age", "42");
-pet.get("age");                         // Option<&V>
-pet.insert("age", "7");                 // update
-pet.remove("age");
-*pet.entry("hits").or_insert(0) += 1;   // entry API
+pet.get("age");               // Option<&V>
+*pet.entry("hits").or_insert(0) += 1;
 
-// BTreeMap / BTreeSet keep keys sorted
-use std::collections::BTreeMap;
-let mut scores = BTreeMap::new();
-scores.insert("b", 2);
-scores.insert("a", 1);
-for (k, v) in &scores {                 // always a then b
-    println!("{k}: {v}");
-}</code></pre>
+use std::collections::BTreeMap; // sorted keys</code></pre>
+        <div class="callout callout-default"><strong>★ Defaults</strong>
+          <code class="inline">Vec<T></code> — default collection ·
+          <code class="inline">String</code> — owned text ·
+          <code class="inline">&str</code> — default borrowed text parameter ·
+          <code class="inline">HashMap<K,V></code> — key/value
+        </div>
       </section>
 
       <section class="topic" id="iterators">
         <h2>Iterators</h2>
-        <p>Iterators are lazy — nothing happens until a consuming adapter is called.</p>
+        <p>Lazy — nothing runs until a consuming adapter.</p>
         <pre><code>let squares: Vec<i32> = (0..10).map(|x| x * x).collect();
 let evens: Vec<i32> = (0..20).filter(|x| x % 2 == 0).collect();
-
-let matrix: Vec<Vec<i32>> = (0..3)
-    .map(|i| (0..3).map(|j| i * j).collect())
-    .collect();
-
-// Common adapters
-let words = vec!["hello", "world"];
-let lens: Vec<usize> = words.iter().map(|w| w.len()).collect();
 let total: i32 = (1..=1000).sum();
-words.iter().any(|w| w.len() > 4);      // true
-words.iter().all(|w| w.len() < 10);     // true
-
-// Collect into other types
-use std::collections::HashMap;
-let map: HashMap<&str, usize> = words.iter()
-    .map(|w| (*w, w.len())).collect();
-
-// fold, zip, chain
-let product = (1..=5).fold(1, |acc, x| acc * x); // 120
-let names = vec!["Leo", "Max"];
-let ages = vec![7, 3];
-let pairs: Vec<_> = names.iter().zip(ages.iter()).collect();
-let all: Vec<i32> = (1..3).chain(7..9).collect(); // [1,2,7,8]</code></pre>
+words.iter().any(|w| w.len() > 4);
+(1..=5).fold(1, |acc, x| acc * x);
+names.iter().zip(ages.iter());</code></pre>
       </section>
 
       <section class="topic" id="error">
         <h2>Error Handling</h2>
-        <p>No exceptions. Recoverable errors use <code class="inline">Result<T, E></code>. Unrecoverable errors use <code class="inline">panic!</code>.</p>
+        <p>No exceptions. Recoverable: <code class="inline">Result<T, E></code>. Unrecoverable: <code class="inline">panic!</code>.</p>
         <pre><code>fn divide(a: f64, b: f64) -> Result<f64, String> {
-    if b == 0.0 {
-        return Err("Cannot divide by zero!".into());
-    }
+    if b == 0.0 { return Err("Cannot divide by zero!".into()); }
     Ok(a / b)
 }
 
@@ -498,147 +335,77 @@ match divide(10.0, 0.0) {
     Err(e) => println!("{e}"),
 }
 
-// ? operator propagates Err (or None for Option)
 fn read_number() -> Result<i32, Box<dyn std::error::Error>> {
     let s = std::fs::read_to_string("num.txt")?;
     let n: i32 = s.trim().parse()?;
     Ok(n)
 }
 
-// Common shortcuts
-result.unwrap();                        // panics if Err / None
-result.unwrap_or(0);                    // fallback value
-result.expect("custom message");
-
-// Combinators instead of match
-let doubled = Some(4).map(|n| n * 2);   // Some(8)
-"5".parse::<i32>().map(|n| n + 1).unwrap_or(0); // 6
-
-// Custom error types often use thiserror or anyhow crates</code></pre>
+result.unwrap_or(0);
+Some(4).map(|n| n * 2);</code></pre>
+        <div class="callout callout-default"><strong>★ Error handling defaults</strong>
+          <code class="inline">Result<T, E></code> recoverable ·
+          <code class="inline">Option<T></code> absence ·
+          <code class="inline">?</code> to propagate ·
+          Prefer <code class="inline">unwrap_or</code> / <code class="inline">ok_or</code> over bare <code class="inline">unwrap()</code> in libraries.
+        </div>
       </section>
 
       <section class="topic" id="modules">
         <h2>Modules & Cargo</h2>
-        <pre><code>// File-based modules (preferred)
-// src/lib.rs or src/main.rs
-mod shapes;                             // looks for shapes.rs or shapes/mod.rs
-
-// Inline module
-mod shapes {
-    pub struct Circle { pub radius: f64 }
-}
-let c = shapes::Circle { radius: 2.0 };
-
-// Visibility
+        <pre><code>mod shapes;                   // shapes.rs or shapes/mod.rs
 pub struct Public;
-pub(crate) struct CrateVisible;         // only inside this crate
-pub(super) fn parent_only() {}
+pub(crate) struct CrateVisible;
+use std::io::{self, Write};
+use std::collections::HashMap as Map;
 
-use std::io::{self, Write};             // module + item
-use std::collections::HashMap as Map;   // rename
-
-// Cargo.toml snippet
+// Cargo.toml
 [package]
 name = "my_project"
-version = "0.1.0"
 edition = "2024"
-
 [dependencies]
 serde = { version = "1", features = ["derive"] }
-tokio = { version = "1", features = ["full"] }
-anyhow = "1"
-thiserror = "1"</code></pre>
+anyhow = "1"</code></pre>
       </section>
 
       <section class="topic" id="io">
         <h2>File I/O</h2>
         <pre><code>use std::fs;
-use std::io::{self, BufRead, BufReader, Write};
+use std::io::{BufRead, BufReader, Write};
 
-// Read entire file
 let content = fs::read_to_string("file.txt")?;
-
-// Line by line
-let file = fs::File::open("file.txt")?;
-for line in BufReader::new(file).lines() {
+for line in BufReader::new(fs::File::open("file.txt")?).lines() {
     println!("{}", line?.trim());
 }
-
-// Write / append
-fs::write("output.txt", "Hello, World!\n")?;
-let mut f = fs::OpenOptions::new()
-    .append(true)
-    .create(true)
-    .open("log.txt")?;
-writeln!(f, "New log entry")?;
-
-// Paths
-use std::path::{Path, PathBuf};
-let p = Path::new("/tmp/data.txt");
-p.exists();
-p.extension();</code></pre>
+fs::write("output.txt", "Hello\n")?;
+use std::path::Path;
+Path::new("/tmp/data.txt").exists();</code></pre>
       </section>
 
       <section class="topic" id="concurrency">
         <h2>Concurrency</h2>
         <pre><code>use std::thread;
-use std::sync::{Arc, Mutex};
-use std::sync::mpsc;
+use std::sync::{Arc, Mutex, mpsc};
 
-// Threads
-let handle = thread::spawn(|| {
-    println!("from another thread");
-});
+let handle = thread::spawn(|| { println!("hi"); });
 handle.join().unwrap();
 
-// Channels
 let (tx, rx) = mpsc::channel();
-thread::spawn(move || {
-    tx.send("hello").unwrap();
-});
+thread::spawn(move || { tx.send("hello").unwrap(); });
 println!("{}", rx.recv().unwrap());
 
-// Shared state with Arc<Mutex<T>>
 let counter = Arc::new(Mutex::new(0));
-let mut handles = vec![];
-for _ in 0..10 {
-    let c = Arc::clone(&counter);
-    handles.push(thread::spawn(move || {
-        let mut num = c.lock().unwrap();
-        *num += 1;
-    }));
-}
-for h in handles { h.join().unwrap(); }
-
-// async/await (usually with tokio)
-// #[tokio::main]
-// async fn main() { ... }</code></pre>
+// clone Arc into threads, lock Mutex to mutate
+// async: usually tokio</code></pre>
       </section>
 
       <section class="topic" id="advanced">
         <h2>Advanced Idioms</h2>
-        <pre><code>// Newtype pattern
-struct Meters(f64);
-struct Seconds(f64);
-
-// Type aliases
+        <pre><code>struct Meters(f64);           // newtype
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
-
-// PhantomData for unused type parameters
-use std::marker::PhantomData;
-struct Parser<T> { _marker: PhantomData<T> }
-
-// Interior mutability
 use std::cell::RefCell;
-let data = RefCell::new(5);
-*data.borrow_mut() += 1;
-
-// Cow (clone-on-write)
 use std::borrow::Cow;
-fn process(input: Cow<str>) { ... }
-
-// Pinning, unsafe, FFI, macros (declarative & procedural)
-// are available when you need them — start with the safe abstractions.</code></pre>
+// Pin, unsafe, FFI, macros when needed</code></pre>
       </section>
     </article>
   </div>
