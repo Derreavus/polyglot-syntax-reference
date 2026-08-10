@@ -6,22 +6,24 @@ Designed for developers who learn by switching between languages. Each language 
 
 ## Live Site
 
-Once GitHub Pages is enabled, the site will be available at:
-
 **https://derreavus.github.io/polyglot-syntax-reference/**
 
 ## Structure
 
 ```
-├── index.html          # Landing page
-├── css/style.css       # Shared dark/light theme
-├── js/main.js          # Theme toggle + scroll spy + search
-├── python/index.html   # Python 3.12+ reference
-├── rust/index.html     # Rust (Edition 2024) reference
-├── cpp/index.html      # C++20/23 reference
-├── csharp/index.html   # C# 12 / .NET 8+ reference
-└── scripts/
-    └── validate_syntax_html.py
+├── index.html              # Landing page
+├── css/style.css           # Shared dark/light theme
+├── js/main.js              # Theme, search (Ctrl+K), copy buttons
+├── python/index.html       # Python 3.12+ reference
+├── rust/index.html         # Rust reference
+├── cpp/index.html          # C++20/23 reference
+├── csharp/index.html       # C# 12 / .NET 8+ reference
+├── compare/index.html      # Cross-language concept matrices
+├── scripts/
+│   ├── validate_syntax_html.py
+│   ├── validate_links.py
+│   └── validate_html_smoke.py
+└── .github/workflows/ci.yml
 ```
 
 ## Topics Covered (per language)
@@ -38,42 +40,37 @@ Once GitHub Pages is enabled, the site will be available at:
 - Key standard library highlights
 - Modern language features
 
-## Local Preview
+## Validation (Phase 5)
 
-Just open `index.html` in a browser, or serve the folder:
-
-```bash
-python -m http.server 8000
-# then visit http://localhost:8000
-```
-
-## Validation
-
-After editing language pages, run:
+From the repo root:
 
 ```bash
-python3 scripts/validate_syntax_html.py
+python3 scripts/validate_syntax_html.py   # generics, structure, version badges
+python3 scripts/validate_links.py         # internal links + fragments
+python3 scripts/validate_html_smoke.py    # well-formed HTML smoke checks
 ```
 
-This checks for:
+GitHub Actions (`.github/workflows/ci.yml`) runs all three on every push and pull request to `main`.
 
-- stripped / broken generic syntax (`Vec>`, `template` without parameters, etc.)
-- unescaped `<` / `>` inside code blocks
-- presence of expected generic examples per language
-- language version badge (`lang-tag`)
+### What the syntax linter catches
 
-## Correctness notes (Phase 1)
+- Stripped generics (`Vec>`, `List>`, empty type args)
+- Raw ASCII angle brackets inside code blocks that browsers treat as HTML tags
+- Missing language version badges / sidebars / topic sections
+- Compare-page raw `Vec<T>` / `<T>` that would disappear in the browser
 
-Generic and template syntax in code blocks **must** be HTML-escaped:
+### Correctness notes
 
-| Write in HTML source | Browser shows |
-|----------------------|---------------|
-| `template<typename T>` | `template<typename T>` |
-| `Vec<i32>` | `Vec<i32>` |
-| `List<T>` | `List<T>` |
-| `make_unique<int>(42)` | `make_unique<int>(42)` |
+Never put raw `<T>` in HTML — the browser treats it as a tag and strips it.
 
-Never put raw `<T>` in HTML — the browser will treat it as a tag and strip it.
+Safe forms that survive HTML parsing:
+
+| Form | Example |
+|------|---------|
+| HTML entities | `Vec<T>` |
+| Math brackets | `Vec⟨T⟩` |
+| Fullwidth brackets | `Vec＜T＞` |
+| Square brackets (compare page) | `Vec[T]` |
 
 ## License
 
