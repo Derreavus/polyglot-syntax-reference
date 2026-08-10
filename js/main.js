@@ -24,6 +24,18 @@
     });
   }
 
+  // --- Inject search box if missing ---
+  if (!document.getElementById("site-search")) {
+    const headerInner = document.querySelector(".header-inner");
+    const themeBtn = document.getElementById("theme-toggle");
+    if (headerInner && themeBtn) {
+      const wrap = document.createElement("div");
+      wrap.className = "search-wrap";
+      wrap.innerHTML = '<input type="search" id="site-search" placeholder="Search topics…" autocomplete="off" aria-label="Search topics"><div id="search-results" hidden></div>';
+      headerInner.insertBefore(wrap, themeBtn);
+    }
+  }
+
   // --- Detect current language from path ---
   const path = location.pathname;
   let currentLang = null;
