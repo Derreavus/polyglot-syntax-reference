@@ -20,6 +20,7 @@
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
     </div>
   </header>
+
   <div class="lang-layout container">
     <aside class="sidebar">
       <h3>Basics</h3>
@@ -48,172 +49,349 @@
       <a href="#gotchas">Gotchas</a>
       <a href="#ecosystem">Ecosystem & Tooling</a>
     </aside>
+
     <article class="content">
       <h1>C# Syntax Reference</h1>
       <span class="lang-tag csharp">C# 12 / .NET 8+ · modern idiomatic C#</span>
+
       <section class="topic" id="types">
         <h2>Data Types</h2>
-        <pre><code>int, long, float, double, decimal, bool, char, string
-int? n = null; string? maybe = null;</code></pre>
+        <pre><code>// Value types
+bool, byte, sbyte, short, ushort
+int, uint, long, ulong
+float, double, decimal
+char, enum, struct
+
+// Reference types
+string, object, dynamic
+class, interface, delegate, record, array
+
+int? n = null;
+n.HasValue; n.Value; n.GetValueOrDefault();
+string? maybe = null;         // nullable reference types</code></pre>
+        <div class="callout callout-use"><strong>Nullable reference types</strong>
+          <code class="inline">string</code> vs <code class="inline">string?</code> ·
+          <code class="inline">?</code> annotation ·
+          <code class="inline">!</code> null-forgiving (sparingly) ·
+          <code class="inline">??</code> / <code class="inline">??=</code> ·
+          <code class="inline">?.</code> null-conditional
+        </div>
       </section>
+
       <section class="topic" id="variables">
         <h2>Variables & Literals</h2>
-        <pre><code>int a = 42; var inferred = 42; const int Max = 100;
-$"interp {a}" · """raw string (C# 11+)"""</code></pre>
+        <pre><code>int a = 42;
+var inferred = 42;
+const int Max = 100;
+readonly int Id;
+
+0xFF  0b1010  1_000_000
+42L  42UL  3.14F  3.14M
+"hello"  $@"path"  $"interp {a}"
+"""raw string (C# 11+)"""
+default(int);  default;
+_ = SomeMethod();</code></pre>
       </section>
+
       <section class="topic" id="operators">
         <h2>Operators</h2>
-        <pre><code>== != ⟨ ⟩ · && || ! · x?.Prop · x ?? y · x ??= y
-arr[^1] · arr[1..^1]</code></pre>
+        <pre><code>+ - * / %  ++ --
+= += -= *= /= %=
+== != ⟨ ⟩ ⟨= ⟩=
+&& || !
+& | ^ ~ ⟨⟨ ⟩⟩
+
+x?.Prop   x ?? y   x ??= y
+x is null / x is not null
+arr[^1]   arr[1..^1]</code></pre>
       </section>
+
       <section class="topic" id="control">
         <h2>Control Flow</h2>
-        <pre><code>if (cond) { } else { }
-var result = x switch { 1 =⟩ "one", ⟩ 10 =⟩ "big", _ =⟩ "other" };
-foreach (var item in collection) { }
-using var stream = File.OpenRead(path);</code></pre>
+        <pre><code>if (cond) { ... } else if (cond) { ... } else { ... }
+
+switch (x) {
+    case 1: ...; break;
+    case 2 or 3: ...; break;
+    case ⟩ 10 and ⟨ 20: ...; break;
+    default: ...; break;
+}
+var result = x switch {
+    1 =⟩ "one",
+    ⟩ 10 =⟩ "big",
+    _ =⟩ "other"
+};
+
+for (int i = 0; i ⟨ n; i++) { ... }
+foreach (var item in collection) { ... }
+while (cond) { ... }
+using var stream = File.OpenRead(path);  // C# 8+</code></pre>
       </section>
+
       <section class="topic" id="methods">
         <h2>Methods</h2>
         <pre><code>public int Add(int a, int b = 0) =⟩ a + b;
-void Swap(ref int a, ref int b) { }
-bool TryParse(string s, out int result) { }
-public static bool IsBlank(this string? s) =⟩ string.IsNullOrWhiteSpace(s);</code></pre>
+void Swap(ref int a, ref int b) { ... }
+bool TryParse(string s, out int result) { ... }
+void Process(in LargeStruct s) { ... }
+void Log(params string[] messages) { ... }
+
+public static class StringExt {
+    public static bool IsBlank(this string? s)
+        =⟩ string.IsNullOrWhiteSpace(s);
+}</code></pre>
       </section>
+
       <section class="topic" id="classes">
         <h2>Classes & Structs</h2>
         <pre><code>public class Animal {
+    private readonly string _name;
     public Animal(string name) =⟩ _name = name;
-    public virtual void Speak() { }
+    public virtual void Speak() { ... }
 }
-public class Person(string name, int age) {  // primary ctor C# 12
+public struct Point {
+    public double X { get; }
+    public double Y { get; }
+    public Point(double x, double y) =⟩ (X, Y) = (x, y);
+}
+// Primary constructors (C# 12)
+public class Person(string name, int age) {
     public string Name =⟩ name;
 }</code></pre>
       </section>
+
       <section class="topic" id="records">
-        <h2>Records</h2>
+        <h2>Records <span class="ver">C# 9+</span></h2>
         <pre><code>public record Person(string Name, int Age);
+var p1 = new Person("Ada", 36);
 var p2 = p1 with { Age = 37 };
-public readonly record struct Point(double X, double Y);</code></pre>
-        <div class="callout callout-default"><strong>★ Defaults</strong>
-          Prefer <code class="inline">record</code> for immutable DTOs.
+
+public readonly record struct Point(double X, double Y);
+
+public record Order {
+    public required string Id { get; init; }
+    public decimal Total { get; init; }
+}</code></pre>
+        <div class="callout callout-use"><strong>When to use</strong>
+          <code class="inline">record</code> — value-oriented data with value equality ·
+          <code class="inline">class</code> — identity / behavior ·
+          <code class="inline">struct</code> / <code class="inline">record struct</code> — small value types
+        </div>
+        <div class="callout callout-default"><strong>★ Value-oriented data</strong>
+          Prefer <code class="inline">record</code> for immutable DTOs and domain values.
         </div>
       </section>
+
       <section class="topic" id="inheritance">
         <h2>Inheritance & Interfaces</h2>
         <pre><code>public class Dog : Animal {
     public override void Speak() =⟩ Console.WriteLine("Woof");
 }
-public interface IShape { double Area { get; } }</code></pre>
+public interface IShape {
+    double Area { get; }
+    void Draw();
+}
+public class Circle : IShape {
+    public double Radius { get; }
+    public double Area =⟩ Math.PI * Radius * Radius;
+    public void Draw() { ... }
+}
+// Default interface methods (C# 8+)</code></pre>
       </section>
+
       <section class="topic" id="properties">
         <h2>Properties, Indexers & Events</h2>
         <pre><code>public string Name { get; set; } = "";
 public string Id { get; init; }
+public int Count { get; private set; }
 public string FullName =⟩ $"{First} {Last}";
+public string this[int index] {
+    get =⟩ _items[index];
+    set =⟩ _items[index] = value;
+}
 public event EventHandler? SomethingHappened;</code></pre>
       </section>
+
       <section class="topic" id="linq">
         <h2>LINQ</h2>
-        <pre><code>var adults = people
+        <pre><code>using System.Linq;
+var adults = people
     .Where(p =⟩ p.Age ⟩= 18)
     .OrderBy(p =⟩ p.LastName)
     .Select(p =⟩ p.Name)
-    .ToList();</code></pre>
+    .ToList();
+
+var q = from p in people
+        where p.Age ⟩= 18
+        orderby p.LastName
+        select p.Name;
+
+// Any, All, Count, First, FirstOrDefault, Select, Where,
+// OrderBy, GroupBy, Join, Aggregate, ToList, ToDictionary</code></pre>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
-          LINQ is deferred. Materialize with <code class="inline">ToList()</code> when needed.
+          LINQ is deferred — runs when enumerated. Multiple enumeration can repeat work
+          or hit a disposed context. Materialize with <code class="inline">ToList()</code> / <code class="inline">ToArray()</code> when needed.
         </div>
       </section>
+
       <section class="topic" id="async">
         <h2>Async / Await</h2>
         <pre><code>public async Task⟨string⟩ FetchAsync(string url) {
     using var client = new HttpClient();
     return await client.GetStringAsync(url);
 }
-await Task.WhenAll(urls.Select(FetchAsync));</code></pre>
+public async Task ProcessManyAsync(IEnumerable⟨string⟩ urls) {
+    string[] results = await Task.WhenAll(urls.Select(FetchAsync));
+}
+public async ValueTask⟨int⟩ GetCachedAsync() { ... }
+public async IAsyncEnumerable⟨int⟩ GenerateAsync() {
+    for (int i = 0; i ⟨ 10; i++) {
+        await Task.Delay(100);
+        yield return i;
+    }
+}
+await foreach (var n in GenerateAsync()) { ... }</code></pre>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
-          Prefer <code class="inline">await</code> over <code class="inline">.Result</code>/<code class="inline">.Wait()</code>.
+          Avoid <code class="inline">.Result</code> / <code class="inline">.Wait()</code> — can deadlock.
+          Prefer <code class="inline">await</code>. Pass <code class="inline">CancellationToken</code>.
+          Prefer <code class="inline">async Task</code> over <code class="inline">async void</code> (except event handlers).
         </div>
       </section>
+
       <section class="topic" id="pattern">
         <h2>Pattern Matching</h2>
-        <pre><code>string Describe(object o) =⟩ o switch {
-    int i when i ⟩ 0 =⟩ "positive",
+        <pre><code>if (obj is Person { Age: ⟩ 18, Name: var n }) { ... }
+string Describe(object o) =⟩ o switch {
+    int i when i ⟩ 0 =⟩ "positive int",
+    string { Length: ⟩ 0 } s =⟩ $"non-empty {s}",
     Person { Age: ⟩= 18 } =⟩ "adult",
-    _ =⟩ "other"
-};</code></pre>
+    null =⟩ "null",
+    _ =⟩ "something else"
+};
+if (arr is [1, 2, .. var rest]) { ... }  // C# 11</code></pre>
       </section>
+
       <section class="topic" id="generics">
         <h2>Generics</h2>
         <pre><code>public class Box⟨T⟩ where T : class, new() {
     public T Value { get; set; } = new();
 }
-IEnumerable⟨out T⟩ · IComparer⟨in T⟩</code></pre>
+IEnumerable⟨out T⟩              // covariant
+IComparer⟨in T⟩                 // contravariant
+public static T Add⟨T⟩(T a, T b) where T : INumber⟨T⟩
+    =⟩ a + b;                   // generic math C# 11</code></pre>
       </section>
+
       <section class="topic" id="collections">
         <h2>Collections</h2>
         <pre><code>List⟨T⟩  Dictionary⟨TKey,TValue⟩  HashSet⟨T⟩
-List⟨int⟩ list = [1, 2, 3];  // C# 12
-var last = arr[^1];</code></pre>
+Queue⟨T⟩  Stack⟨T⟩  LinkedList⟨T⟩
+ImmutableList⟨T⟩  ConcurrentDictionary⟨...⟩
+
+Span⟨int⟩ span = stackalloc int[64];
+List⟨int⟩ list = [1, 2, 3];       // C# 12 collection expressions
+int[] arr = [..list, 4, 5];
+var last = arr[^1];
+var middle = arr[1..^1];</code></pre>
         <div class="callout callout-default"><strong>★ Defaults</strong>
-          <code class="inline">List⟨T⟩</code> · <code class="inline">Dictionary⟨TKey,TValue⟩</code>
+          <code class="inline">List⟨T⟩</code> — default collection ·
+          <code class="inline">Dictionary⟨TKey,TValue⟩</code> — key/value ·
+          <code class="inline">HashSet⟨T⟩</code> — unique membership
         </div>
       </section>
+
       <section class="topic" id="exceptions">
         <h2>Exceptions</h2>
         <pre><code>try { ... }
 catch (ArgumentNullException ex) { ... }
 catch (Exception ex) when (ex.Message.Contains("timeout")) { ... }
-finally { ... }</code></pre>
+finally { ... }
+throw new InvalidOperationException("msg");
+throw;  // rethrow preserving stack</code></pre>
       </section>
+
       <section class="topic" id="memory">
-        <h2>Spans & Memory</h2>
+        <h2>Spans, Memory & Performance</h2>
         <pre><code>Span⟨byte⟩ buffer = stackalloc byte[256];
 Memory⟨byte⟩ mem = new byte[1024];
-var pool = ArrayPool⟨byte⟩.Shared;</code></pre>
+var pool = ArrayPool⟨byte⟩.Shared;
+byte[] buf = pool.Rent(4096);
+try { ... } finally { pool.Return(buf); }
+ref struct Utf8Parser { ... }</code></pre>
+        <div class="callout callout-use"><strong>When to use</strong>
+          <code class="inline">Span⟨T⟩</code> — stack-only, high-perf slices ·
+          <code class="inline">Memory⟨T⟩</code> — heap-compatible, usable across <code class="inline">await</code> ·
+          Prefer them to avoid allocations in hot paths.
+        </div>
       </section>
+
       <section class="topic" id="dotnet">
         <h2>.NET Highlights</h2>
-        <pre><code>Console.WriteLine("Hello");  // top-level
+        <pre><code>Console.WriteLine("Hello");   // top-level statements
 global using System.Text.Json;
-public required string Name { get; init; }</code></pre>
+namespace MyApp;
+public class Person {
+    public required string Name { get; init; }  // C# 11
+}
+// Minimal APIs, Native AOT, System.Text.Json,
+// Microsoft.Extensions.* (DI, Logging, Config)</code></pre>
       </section>
+
       <section class="topic" id="advanced">
-        <h2>Advanced</h2>
+        <h2>Advanced Topics</h2>
         <pre><code>[Obsolete("Use NewMethod")]
-Expression⟨Func⟨int, bool⟩⟩ expr = x =⟩ x ⟩ 5;</code></pre>
+[JsonPropertyName("id")]
+var type = typeof(Person);
+Expression⟨Func⟨int, bool⟩⟩ expr = x =⟩ x ⟩ 5;
+// Source generators, unsafe, P/Invoke when needed</code></pre>
       </section>
+
       <section class="topic" id="gotchas">
         <h2>Gotchas</h2>
         <pre><code>// .Result / .Wait() — can deadlock
+var x = FetchAsync().Result;   // BAD
 var x = await FetchAsync();    // GOOD
 
 // async void — only for event handlers
-async Task WorkAsync() { }
+async Task WorkAsync() { }     // prefer
 
-// LINQ multiple enumeration — materialize once
-var list = q.ToList();
+// LINQ multiple enumeration
+var q = items.Where(...);
+var list = q.ToList();         // materialize once
 
 // Nullable suppression — use sparingly
 string s = maybe!;
+
+// Avoid boxing in hot paths
+object o = 42;
 </code></pre>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           Prefer <code class="inline">await</code> over <code class="inline">.Result</code>/<code class="inline">.Wait()</code>.
+          Materialize LINQ with <code class="inline">ToList()</code> when enumerating more than once.
         </div>
       </section>
+
       <section class="topic" id="ecosystem">
         <h2>Ecosystem & Tooling</h2>
         <pre><code>dotnet new console -n MyApp
-dotnet restore · dotnet build · dotnet run
-dotnet test · dotnet publish -c Release
+dotnet restore
+dotnet build
+dotnet run
+dotnet test
+dotnet publish -c Release
 dotnet add package Newtonsoft.Json
+dotnet tool install -g dotnet-ef
+
+// NuGet · ASP.NET Core · EF Core · MSBuild
 </code></pre>
         <div class="callout callout-default"><strong>★ Defaults</strong>
-          <code class="inline">dotnet</code> CLI · <code class="inline">NuGet</code> · <code class="inline">dotnet test</code> in CI
+          <code class="inline">dotnet</code> CLI · <code class="inline">NuGet</code> ·
+          <code class="inline">dotnet test</code> in CI
         </div>
       </section>
     </article>
   </div>
+
   <footer class="site-footer">
     <div class="container">
       <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">GitHub</a> · C# reference</p>
