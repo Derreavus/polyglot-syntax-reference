@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Content lint (generics, structure, version badges)
+        run: python3 scripts/validate_syntax_html.py
+
+      - name: Internal link check
+        run: python3 scripts/validate_links.py
+
+      - name: HTML well-formed smoke check
+        run: python3 scripts/validate_html_smoke.py
