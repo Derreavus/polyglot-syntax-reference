@@ -65,24 +65,11 @@
 
   const LANG_META = buildLangMeta();
 
-  const CONCEPTS = {
-    types: { python: { id: "types" }, rust: { id: "types" }, cpp: { id: "types" }, csharp: { id: "types" } },
-    variables: { python: { id: "variables" }, rust: { id: "variables" }, cpp: { id: "variables" }, csharp: { id: "variables" } },
-    operators: { python: { id: "operators" }, cpp: { id: "operators" }, csharp: { id: "operators" } },
-    control: { python: { id: "control" }, rust: { id: "control" }, cpp: { id: "control" }, csharp: { id: "control" } },
-    functions: { python: { id: "functions" }, rust: { id: "functions" }, cpp: { id: "functions" }, csharp: { id: "methods" } },
-    classes: { python: { id: "classes" }, rust: { id: "structs" }, cpp: { id: "classes" }, csharp: { id: "classes" } },
-    collections: { python: { id: "collections" }, rust: { id: "collections" }, cpp: { id: "containers" }, csharp: { id: "collections" } },
-    exceptions: { python: { id: "exceptions" }, rust: { id: "error" }, cpp: { id: "exceptions" }, csharp: { id: "exceptions" } },
-    async: { python: { id: "async" }, cpp: { id: "concurrency" }, csharp: { id: "async" } },
-    iterators: { python: { id: "iterators" }, rust: { id: "iterators" }, cpp: { id: "algorithms" }, csharp: { id: "linq" } },
-    generics: { python: { id: "typing" }, rust: { id: "traits" }, cpp: { id: "templates" }, csharp: { id: "generics" } },
-    pattern: { python: { id: "control" }, rust: { id: "pattern" }, csharp: { id: "pattern" } },
-  };
+  const CONCEPTS = window.POLYGLOT_CONCEPTS || {};
 
   if (currentLang) {
     document.querySelectorAll("section.topic[id]").forEach((section) => {
-      const concept = CONCEPTS[section.id];
+      const concept = Object.values(CONCEPTS).find((topics) => topics[currentLang] === section.id);
       if (!concept) return;
       const others = Object.keys(LANG_META).filter((l) => l !== currentLang && concept[l]);
       if (!others.length) return;
@@ -92,7 +79,7 @@
         '<span class="xlang-label">Also in</span> ' +
         others
           .map((l) => {
-            const href = "../" + LANG_META[l].path + "#" + concept[l].id;
+            const href = "../" + LANG_META[l].path + "#" + concept[l];
             return '<a class="xlang-link ' + l + '" href="' + href + '">' + LANG_META[l].label + "</a>";
           })
           .join(" ");
@@ -102,75 +89,7 @@
     });
   }
 
-  const SEARCH_INDEX = [
-    { lang: "python", id: "types", title: "Data Types", keywords: "int float str bool list dict tuple set none" },
-    { lang: "python", id: "variables", title: "Variables & Assignment", keywords: "unpack walrus swap binding" },
-    { lang: "python", id: "operators", title: "Operators", keywords: "arithmetic comparison is in and or" },
-    { lang: "python", id: "control", title: "Control Flow", keywords: "if elif else match case for while break" },
-    { lang: "python", id: "functions", title: "Functions", keywords: "def lambda decorator args kwargs closure" },
-    { lang: "python", id: "classes", title: "Classes & OOP", keywords: "class inheritance mro abc abstract" },
-    { lang: "python", id: "dataclasses", title: "Dataclasses & Named Tuples", keywords: "dataclass frozen slots field namedtuple enum" },
-    { lang: "python", id: "typing", title: "Type Hints", keywords: "typing TypeVar Generic Protocol Optional Union overload" },
-    { lang: "python", id: "collections", title: "Collections", keywords: "list dict set deque Counter defaultdict" },
-    { lang: "python", id: "comprehensions", title: "Comprehensions", keywords: "list dict set generator expression" },
-    { lang: "python", id: "iterators", title: "Iterators & Generators", keywords: "yield iter next itertools functools" },
-    { lang: "python", id: "exceptions", title: "Exceptions", keywords: "try except finally raise ExceptionGroup" },
-    { lang: "python", id: "context", title: "Context Managers", keywords: "with enter exit contextmanager" },
-    { lang: "python", id: "async", title: "Async / Await", keywords: "asyncio await gather TaskGroup coroutine" },
-    { lang: "python", id: "stdlib", title: "Standard Library", keywords: "pathlib json re datetime sys os" },
-    { lang: "python", id: "packaging", title: "Packaging & Tooling", keywords: "pip uv venv pyproject ruff mypy pytest" },
-    { lang: "rust", id: "getting-started", title: "Getting Started", keywords: "cargo new build run rustc" },
-    { lang: "rust", id: "types", title: "Data Types", keywords: "i32 u64 f64 bool char tuple array slice" },
-    { lang: "rust", id: "variables", title: "Variables & Assignment", keywords: "let mut const static shadowing" },
-    { lang: "rust", id: "strings", title: "Strings", keywords: "String str to_string format" },
-    { lang: "rust", id: "control", title: "Control Flow", keywords: "if else loop while for break continue" },
-    { lang: "rust", id: "functions", title: "Functions & Closures", keywords: "fn closure move Fn FnMut FnOnce" },
-    { lang: "rust", id: "ownership", title: "Ownership & Borrowing", keywords: "move borrow reference mut clone drop" },
-    { lang: "rust", id: "lifetimes", title: "Lifetimes", keywords: "lifetime static annotation" },
-    { lang: "rust", id: "structs", title: "Structs & Enums", keywords: "struct enum impl Option Result" },
-    { lang: "rust", id: "traits", title: "Traits & Generics", keywords: "trait impl where bound dyn derive" },
-    { lang: "rust", id: "pattern", title: "Pattern Matching", keywords: "match if let while let destructure" },
-    { lang: "rust", id: "collections", title: "Collections", keywords: "Vec HashMap HashSet BTreeMap VecDeque" },
-    { lang: "rust", id: "iterators", title: "Iterators", keywords: "iter map filter collect fold zip" },
-    { lang: "rust", id: "error", title: "Error Handling", keywords: "Result Option unwrap expect anyhow" },
-    { lang: "rust", id: "modules", title: "Modules & Cargo", keywords: "mod pub use cargo.toml crate" },
-    { lang: "rust", id: "io", title: "File I/O", keywords: "fs File read write BufReader" },
-    { lang: "cpp", id: "types", title: "Data Types", keywords: "int bool char float auto decltype constexpr" },
-    { lang: "cpp", id: "variables", title: "Variables & Literals", keywords: "initialization brace nullptr reference" },
-    { lang: "cpp", id: "operators", title: "Operators", keywords: "cast sizeof new delete spaceship" },
-    { lang: "cpp", id: "control", title: "Control Flow", keywords: "if switch for while range structured binding" },
-    { lang: "cpp", id: "functions", title: "Functions", keywords: "overload default noexcept constexpr consteval" },
-    { lang: "cpp", id: "pointers", title: "Pointers & Smart Pointers", keywords: "unique_ptr shared_ptr weak_ptr make_unique" },
-    { lang: "cpp", id: "raii", title: "RAII & Special Members", keywords: "rule of zero five destructor move copy" },
-    { lang: "cpp", id: "classes", title: "Structs & Classes", keywords: "class struct constructor initializer" },
-    { lang: "cpp", id: "inheritance", title: "Inheritance & Polymorphism", keywords: "virtual override abstract dynamic_cast" },
-    { lang: "cpp", id: "templates", title: "Templates", keywords: "template typename concept requires SFINAE" },
-    { lang: "cpp", id: "lambdas", title: "Lambda Expressions", keywords: "capture mutable generic lambda" },
-    { lang: "cpp", id: "modern", title: "Modern C++", keywords: "optional variant span ranges expected format" },
-    { lang: "cpp", id: "containers", title: "STL Containers", keywords: "vector map unordered_map array deque set" },
-    { lang: "cpp", id: "algorithms", title: "Iterators & Algorithms", keywords: "sort find transform ranges views" },
-    { lang: "cpp", id: "complexity", title: "Complexity Tables", keywords: "big-O access insert erase amortized" },
-    { lang: "cpp", id: "exceptions", title: "Exception Handling", keywords: "try catch throw noexcept exception" },
-    { lang: "cpp", id: "concurrency", title: "Concurrency", keywords: "thread mutex lock_guard atomic async future jthread" },
-    { lang: "cpp", id: "headers", title: "Key Headers", keywords: "iostream vector memory algorithm string" },
-    { lang: "csharp", id: "types", title: "Data Types", keywords: "int string bool decimal nullable nint" },
-    { lang: "csharp", id: "variables", title: "Variables & Literals", keywords: "var const readonly string interpolation" },
-    { lang: "csharp", id: "operators", title: "Operators", keywords: "null-coalescing ranges indices" },
-    { lang: "csharp", id: "control", title: "Control Flow", keywords: "if switch foreach using" },
-    { lang: "csharp", id: "methods", title: "Methods", keywords: "ref out in params extension local function" },
-    { lang: "csharp", id: "classes", title: "Classes & Structs", keywords: "class struct primary constructor" },
-    { lang: "csharp", id: "records", title: "Records", keywords: "record with expression init immutable" },
-    { lang: "csharp", id: "inheritance", title: "Inheritance & Interfaces", keywords: "interface abstract override virtual" },
-    { lang: "csharp", id: "properties", title: "Properties, Indexers & Events", keywords: "get set init required event" },
-    { lang: "csharp", id: "linq", title: "LINQ", keywords: "Where Select OrderBy GroupBy deferred ToList" },
-    { lang: "csharp", id: "async", title: "Async / Await", keywords: "Task ValueTask await WhenAll CancellationToken" },
-    { lang: "csharp", id: "pattern", title: "Pattern Matching", keywords: "is switch property list relational patterns" },
-    { lang: "csharp", id: "generics", title: "Generics", keywords: "where constraints covariance INumber" },
-    { lang: "csharp", id: "collections", title: "Collections", keywords: "List Dictionary HashSet Span collection expression" },
-    { lang: "csharp", id: "exceptions", title: "Exceptions", keywords: "try catch finally when throw" },
-    { lang: "csharp", id: "memory", title: "Spans & Memory", keywords: "Span Memory ArrayPool stackalloc" },
-    { lang: "csharp", id: "dotnet", title: ".NET Highlights", keywords: "DI ASP.NET HttpClient JsonSerializer" },
-  ];
+  const SEARCH_INDEX = window.POLYGLOT_SEARCH_INDEX || [];
 
   function escapeHtml(s) {
     return String(s)
@@ -189,32 +108,39 @@
     const navs = document.querySelectorAll(".lang-nav");
     if (!navs.length) return;
 
-    const isComparePage = path.split("/").filter(Boolean).includes("compare");
-    const ordered = registry;
-
     navs.forEach(function (nav) {
-      nav.innerHTML = "";
-      ordered.forEach(function (lang) {
+      const languageMenu = nav.querySelector(".language-menu");
+      const menuPanel = languageMenu && languageMenu.querySelector(".language-menu-panel");
+      if (!languageMenu || !menuPanel) return;
+
+      registry.forEach(function (lang) {
         const link = document.createElement("a");
         link.href = navPathFor(lang.slug);
-        link.className = "lang-btn " + lang.slug + (currentLang === lang.slug ? " active" : "");
+        link.className = "language-option hero-card " + lang.slug;
         link.textContent = lang.name;
-        nav.appendChild(link);
-      });
+        if (currentLang === lang.slug) link.setAttribute("aria-current", "page");
 
-      const compareLink = document.createElement("a");
-      if (isComparePage) {
-        compareLink.href = "index.html";
-      } else if (currentLang) {
-        compareLink.href = "../compare/index.html";
-      } else {
-        compareLink.href = "compare/index.html";
+        link.addEventListener("click", function () {
+          languageMenu.open = false;
+        });
+        menuPanel.appendChild(link);
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (event.target instanceof Element && !event.target.closest(".language-menu")) {
+        document.querySelectorAll(".language-menu[open]").forEach(function (menu) {
+          menu.open = false;
+        });
       }
-      compareLink.className = "lang-btn" + (isComparePage ? " active" : "");
-      compareLink.style.color = "var(--accent)";
-      compareLink.style.border = "1px solid var(--accent)";
-      compareLink.textContent = "Compare";
-      nav.appendChild(compareLink);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape") return;
+      document.querySelectorAll(".language-menu[open]").forEach(function (menu) {
+        menu.open = false;
+        const summary = menu.querySelector("summary");
+        if (summary) summary.focus();
+      });
     });
   }
 
@@ -239,6 +165,57 @@
     compareCard.style.borderColor = "var(--accent)";
     compareCard.innerHTML = '<h2 style="color:var(--accent);">Compare</h2><p>Same concept, different language — compare syntax and approaches across languages.</p>';
     homepageCards.appendChild(compareCard);
+  }
+
+  function renderCompareLanguagePicker() {
+    const options = document.getElementById("compare-language-options");
+    const count = document.getElementById("compare-language-count");
+    const emptyState = document.getElementById("compare-empty-state");
+    if (!options || !count || !emptyState) return;
+
+    const maxLanguages = 4;
+    registry.forEach(function (lang) {
+      const label = document.createElement("label");
+      label.className = "compare-language-option";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.value = lang.slug;
+      checkbox.addEventListener("change", updateSelection);
+
+      const name = document.createElement("span");
+      name.textContent = lang.name;
+      label.appendChild(checkbox);
+      label.appendChild(name);
+      options.appendChild(label);
+    });
+
+    function updateSelection() {
+      const checkboxes = Array.from(options.querySelectorAll('input[type="checkbox"]'));
+      const selected = new Set(
+        checkboxes.filter(function (checkbox) { return checkbox.checked; })
+          .map(function (checkbox) { return checkbox.value; })
+      );
+
+      count.textContent = selected.size + " of " + maxLanguages + " selected";
+      emptyState.hidden = selected.size > 0;
+      document.querySelectorAll(".compare-table").forEach(function (table) {
+        table.hidden = selected.size === 0;
+      });
+      options.querySelectorAll(".compare-language-option").forEach(function (label) {
+        const checkbox = label.querySelector('input[type="checkbox"]');
+        if (!checkbox) return;
+        label.classList.toggle("selected", checkbox.checked);
+        checkbox.disabled = selected.size >= maxLanguages && !checkbox.checked;
+        label.classList.toggle("disabled", checkbox.disabled);
+      });
+
+      document.querySelectorAll(".compare-table [data-language]").forEach(function (cell) {
+        cell.hidden = !selected.has(cell.getAttribute("data-language"));
+      });
+    }
+
+    updateSelection();
   }
 
   function ensurePalette() {
@@ -398,6 +375,7 @@
 
   renderLanguageNavigation();
   renderHomepageCards();
+  renderCompareLanguagePicker();
   ensurePalette();
 
   function addCopyButtons() {

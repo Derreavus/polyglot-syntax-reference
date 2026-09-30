@@ -50,10 +50,11 @@ Currently covered:
 
 - **C++**
 - **C#**
+- **JavaScript**
 - **Python**
 - **Rust**
 
-The project is intentionally focused on building a strong reference for the currently supported languages before expanding into additional languages.
+JavaScript is included as a starter reference. New languages can be added through the JSON source without editing the shared page templates.
 
 ---
 
@@ -134,35 +135,55 @@ You do not need to be an expert in every language covered. The reference is inte
 
 ---
 
-## Language Registry
+## Structured Content and Local Build
 
-The site now uses a single authoritative language registry in [js/site-data.js](js/site-data.js). The registry defines the currently supported languages and their display order:
+The canonical authored content and site configuration live in [data/site_data.json](data/site_data.json). The HTML pages and browser-facing data files are generated from that file by [renderer/build_site.py](renderer/build_site.py); do not edit generated HTML or `js/site-data.js` by hand.
 
-- Python
-- Rust
-- C++
-- C#
+The build writes a preview to [output/staging](output/staging) and synchronizes the same generated pages to the repository root for GitHub Pages. Running the build changes local files only; it does not publish or push anything.
 
-Each entry includes:
+### Content model
 
-- `name` — displayed name
-- `slug` — URL segment and page folder
-- `status` — support state for the site
-- `order` — display order in navigation and cards
+The JSON source contains:
 
-Navigation and homepage cards are generated from that registry, and validation scripts read the same source so the site does not maintain a second hard-coded language list.
+- language metadata and the homepage content
+- language navigation populated from the available-language registry
+- language-specific sections and complete topic bodies, including examples, notes, and callouts
+- concept mappings for cross-language navigation
+- search titles and keywords
+- comparison rows and their section/group configuration
+
+Each topic stores its complete authored body as `content_html`. The build validates that every topic and body is rendered, and parity validation checks the expected coverage and browser data. Treat `content_html` as trusted, authored repository content. The one-time importer [scripts/import_legacy_content.py](scripts/import_legacy_content.py) accepts an explicit Git revision to import topic content from an existing set of pages.
+
+The header language dropdown is populated at runtime from the generated language registry. Each menu item shows only the language name, in a compact card-style panel that matches the site's colors and borders. Adding a language entry makes it appear in the dropdown; no per-language header link needs to be added to the page templates.
+
+The comparison page uses the same registry to build its language selector. It starts with no languages selected and allows up to four at a time.
+
+### Local preview
+
+To preview the staged build locally:
+
+```bash
+python renderer/build_site.py
+python -m unittest discover -s tests
+python scripts/serve_staging.py --host 127.0.0.1 --port 8123 --directory output/staging
+```
+
+Then open:
+
+- http://127.0.0.1:8123/
+
+This is a local-only workflow. The remote deployment remains unchanged until you explicitly choose to publish.
 
 ### Adding a new language
 
 To add a future language:
 
-1. Add the language entry to the registry.
-2. Create the language page under its slug folder, keeping the same static HTML structure.
-3. Add the language-specific content and any required section IDs.
-4. Ensure the page is referenced by the registry-driven navigation and homepage generation.
-5. Run the validation scripts to confirm the site still passes.
+1. Add the language, its sections, and complete topics to [data/site_data.json](data/site_data.json).
+2. Add or update its comparison values and concept mappings in the same file.
+3. Regenerate both local outputs with [renderer/build_site.py](renderer/build_site.py).
+4. Validate and review the staging site. Never author changes directly in generated HTML.
 
-This keeps the architecture static-site friendly and avoids introducing a framework.
+This keeps the architecture static-site friendly while making the content source easier to maintain and validate offline.
 
 ## Project Philosophy
 
