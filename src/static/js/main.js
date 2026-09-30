@@ -167,55 +167,208 @@
     homepageCards.appendChild(compareCard);
   }
 
-  function renderCompareLanguagePicker() {
-    const options = document.getElementById("compare-language-options");
-    const count = document.getElementById("compare-language-count");
+  function initCompareBoard() {
+    const board = document.getElementById("compare-board");
+    const bar = document.getElementById("lane-bar");
+    const addBtn = document.getElementById("lane-add");
+    const addLabel = document.getElementById("lane-add-label");
+    const menu = document.getElementById("lane-menu");
     const emptyState = document.getElementById("compare-empty-state");
-    if (!options || !count || !emptyState) return;
+    const status = document.getElementById("compare-status");
+    if (!board || !bar || !addBtn || !addLabel || !menu || !emptyState) return;
 
-    const maxLanguages = 4;
-    registry.forEach(function (lang) {
-      const label = document.createElement("label");
-      label.className = "compare-language-option";
+    const maxLanes = parseInt(board.getAttribute("data-max-lanes"), 10) || 4;
+    const bySlug = {};
+    registry.forEach(function (lang) { bySlug[lang.slug] = lang; });
 
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.value = lang.slug;
-      checkbox.addEventListener("change", updateSelection);
+    function laneColor(lang) {
+      return lang && /^#[0-9a-f]{6}$/i.test(lang.color || "") ? lang.color : "";
+    }
 
-      const name = document.createElement("span");
-      name.textContent = lang.name;
-      label.appendChild(checkbox);
-      label.appendChild(name);
-      options.appendChild(label);
-    });
+    function readSelectionFromUrl() {
+      const raw = new URLSearchParams(location.search).get("lang") || "";
+      const seen = {};
+      return raw.split(",").filter(function (slug) {
+        if (!bySlug[slug] || seen[slug]) return false;
+        seen[slug] = true;
+        return true;
+      }).slice(0, maxLanes);
+    }
 
-    function updateSelection() {
-      const checkboxes = Array.from(options.querySelectorAll('input[type="checkbox"]'));
-      const selected = new Set(
-        checkboxes.filter(function (checkbox) { return checkbox.checked; })
-          .map(function (checkbox) { return checkbox.value; })
-      );
+    let selected = readSelectionFromUrl();
 
-      count.textContent = selected.size + " of " + maxLanguages + " selected";
-      emptyState.hidden = selected.size > 0;
-      document.querySelectorAll(".compare-table").forEach(function (table) {
-        table.hidden = selected.size === 0;
-      });
-      options.querySelectorAll(".compare-language-option").forEach(function (label) {
-        const checkbox = label.querySelector('input[type="checkbox"]');
-        if (!checkbox) return;
-        label.classList.toggle("selected", checkbox.checked);
-        checkbox.disabled = selected.size >= maxLanguages && !checkbox.checked;
-        label.classList.toggle("disabled", checkbox.disabled);
-      });
+    function writeSelectionToUrl() {
+      const query = selected.length ? "?lang=" + selected.map(encodeURIComponent).join(",") : "";
+      try {
+        history.replaceState(null, "", location.pathname + query + location.hash);
+      } catch (err) { /* URL sync is a convenience only */ }
+    }
 
-      document.querySelectorAll(".compare-table [data-language]").forEach(function (cell) {
-        cell.hidden = !selected.has(cell.getAttribute("data-language"));
+    function availableLanguages() {
+      return registry.filter(function (lang) { return selected.indexOf(lang.slug) === -1; });
+    }
+
+    function announce(message) {
+      if (status) status.textContent = message;
+    }
+
+    function renderLanes() {
+      bar.querySelectorAll(".lane").forEach(function (node) { node.remove(); });
+      selected.forEach(function (slug) {
+        const lang = bySlug[slug];
+        const lane = document.createElement("div");
+        lane.className = "lane";
+        lane.setAttribute("data-language", slug);
+        const color = laneColor(lang);
+        if (color) lane.style.setProperty("--lane-color", color);
+
+        const link = document.createElement("a");
+        link.className = "lane-name";
+        link.href = "../" + encodeURIComponent(slug) + "/";
+        link.title = "Open the " + lang.name + " reference";
+        link.textContent = lang.name;
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "lane-remove";
+        remove.setAttribute("aria-label", "Remove " + lang.name + " from the comparison");
+        remove.textContent = "\u00d7";
+        remove.addEventListener("click", function () { removeLanguage(slug); });
+
+        lane.appendChild(link);
+        lane.appendChild(remove);
+        bar.appendChild(lane);
       });
     }
 
-    updateSelection();
+    function renderCells() {
+      // repeat() needs at least one track, so an empty board still reserves one lane column
+      board.style.setProperty("--lanes", String(Math.max(selected.length, 1)));
+      document.querySelectorAll(".compare-table [data-language]").forEach(function (cell) {
+        const slug = cell.getAttribute("data-language");
+        const index = selected.indexOf(slug);
+        cell.hidden = index === -1;
+        if (index === -1) {
+          cell.style.removeProperty("order");
+          cell.style.removeProperty("--lane-color");
+          return;
+        }
+        cell.style.order = String(index + 1);
+        const color = laneColor(bySlug[slug]);
+        if (color) cell.style.setProperty("--lane-color", color);
+        else cell.style.removeProperty("--lane-color");
+      });
+      document.querySelectorAll(".compare-section").forEach(function (section) {
+        section.hidden = selected.length === 0;
+      });
+      emptyState.hidden = selected.length > 0;
+    }
+
+    function renderAddButton() {
+      const full = selected.length >= maxLanes;
+      const exhausted = availableLanguages().length === 0;
+      addBtn.disabled = full || exhausted;
+      addLabel.textContent = full ? selected.length + " of " + maxLanes + " added"
+        : exhausted ? "All added"
+        : "Add language";
+      if (addBtn.disabled) closeMenu(false);
+    }
+
+    function renderMenu() {
+      menu.textContent = "";
+      availableLanguages().forEach(function (lang) {
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className = "lane-menu-item";
+        item.setAttribute("role", "menuitem");
+        item.setAttribute("data-language", lang.slug);
+
+        const dot = document.createElement("span");
+        dot.className = "lane-menu-dot";
+        dot.setAttribute("aria-hidden", "true");
+        const color = laneColor(lang);
+        if (color) dot.style.background = color;
+
+        const name = document.createElement("span");
+        name.textContent = lang.name;
+
+        item.appendChild(dot);
+        item.appendChild(name);
+        item.addEventListener("click", function () { addLanguage(lang.slug); });
+        menu.appendChild(item);
+      });
+    }
+
+    function menuItems() {
+      return Array.from(menu.querySelectorAll(".lane-menu-item"));
+    }
+
+    function openMenu() {
+      if (addBtn.disabled) return;
+      renderMenu();
+      menu.hidden = false;
+      addBtn.setAttribute("aria-expanded", "true");
+      const items = menuItems();
+      if (items.length) items[0].focus();
+    }
+
+    function closeMenu(returnFocus) {
+      if (menu.hidden) return;
+      menu.hidden = true;
+      addBtn.setAttribute("aria-expanded", "false");
+      if (returnFocus) addBtn.focus();
+    }
+
+    function update() {
+      renderLanes();
+      renderCells();
+      renderAddButton();
+      writeSelectionToUrl();
+    }
+
+    function addLanguage(slug) {
+      if (!bySlug[slug] || selected.indexOf(slug) !== -1 || selected.length >= maxLanes) return;
+      selected.push(slug);
+      closeMenu(false);
+      update();
+      announce(bySlug[slug].name + " added. " + selected.length + " of " + maxLanes + " languages.");
+      if (addBtn.disabled) {
+        const removeBtn = bar.querySelector('.lane[data-language="' + slug + '"] .lane-remove');
+        if (removeBtn) removeBtn.focus();
+      } else {
+        addBtn.focus();
+      }
+    }
+
+    function removeLanguage(slug) {
+      if (selected.indexOf(slug) === -1) return;
+      selected = selected.filter(function (item) { return item !== slug; });
+      update();
+      announce(bySlug[slug].name + " removed. " + selected.length + " of " + maxLanes + " languages.");
+      addBtn.focus();
+    }
+
+    addBtn.addEventListener("click", function () {
+      if (menu.hidden) openMenu(); else closeMenu(true);
+    });
+    addBtn.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" && menu.hidden) { e.preventDefault(); openMenu(); }
+    });
+    menu.addEventListener("keydown", function (e) {
+      const items = menuItems();
+      const index = items.indexOf(document.activeElement);
+      if (e.key === "ArrowDown") { e.preventDefault(); items[(index + 1) % items.length].focus(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); items[(index - 1 + items.length) % items.length].focus(); }
+      else if (e.key === "Home") { e.preventDefault(); items[0].focus(); }
+      else if (e.key === "End") { e.preventDefault(); items[items.length - 1].focus(); }
+      else if (e.key === "Escape") { e.preventDefault(); closeMenu(true); }
+      else if (e.key === "Tab") { closeMenu(false); }
+    });
+    document.addEventListener("click", function (e) {
+      if (!menu.hidden && !e.target.closest(".lane-add-wrap")) closeMenu(false);
+    });
+
+    update();
   }
 
   function ensurePalette() {
@@ -375,7 +528,7 @@
 
   renderLanguageNavigation();
   renderHomepageCards();
-  renderCompareLanguagePicker();
+  initCompareBoard();
   ensurePalette();
 
   function addCopyButtons() {

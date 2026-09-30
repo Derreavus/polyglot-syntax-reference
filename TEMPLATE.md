@@ -41,13 +41,16 @@ In `languages`:
   "status": "available",
   "order": 6,
   "description": "One-line description shown on the homepage card.",
-  "version_label": "Go 1.22+ · statically typed, compiled"
+  "version_label": "Go 1.22+ · statically typed, compiled",
+  "color": "#00add8"
 }
 ```
 
 `slug` becomes the folder and URL (`/go/`), and `order` controls dropdown and
 card order. The `version_label` is the badge shown under the page title, so state
 the version or edition there.
+`color` is optional (`#rrggbb`); it tints the language's lane on the compare page and
+its dot in the Add language menu. Without it, the site accent color is used.
 
 ## 2. Add sections
 
@@ -136,7 +139,8 @@ Every object in `compare` needs a value for the new language key:
 ```
 
 (Keep the existing language keys in the row; the example shows only the new one.)
-Compare cells are rendered as inline code, so `<` and `>` are escaped for you
+The compare page picks up the new language in its **Add language** menu
+automatically; no page or script changes are needed. Compare cells are rendered as inline code, so `<` and `>` are escaped for you
 here, unlike in `content_html`.
 
 ---

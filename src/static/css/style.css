@@ -375,73 +375,125 @@ pre.code-block:hover .copy-btn, .copy-btn:focus { opacity: 1; }
   letter-spacing: -0.02em; margin-bottom: 0.5rem;
 }
 .compare-hero p { color: var(--text-muted); max-width: 640px; font-size: 1.05rem; }
-.compare-picker {
-  margin: 1.25rem 0;
-  padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg-elevated);
+.compare-main { max-width: 1100px; padding-bottom: 4rem; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
-.compare-picker-heading {
-  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
-  margin-bottom: 0.75rem;
-}
-.compare-picker-heading h2 { font-size: 1rem; margin: 0; }
-.compare-picker-heading p { color: var(--accent); font-size: 0.8rem; margin: 0; }
-.compare-language-options {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 0.5rem;
-}
-.compare-language-option {
-  display: flex; align-items: center; gap: 0.55rem;
-  min-height: 42px; padding: 0.55rem 0.75rem;
-  border: 1px solid var(--border); border-radius: 8px;
-  color: var(--text-muted); cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s;
-}
-.compare-language-option:hover:not(.disabled) {
-  border-color: var(--accent); color: var(--text);
-}
-.compare-language-option.selected {
-  border-color: var(--accent); color: var(--text);
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
-}
-.compare-language-option input { accent-color: var(--accent); }
-.compare-language-option.disabled { cursor: not-allowed; opacity: 0.55; }
-.compare-picker-help { margin: 0.65rem 0 0; color: var(--text-muted); font-size: 0.8rem; }
 .compare-empty-state {
   padding: 1.25rem; border: 1px dashed var(--border); border-radius: 10px;
-  color: var(--text-muted); text-align: center;
+  color: var(--text-muted); text-align: center; margin: 1.25rem 0;
 }
-.compare-toc { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.25rem 0 2rem; }
+.compare-toc { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.25rem; }
 .compare-toc a {
   font-size: 0.8rem; padding: 0.3rem 0.65rem; border-radius: 6px;
   border: 1px solid var(--border); color: var(--text-muted); text-decoration: none;
 }
 .compare-toc a:hover { border-color: var(--accent); color: var(--text); }
-.compare-section { margin-bottom: 2.75rem; scroll-margin-top: 80px; }
-.compare-section h2 {
-  font-size: 1.3rem; border-bottom: 1px solid var(--border);
-  padding-bottom: 0.4rem; margin-bottom: 1rem;
+
+/* Lane layout: every row shares one grid, so each language is a straight vertical lane. */
+.compare-board {
+  --concept-w: 10.5rem;
+  --lane-min: 12rem;
+  --lane-gap: 0;
 }
-.compare-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 0.75rem 0 1.25rem; }
-.compare-table th, .compare-table td {
-  text-align: left; padding: 0.55rem 0.7rem;
-  border-bottom: 1px solid var(--border); vertical-align: top;
+.compare-board-inner { min-width: 0; }
+.lane-bar,
+.compare-table tr {
+  display: grid;
+  grid-template-columns: var(--concept-w) repeat(var(--lanes, 1), minmax(0, 1fr));
 }
-.compare-table th {
-  color: var(--text-muted); font-weight: 600; font-size: 0.75rem;
-  text-transform: uppercase; letter-spacing: 0.04em;
-  background: var(--bg-elevated); position: sticky; top: 60px; z-index: 2;
+.lane-bar {
+  position: sticky; top: 60px; z-index: 20;
+  background: var(--bg); padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
 }
-.compare-table th.lang-python { color: #6db3f2; }
-.compare-table th.lang-rust { color: var(--rust); }
-.compare-table th.lang-cpp { color: #4da3ff; }
-.compare-table th.lang-csharp { color: #3ddc84; }
+.lane-add-wrap { position: relative; align-self: end; padding-right: 0.75rem; }
+.lane-add {
+  display: inline-flex; align-items: center; gap: 0.45rem; width: 100%;
+  min-height: 42px; padding: 0.5rem 0.75rem;
+  font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--text);
+  background: transparent; border: 1px dashed var(--text-muted); border-radius: 8px; cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.lane-add:hover:not(:disabled) {
+  border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.lane-add:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lane-add:disabled { color: var(--text-muted); border-color: var(--border); cursor: not-allowed; }
+.lane-add-icon { font-size: 1.15rem; line-height: 1; }
+.lane-menu {
+  position: absolute; top: calc(100% + 0.35rem); left: 0; z-index: 30;
+  min-width: 100%; max-height: 18rem; overflow-y: auto; padding: 0.3rem;
+  background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.lane-menu[hidden] { display: none; }
+.lane-menu-item {
+  display: flex; align-items: center; gap: 0.6rem; width: 100%;
+  padding: 0.5rem 0.65rem; font: inherit; font-size: 0.875rem; text-align: left;
+  color: var(--text); background: transparent; border: 0; border-radius: 6px; cursor: pointer;
+}
+.lane-menu-item:hover, .lane-menu-item:focus-visible {
+  background: color-mix(in srgb, var(--accent) 12%, transparent); outline: none;
+}
+.lane-menu-dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); flex: none; }
+.lane {
+  --lane-color: var(--accent);
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  min-width: 0; padding: 0.65rem 0.75rem;
+  border-top: 3px solid var(--lane-color); border-left: 1px solid var(--border);
+  background: color-mix(in srgb, var(--lane-color) 9%, var(--bg));
+  border-radius: 8px 8px 0 0;
+}
+.lane-name {
+  font-weight: 700; color: var(--text); text-decoration: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.lane-name:hover { text-decoration: underline; }
+.lane-remove {
+  flex: none; width: 1.75rem; height: 1.75rem; font-size: 1.15rem; line-height: 1;
+  color: var(--text-muted); background: transparent; border: 0; border-radius: 6px; cursor: pointer;
+}
+.lane-remove:hover { color: var(--text); background: color-mix(in srgb, var(--text) 10%, transparent); }
+.lane-remove:focus-visible { outline: 2px solid var(--accent); }
+
+.compare-section { margin: 1.75rem 0 0; scroll-margin-top: 9.5rem; }
+.compare-section[hidden] { display: none; }
+.compare-section h2 { font-size: 1.15rem; margin: 0 0 0.6rem; }
+.compare-table { display: block; width: 100%; font-size: 0.875rem; }
+.compare-table thead.sr-only { display: block; }
+.compare-table tbody { display: block; border-bottom: 1px solid var(--border); }
+.compare-table tr { border-top: 1px solid var(--border); }
+.compare-table td {
+  min-width: 0; padding: 0.6rem 0.75rem; text-align: left; vertical-align: top;
+  border-left: 1px solid var(--border);
+  background: color-mix(in srgb, var(--lane-color, var(--accent)) 4%, transparent);
+}
+.compare-table td[hidden], .compare-table th[hidden] { display: none !important; }
+.compare-table td.concept {
+  border-left: 0; padding-left: 0; padding-top: 0.85rem; font-weight: 500; color: var(--text);
+  background: transparent; overflow-wrap: anywhere;
+}
 .compare-table td code {
-  font-family: var(--mono); font-size: 0.8rem; background: var(--code-bg);
-  padding: 0.1rem 0.35rem; border-radius: 3px; white-space: nowrap;
+  display: block; font-family: var(--mono); font-size: 0.8rem; line-height: 1.5;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+  background: var(--code-bg); padding: 0.25rem 0.45rem; border-radius: 4px;
 }
-.compare-table tr:hover td { background: color-mix(in srgb, var(--accent) 5%, transparent); }
-.compare-table .concept { font-weight: 500; color: var(--text); white-space: nowrap; }
+.compare-table tbody tr:hover td:not(.concept) {
+  background: color-mix(in srgb, var(--lane-color, var(--accent)) 10%, transparent);
+}
+
+@media (max-width: 980px) {
+  .compare-board { overflow-x: auto; padding-bottom: 0.5rem; }
+  .compare-board-inner { min-width: calc(var(--concept-w) + var(--lanes, 1) * var(--lane-min)); }
+  .lane-bar { position: static; }
+  .compare-table td.concept, .lane-add-wrap {
+    position: sticky; left: 0; z-index: 5; background: var(--bg);
+  }
+  .compare-table td.concept { padding-right: 0.5rem; }
+  .compare-section { scroll-margin-top: 5rem; }
+}
 .quad-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;
   margin: 0.75rem 0 1.25rem;

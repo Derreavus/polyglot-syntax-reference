@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 
@@ -61,6 +62,11 @@ def validate_data_model(data: dict[str, Any]) -> None:
         _require(isinstance(slug, str) and slug.strip(), f"languages[{index}].slug must be a non-empty string")
         _require(slug not in language_slugs, f"duplicate language slug: {slug}")
         language_slugs.add(slug)
+        color = language.get("color")
+        _require(
+            color is None or (isinstance(color, str) and re.fullmatch(r"#[0-9a-fA-F]{6}", color) is not None),
+            f"languages[{index}].color must be a #rrggbb hex string",
+        )
 
     concept_slugs = set()
     for index, concept in enumerate(concepts):

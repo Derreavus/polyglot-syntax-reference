@@ -49,19 +49,51 @@ class DataSourceTests(unittest.TestCase):
         self.assertIn('href="#data-defined-section">Data-defined section</a>', page)
         self.assertIn('id="data-defined-section"', page)
 
-    def test_compare_starts_empty_and_offers_language_selection(self) -> None:
+    def test_compare_starts_empty_and_offers_an_add_language_control(self) -> None:
         page = render_compare_page(self.data)
 
-        self.assertIn('id="compare-language-options"', page)
-        self.assertIn('id="compare-language-count" aria-live="polite">0 of 4 selected', page)
+        self.assertIn('id="lane-add"', page)
+        self.assertIn('id="lane-menu"', page)
+        self.assertIn('data-max-lanes="4"', page)
         self.assertIn('id="compare-empty-state"', page)
-        self.assertIn('<table class="compare-table" hidden>', page)
-        self.assertNotIn('type="checkbox" checked', page)
-        self.assertIn('<th class="lang-python" data-language="python" hidden>Python</th>', page)
-        self.assertIn('data-language="python" hidden', page)
+        self.assertNotIn('type="checkbox"', page)
+        self.assertNotIn("compare-language-options", page)
+        self.assertRegex(page, r'<section class="compare-section" id="basics" hidden>')
+        self.assertIn('<th role="columnheader" data-language="python" hidden>Python</th>', page)
+        self.assertIn('<td role="cell" data-language="python" hidden>', page)
         runtime = (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8")
-        self.assertIn("const maxLanguages = 4;", runtime)
-        self.assertIn("checkbox.disabled = selected.size >= maxLanguages", runtime)
+        self.assertIn("function initCompareBoard()", runtime)
+        self.assertIn('board.getAttribute("data-max-lanes")', runtime)
+
+    def test_compare_lane_limit_comes_from_data(self) -> None:
+        data = copy.deepcopy(self.data)
+        data["site"]["compare_max_languages"] = 3
+
+        page = render_compare_page(data)
+
+        self.assertIn('data-max-lanes="3"', page)
+        self.assertIn("pick up to 3 languages", page)
+
+    def test_every_compare_row_gets_a_cell_per_language(self) -> None:
+        data = copy.deepcopy(self.data)
+        data["languages"].append(
+            {"slug": "go", "name": "Go", "order": 99, "color": "#00add8"}
+        )
+
+        page = render_compare_page(data)
+
+        row_count = page.count('<td class="concept" role="rowheader">')
+        self.assertGreater(row_count, 0)
+        self.assertEqual(page.count('<td role="cell" data-language="go" hidden>'), row_count)
+
+    def test_language_color_is_optional_but_must_be_a_hex_color(self) -> None:
+        data = copy.deepcopy(self.data)
+        del data["languages"][0]["color"]
+        validate_data_model(data)
+
+        data["languages"][0]["color"] = "red"
+        with self.assertRaisesRegex(ValueError, "color must be a #rrggbb"):
+            validate_data_model(data)
 
     def test_homepage_copy_comes_from_data(self) -> None:
         data = copy.deepcopy(self.data)
@@ -136,7 +168,7 @@ class DataSourceTests(unittest.TestCase):
         self.assertIn('id="operators"', javascript_page)
         self.assertIn("===", javascript_page)
         self.assertIn(
-            '<th class="lang-javascript" data-language="javascript" hidden>JavaScript</th>',
+            '<th role="columnheader" data-language="javascript" hidden>JavaScript</th>',
             compare_page,
         )
         self.assertIn("<code>xs.map(x =&gt; f(x))</code>", compare_page)

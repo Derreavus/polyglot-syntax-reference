@@ -6,7 +6,8 @@
       "status": "available",
       "order": 1,
       "description": "Readable and versatile. Explore types, collections, async, typing, and the standard library.",
-      "version_label": "Python 3.12+ · idiomatic modern Python"
+      "version_label": "Python 3.12+ · idiomatic modern Python",
+      "color": "#3776ab"
     },
     {
       "slug": "rust",
@@ -14,7 +15,8 @@
       "status": "available",
       "order": 2,
       "description": "Ownership, borrowing, traits, and zero-cost abstractions.",
-      "version_label": "Rust 2024 edition · safe systems programming"
+      "version_label": "Rust 2024 edition · safe systems programming",
+      "color": "#dea584"
     },
     {
       "slug": "cpp",
@@ -22,7 +24,8 @@
       "status": "available",
       "order": 3,
       "description": "Modern C++ from fundamentals through templates, RAII, and the STL.",
-      "version_label": "C++20/23 · modern language features"
+      "version_label": "C++20/23 · modern language features",
+      "color": "#00599c"
     },
     {
       "slug": "csharp",
@@ -30,7 +33,8 @@
       "status": "available",
       "order": 4,
       "description": "Expressive and powerful. Explore LINQ, async/await, and the .NET libraries.",
-      "version_label": "C# 12 / .NET 8+ · modern .NET"
+      "version_label": "C# 12 / .NET 8+ · modern .NET",
+      "color": "#239120"
     },
     {
       "slug": "javascript",
@@ -38,7 +42,8 @@
       "status": "available",
       "order": 5,
       "description": "A practical guide to JavaScript syntax, objects, asynchronous code, and the web platform.",
-      "version_label": "ECMAScript 2025 · modern JavaScript"
+      "version_label": "ECMAScript 2025 · modern JavaScript",
+      "color": "#f7df1e"
     }
   ],
   "concepts": [

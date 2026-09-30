@@ -15,16 +15,17 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
     rows = data.get("compare", [])
     compare_sections = data["compare_sections"]
     site = data["site"]
+    max_lanes = int(site.get("compare_max_languages", 4))
     css_path = relative_asset_path(page_rel, "css/style.css")
     js_path = relative_asset_path(page_rel, "js/site-data.js")
     main_js_path = relative_asset_path(page_rel, "js/main.js")
 
     def render_rows(section_rows: list[dict[str, Any]]) -> str:
         return "\n".join(
-            '<tr>'
-            + f'<td class="concept">{html.escape(row.get("label", ""))}</td>'
+            '<tr role="row">'
+            + f'<td class="concept" role="rowheader">{html.escape(row.get("label", ""))}</td>'
             + "".join(
-                f'<td data-language="{html.escape(lang["slug"], quote=True)}" hidden>'
+                f'<td role="cell" data-language="{html.escape(lang["slug"], quote=True)}" hidden>'
                 f'<code>{html.escape(row.get(lang["slug"], ""))}</code></td>'
                 for lang in languages
             )
@@ -39,17 +40,17 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
         return [row for row in rows if row.get("concept") in set(concept_filter)]
 
     sections_html = "\n".join(
-        f'<section class="compare-section" id="{html.escape(section["slug"])}">'
+        f'<section class="compare-section" id="{html.escape(section["slug"])}" hidden>'
         + f'<h2>{html.escape(section["title"])}</h2>'
-        + '<table class="compare-table" hidden><thead><tr><th>Concept</th>'
+        + f'<table class="compare-table" role="table" aria-label="{html.escape(section["title"], quote=True)}">'
+        + '<thead class="sr-only" role="rowgroup"><tr role="row"><th role="columnheader">Concept</th>'
         + "".join(
-            f'<th class="lang-{html.escape(lang["slug"])}" '
-            f'data-language="{html.escape(lang["slug"], quote=True)}" hidden>'
+            f'<th role="columnheader" data-language="{html.escape(lang["slug"], quote=True)}" hidden>'
             f'{html.escape(lang["name"])}</th>'
             for lang in languages
         )
         + '</tr></thead>'
-        + f'<tbody>{render_rows(matching_rows(section))}</tbody></table></section>'
+        + f'<tbody role="rowgroup">{render_rows(matching_rows(section))}</tbody></table></section>'
         for section in compare_sections
     )
 
@@ -87,28 +88,35 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
     </div>
   </header>
 
-  <main class="container" style="max-width:1100px;padding-bottom:4rem;">
+  <main class="container compare-main">
     <div class="compare-hero">
       <h1>{html.escape(site["compare_heading"])}</h1>
       <p id="compare-language-summary">{html.escape(site["compare_intro"])}</p>
     </div>
 
-    <section class="compare-picker" aria-labelledby="compare-picker-heading">
-      <div class="compare-picker-heading">
-        <h2 id="compare-picker-heading">Choose languages</h2>
-        <p id="compare-language-count" aria-live="polite">0 of 4 selected</p>
-      </div>
-      <div id="compare-language-options" class="compare-language-options" role="group" aria-label="Languages to compare"></div>
-      <p class="compare-picker-help">Select up to four languages. Comparison columns appear as you choose them.</p>
-    </section>
-
-    <p id="compare-empty-state" class="compare-empty-state">Choose at least one language to display the comparison tables.</p>
-
-    <nav class="compare-toc">
+    <nav class="compare-toc" aria-label="Comparison sections">
       {toc_html}
     </nav>
 
-    {sections_html}
+    <div class="compare-board" id="compare-board" data-max-lanes="{max_lanes}" style="--lanes: 1;">
+      <div class="compare-board-inner">
+        <div class="lane-bar" id="lane-bar" role="group" aria-label="Languages being compared">
+          <div class="lane-add-wrap">
+            <button type="button" id="lane-add" class="lane-add" aria-haspopup="menu" aria-expanded="false" aria-controls="lane-menu">
+              <span class="lane-add-icon" aria-hidden="true">+</span>
+              <span id="lane-add-label">Add language</span>
+            </button>
+            <div id="lane-menu" class="lane-menu" role="menu" aria-label="Available languages" hidden></div>
+          </div>
+        </div>
+
+        <p id="compare-empty-state" class="compare-empty-state">Use <strong>Add language</strong> to pick up to {max_lanes} languages and compare them side by side.</p>
+        <noscript><p class="compare-empty-state">The comparison view needs JavaScript to choose languages.</p></noscript>
+
+        {sections_html}
+      </div>
+    </div>
+    <p id="compare-status" class="sr-only" role="status" aria-live="polite"></p>
   </main>
 
   <script src="{js_path}"></script>

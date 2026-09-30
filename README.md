@@ -158,7 +158,7 @@ Each topic stores its complete authored body as `content_html`. The build valida
 
 The header language dropdown is populated at runtime from the generated language registry. Each menu item shows only the language name, in a compact card-style panel that matches the site's colors and borders. Adding a language entry makes it appear in the dropdown; no per-language header link needs to be added to the page templates.
 
-The comparison page uses the same registry to build its language selector. It starts with no languages selected and allows up to four at a time.
+The comparison page uses the same registry to build its **Add language** menu. It starts with no languages selected. Each language you add becomes a vertical lane, up to four at a time (`site.compare_max_languages` in the data file changes the limit). The selection is kept in the URL (`?lang=python,rust`), so a comparison can be bookmarked or shared.
 
 ### Local preview
 
