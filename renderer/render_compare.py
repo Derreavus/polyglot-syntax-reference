@@ -82,7 +82,7 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
           <div class="language-menu-panel" aria-label="Available languages"></div>
         </details>
       </nav>
-      <a href="{relative_asset_path(page_rel, 'index.html')}" class="lang-btn active" style="color: var(--accent); border: 1px solid var(--accent);">Home</a>
+      <a href="{relative_asset_path(page_rel, 'index.html')}" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Home</a>
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
     </div>
   </header>

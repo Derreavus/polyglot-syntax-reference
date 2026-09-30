@@ -65,6 +65,13 @@
       }
     },
     {
+      "slug": "ownership",
+      "title": "Ownership & Lifetimes",
+      "topics": {
+        "rust": "ownership"
+      }
+    },
+    {
       "slug": "operators",
       "title": "Operators",
       "topics": {
@@ -662,7 +669,7 @@
       "section": "ownership",
       "slug": "ownership",
       "title": "Ownership & Borrowing",
-      "concept": "variables",
+      "concept": "ownership",
       "sort_order": 7,
       "content_html": "<p>Every value has one owner. Non-<code class=\"inline\">Copy</code> assignment <em>moves</em>; the old binding is invalid.</p>\n        <pre><code>let s1 = String::from(\"hello\");\nlet s2 = s1;                  // move — s1 invalid\nprintln!(\"{s2}\");\n\nlet n1 = 5;                   // i32 is Copy\nlet n2 = n1;                  // both valid\n\nfn print_len(s: &amp;String) -&gt; usize { s.len() }\nprint_len(&amp;s);                // borrow, s still valid\n\nfn add_world(s: &amp;mut String) { s.push_str(\", world\"); }\nlet mut s = String::from(\"hello\");\nadd_world(&amp;mut s);\n\n// either one &amp;mut OR any number of &amp; — never both\nlet s3 = s2.clone();</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Ownership defaults</strong>\n          Prefer borrowing (<code class=\"inline\">&amp;T</code> / <code class=\"inline\">&amp;mut T</code>) over cloning.\n          Own with <code class=\"inline\">T</code> only when you need exclusive ownership.\n        </div>\n        <div class=\"decision-tree\">Need ownership?\n  │\n  ├─ no -&gt; borrow\n  │         ├─ read-only -&gt; &amp;T\n  │         └─ mutate    -&gt; &amp;mut T\n  └─ yes -&gt; move T\n            └─ shared ownership? -&gt; Arc&lt;T&gt; (or Rc&lt;T&gt; single-threaded)</div>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          Don't <code class=\"inline\">clone()</code> just to silence the borrow checker —\n          prefer a borrow or a redesign.\n        </div>",
       "search_keywords": "move borrow reference mut clone drop"
@@ -1594,7 +1601,7 @@
       "javascript": "no native interface"
     },
     {
-      "concept": "variables",
+      "concept": "ownership",
       "label": "Ownership / lifetime",
       "python": "GC-managed",
       "rust": "ownership + borrows",
@@ -1690,7 +1697,7 @@
       "slug": "ownership",
       "title": "Ownership",
       "concepts": [
-        "variables"
+        "ownership"
       ]
     },
     {

@@ -213,7 +213,7 @@ Examples should use valid, current syntax and avoid misleading shortcuts or lang
 
 ## Project Status
 
-Polyglot Syntax Reference currently focuses on C++, C#, Python, and Rust.
+Polyglot Syntax Reference currently covers C++, C#, JavaScript, Python, and Rust. JavaScript is a starter reference that is still being expanded.
 
 The project continues to evolve, with a focus on content accuracy, practical guidance, validated examples, accessibility, and cross-language navigation.
 
