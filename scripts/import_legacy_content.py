@@ -137,6 +137,7 @@ def main() -> int:
     DATA_PATH.write_text(
         json.dumps(data, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     print(f"Updated {DATA_PATH}")
     return 0

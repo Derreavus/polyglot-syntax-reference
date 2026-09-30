@@ -73,7 +73,7 @@ def render_site_data_js(data: dict) -> str:
 def generate_site_data_js(data: dict) -> None:
     target = OUTPUT_ROOT / "js" / "site-data.js"
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(render_site_data_js(data), encoding="utf-8")
+    target.write_text(render_site_data_js(data), encoding="utf-8", newline="\n")
 
 
 def copy_static_assets() -> None:
@@ -110,12 +110,12 @@ def validate_local_output_sync() -> None:
 
 def build_homepage(data: dict) -> None:
     page = render_home_page(data, page_rel="index.html")
-    (OUTPUT_ROOT / "index.html").write_text(page, encoding="utf-8")
+    (OUTPUT_ROOT / "index.html").write_text(page, encoding="utf-8", newline="\n")
 
 
 def build_compare_page(data: dict) -> None:
     page = render_compare_page(data, page_rel="compare/index.html")
-    (OUTPUT_ROOT / "compare" / "index.html").write_text(page, encoding="utf-8")
+    (OUTPUT_ROOT / "compare" / "index.html").write_text(page, encoding="utf-8", newline="\n")
 
 
 def build_language_pages(data: dict) -> None:
@@ -123,7 +123,7 @@ def build_language_pages(data: dict) -> None:
         slug = language["slug"]
         page_path = OUTPUT_ROOT / slug / "index.html"
         page = render_language_page(language, data, page_rel=f"{slug}/index.html")
-        page_path.write_text(page, encoding="utf-8")
+        page_path.write_text(page, encoding="utf-8", newline="\n")
 
 
 def validate_generated_site(data: dict) -> None:
