@@ -1,0 +1,1745 @@
+{
+  "languages": [
+    {
+      "slug": "python",
+      "name": "Python",
+      "status": "available",
+      "order": 1,
+      "description": "Readable and versatile. Explore types, collections, async, typing, and the standard library.",
+      "version_label": "Python 3.12+ · idiomatic modern Python"
+    },
+    {
+      "slug": "rust",
+      "name": "Rust",
+      "status": "available",
+      "order": 2,
+      "description": "Ownership, borrowing, traits, and zero-cost abstractions.",
+      "version_label": "Rust 2024 edition · safe systems programming"
+    },
+    {
+      "slug": "cpp",
+      "name": "C++",
+      "status": "available",
+      "order": 3,
+      "description": "Modern C++ from fundamentals through templates, RAII, and the STL.",
+      "version_label": "C++20/23 · modern language features"
+    },
+    {
+      "slug": "csharp",
+      "name": "C#",
+      "status": "available",
+      "order": 4,
+      "description": "Expressive and powerful. Explore LINQ, async/await, and the .NET libraries.",
+      "version_label": "C# 12 / .NET 8+ · modern .NET"
+    },
+    {
+      "slug": "javascript",
+      "name": "JavaScript",
+      "status": "available",
+      "order": 5,
+      "description": "A practical guide to JavaScript syntax, objects, asynchronous code, and the web platform.",
+      "version_label": "ECMAScript 2025 · modern JavaScript"
+    }
+  ],
+  "concepts": [
+    {
+      "slug": "types",
+      "title": "Data Types",
+      "topics": {
+        "python": "types",
+        "rust": "types",
+        "cpp": "types",
+        "csharp": "types",
+        "javascript": "types"
+      }
+    },
+    {
+      "slug": "variables",
+      "title": "Variables & Assignment",
+      "topics": {
+        "python": "variables",
+        "rust": "variables",
+        "cpp": "variables",
+        "csharp": "variables",
+        "javascript": "variables"
+      }
+    },
+    {
+      "slug": "operators",
+      "title": "Operators",
+      "topics": {
+        "python": "operators",
+        "cpp": "operators",
+        "csharp": "operators",
+        "javascript": "operators"
+      }
+    },
+    {
+      "slug": "control",
+      "title": "Control Flow",
+      "topics": {
+        "python": "control",
+        "rust": "control",
+        "cpp": "control",
+        "csharp": "control",
+        "javascript": "control"
+      }
+    },
+    {
+      "slug": "functions",
+      "title": "Functions",
+      "topics": {
+        "python": "functions",
+        "rust": "functions",
+        "cpp": "functions",
+        "csharp": "methods",
+        "javascript": "functions"
+      }
+    },
+    {
+      "slug": "classes",
+      "title": "Classes & OOP",
+      "topics": {
+        "python": "classes",
+        "rust": "structs",
+        "cpp": "classes",
+        "csharp": "classes",
+        "javascript": "objects"
+      }
+    },
+    {
+      "slug": "collections",
+      "title": "Collections",
+      "topics": {
+        "python": "collections",
+        "rust": "collections",
+        "cpp": "containers",
+        "csharp": "collections",
+        "javascript": "collections"
+      }
+    },
+    {
+      "slug": "exceptions",
+      "title": "Exceptions",
+      "topics": {
+        "python": "exceptions",
+        "rust": "error",
+        "cpp": "exceptions",
+        "csharp": "exceptions",
+        "javascript": "errors"
+      }
+    },
+    {
+      "slug": "async",
+      "title": "Async / Await",
+      "topics": {
+        "python": "async",
+        "cpp": "concurrency",
+        "csharp": "async",
+        "javascript": "async"
+      }
+    },
+    {
+      "slug": "iterators",
+      "title": "Iterators & Generators",
+      "topics": {
+        "python": "iterators",
+        "rust": "iterators",
+        "cpp": "algorithms",
+        "csharp": "linq",
+        "javascript": "iteration"
+      }
+    },
+    {
+      "slug": "pattern",
+      "title": "Pattern Matching",
+      "topics": {
+        "python": "control",
+        "rust": "pattern",
+        "csharp": "pattern"
+      }
+    },
+    {
+      "slug": "generics",
+      "title": "Generics & Type Hints",
+      "topics": {
+        "python": "typing",
+        "rust": "traits",
+        "cpp": "templates",
+        "csharp": "generics"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "language": "python",
+      "slug": "basics",
+      "title": "Basics",
+      "sort_order": 1
+    },
+    {
+      "language": "python",
+      "slug": "data-modeling",
+      "title": "Data Modeling",
+      "sort_order": 2
+    },
+    {
+      "language": "python",
+      "slug": "collections",
+      "title": "Collections",
+      "sort_order": 3
+    },
+    {
+      "language": "python",
+      "slug": "advanced",
+      "title": "Advanced",
+      "sort_order": 4
+    },
+    {
+      "language": "python",
+      "slug": "expansion",
+      "title": "Expansion",
+      "sort_order": 5
+    },
+    {
+      "language": "rust",
+      "slug": "basics",
+      "title": "Basics",
+      "sort_order": 1
+    },
+    {
+      "language": "rust",
+      "slug": "ownership",
+      "title": "Ownership",
+      "sort_order": 2
+    },
+    {
+      "language": "rust",
+      "slug": "data-modeling",
+      "title": "Data Modeling",
+      "sort_order": 3
+    },
+    {
+      "language": "rust",
+      "slug": "collections-error",
+      "title": "Collections & Error",
+      "sort_order": 4
+    },
+    {
+      "language": "rust",
+      "slug": "expansion",
+      "title": "Expansion",
+      "sort_order": 5
+    },
+    {
+      "language": "cpp",
+      "slug": "basics",
+      "title": "Basics",
+      "sort_order": 1
+    },
+    {
+      "language": "cpp",
+      "slug": "memory-types",
+      "title": "Memory & Types",
+      "sort_order": 2
+    },
+    {
+      "language": "cpp",
+      "slug": "templates-modern",
+      "title": "Templates & Modern",
+      "sort_order": 3
+    },
+    {
+      "language": "cpp",
+      "slug": "library",
+      "title": "Library",
+      "sort_order": 4
+    },
+    {
+      "language": "cpp",
+      "slug": "expansion",
+      "title": "Expansion",
+      "sort_order": 5
+    },
+    {
+      "language": "csharp",
+      "slug": "basics",
+      "title": "Basics",
+      "sort_order": 1
+    },
+    {
+      "language": "csharp",
+      "slug": "oop",
+      "title": "OOP",
+      "sort_order": 2
+    },
+    {
+      "language": "csharp",
+      "slug": "modern-features",
+      "title": "Modern Features",
+      "sort_order": 3
+    },
+    {
+      "language": "csharp",
+      "slug": "library",
+      "title": "Library",
+      "sort_order": 4
+    },
+    {
+      "language": "csharp",
+      "slug": "expansion",
+      "title": "Expansion",
+      "sort_order": 5
+    },
+    {
+      "language": "javascript",
+      "slug": "basics",
+      "title": "Basics",
+      "sort_order": 1
+    },
+    {
+      "language": "javascript",
+      "slug": "objects",
+      "title": "Objects & Functions",
+      "sort_order": 2
+    },
+    {
+      "language": "javascript",
+      "slug": "collections",
+      "title": "Collections",
+      "sort_order": 3
+    },
+    {
+      "language": "javascript",
+      "slug": "async",
+      "title": "Async & Modules",
+      "sort_order": 4
+    }
+  ],
+  "topics": [
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "types",
+      "title": "Data Types",
+      "concept": "types",
+      "sort_order": 1,
+      "content_html": "<p>JavaScript has seven primitive types. Objects, arrays, and functions are reference values.</p><pre><code>const count = 42;\nconst ratio = 3.14;\nconst text = \"hello\";\nconst enabled = true;\nconst missing = undefined;\nconst empty = null;\nconst symbol = Symbol(\"id\");\nconst large = 123n;</code></pre>",
+      "search_keywords": "number string boolean bigint symbol undefined null object"
+    },
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "variables",
+      "title": "Variables & Assignment",
+      "concept": "variables",
+      "sort_order": 2,
+      "content_html": "<p>Use <code class=\"inline\">const</code> by default, <code class=\"inline\">let</code> when reassignment is needed, and avoid <code class=\"inline\">var</code> in new code.</p><pre><code>const name = \"Ada\";\nlet count = 0;\ncount += 1;\nconst { name: userName } = user;\nconst [first, ...rest] = values;</code></pre>",
+      "search_keywords": "const let var assignment destructuring"
+    },
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "operators",
+      "title": "Operators",
+      "concept": "operators",
+      "sort_order": 3,
+      "content_html": "<pre><code>+ - * / % **\n= += -= *= /=\n=== !== == != &lt; &gt; &lt;= &gt;=\n&amp;&amp; || ! ?? ?.\n&amp; | ^ ~ &lt;&lt; &gt;&gt;\nvalue ?? fallback;\nuser?.address?.city;</code></pre><p>Prefer <code class=\"inline\">===</code> and <code class=\"inline\">!==</code> to avoid coercive equality.</p>",
+      "search_keywords": "arithmetic strict equality comparison logical nullish optional chaining bitwise"
+    },
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "control",
+      "title": "Control Flow",
+      "concept": "control",
+      "sort_order": 4,
+      "content_html": "<pre><code>if (score &gt;= 90) {\n  grade = \"A\";\n} else if (score &gt;= 80) {\n  grade = \"B\";\n} else {\n  grade = \"C\";\n}\n\nfor (const item of items) {\n  console.log(item);\n}\n\nswitch (status) {\n  case \"ready\": start(); break;\n  default: wait();\n}</code></pre>",
+      "search_keywords": "if else switch for of while break"
+    },
+    {
+      "language": "javascript",
+      "section": "objects",
+      "slug": "functions",
+      "title": "Functions",
+      "concept": "functions",
+      "sort_order": 5,
+      "content_html": "<pre><code>function add(a, b = 0) {\n  return a + b;\n}\n\nconst square = (n) =&gt; n * n;\nconst logAll = (...values) =&gt; console.log(...values);\n\nfunction makeCounter() {\n  let count = 0;\n  return () =&gt; ++count;\n}</code></pre>",
+      "search_keywords": "function arrow default parameter rest closure callback"
+    },
+    {
+      "language": "javascript",
+      "section": "objects",
+      "slug": "objects",
+      "title": "Objects & Classes",
+      "concept": "classes",
+      "sort_order": 6,
+      "content_html": "<pre><code>const point = { x: 2, y: 3 };\npoint.x;\n\nclass Animal {\n  constructor(name) { this.name = name; }\n  speak() { return `${this.name} makes a sound`; }\n}\n\nclass Dog extends Animal {\n  speak() { return `${this.name} barks`; }\n}</code></pre>",
+      "search_keywords": "object class constructor prototype inheritance extends methods"
+    },
+    {
+      "language": "javascript",
+      "section": "collections",
+      "slug": "collections",
+      "title": "Collections",
+      "concept": "collections",
+      "sort_order": 7,
+      "content_html": "<pre><code>const items = [1, 2, 3];\nitems.push(4);\nconst doubled = items.map((n) =&gt; n * 2);\nconst evens = items.filter((n) =&gt; n % 2 === 0);\n\nconst userById = new Map();\nuserById.set(\"u1\", { name: \"Ada\" });\n\nconst tags = new Set([\"js\", \"web\"]);</code></pre>",
+      "search_keywords": "array map set filter reduce collection"
+    },
+    {
+      "language": "javascript",
+      "section": "collections",
+      "slug": "iteration",
+      "title": "Iteration & Iterators",
+      "concept": "iterators",
+      "sort_order": 8,
+      "content_html": "<pre><code>for (const value of values) {\n  console.log(value);\n}\n\nconst iterator = values[Symbol.iterator]();\niterator.next();\n\nfunction* ids() {\n  yield 1;\n  yield 2;\n}</code></pre>",
+      "search_keywords": "for of iterator Symbol.iterator generator yield"
+    },
+    {
+      "language": "javascript",
+      "section": "collections",
+      "slug": "errors",
+      "title": "Errors",
+      "concept": "exceptions",
+      "sort_order": 9,
+      "content_html": "<pre><code>try {\n  const data = JSON.parse(source);\n} catch (error) {\n  console.error(error.message);\n} finally {\n  releaseResources();\n}\n\nthrow new Error(\"Request failed\");</code></pre>",
+      "search_keywords": "try catch finally throw Error"
+    },
+    {
+      "language": "javascript",
+      "section": "async",
+      "slug": "async",
+      "title": "Async & Await",
+      "concept": "async",
+      "sort_order": 10,
+      "content_html": "<pre><code>async function loadUser(id) {\n  const response = await fetch(`/users/${id}`);\n  if (!response.ok) throw new Error(\"Request failed\");\n  return response.json();\n}\n\nconst [user, settings] = await Promise.all([\n  loadUser(\"u1\"),\n  loadSettings(),\n]);</code></pre>",
+      "search_keywords": "async await Promise fetch Promise.all"
+    },
+    {
+      "language": "python",
+      "section": "basics",
+      "slug": "types",
+      "title": "Data Types",
+      "concept": "types",
+      "sort_order": 1,
+      "content_html": "<pre><code># Scalars\ni: int = 42\nf: float = 3.14\nb: bool = True\nc: str = \"hello\"\nn = None\n0xFF  0b1010  0o755  1_000_000  3+4j\nlst: list[int] = [1, 2, 3]\ntup: tuple[int, ...] = (1, 2, 3)\nst: set[int] = {1, 2, 3}\ndct: dict[str, int] = {\"a\": 1}\nbs: bytes = b\"raw\"</code></pre>",
+      "search_keywords": "int float str bool list dict tuple set none"
+    },
+    {
+      "language": "python",
+      "section": "basics",
+      "slug": "variables",
+      "title": "Variables & Assignment",
+      "concept": "variables",
+      "sort_order": 2,
+      "content_html": "<pre><code>x = 42\nx, y = 1, 2\nx, y = y, x\na = b = c = 0\nx += 1\nif (n := len(items)) &gt; 10: print(n)\nfirst, *rest, last = [1, 2, 3, 4, 5]</code></pre>",
+      "search_keywords": "unpack walrus swap binding"
+    },
+    {
+      "language": "python",
+      "section": "basics",
+      "slug": "operators",
+      "title": "Operators",
+      "concept": "operators",
+      "sort_order": 3,
+      "content_html": "<pre><code>+ - * / // % **\n== != &lt; &gt; &lt;= &gt;=\nis  is not  in  not in\nand  or  not\n&amp; | ^ ~ &lt;&lt; &gt;&gt;\n1 &lt; x &lt;= 10</code></pre>",
+      "search_keywords": "arithmetic comparison is in and or"
+    },
+    {
+      "language": "python",
+      "section": "basics",
+      "slug": "control",
+      "title": "Control Flow",
+      "concept": "control",
+      "sort_order": 4,
+      "content_html": "<pre><code>if x &gt; 0: ...\nelif x == 0: ...\nelse: ...\n\nmatch command:\n    case [\"quit\"]: ...\n    case [\"load\", filename]: ...\n    case _: print(\"unknown\")\n\nfor item in iterable: ...\nwhile condition: ...\nvalue = a if condition else b</code></pre>",
+      "search_keywords": "if elif else match case for while break"
+    },
+    {
+      "language": "python",
+      "section": "basics",
+      "slug": "functions",
+      "title": "Functions",
+      "concept": "functions",
+      "sort_order": 5,
+      "content_html": "<pre><code>def add(a: int, b: int = 0) -&gt; int:\n    return a + b\n\ndef log(*args, **kwargs): ...\ndef f(pos_only, /, normal, *, kw_only): ...\nsquare = lambda x: x * x\n\n@decorator\ndef func(): ...</code></pre>",
+      "search_keywords": "def lambda decorator args kwargs closure"
+    },
+    {
+      "language": "python",
+      "section": "data-modeling",
+      "slug": "classes",
+      "title": "Classes & OOP",
+      "concept": "classes",
+      "sort_order": 6,
+      "content_html": "<pre><code>class Animal:\n    def __init__(self, name: str):\n        self.name = name\n    def speak(self) -&gt; str:\n        raise NotImplementedError\n\nclass Dog(Animal):\n    def speak(self) -&gt; str:\n        return f\"{self.name} says Woof!\"</code></pre>",
+      "search_keywords": "class inheritance mro abc abstract"
+    },
+    {
+      "language": "python",
+      "section": "data-modeling",
+      "slug": "dataclasses",
+      "title": "Dataclasses & Named Tuples",
+      "concept": null,
+      "sort_order": 7,
+      "content_html": "<pre><code>from dataclasses import dataclass, field\n\n@dataclass(slots=True)\nclass Point:\n    x: float\n    y: float\n    tags: list[str] = field(default_factory=list)</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Default data bag</strong>\n          Prefer <code class=\"inline\">@dataclass</code> for simple field containers.\n        </div>",
+      "search_keywords": "dataclass frozen slots field namedtuple enum"
+    },
+    {
+      "language": "python",
+      "section": "data-modeling",
+      "slug": "typing",
+      "title": "Type Hints",
+      "concept": "generics",
+      "sort_order": 8,
+      "content_html": "<pre><code>from collections.abc import Sequence\n\n# PEP 695 generic syntax (3.12+)\ndef first[T](seq: Sequence[T]) -&gt; T | None: ...\n\n# Structural typing\nfrom typing import Protocol\nclass Sized(Protocol):\n    def __len__(self) -&gt; int: ...</code></pre>",
+      "search_keywords": "typing TypeVar Generic Protocol Optional Union overload"
+    },
+    {
+      "language": "python",
+      "section": "collections",
+      "slug": "collections",
+      "title": "Collections",
+      "concept": "collections",
+      "sort_order": 9,
+      "content_html": "<pre><code>lst = [1, 2, 3]; lst.append(4)\nd = {\"a\": 1}; d.get(\"b\", 0)\ns = {1, 2, 3}\nfrom collections import deque, Counter, defaultdict</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Defaults</strong>\n          <code class=\"inline\">list</code> · <code class=\"inline\">dict</code> · <code class=\"inline\">set</code>\n        </div>",
+      "search_keywords": "list dict set deque Counter defaultdict"
+    },
+    {
+      "language": "python",
+      "section": "collections",
+      "slug": "comprehensions",
+      "title": "Comprehensions",
+      "concept": null,
+      "sort_order": 10,
+      "content_html": "<pre><code>squares = [x*x for x in range(10)]\nevens = [x for x in range(20) if x % 2 == 0]\nd = {k: v for k, v in pairs}</code></pre>",
+      "search_keywords": "list dict set generator expression"
+    },
+    {
+      "language": "python",
+      "section": "collections",
+      "slug": "iterators",
+      "title": "Iterators & Generators",
+      "concept": "iterators",
+      "sort_order": 11,
+      "content_html": "<pre><code>def countdown(n):\n    while n &gt; 0:\n        yield n\n        n -= 1\nfrom itertools import count, chain, islice</code></pre>",
+      "search_keywords": "yield iter next itertools functools"
+    },
+    {
+      "language": "python",
+      "section": "advanced",
+      "slug": "exceptions",
+      "title": "Exceptions",
+      "concept": "exceptions",
+      "sort_order": 12,
+      "content_html": "<pre><code>try:\n    risky()\nexcept ValueError as e:\n    print(e)\nfinally:\n    cleanup()\nraise ValueError(\"bad\")</code></pre>",
+      "search_keywords": "try except finally raise ExceptionGroup"
+    },
+    {
+      "language": "python",
+      "section": "advanced",
+      "slug": "context",
+      "title": "Context Managers",
+      "concept": "pattern",
+      "sort_order": 13,
+      "content_html": "<pre><code>with open(\"file.txt\") as f:\n    data = f.read()</code></pre>",
+      "search_keywords": "with enter exit contextmanager"
+    },
+    {
+      "language": "python",
+      "section": "advanced",
+      "slug": "async",
+      "title": "Async / Await",
+      "concept": "async",
+      "sort_order": 14,
+      "content_html": "<pre><code>import asyncio\nasync def fetch(url: str) -&gt; str: ...\nasync def main():\n    await asyncio.gather(fetch(\"a\"), fetch(\"b\"))\nasyncio.run(main())</code></pre>",
+      "search_keywords": "asyncio await gather TaskGroup coroutine"
+    },
+    {
+      "language": "python",
+      "section": "advanced",
+      "slug": "stdlib",
+      "title": "Key Standard Library Modules",
+      "concept": "collections",
+      "sort_order": 15,
+      "content_html": "<table>\n          <thead><tr><th>Module</th><th>Import</th><th>Use for</th></tr></thead>\n          <tbody>\n            <tr><td>pathlib</td><td><code class=\"inline\">from pathlib import Path</code></td><td>filesystem paths</td></tr>\n            <tr><td>json</td><td><code class=\"inline\">import json</code></td><td>JSON encode/decode</td></tr>\n            <tr><td>collections</td><td><code class=\"inline\">from collections import deque, Counter</code></td><td>deque, Counter</td></tr>\n            <tr><td>itertools</td><td><code class=\"inline\">import itertools</code></td><td>lazy iterators</td></tr>\n            <tr><td>functools</td><td><code class=\"inline\">from functools import lru_cache</code></td><td>cache, partial</td></tr>\n            <tr><td>dataclasses</td><td><code class=\"inline\">from dataclasses import dataclass</code></td><td>data bags</td></tr>\n            <tr><td>asyncio</td><td><code class=\"inline\">import asyncio</code></td><td>async runtime</td></tr>\n            <tr><td>re</td><td><code class=\"inline\">import re</code></td><td>regex</td></tr>\n            <tr><td>logging</td><td><code class=\"inline\">import logging</code></td><td>logging</td></tr>\n            <tr><td>argparse</td><td><code class=\"inline\">import argparse</code></td><td>CLI args</td></tr>\n          </tbody>\n        </table>",
+      "search_title": "Standard Library",
+      "search_keywords": "pathlib json re datetime sys os"
+    },
+    {
+      "language": "python",
+      "section": "advanced",
+      "slug": "packaging",
+      "title": "Packaging",
+      "concept": "functions",
+      "sort_order": 16,
+      "content_html": "<pre><code>python -m venv .venv\npip install -e .\nuv / ruff / mypy / pytest</code></pre>",
+      "search_title": "Packaging & Tooling",
+      "search_keywords": "pip uv venv pyproject ruff mypy pytest"
+    },
+    {
+      "language": "python",
+      "section": "expansion",
+      "slug": "gotchas",
+      "title": "Gotchas",
+      "concept": null,
+      "sort_order": 17,
+      "content_html": "<pre><code># Mutable default — shared across calls\ndef append(item, bucket=[]):   # BAD\n    bucket.append(item); return bucket\n\ndef append(item, bucket=None):  # GOOD\n    if bucket is None: bucket = []\n    bucket.append(item); return bucket\n\n# is vs ==\na is b          # identity\na == b          # equality\n\n# Late-binding closures\nfuncs = [lambda: i for i in range(3)]\nfuncs[0]()      # 2 — all see final i\nfuncs = [lambda i=i: i for i in range(3)]  # capture\n\n# Generator exhaustion\ng = (x*x for x in range(3))\nlist(g); list(g)  # second is []\n\n# Prefer specific exceptions over bare except\n</code></pre>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          Mutable defaults and late-binding closures are classic traps.\n          Prefer <code class=\"inline\">None</code> defaults and default-arg capture in lambdas.\n        </div>"
+    },
+    {
+      "language": "python",
+      "section": "expansion",
+      "slug": "ecosystem",
+      "title": "Ecosystem & Tooling",
+      "concept": null,
+      "sort_order": 18,
+      "content_html": "<pre><code># Environments\npython -m venv .venv &amp;&amp; source .venv/bin/activate\nuv venv\n\n# Install\npip install package\nuv add package\n\n# Lint / format / types / test\nruff check . &amp;&amp; ruff format .\nmypy . / pyright\npytest\n\nuv run python script.py\n</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Defaults</strong>\n          <code class=\"inline\">uv</code> or <code class=\"inline\">pip</code>+venv ·\n          <code class=\"inline\">ruff</code> · <code class=\"inline\">pytest</code> · <code class=\"inline\">mypy</code>/<code class=\"inline\">pyright</code>\n        </div>"
+    },
+    {
+      "language": "rust",
+      "section": "basics",
+      "slug": "getting-started",
+      "title": "Getting Started",
+      "concept": null,
+      "sort_order": 1,
+      "content_html": "<pre><code># Install toolchain\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n\nrustc --version\ncargo --version\n\ncargo new my_project\ncd my_project\ncargo run\ncargo build --release\ncargo test\ncargo check\ncargo clippy\ncargo fmt\ncargo add serde\ncargo doc --open\n\nrustc main.rs</code></pre>\n        <div class=\"note\">Prefer Cargo for almost everything. Book: <code class=\"inline\">doc.rust-lang.org/book</code>.</div>",
+      "search_keywords": "cargo new build run rustc"
+    },
+    {
+      "language": "rust",
+      "section": "basics",
+      "slug": "types",
+      "title": "Data Types",
+      "concept": "types",
+      "sort_order": 2,
+      "content_html": "<p>Statically typed; compiler usually infers. Integers default to <code class=\"inline\">i32</code>, floats to <code class=\"inline\">f64</code>. <code class=\"inline\">char</code> is a Unicode scalar (4 bytes).</p>\n        <pre><code>let i: i32 = 42;\nlet u: u8 = 255;\nlet f: f64 = 3.14;\nlet b: bool = true;\nlet c: char = 'R';\n\n// i8/u8 … i128/u128, isize/usize · f32, f64\n\"42\".parse::&lt;i32&gt;().unwrap();\n42.to_string();\n42 as f64;\n\nlet tup: (i32, f64, char) = (1, 2.0, 'a');\nlet (x, y, z) = tup;\nlet arr: [i32; 3] = [1, 2, 3];\nlet zeros = [0; 5];\nlet unit: () = ();</code></pre>",
+      "search_keywords": "i32 u64 f64 bool char tuple array slice"
+    },
+    {
+      "language": "rust",
+      "section": "basics",
+      "slug": "variables",
+      "title": "Variables & Assignment",
+      "concept": "variables",
+      "sort_order": 3,
+      "content_html": "<p>Immutable by default. Add <code class=\"inline\">mut</code> to reassign. Shadowing reuses a name (even with a new type).</p>\n        <pre><code>let name = \"Leo\";             // &amp;str, immutable\nlet mut age = 7;\nage += 1;\n\nconst MAX_AGE: u32 = 120;\nstatic GREETING: &amp;str = \"Hi!\";\n\nlet x = 5;\nlet x = x * 2;                // shadow\nlet x = x.to_string();        // new type OK\n\nlet (a, b) = (1, 2);\nlet Point { x, y } = p;</code></pre>",
+      "search_keywords": "let mut const static shadowing"
+    },
+    {
+      "language": "rust",
+      "section": "basics",
+      "slug": "strings",
+      "title": "Strings",
+      "concept": null,
+      "sort_order": 4,
+      "content_html": "<pre><code>let s1: &amp;str = \"Hello\";\nlet s2 = String::from(\"World\");\nlet s3 = \"Hi\".to_string();\n\n\"me\".to_string() + \"ow!\";\n\"Meow!\".repeat(3);\n\"Python\".len();               // bytes\n\" a \".trim();\n\"abc\".replace(\"bc\", \"ha\");\n\"a b\".split(' ').collect::&lt;Vec&lt;_&gt;&gt;();\n[\"a\", \"b\"].join(\"-\");\n\nlet text = \"Python\";\n&amp;text[0..1];  // panics if the boundary isn't on a char boundary (non-ASCII risk)\ntext.chars().rev().collect::&lt;String&gt;();\n\nformat!(\"Hello, {name}!\");\nprintln!(\"{:?}\", age);</code></pre>\n        <div class=\"callout callout-use\"><strong>When to use</strong>\n          Parameters: prefer <code class=\"inline\">&amp;str</code>.\n          Ownership / mutation: <code class=\"inline\">String</code>.\n          Building text: <code class=\"inline\">format!</code> or <code class=\"inline\">push_str</code>.\n        </div>",
+      "search_keywords": "String str to_string format"
+    },
+    {
+      "language": "rust",
+      "section": "basics",
+      "slug": "control",
+      "title": "Control Flow",
+      "concept": "control",
+      "sort_order": 5,
+      "content_html": "<p>No truthiness — conditions must be <code class=\"inline\">bool</code>. <code class=\"inline\">if</code> is an expression.</p>\n        <pre><code>let category = if age &lt; 13 { \"child\" }\nelse if age &lt; 20 { \"teenager\" }\nelse { \"adult\" };\n\nlet mut count = 0;\nlet result = loop {\n    count += 1;\n    if count == 3 { continue; }\n    if count == 10 { break count * 2; }\n};\n\nwhile condition { ... }\nfor i in 0..5 { ... }\nfor i in 0..=5 { ... }\nfor fruit in &amp;fruits { ... }\nfor (i, fruit) in fruits.iter().enumerate() { ... }\n\n'outer: for x in 0..5 {\n    for y in 0..5 {\n        if x * y &gt; 6 { break 'outer; }\n    }\n}</code></pre>",
+      "search_keywords": "if else loop while for break continue"
+    },
+    {
+      "language": "rust",
+      "section": "basics",
+      "slug": "functions",
+      "title": "Functions & Closures",
+      "concept": "functions",
+      "sort_order": 6,
+      "content_html": "<pre><code>fn greet() -&gt; String { \"Hello!\".to_string() }\nfn greet_person(name: &amp;str) -&gt; String { format!(\"Hello, {name}!\") }\nfn add(x: i32, y: i32) -&gt; i32 { x + y }  // no semicolon = return\n\nfn min_max(nums: &amp;[i32]) -&gt; (i32, i32) {\n    (*nums.iter().min().unwrap(), *nums.iter().max().unwrap())\n}\n\nlet square = |x: i32| x * x;\nlet sq: Vec&lt;i32&gt; = nums.iter().map(|x| x * x).collect();\n\nfn make_adder(n: i32) -&gt; impl Fn(i32) -&gt; i32 {\n    move |x| x + n\n}</code></pre>",
+      "search_keywords": "fn closure move Fn FnMut FnOnce"
+    },
+    {
+      "language": "rust",
+      "section": "ownership",
+      "slug": "ownership",
+      "title": "Ownership & Borrowing",
+      "concept": "variables",
+      "sort_order": 7,
+      "content_html": "<p>Every value has one owner. Non-<code class=\"inline\">Copy</code> assignment <em>moves</em>; the old binding is invalid.</p>\n        <pre><code>let s1 = String::from(\"hello\");\nlet s2 = s1;                  // move — s1 invalid\nprintln!(\"{s2}\");\n\nlet n1 = 5;                   // i32 is Copy\nlet n2 = n1;                  // both valid\n\nfn print_len(s: &amp;String) -&gt; usize { s.len() }\nprint_len(&amp;s);                // borrow, s still valid\n\nfn add_world(s: &amp;mut String) { s.push_str(\", world\"); }\nlet mut s = String::from(\"hello\");\nadd_world(&amp;mut s);\n\n// either one &amp;mut OR any number of &amp; — never both\nlet s3 = s2.clone();</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Ownership defaults</strong>\n          Prefer borrowing (<code class=\"inline\">&amp;T</code> / <code class=\"inline\">&amp;mut T</code>) over cloning.\n          Own with <code class=\"inline\">T</code> only when you need exclusive ownership.\n        </div>\n        <div class=\"decision-tree\">Need ownership?\n  │\n  ├─ no -&gt; borrow\n  │         ├─ read-only -&gt; &amp;T\n  │         └─ mutate    -&gt; &amp;mut T\n  └─ yes -&gt; move T\n            └─ shared ownership? -&gt; Arc&lt;T&gt; (or Rc&lt;T&gt; single-threaded)</div>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          Don't <code class=\"inline\">clone()</code> just to silence the borrow checker —\n          prefer a borrow or a redesign.\n        </div>",
+      "search_keywords": "move borrow reference mut clone drop"
+    },
+    {
+      "language": "rust",
+      "section": "ownership",
+      "slug": "lifetimes",
+      "title": "Lifetimes",
+      "concept": null,
+      "sort_order": 8,
+      "content_html": "<pre><code>fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {\n    if x.len() &gt; y.len() { x } else { y }\n}\n\nstruct Excerpt&lt;'a&gt; { part: &amp;'a str }\nimpl&lt;'a&gt; Excerpt&lt;'a&gt; {\n    fn level(&amp;self) -&gt; i32 { 3 }\n}\n// 'static = whole program (string literals)</code></pre>",
+      "search_keywords": "lifetime static annotation"
+    },
+    {
+      "language": "rust",
+      "section": "data-modeling",
+      "slug": "structs",
+      "title": "Structs & Enums",
+      "concept": "classes",
+      "sort_order": 9,
+      "content_html": "<pre><code>struct Dog { name: String, age: u8 }\nimpl Dog {\n    fn new(name: &amp;str, age: u8) -&gt; Self {\n        Self { name: name.to_string(), age }\n    }\n    fn bark(&amp;self) -&gt; String { format!(\"{} says Woof!\", self.name) }\n}\n\nstruct Point(i32, i32);       // tuple struct\nenum Animal {\n    Dog(String),\n    Cat { name: String, lives: u8 },\n}\nlet some: Option&lt;i32&gt; = Some(5);\nlet none: Option&lt;i32&gt; = None;</code></pre>",
+      "search_keywords": "struct enum impl Option Result"
+    },
+    {
+      "language": "rust",
+      "section": "data-modeling",
+      "slug": "traits",
+      "title": "Traits & Generics",
+      "concept": "generics",
+      "sort_order": 10,
+      "content_html": "<pre><code>trait Shape {\n    fn area(&amp;self) -&gt; f64;\n    fn name(&amp;self) -&gt; &amp;str { \"shape\" }\n}\nimpl Shape for Circle {\n    fn area(&amp;self) -&gt; f64 { std::f64::consts::PI * self.radius.powi(2) }\n}\n\nfn largest&lt;T: PartialOrd + Copy&gt;(list: &amp;[T]) -&gt; T {\n    // ...\n}\nfn print_shape(shape: &amp;impl Shape) {\n    // ...\n}\nlet shapes: Vec&lt;Box&lt;dyn Shape&gt;&gt; = vec![Box::new(circle), Box::new(square)];\n\n#[derive(Debug, Clone, PartialEq, Eq, Hash, Default)]\nstruct Point { x: i32, y: i32 }</code></pre>",
+      "search_keywords": "trait impl where bound dyn derive"
+    },
+    {
+      "language": "rust",
+      "section": "data-modeling",
+      "slug": "pattern",
+      "title": "Pattern Matching",
+      "concept": "pattern",
+      "sort_order": 11,
+      "content_html": "<pre><code>match n {\n    1 =&gt; println!(\"one\"),\n    2 | 3 =&gt; println!(\"two or three\"),\n    4..=9 =&gt; println!(\"four through nine\"),\n    _ =&gt; println!(\"something else\"),\n}\n\nif let Some(v) = maybe_value { println!(\"Got {v}\"); }\n\nmatch n {\n    x if x &lt; 0 =&gt; println!(\"negative\"),\n    x if x % 2 == 0 =&gt; println!(\"even\"),\n    _ =&gt; println!(\"odd\"),\n}</code></pre>",
+      "search_keywords": "match if let while let destructure"
+    },
+    {
+      "language": "rust",
+      "section": "collections-error",
+      "slug": "collections",
+      "title": "Collections",
+      "concept": "collections",
+      "sort_order": 12,
+      "content_html": "<pre><code>let mut nums: Vec&lt;i32&gt; = Vec::new();\nlet mut nums = vec![5];\nnums.push(10);\nnums.pop();                   // Option&lt;T&gt;\n\nuse std::collections::{HashMap, HashSet};\nlet mut pet = HashMap::new();\npet.insert(\"name\", \"Leo\");\npet.get(\"age\");               // Option&lt;&amp;V&gt;\n*pet.entry(\"hits\").or_insert(0) += 1;\n\nuse std::collections::BTreeMap; // sorted keys</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Defaults</strong>\n          <code class=\"inline\">Vec&lt;T&gt;</code> — default collection ·\n          <code class=\"inline\">String</code> — owned text ·\n          <code class=\"inline\">&amp;str</code> — default borrowed text parameter ·\n          <code class=\"inline\">HashMap&lt;K,V&gt;</code> — key/value\n        </div>",
+      "search_keywords": "Vec HashMap HashSet BTreeMap VecDeque"
+    },
+    {
+      "language": "rust",
+      "section": "collections-error",
+      "slug": "iterators",
+      "title": "Iterators",
+      "concept": "iterators",
+      "sort_order": 13,
+      "content_html": "<p>Lazy — nothing runs until a consuming adapter.</p>\n        <pre><code>let squares: Vec&lt;i32&gt; = (0..10).map(|x| x * x).collect();\nlet evens: Vec&lt;i32&gt; = (0..20).filter(|x| x % 2 == 0).collect();\nlet total: i32 = (1..=1000).sum();\nwords.iter().any(|w| w.len() &gt; 4);\n(1..=5).fold(1, |acc, x| acc * x);\nnames.iter().zip(ages.iter());</code></pre>",
+      "search_keywords": "iter map filter collect fold zip"
+    },
+    {
+      "language": "rust",
+      "section": "collections-error",
+      "slug": "error",
+      "title": "Error Handling",
+      "concept": "exceptions",
+      "sort_order": 14,
+      "content_html": "<p>No exceptions. Recoverable: <code class=\"inline\">Result&lt;T, E&gt;</code>. Unrecoverable: <code class=\"inline\">panic!</code>.</p>\n        <pre><code>fn divide(a: f64, b: f64) -&gt; Result&lt;f64, String&gt; {\n    if b == 0.0 { return Err(\"Cannot divide by zero!\".into()); }\n    Ok(a / b)\n}\n\nmatch divide(10.0, 0.0) {\n    Ok(r) =&gt; println!(\"Result: {r}\"),\n    Err(e) =&gt; println!(\"{e}\"),\n}\n\nfn read_number() -&gt; Result&lt;i32, Box&lt;dyn std::error::Error&gt;&gt; {\n    let s = std::fs::read_to_string(\"num.txt\")?;\n    let n: i32 = s.trim().parse()?;\n    Ok(n)\n}\n\nresult.unwrap_or(0);\nSome(4).map(|n| n * 2);</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Error handling defaults</strong>\n          <code class=\"inline\">Result&lt;T, E&gt;</code> recoverable ·\n          <code class=\"inline\">Option&lt;T&gt;</code> absence ·\n          <code class=\"inline\">?</code> to propagate ·\n          Prefer <code class=\"inline\">unwrap_or</code> / <code class=\"inline\">ok_or</code> over bare <code class=\"inline\">unwrap()</code> in libraries.\n        </div>",
+      "search_keywords": "Result Option unwrap expect anyhow"
+    },
+    {
+      "language": "rust",
+      "section": "collections-error",
+      "slug": "modules",
+      "title": "Modules & Cargo",
+      "concept": null,
+      "sort_order": 15,
+      "content_html": "<pre><code>mod shapes;                   // shapes.rs or shapes/mod.rs\npub struct Public;\npub(crate) struct CrateVisible;\nuse std::io::{self, Write};\nuse std::collections::HashMap as Map;\n\n// Cargo.toml\n[package]\nname = \"my_project\"\nedition = \"2024\"\n[dependencies]\nserde = { version = \"1\", features = [\"derive\"] }\nanyhow = \"1\"</code></pre>",
+      "search_keywords": "mod pub use cargo.toml crate"
+    },
+    {
+      "language": "rust",
+      "section": "collections-error",
+      "slug": "io",
+      "title": "File I/O",
+      "concept": null,
+      "sort_order": 16,
+      "content_html": "<pre><code>use std::fs;\nuse std::io::{BufRead, BufReader, Write};\n\nlet content = fs::read_to_string(\"file.txt\")?;\nfor line in BufReader::new(fs::File::open(\"file.txt\")?).lines() {\n    println!(\"{}\", line?.trim());\n}\nfs::write(\"output.txt\", \"Hello\\n\")?;\nuse std::path::Path;\nPath::new(\"/tmp/data.txt\").exists();</code></pre>",
+      "search_keywords": "fs File read write BufReader"
+    },
+    {
+      "language": "rust",
+      "section": "collections-error",
+      "slug": "concurrency",
+      "title": "Concurrency",
+      "concept": null,
+      "sort_order": 17,
+      "content_html": "<pre><code>use std::thread;\nuse std::sync::{Arc, Mutex, mpsc};\n\nlet handle = thread::spawn(|| { println!(\"hi\"); });\nhandle.join().unwrap();\n\nlet (tx, rx) = mpsc::channel();\nthread::spawn(move || { tx.send(\"hello\").unwrap(); });\nprintln!(\"{}\", rx.recv().unwrap());\n\nlet counter = Arc::new(Mutex::new(0));\n// clone Arc into threads, lock Mutex to mutate\n// async: usually tokio</code></pre>"
+    },
+    {
+      "language": "rust",
+      "section": "collections-error",
+      "slug": "advanced",
+      "title": "Advanced Idioms",
+      "concept": null,
+      "sort_order": 18,
+      "content_html": "<pre><code>struct Meters(f64);           // newtype\ntype Result&lt;T&gt; = std::result::Result&lt;T, Box&lt;dyn std::error::Error&gt;&gt;;\nuse std::cell::RefCell;\nuse std::borrow::Cow;\n// Pin, unsafe, FFI, macros when needed</code></pre>"
+    },
+    {
+      "language": "rust",
+      "section": "expansion",
+      "slug": "gotchas",
+      "title": "Gotchas",
+      "concept": null,
+      "sort_order": 19,
+      "content_html": "<pre><code>// Unnecessary clone — prefer a borrow\nlet s2 = s1.clone();   // only when you need ownership\n\n// Borrowing across mutation\nlet r = &amp;v[0];\nv.push(1);             // error while r lives\n\n// unwrap in libraries\nvalue.unwrap();        // prefer ? / unwrap_or / ok_or\n\n// Blocking inside async\nstd::thread::sleep(...);  // use tokio::time::sleep\n\n// Mutex poisoning — a panic while holding the lock poisons it;\n// later .lock() calls return Err instead of panicking silently\nlet guard = match mutex.lock() {\n    Ok(g) =&gt; g,\n    Err(poisoned) =&gt; poisoned.into_inner(), // recover the data anyway\n};\n\n// Prefer &amp;T / &amp;mut T; Arc only for shared ownership across threads\n</code></pre>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          <code class=\"inline\">clone()</code> and <code class=\"inline\">unwrap()</code> silence the compiler but hide design issues.\n          Prefer borrows and <code class=\"inline\">?</code> propagation.\n        </div>"
+    },
+    {
+      "language": "rust",
+      "section": "expansion",
+      "slug": "ecosystem",
+      "title": "Ecosystem & Tooling",
+      "concept": null,
+      "sort_order": 20,
+      "content_html": "<pre><code>rustup update\nrustup component add clippy rustfmt\n\ncargo new my_project\ncargo add serde --features derive\ncargo check\ncargo test\ncargo clippy\ncargo fmt\ncargo build --release\ncargo doc --open\ncargo tree\ncargo update\n</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Defaults</strong>\n          <code class=\"inline\">cargo check</code> while iterating ·\n          <code class=\"inline\">clippy</code> + <code class=\"inline\">fmt</code> in CI ·\n          <code class=\"inline\">cargo test</code> before release\n        </div>"
+    },
+    {
+      "language": "cpp",
+      "section": "basics",
+      "slug": "types",
+      "title": "Data Types",
+      "concept": "types",
+      "sort_order": 1,
+      "content_html": "<h3>Fundamental Types</h3>\n        <pre><code>bool  char  wchar_t  char8_t  char16_t  char32_t\nshort  int  long  long long\nfloat  double  long double\nvoid  auto  decltype(x)</code></pre>\n        <h3>Fixed-Width (cstdint)</h3>\n        <pre><code>int8_t / uint8_t … int64_t / uint64_t\nsize_t  ptrdiff_t  intptr_t / uintptr_t</code></pre>\n        <h3>Storage & Specifiers</h3>\n        <pre><code>const  volatile  constexpr  consteval\nmutable  static  extern  inline  thread_local</code></pre>",
+      "search_keywords": "int bool char float auto decltype constexpr"
+    },
+    {
+      "language": "cpp",
+      "section": "basics",
+      "slug": "variables",
+      "title": "Variables & Literals",
+      "concept": "variables",
+      "sort_order": 2,
+      "content_html": "<pre><code>int a = 42;\nauto x = 10;\nint&amp; ref = a;\nint&amp;&amp; rref = 42;\nnullptr;\nstd::string str = \"hello\"s;\n0xFF  0b1010  1'000'000  42uz</code></pre>",
+      "search_keywords": "initialization brace nullptr reference"
+    },
+    {
+      "language": "cpp",
+      "section": "basics",
+      "slug": "operators",
+      "title": "Operators",
+      "concept": "operators",
+      "sort_order": 3,
+      "content_html": "<pre><code>+ - * / %   = += -= *= /= %=\n== != &lt; &gt; &lt;= &gt;=   &lt;=&gt;        // spaceship C++20\n&amp;&amp; || !   &amp; | ^ ~ &lt;&lt; &gt;&gt;\n*p  &amp;x  p-&gt;m  o.m  new T  delete p\nstatic_cast&lt;T&gt;(x)  dynamic_cast&lt;T*&gt;(p)\nconst_cast  reinterpret_cast  std::bit_cast</code></pre>",
+      "search_keywords": "cast sizeof new delete spaceship"
+    },
+    {
+      "language": "cpp",
+      "section": "basics",
+      "slug": "control",
+      "title": "Control Flow",
+      "concept": "control",
+      "sort_order": 4,
+      "content_html": "<pre><code>if (int x = get(); x &gt; 0) { ... }\nfor (auto&amp; v : vec) { ... }\nfor (auto&amp;&amp; [k, v] : map) { ... }\nswitch (x) { case 1: ...; break; default: ...; }\nint v = cond ? 1 : 0;</code></pre>",
+      "search_keywords": "if switch for while range structured binding"
+    },
+    {
+      "language": "cpp",
+      "section": "basics",
+      "slug": "functions",
+      "title": "Functions",
+      "concept": null,
+      "sort_order": 5,
+      "content_html": "<pre><code>int add(int a, int b = 0);\nvoid byVal(int x);\nvoid byRef(int&amp; x);\nvoid byCRef(const int&amp; x);\nvoid byRRef(int&amp;&amp; x);\ninline int sq(int x) { return x * x; }\nconstexpr int cube(int x) { return x * x * x; }\nconsteval int pure(int x) { return x * 2; }\nauto mul(int a, int b) -&gt; int { return a * b; }\nvoid f() noexcept;</code></pre>",
+      "search_keywords": "overload default noexcept constexpr consteval"
+    },
+    {
+      "language": "cpp",
+      "section": "memory-types",
+      "slug": "pointers",
+      "title": "Pointers & Smart Pointers",
+      "concept": "variables",
+      "sort_order": 6,
+      "content_html": "<pre><code>int* p = nullptr;\np = new int(42);  delete p;\n\nauto up = std::make_unique&lt;int&gt;(42);\nauto up2 = std::move(up);\n\nauto sp = std::make_shared&lt;int&gt;(7);\nstd::weak_ptr&lt;int&gt; wp = sp;\nif (auto locked = wp.lock()) { /* use */ }\n\nstd::move(x);  std::forward&lt;T&gt;(x);</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Ownership defaults</strong>\n          <code class=\"inline\">std::unique_ptr&lt;T&gt;</code> — default exclusive ownership ·\n          <code class=\"inline\">std::shared_ptr&lt;T&gt;</code> — only when shared ownership is required ·\n          <code class=\"inline\">std::weak_ptr&lt;T&gt;</code> — non-owning observer\n        </div>\n        <div class=\"decision-tree\">Need ownership?\n  │\n  ├─ exclusive -&gt; unique_ptr&lt;T&gt;\n  └─ shared\n       ├─ owning -&gt; shared_ptr&lt;T&gt;\n       └─ observe only -&gt; weak_ptr&lt;T&gt;</div>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          <code class=\"inline\">std::move(x)</code> only casts to an rvalue — it does not move by itself.\n          Prefer RAII / smart pointers over raw <code class=\"inline\">new</code>/<code class=\"inline\">delete</code>.\n        </div>",
+      "search_keywords": "unique_ptr shared_ptr weak_ptr make_unique"
+    },
+    {
+      "language": "cpp",
+      "section": "memory-types",
+      "slug": "raii",
+      "title": "Special Member Functions & Rules",
+      "concept": null,
+      "sort_order": 7,
+      "content_html": "<pre><code>Foo();  Foo(const Foo&amp;);  Foo(Foo&amp;&amp;);\nFoo&amp; operator=(const Foo&amp;);  Foo&amp; operator=(Foo&amp;&amp;);\n~Foo();\nFoo() = default;\nFoo(const Foo&amp;) = delete;</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Preferred design</strong>\n          Rule of Zero > Rule of Five > Rule of Three.\n          Let the compiler generate special members; manage resources with smart pointers and STL containers.\n        </div>\n        <h3>Rule of Zero (preferred)</h3>\n        <pre><code>class Widget {\n  std::string name_;\n  std::vector&lt;int&gt; data_;\n  std::unique_ptr&lt;Impl&gt; impl_;\n};</code></pre>",
+      "search_title": "RAII & Special Members",
+      "search_keywords": "rule of zero five destructor move copy"
+    },
+    {
+      "language": "cpp",
+      "section": "memory-types",
+      "slug": "classes",
+      "title": "Structs & Classes",
+      "concept": "classes",
+      "sort_order": 8,
+      "content_html": "<pre><code>struct Point {\n  double x, y;\n  Point(double x, double y) : x(x), y(y) {}\n};\nclass Animal {\npublic:\n  Animal(std::string n) : name_(std::move(n)) {}\n  virtual void speak() const;\n  virtual ~Animal() = default;\nprivate:\n  std::string name_;\n};</code></pre>",
+      "search_keywords": "class struct constructor initializer"
+    },
+    {
+      "language": "cpp",
+      "section": "memory-types",
+      "slug": "inheritance",
+      "title": "Inheritance & Polymorphism",
+      "concept": null,
+      "sort_order": 9,
+      "content_html": "<pre><code>class Dog : public Animal {\n  void speak() const override { std::cout &lt;&lt; \"Woof\\n\"; }\n};\nclass Shape {\n  virtual double area() const = 0;\n  virtual ~Shape() = default;\n};\nif (auto* d = dynamic_cast&lt;Dog*&gt;(ptr)) { d-&gt;speak(); }</code></pre>",
+      "search_keywords": "virtual override abstract dynamic_cast"
+    },
+    {
+      "language": "cpp",
+      "section": "templates-modern",
+      "slug": "templates",
+      "title": "Templates",
+      "concept": "generics",
+      "sort_order": 10,
+      "content_html": "<pre><code>template&lt;typename T&gt;\nT maxOf(T a, T b) { return a &gt; b ? a : b; }\n\ntemplate&lt;typename T&gt;\nclass Box {\n  T val_;\npublic:\n  explicit Box(T v) : val_(v) {}\n  T get() const { return val_; }\n};\n\ntemplate&lt;typename... Args&gt;\nvoid log(Args&amp;&amp;... args) { (std::cout &lt;&lt; ... &lt;&lt; args); }\n\ntemplate&lt;typename T&gt;\nconcept Numeric = std::integral&lt;T&gt; || std::floating_point&lt;T&gt;;\ntemplate&lt;Numeric T&gt;\nT add(T a, T b) { return a + b; }</code></pre>",
+      "search_keywords": "template typename concept requires SFINAE"
+    },
+    {
+      "language": "cpp",
+      "section": "templates-modern",
+      "slug": "lambdas",
+      "title": "Lambda Expressions",
+      "concept": null,
+      "sort_order": 11,
+      "content_html": "<pre><code>auto add = [](int a, int b) { return a + b; };\n[]  [=]  [&amp;]  [x, &amp;y]  [this]  [*this]\nauto id = [](auto x) { return x; };\nauto tmpl = []&lt;typename T&gt;(T x) { return x; };\nauto counter = [n = 0]() mutable { return ++n; };</code></pre>",
+      "search_keywords": "capture mutable generic lambda"
+    },
+    {
+      "language": "cpp",
+      "section": "templates-modern",
+      "slug": "modern",
+      "title": "Modern C++ Highlights",
+      "concept": null,
+      "sort_order": 12,
+      "content_html": "<p class=\"note\">Key additions: structured bindings <span class=\"ver\">C++17</span>,\n          concepts & ranges <span class=\"ver\">C++20</span>,\n          <code class=\"inline\">std::expected</code> & <code class=\"inline\">std::print</code> <span class=\"ver\">C++23</span></p>\n        <pre><code>void f(int&amp;);  void f(int&amp;&amp;);\nf(std::move(a));\n\ntemplate&lt;typename T&gt;\nvoid wrapper(T&amp;&amp; arg) { target(std::forward&lt;T&gt;(arg)); }\n\nauto [k, v] = *map.begin();\nstd::optional&lt;int&gt; opt = 42;\nstd::variant&lt;int, float, std::string&gt; var;\nstd::string_view sv = \"hello\";\nstd::span&lt;int&gt; sp{arr};\nstd::ranges::sort(v);\nauto operator&lt;=&gt;(const Foo&amp;) const = default;</code></pre>",
+      "search_title": "Modern C++",
+      "search_keywords": "optional variant span ranges expected format"
+    },
+    {
+      "language": "cpp",
+      "section": "library",
+      "slug": "containers",
+      "title": "STL Containers",
+      "concept": "collections",
+      "sort_order": 13,
+      "content_html": "<pre><code>std::vector&lt;T&gt;          // ★ default choice\nstd::array&lt;T,N&gt;  std::deque&lt;T&gt;  std::list&lt;T&gt;\nstd::map&lt;K,V&gt;  std::unordered_map&lt;K,V&gt;\nstd::set&lt;T&gt;  std::unordered_set&lt;T&gt;\nstd::stack&lt;T&gt;  std::queue&lt;T&gt;  std::priority_queue&lt;T&gt;\n\nv.push_back(x);  v.emplace_back(args...);\nv.size();  v.empty();  v.reserve(n);</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Default container</strong>\n          <code class=\"inline\">std::vector&lt;T&gt;</code> is almost always the right default.\n          Switch only when profiling shows a real bottleneck.\n        </div>",
+      "search_keywords": "vector map unordered_map array deque set"
+    },
+    {
+      "language": "cpp",
+      "section": "library",
+      "slug": "algorithms",
+      "title": "Iterators & Algorithms",
+      "concept": "iterators",
+      "sort_order": 14,
+      "content_html": "<pre><code>v.begin() / v.end()  v.rbegin() / v.rend()\nstd::sort  std::find  std::find_if\nstd::count  std::copy  std::transform\nstd::unique  std::accumulate\nstd::min_element  std::binary_search\nstd::for_each  std::any_of  std::all_of\nstd::ranges::sort(v);  std::ranges::find(v, val);</code></pre>",
+      "search_keywords": "sort find transform ranges views"
+    },
+    {
+      "language": "cpp",
+      "section": "library",
+      "slug": "complexity",
+      "title": "Container Complexity (selected)",
+      "concept": null,
+      "sort_order": 15,
+      "content_html": "<table>\n          <thead>\n            <tr><th>Container</th><th>Access</th><th>Find</th><th>Insert (end)</th><th>Insert (mid)</th><th>Erase</th></tr>\n          </thead>\n          <tbody>\n            <tr><td>vector</td><td>O(1)</td><td>O(n)</td><td>O(1)*</td><td>O(n)</td><td>O(n)</td></tr>\n            <tr><td>deque</td><td>O(1)</td><td>O(n)</td><td>O(1)*</td><td>O(n)</td><td>O(n)</td></tr>\n            <tr><td>list</td><td>—</td><td>O(n)</td><td>O(1)†</td><td>O(1)†</td><td>O(1)†</td></tr>\n            <tr><td>map / set</td><td>—</td><td>O(log n)</td><td>O(log n)</td><td>—</td><td>O(log n)</td></tr>\n            <tr><td>unordered_map</td><td>—</td><td>O(1)*</td><td>O(1)*</td><td>—</td><td>O(1)*</td></tr>\n          </tbody>\n        </table>\n        <p>* amortized / average &nbsp; † with iterator</p>",
+      "search_title": "Complexity Tables",
+      "search_keywords": "big-O access insert erase amortized"
+    },
+    {
+      "language": "cpp",
+      "section": "library",
+      "slug": "exceptions",
+      "title": "Exception Handling",
+      "concept": "exceptions",
+      "sort_order": 16,
+      "content_html": "<pre><code>try {\n  throw std::runtime_error(\"oops\");\n} catch (const std::exception&amp; e) {\n  std::cerr &lt;&lt; e.what();\n} catch (...) { }\nnoexcept  noexcept(expr)</code></pre>",
+      "search_keywords": "try catch throw noexcept exception"
+    },
+    {
+      "language": "cpp",
+      "section": "library",
+      "slug": "concurrency",
+      "title": "Concurrency (C++11+)",
+      "concept": "async",
+      "sort_order": 17,
+      "content_html": "<pre><code>std::thread t(fn, arg1);\nt.join();  t.detach();\nstd::mutex mtx;\n{ std::lock_guard&lt;std::mutex&gt; lk(mtx); /* critical */ }\nauto fut = std::async(std::launch::async, fn);\nint res = fut.get();\nstd::atomic&lt;int&gt; counter{0};  counter++;</code></pre>",
+      "search_title": "Concurrency",
+      "search_keywords": "thread mutex lock_guard atomic async future jthread"
+    },
+    {
+      "language": "cpp",
+      "section": "library",
+      "slug": "headers",
+      "title": "Key Standard Library Headers",
+      "concept": null,
+      "sort_order": 18,
+      "content_html": "<table>\n          <thead><tr><th>Header</th><th>Contents</th></tr></thead>\n          <tbody>\n            <tr><td><code class=\"inline\">&lt;iostream&gt;</code></td><td>cin / cout / cerr</td></tr>\n            <tr><td><code class=\"inline\">&lt;string&gt;</code> <code class=\"inline\">&lt;string_view&gt;</code></td><td>strings / views</td></tr>\n            <tr><td><code class=\"inline\">&lt;vector&gt;</code> <code class=\"inline\">&lt;array&gt;</code> <code class=\"inline\">&lt;map&gt;</code></td><td>containers</td></tr>\n            <tr><td><code class=\"inline\">&lt;algorithm&gt;</code> <code class=\"inline\">&lt;numeric&gt;</code></td><td>algorithms</td></tr>\n            <tr><td><code class=\"inline\">&lt;memory&gt;</code></td><td>smart pointers</td></tr>\n            <tr><td><code class=\"inline\">&lt;optional&gt;</code> <code class=\"inline\">&lt;variant&gt;</code></td><td>C++17 vocabulary</td></tr>\n            <tr><td><code class=\"inline\">&lt;ranges&gt;</code> <code class=\"inline\">&lt;concepts&gt;</code></td><td>C++20</td></tr>\n            <tr><td><code class=\"inline\">&lt;thread&gt;</code> <code class=\"inline\">&lt;mutex&gt;</code></td><td>concurrency</td></tr>\n            <tr><td><code class=\"inline\">&lt;format&gt;</code> <code class=\"inline\">&lt;print&gt;</code></td><td>C++20 / C++23</td></tr>\n            <tr><td><code class=\"inline\">&lt;expected&gt;</code> <code class=\"inline\">&lt;filesystem&gt;</code></td><td>C++23 / C++17</td></tr>\n          </tbody>\n        </table>",
+      "search_title": "Key Headers",
+      "search_keywords": "iostream vector memory algorithm string"
+    },
+    {
+      "language": "cpp",
+      "section": "library",
+      "slug": "patterns",
+      "title": "Selected Design Patterns",
+      "concept": null,
+      "sort_order": 19,
+      "content_html": "<pre><code>// Meyer's singleton (thread-safe since C++11)\nclass Logger {\n  Logger() = default;\npublic:\n  static Logger&amp; instance() {\n    static Logger inst;\n    return inst;\n  }\n  Logger(const Logger&amp;) = delete;\n};\n// Prefer composition; RAII is the core pattern</code></pre>"
+    },
+    {
+      "language": "cpp",
+      "section": "expansion",
+      "slug": "gotchas",
+      "title": "Gotchas",
+      "concept": null,
+      "sort_order": 20,
+      "content_html": "<pre><code>// Dangling string_view\nstd::string_view sv = std::string(\"temp\");  // BAD\n\n// Iterator invalidation\nauto it = v.begin();\nv.push_back(x);   // may invalidate it\n\n// Object slicing\nBase b = Derived{};\n\n// std::move is only a cast\nauto y = std::move(x);  // move ctor does the work\n\n// Prefer unique_ptr; shared_ptr only for true shared ownership\nvoid f(const std::vector&lt;int&gt;&amp; v);  // avoid accidental copies\n\n// span / string_view do not own data\n</code></pre>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          <code class=\"inline\">std::move</code> is a cast. Prefer RAII and <code class=\"inline\">unique_ptr</code>.\n        </div>"
+    },
+    {
+      "language": "cpp",
+      "section": "expansion",
+      "slug": "ecosystem",
+      "title": "Build & Tooling",
+      "concept": null,
+      "sort_order": 21,
+      "content_html": "<pre><code>cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j\nctest --test-dir build\n\nclang-format -i src/**/*.cpp\nclang-tidy src/main.cpp\n\n// Sanitizers\n-fsanitize=address,undefined\n-fsanitize=thread\n\nvcpkg install fmt\nconan install . --build=missing\n// godbolt.org — Compiler Explorer\n</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Defaults</strong>\n          <code class=\"inline\">CMake</code> · <code class=\"inline\">clang-format</code> + sanitizers ·\n          <code class=\"inline\">vcpkg</code> or <code class=\"inline\">Conan</code>\n        </div>"
+    },
+    {
+      "language": "csharp",
+      "section": "basics",
+      "slug": "types",
+      "title": "Data Types",
+      "concept": "types",
+      "sort_order": 1,
+      "content_html": "<pre><code>// Value types\nbool, byte, sbyte, short, ushort\nint, uint, long, ulong\nfloat, double, decimal\nchar, enum, struct\n\n// Reference types\nstring, object, dynamic\nclass, interface, delegate, record, array\n\nint? n = null;\nn.HasValue; n.Value; n.GetValueOrDefault();\nstring? maybe = null;         // nullable reference types</code></pre>\n        <div class=\"callout callout-use\"><strong>Nullable reference types</strong>\n          <code class=\"inline\">string</code> vs <code class=\"inline\">string?</code> ·\n          <code class=\"inline\">?</code> annotation ·\n          <code class=\"inline\">!</code> null-forgiving (sparingly) ·\n          <code class=\"inline\">??</code> / <code class=\"inline\">??=</code> ·\n          <code class=\"inline\">?.</code> null-conditional\n        </div>",
+      "search_keywords": "int string bool decimal nullable nint"
+    },
+    {
+      "language": "csharp",
+      "section": "basics",
+      "slug": "variables",
+      "title": "Variables & Literals",
+      "concept": "variables",
+      "sort_order": 2,
+      "content_html": "<pre><code>int a = 42;\nvar inferred = 42;\nconst int Max = 100;\nreadonly int Id;\n\n0xFF  0b1010  1_000_000\n42L  42UL  3.14F  3.14M\n\"hello\"  $@\"path\"  $\"interp {a}\"\n\"\"\"raw string (C# 11+)\"\"\"\ndefault(int);  default;\n_ = SomeMethod();</code></pre>",
+      "search_keywords": "var const readonly string interpolation"
+    },
+    {
+      "language": "csharp",
+      "section": "basics",
+      "slug": "operators",
+      "title": "Operators",
+      "concept": "operators",
+      "sort_order": 3,
+      "content_html": "<pre><code>+ - * / %  ++ --\n= += -= *= /= %=\n== != &lt; &gt; &lt;= &gt;=\n&amp;&amp; || !\n&amp; | ^ ~ &lt;&lt; &gt;&gt;\n\nx?.Prop   x ?? y   x ??= y\nx is null / x is not null\narr[^1]   arr[1..^1]</code></pre>",
+      "search_keywords": "null-coalescing ranges indices"
+    },
+    {
+      "language": "csharp",
+      "section": "basics",
+      "slug": "control",
+      "title": "Control Flow",
+      "concept": "control",
+      "sort_order": 4,
+      "content_html": "<pre><code>if (cond) { ... } else if (cond) { ... } else { ... }\n\nswitch (x) {\n    case 1: ...; break;\n    case 2 or 3: ...; break;\n    case &gt; 10 and &lt; 20: ...; break;\n    default: ...; break;\n}\nvar result = x switch {\n    1 =&gt; \"one\",\n    &gt; 10 =&gt; \"big\",\n    _ =&gt; \"other\"\n};\n\nfor (int i = 0; i &lt; n; i++) { ... }\nforeach (var item in collection) { ... }\nwhile (cond) { ... }\nusing var stream = File.OpenRead(path);  // C# 8+</code></pre>",
+      "search_keywords": "if switch foreach using"
+    },
+    {
+      "language": "csharp",
+      "section": "basics",
+      "slug": "methods",
+      "title": "Methods",
+      "concept": null,
+      "sort_order": 5,
+      "content_html": "<pre><code>public int Add(int a, int b = 0) =&gt; a + b;\nvoid Swap(ref int a, ref int b) { ... }\nbool TryParse(string s, out int result) { ... }\nvoid Process(in LargeStruct s) { ... }\nvoid Log(params string[] messages) { ... }\n\npublic static class StringExt {\n    public static bool IsBlank(this string? s)\n        =&gt; string.IsNullOrWhiteSpace(s);\n}</code></pre>",
+      "search_keywords": "ref out in params extension local function"
+    },
+    {
+      "language": "csharp",
+      "section": "oop",
+      "slug": "classes",
+      "title": "Classes & Structs",
+      "concept": "classes",
+      "sort_order": 6,
+      "content_html": "<pre><code>public class Animal {\n    private readonly string _name;\n    public Animal(string name) =&gt; _name = name;\n    public virtual void Speak() { ... }\n}\npublic struct Point {\n    public double X { get; }\n    public double Y { get; }\n    public Point(double x, double y) =&gt; (X, Y) = (x, y);\n}\n// Primary constructors (C# 12)\npublic class Person(string name, int age) {\n    public string Name =&gt; name;\n}</code></pre>",
+      "search_keywords": "class struct primary constructor"
+    },
+    {
+      "language": "csharp",
+      "section": "oop",
+      "slug": "records",
+      "title": "Records C# 9+",
+      "concept": null,
+      "sort_order": 7,
+      "content_html": "<pre><code>public record Person(string Name, int Age);\nvar p1 = new Person(\"Ada\", 36);\nvar p2 = p1 with { Age = 37 };\n\npublic readonly record struct Point(double X, double Y);\n\npublic record Order {\n    public required string Id { get; init; }\n    public decimal Total { get; init; }\n}</code></pre>\n        <div class=\"callout callout-use\"><strong>When to use</strong>\n          <code class=\"inline\">record</code> — value-oriented data with value equality ·\n          <code class=\"inline\">class</code> — identity / behavior ·\n          <code class=\"inline\">struct</code> / <code class=\"inline\">record struct</code> — small value types\n        </div>\n        <div class=\"callout callout-default\"><strong>★ Value-oriented data</strong>\n          Prefer <code class=\"inline\">record</code> for immutable DTOs and domain values.\n        </div>",
+      "search_title": "Records",
+      "search_keywords": "record with expression init immutable"
+    },
+    {
+      "language": "csharp",
+      "section": "oop",
+      "slug": "inheritance",
+      "title": "Inheritance & Interfaces",
+      "concept": null,
+      "sort_order": 8,
+      "content_html": "<pre><code>public class Dog : Animal {\n    public override void Speak() =&gt; Console.WriteLine(\"Woof\");\n}\npublic interface IShape {\n    double Area { get; }\n    void Draw();\n}\npublic class Circle : IShape {\n    public double Radius { get; }\n    public double Area =&gt; Math.PI * Radius * Radius;\n    public void Draw() { ... }\n}\n// Default interface methods (C# 8+)</code></pre>",
+      "search_keywords": "interface abstract override virtual"
+    },
+    {
+      "language": "csharp",
+      "section": "oop",
+      "slug": "properties",
+      "title": "Properties, Indexers & Events",
+      "concept": null,
+      "sort_order": 9,
+      "content_html": "<pre><code>public string Name { get; set; } = \"\";\npublic string Id { get; init; }\npublic int Count { get; private set; }\npublic string FullName =&gt; $\"{First} {Last}\";\npublic string this[int index] {\n    get =&gt; _items[index];\n    set =&gt; _items[index] = value;\n}\npublic event EventHandler? SomethingHappened;</code></pre>",
+      "search_keywords": "get set init required event"
+    },
+    {
+      "language": "csharp",
+      "section": "modern-features",
+      "slug": "linq",
+      "title": "LINQ",
+      "concept": "iterators",
+      "sort_order": 10,
+      "content_html": "<pre><code>using System.Linq;\nvar adults = people\n    .Where(p =&gt; p.Age &gt;= 18)\n    .OrderBy(p =&gt; p.LastName)\n    .Select(p =&gt; p.Name)\n    .ToList();\n\nvar q = from p in people\n        where p.Age &gt;= 18\n        orderby p.LastName\n        select p.Name;\n\n// Any, All, Count, First, FirstOrDefault, Select, Where,\n// OrderBy, GroupBy, Join, Aggregate, ToList, ToDictionary</code></pre>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          LINQ is deferred — runs when enumerated. Multiple enumeration can repeat work\n          or hit a disposed context. Materialize with <code class=\"inline\">ToList()</code> / <code class=\"inline\">ToArray()</code> when needed.\n        </div>",
+      "search_keywords": "Where Select OrderBy GroupBy deferred ToList"
+    },
+    {
+      "language": "csharp",
+      "section": "modern-features",
+      "slug": "async",
+      "title": "Async / Await",
+      "concept": "async",
+      "sort_order": 11,
+      "content_html": "<pre><code>public async Task&lt;string&gt; FetchAsync(string url) {\n    using var client = new HttpClient();\n    return await client.GetStringAsync(url);\n}\npublic async Task ProcessManyAsync(IEnumerable&lt;string&gt; urls) {\n    string[] results = await Task.WhenAll(urls.Select(FetchAsync));\n}\npublic async ValueTask&lt;int&gt; GetCachedAsync() { ... }\npublic async IAsyncEnumerable&lt;int&gt; GenerateAsync() {\n    for (int i = 0; i &lt; 10; i++) {\n        await Task.Delay(100);\n        yield return i;\n    }\n}\nawait foreach (var n in GenerateAsync()) { ... }</code></pre>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          Avoid <code class=\"inline\">.Result</code> / <code class=\"inline\">.Wait()</code> — can deadlock.\n          Prefer <code class=\"inline\">await</code>. Pass <code class=\"inline\">CancellationToken</code>.\n          Prefer <code class=\"inline\">async Task</code> over <code class=\"inline\">async void</code> (except event handlers).\n        </div>",
+      "search_keywords": "Task ValueTask await WhenAll CancellationToken"
+    },
+    {
+      "language": "csharp",
+      "section": "modern-features",
+      "slug": "pattern",
+      "title": "Pattern Matching",
+      "concept": "pattern",
+      "sort_order": 12,
+      "content_html": "<pre><code>if (obj is Person { Age: &gt; 18, Name: var n }) { ... }\nstring Describe(object o) =&gt; o switch {\n    int i when i &gt; 0 =&gt; \"positive int\",\n    string { Length: &gt; 0 } s =&gt; $\"non-empty {s}\",\n    Person { Age: &gt;= 18 } =&gt; \"adult\",\n    null =&gt; \"null\",\n    _ =&gt; \"something else\"\n};\nif (arr is [1, 2, .. var rest]) { ... }  // C# 11</code></pre>",
+      "search_keywords": "is switch property list relational patterns"
+    },
+    {
+      "language": "csharp",
+      "section": "modern-features",
+      "slug": "generics",
+      "title": "Generics",
+      "concept": "generics",
+      "sort_order": 13,
+      "content_html": "<pre><code>public class Box&lt;T&gt; where T : class, new() {\n    public T Value { get; set; } = new();\n}\nIEnumerable&lt;out T&gt;              // covariant\nIComparer&lt;in T&gt;                 // contravariant\npublic static T Add&lt;T&gt;(T a, T b) where T : INumber&lt;T&gt;\n    =&gt; a + b;                   // generic math C# 11</code></pre>",
+      "search_keywords": "where constraints covariance INumber"
+    },
+    {
+      "language": "csharp",
+      "section": "library",
+      "slug": "collections",
+      "title": "Collections",
+      "concept": "collections",
+      "sort_order": 14,
+      "content_html": "<pre><code>List&lt;T&gt;  Dictionary&lt;TKey,TValue&gt;  HashSet&lt;T&gt;\nQueue&lt;T&gt;  Stack&lt;T&gt;  LinkedList&lt;T&gt;\nImmutableList&lt;T&gt;  ConcurrentDictionary&lt;...&gt;\n\nSpan&lt;int&gt; span = stackalloc int[64];\nList&lt;int&gt; list = [1, 2, 3];       // C# 12 collection expressions\nint[] arr = [..list, 4, 5];\nvar last = arr[^1];\nvar middle = arr[1..^1];</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Defaults</strong>\n          <code class=\"inline\">List&lt;T&gt;</code> — default collection ·\n          <code class=\"inline\">Dictionary&lt;TKey,TValue&gt;</code> — key/value ·\n          <code class=\"inline\">HashSet&lt;T&gt;</code> — unique membership\n        </div>",
+      "search_keywords": "List Dictionary HashSet Span collection expression"
+    },
+    {
+      "language": "csharp",
+      "section": "library",
+      "slug": "exceptions",
+      "title": "Exceptions",
+      "concept": "exceptions",
+      "sort_order": 15,
+      "content_html": "<pre><code>try { ... }\ncatch (ArgumentNullException ex) { ... }\ncatch (Exception ex) when (ex.Message.Contains(\"timeout\")) { ... }\nfinally { ... }\nthrow new InvalidOperationException(\"msg\");\nthrow;  // rethrow preserving stack</code></pre>",
+      "search_keywords": "try catch finally when throw"
+    },
+    {
+      "language": "csharp",
+      "section": "library",
+      "slug": "memory",
+      "title": "Spans, Memory & Performance",
+      "concept": null,
+      "sort_order": 16,
+      "content_html": "<pre><code>Span&lt;byte&gt; buffer = stackalloc byte[256];\nMemory&lt;byte&gt; mem = new byte[1024];\nvar pool = ArrayPool&lt;byte&gt;.Shared;\nbyte[] buf = pool.Rent(4096);\ntry { ... } finally { pool.Return(buf); }\nref struct Utf8Parser { ... }</code></pre>\n        <div class=\"callout callout-use\"><strong>When to use</strong>\n          <code class=\"inline\">Span&lt;T&gt;</code> — stack-only, high-perf slices ·\n          <code class=\"inline\">Memory&lt;T&gt;</code> — heap-compatible, usable across <code class=\"inline\">await</code> ·\n          Prefer them to avoid allocations in hot paths.\n        </div>",
+      "search_title": "Spans & Memory",
+      "search_keywords": "Span Memory ArrayPool stackalloc"
+    },
+    {
+      "language": "csharp",
+      "section": "library",
+      "slug": "dotnet",
+      "title": ".NET Highlights",
+      "concept": null,
+      "sort_order": 17,
+      "content_html": "<pre><code>Console.WriteLine(\"Hello\");   // top-level statements\nglobal using System.Text.Json;\nnamespace MyApp;\npublic class Person {\n    public required string Name { get; init; }  // C# 11\n}\n// Minimal APIs, Native AOT, System.Text.Json,\n// Microsoft.Extensions.* (DI, Logging, Config)</code></pre>",
+      "search_keywords": "DI ASP.NET HttpClient JsonSerializer"
+    },
+    {
+      "language": "csharp",
+      "section": "library",
+      "slug": "advanced",
+      "title": "Advanced Topics",
+      "concept": null,
+      "sort_order": 18,
+      "content_html": "<pre><code>[Obsolete(\"Use NewMethod\")]\n[JsonPropertyName(\"id\")]\nvar type = typeof(Person);\nExpression&lt;Func&lt;int, bool&gt;&gt; expr = x =&gt; x &gt; 5;\n// Source generators, unsafe, P/Invoke when needed</code></pre>"
+    },
+    {
+      "language": "csharp",
+      "section": "expansion",
+      "slug": "gotchas",
+      "title": "Gotchas",
+      "concept": null,
+      "sort_order": 19,
+      "content_html": "<pre><code>// .Result / .Wait() — can deadlock\nvar x = FetchAsync().Result;   // BAD\nvar x = await FetchAsync();    // GOOD\n\n// async void — only for event handlers\nasync Task WorkAsync() { }     // prefer\n\n// LINQ multiple enumeration\nvar q = items.Where(...);\nvar list = q.ToList();         // materialize once\n\n// Nullable suppression — use sparingly\nstring s = maybe!;\n\n// Avoid boxing in hot paths — allocates on the heap\nobject o = 42;          // BAD in a loop: boxes every iteration\nList&lt;int&gt; nums = [];    // GOOD: generics avoid boxing entirely\n</code></pre>\n        <div class=\"callout callout-mistake\"><strong>Common mistake</strong>\n          Prefer <code class=\"inline\">await</code> over <code class=\"inline\">.Result</code>/<code class=\"inline\">.Wait()</code>.\n          Materialize LINQ with <code class=\"inline\">ToList()</code> when enumerating more than once.\n        </div>"
+    },
+    {
+      "language": "csharp",
+      "section": "expansion",
+      "slug": "ecosystem",
+      "title": "Ecosystem & Tooling",
+      "concept": null,
+      "sort_order": 20,
+      "content_html": "<pre><code>dotnet new console -n MyApp\ndotnet restore\ndotnet build\ndotnet run\ndotnet test\ndotnet publish -c Release\ndotnet add package Newtonsoft.Json\ndotnet tool install -g dotnet-ef\n\n// NuGet · ASP.NET Core · EF Core · MSBuild\n</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Defaults</strong>\n          <code class=\"inline\">dotnet</code> CLI · <code class=\"inline\">NuGet</code> ·\n          <code class=\"inline\">dotnet test</code> in CI\n        </div>"
+    }
+  ],
+  "examples": [
+    {
+      "language": "python",
+      "topic": "types",
+      "kind": "code",
+      "title": "Scalar and collection literals",
+      "code": "i: int = 42\nf: float = 3.14\nb: bool = True\nc: str = \"hello\"\nvals: list[int] = [1, 2, 3]\nobj: dict[str, int] = {\"a\": 1}\n"
+    },
+    {
+      "language": "python",
+      "topic": "variables",
+      "kind": "code",
+      "title": "Assignment and unpacking",
+      "code": "x = 42\nx, y = 1, 2\nx, y = y, x\nfirst, *rest, last = [1, 2, 3, 4, 5]\n"
+    },
+    {
+      "language": "python",
+      "topic": "control",
+      "kind": "code",
+      "title": "Conditionals",
+      "code": "if x > 0:\n    print(\"positive\")\nelif x == 0:\n    print(\"zero\")\nelse:\n    print(\"negative\")\n\nfor item in items:\n    print(item)\n"
+    },
+    {
+      "language": "python",
+      "topic": "functions",
+      "kind": "code",
+      "title": "Function signatures",
+      "code": "def add(a: int, b: int = 0) -> int:\n    return a + b\n\nsquare = lambda x: x * x\n"
+    },
+    {
+      "language": "python",
+      "topic": "classes",
+      "kind": "code",
+      "title": "Simple class",
+      "code": "class Animal:\n    def __init__(self, name: str):\n        self.name = name\n\n    def speak(self) -> str:\n        raise NotImplementedError\n"
+    },
+    {
+      "language": "python",
+      "topic": "typing",
+      "kind": "code",
+      "title": "Type hints and protocols",
+      "code": "from typing import Protocol\n\nclass Sized(Protocol):\n    def __len__(self) -> int: ...\n\ndef first[T](items: list[T]) -> T | None:\n    return items[0] if items else None\n"
+    },
+    {
+      "language": "python",
+      "topic": "collections",
+      "kind": "code",
+      "title": "Built-in collections",
+      "code": "items = [1, 2, 3]\ncounts = {\"a\": 3, \"b\": 1}\nunique = {1, 2, 3}\n"
+    },
+    {
+      "language": "python",
+      "topic": "exceptions",
+      "kind": "code",
+      "title": "Exception handling",
+      "code": "try:\n    risky()\nexcept ValueError as exc:\n    print(exc)\nfinally:\n    cleanup()\n"
+    },
+    {
+      "language": "python",
+      "topic": "async",
+      "kind": "code",
+      "title": "Async functions",
+      "code": "import asyncio\n\nasync def fetch(url: str) -> str:\n    return url\n\nasync def main():\n    await asyncio.gather(fetch(\"a\"), fetch(\"b\"))\n"
+    },
+    {
+      "language": "rust",
+      "topic": "types",
+      "kind": "code",
+      "title": "Primitive scalar types",
+      "code": "let count: i32 = 42;\nlet ratio: f64 = 3.14;\nlet is_ok: bool = true;\nlet ch: char = 'x';\n"
+    },
+    {
+      "language": "rust",
+      "topic": "variables",
+      "kind": "code",
+      "title": "let and mut",
+      "code": "let x = 42;\nlet mut y = 1;\ny += 1;\nconst LIMIT: i32 = 100;\n"
+    },
+    {
+      "language": "rust",
+      "topic": "control",
+      "kind": "code",
+      "title": "if and match",
+      "code": "if x > 0 {\n    println!(\"positive\");\n} else if x == 0 {\n    println!(\"zero\");\n} else {\n    println!(\"negative\");\n}\n\nmatch value {\n    0 => println!(\"zero\"),\n    _ => println!(\"other\"),\n}\n"
+    },
+    {
+      "language": "rust",
+      "topic": "functions",
+      "kind": "code",
+      "title": "Functions and closures",
+      "code": "fn add(a: i32, b: i32) -> i32 { a + b }\n\nlet square = |x: i32| x * x;\n"
+    },
+    {
+      "language": "rust",
+      "topic": "ownership",
+      "kind": "code",
+      "title": "Ownership and borrowing",
+      "code": "let s1 = String::from(\"hello\");\nlet s2 = s1.clone();\nlet len = s2.len();\nprintln!(\"{s2}\");\n"
+    },
+    {
+      "language": "rust",
+      "topic": "structs",
+      "kind": "code",
+      "title": "Struct and enum",
+      "code": "struct Point { x: i32, y: i32 }\n\nenum Message {\n    Quit,\n    Move { x: i32, y: i32 },\n}\n"
+    },
+    {
+      "language": "rust",
+      "topic": "traits",
+      "kind": "code",
+      "title": "Trait bounds",
+      "code": "trait Summary {\n    fn summarize(&self) -> String;\n}\n\nfn print_summary<T: Summary>(item: T) {\n    println!(\"{}\", item.summarize());\n}\n"
+    },
+    {
+      "language": "rust",
+      "topic": "collections",
+      "kind": "code",
+      "title": "Vec and HashMap",
+      "code": "let mut nums = vec![1, 2, 3];\nnums.push(4);\n\nlet mut map = std::collections::HashMap::new();\nmap.insert(\"a\", 1);\n"
+    },
+    {
+      "language": "rust",
+      "topic": "error",
+      "kind": "code",
+      "title": "Result propagation",
+      "code": "fn parse_number(s: &str) -> Result<i32, std::num::ParseIntError> {\n    s.parse()\n}\n"
+    },
+    {
+      "language": "rust",
+      "topic": "pattern",
+      "kind": "code",
+      "title": "Pattern matching",
+      "code": "match value {\n    Some(0) => println!(\"zero\"),\n    Some(n) if n % 2 == 0 => println!(\"even\"),\n    _ => println!(\"other\"),\n}\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "types",
+      "kind": "code",
+      "title": "Built-in scalar types",
+      "code": "int count = 42;\ndouble ratio = 3.14;\nbool ok = true;\nchar ch = 'x';\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "variables",
+      "kind": "code",
+      "title": "Value initialization",
+      "code": "auto x = 42;\nint y{7};\nconst int LIMIT = 100;\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "control",
+      "kind": "code",
+      "title": "Loop and branch",
+      "code": "if (x > 0) {\n    std::cout << \"positive\";\n} else if (x == 0) {\n    std::cout << \"zero\";\n} else {\n    std::cout << \"negative\";\n}\n\nfor (int i = 0; i < 3; ++i) {\n    std::cout << i << '\\n';\n}\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "pointers",
+      "kind": "code",
+      "title": "Unique pointer",
+      "code": "auto ptr = std::make_unique<int>(42);\nstd::cout << *ptr << '\\n';\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "classes",
+      "kind": "code",
+      "title": "Class declaration",
+      "code": "class Point {\npublic:\n    int x;\n    int y;\n};\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "templates",
+      "kind": "code",
+      "title": "Template function",
+      "code": "template <typename T>\nT add_one(T value) {\n    return value + 1;\n}\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "containers",
+      "kind": "code",
+      "title": "STL containers",
+      "code": "std::vector<int> nums = {1, 2, 3};\nstd::unordered_map<std::string, int> counts;\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "exceptions",
+      "kind": "code",
+      "title": "Exception handling",
+      "code": "try {\n    risky();\n} catch (const std::exception& ex) {\n    std::cerr << ex.what();\n}\n"
+    },
+    {
+      "language": "cpp",
+      "topic": "concurrency",
+      "kind": "code",
+      "title": "Thread and future",
+      "code": "std::thread worker([] { std::cout << \"done\"; });\nworker.join();\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "types",
+      "kind": "code",
+      "title": "Value types and strings",
+      "code": "int count = 42;\ndouble ratio = 3.14;\nbool ok = true;\nstring message = \"hello\";\nint? maybe = null;\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "variables",
+      "kind": "code",
+      "title": "var and const",
+      "code": "var x = 42;\nconst int Limit = 100;\nstring name = \"Ada\";\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "control",
+      "kind": "code",
+      "title": "switch and foreach",
+      "code": "switch (value)\n{\n    case 0:\n        Console.WriteLine(\"zero\");\n        break;\n    default:\n        Console.WriteLine(\"other\");\n        break;\n}\n\nforeach (var item in items)\n{\n    Console.WriteLine(item);\n}\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "classes",
+      "kind": "code",
+      "title": "Class and record",
+      "code": "public class Person\n{\n    public string Name { get; set; }\n}\n\npublic record Point(int X, int Y);\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "generics",
+      "kind": "code",
+      "title": "Generic methods",
+      "code": "public T Max<T>(T a, T b) where T : IComparable<T>\n{\n    return a.CompareTo(b) > 0 ? a : b;\n}\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "collections",
+      "kind": "code",
+      "title": "List and Dictionary",
+      "code": "var numbers = new List<int> { 1, 2, 3 };\nvar lookup = new Dictionary<string, int> { [\"a\"] = 1 };\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "exceptions",
+      "kind": "code",
+      "title": "try/catch",
+      "code": "try\n{\n    Risky();\n}\ncatch (Exception ex)\n{\n    Console.WriteLine(ex.Message);\n}\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "async",
+      "kind": "code",
+      "title": "Task-based async",
+      "code": "public async Task<string> FetchAsync(string url)\n{\n    return await Task.FromResult(url);\n}\n"
+    },
+    {
+      "language": "csharp",
+      "topic": "pattern",
+      "kind": "code",
+      "title": "Pattern matching",
+      "code": "var result = value switch\n{\n    0 => \"zero\",\n    _ => \"other\"\n};\n"
+    }
+  ],
+  "compare": [
+    {
+      "concept": "variables",
+      "label": "Mutable value",
+      "python": "x = 42",
+      "rust": "let mut x = 42;",
+      "cpp": "int x = 42;",
+      "csharp": "int x = 42;",
+      "javascript": "let x = 42;"
+    },
+    {
+      "concept": "control",
+      "label": "Conditional",
+      "python": "if/elif/else",
+      "rust": "if/else",
+      "cpp": "if/else",
+      "csharp": "if/else",
+      "javascript": "if/else"
+    },
+    {
+      "concept": "types",
+      "label": "Integer",
+      "python": "int",
+      "rust": "i32",
+      "cpp": "int",
+      "csharp": "int",
+      "javascript": "number"
+    },
+    {
+      "concept": "types",
+      "label": "Float",
+      "python": "float",
+      "rust": "f64",
+      "cpp": "double",
+      "csharp": "double",
+      "javascript": "number"
+    },
+    {
+      "concept": "types",
+      "label": "String",
+      "python": "str",
+      "rust": "String / &str",
+      "cpp": "std::string",
+      "csharp": "string",
+      "javascript": "string"
+    },
+    {
+      "concept": "types",
+      "label": "Null / absence",
+      "python": "None",
+      "rust": "Option<T>",
+      "cpp": "nullptr / std::optional<T>",
+      "csharp": "null / T?",
+      "javascript": "null / undefined"
+    },
+    {
+      "concept": "collections",
+      "label": "Dynamic array",
+      "python": "list",
+      "rust": "Vec<T>",
+      "cpp": "std::vector<T>",
+      "csharp": "List<T>",
+      "javascript": "Array"
+    },
+    {
+      "concept": "collections",
+      "label": "Map",
+      "python": "dict",
+      "rust": "HashMap<K, V>",
+      "cpp": "std::unordered_map",
+      "csharp": "Dictionary<K, V>",
+      "javascript": "Map / object"
+    },
+    {
+      "concept": "collections",
+      "label": "Set",
+      "python": "set",
+      "rust": "HashSet<T>",
+      "cpp": "std::unordered_set",
+      "csharp": "HashSet<T>",
+      "javascript": "Set"
+    },
+    {
+      "concept": "functions",
+      "label": "Function declaration",
+      "python": "def f(x):",
+      "rust": "fn f(x: i32)",
+      "cpp": "int f(int x)",
+      "csharp": "int F(int x)",
+      "javascript": "function f(x)"
+    },
+    {
+      "concept": "functions",
+      "label": "Lambda",
+      "python": "lambda x: x*x",
+      "rust": "|x| x * x",
+      "cpp": "[](int x){ return x*x; }",
+      "csharp": "x => x * x",
+      "javascript": "x => x * x"
+    },
+    {
+      "concept": "classes",
+      "label": "Class",
+      "python": "class Foo:",
+      "rust": "struct + impl",
+      "cpp": "class Foo",
+      "csharp": "class Foo",
+      "javascript": "class Foo"
+    },
+    {
+      "concept": "classes",
+      "label": "Value object",
+      "python": "@dataclass",
+      "rust": "struct + derive",
+      "cpp": "struct",
+      "csharp": "record",
+      "javascript": "plain object"
+    },
+    {
+      "concept": "classes",
+      "label": "Interface / trait",
+      "python": "Protocol",
+      "rust": "trait",
+      "cpp": "abstract / concepts",
+      "csharp": "interface",
+      "javascript": "no native interface"
+    },
+    {
+      "concept": "variables",
+      "label": "Ownership / lifetime",
+      "python": "GC-managed",
+      "rust": "ownership + borrows",
+      "cpp": "unique_ptr / references",
+      "csharp": "GC-managed + refs",
+      "javascript": "garbage-collected"
+    },
+    {
+      "concept": "exceptions",
+      "label": "Exception handling",
+      "python": "try/except",
+      "rust": "Result / panic!",
+      "cpp": "try/catch",
+      "csharp": "try/catch",
+      "javascript": "try/catch"
+    },
+    {
+      "concept": "async",
+      "label": "Async entry",
+      "python": "async def",
+      "rust": "async fn",
+      "cpp": "std::async / threads",
+      "csharp": "async Task",
+      "javascript": "async function"
+    },
+    {
+      "concept": "iterators",
+      "label": "Iteration",
+      "python": "for x in xs",
+      "rust": "for x in xs",
+      "cpp": "for (auto x : xs)",
+      "csharp": "foreach (var x in xs)",
+      "javascript": "for (const x of xs)"
+    },
+    {
+      "concept": "pattern",
+      "label": "Pattern matching",
+      "python": "match/case",
+      "rust": "match",
+      "cpp": "switch / if constexpr",
+      "csharp": "switch expressions",
+      "javascript": "switch (no native match)"
+    },
+    {
+      "concept": "iterators",
+      "label": "Collection transform",
+      "python": "[f(x) for x in xs]",
+      "rust": "xs.iter().map(|x| f(x))",
+      "cpp": "std::transform(xs.begin(), xs.end(), ...)",
+      "csharp": "xs.Select(x => f(x))",
+      "javascript": "xs.map(x => f(x))"
+    }
+  ],
+  "content_source_revision": "e85e7224aa8f837ef6f6fb3426e396888d4b8e83",
+  "compare_sections": [
+    {
+      "slug": "basics",
+      "title": "Basics",
+      "concepts": [
+        "variables",
+        "control"
+      ]
+    },
+    {
+      "slug": "types",
+      "title": "Types & Null",
+      "concepts": [
+        "types"
+      ]
+    },
+    {
+      "slug": "collections",
+      "title": "Collections",
+      "concepts": [
+        "collections"
+      ]
+    },
+    {
+      "slug": "functions",
+      "title": "Functions",
+      "concepts": [
+        "functions"
+      ]
+    },
+    {
+      "slug": "oop",
+      "title": "OOP & Data",
+      "concepts": [
+        "classes"
+      ]
+    },
+    {
+      "slug": "ownership",
+      "title": "Ownership",
+      "concepts": [
+        "variables"
+      ]
+    },
+    {
+      "slug": "errors",
+      "title": "Errors",
+      "concepts": [
+        "exceptions"
+      ]
+    },
+    {
+      "slug": "async",
+      "title": "Async",
+      "concepts": [
+        "async"
+      ]
+    },
+    {
+      "slug": "iteration",
+      "title": "Iteration",
+      "concepts": [
+        "iterators"
+      ]
+    },
+    {
+      "slug": "patterns",
+      "title": "Patterns",
+      "concepts": [
+        "pattern"
+      ]
+    },
+    {
+      "slug": "side-by-side",
+      "title": "Side-by-side",
+      "concepts": null
+    }
+  ],
+  "site": {
+    "brand": "Polyglot Syntax Reference",
+    "brand_short": "Polyglot Syntax",
+    "home_meta_description": "An extensible syntax reference for switching between languages.",
+    "home_heading_lines": [
+      "One reference.",
+      "Every language."
+    ],
+    "home_description": "A practical reference for anyone who works with multiple programming languages. Quickly find familiar syntax, concepts, patterns, and common gotchas — no matter which language you are working in.",
+    "footer": "Polyglot Syntax Reference · Open source · For every programmer",
+    "compare_title": "Compare Languages",
+    "compare_description": "Side-by-side syntax comparison across the supported languages.",
+    "compare_heading": "Same Concept, Different Language",
+    "compare_intro": "Jump between the supported languages without losing your place."
+  }
+}

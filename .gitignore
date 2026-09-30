@@ -2,5 +2,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+output/staging/
 .DS_Store
 Thumbs.db
+.venv/

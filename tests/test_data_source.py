@@ -1,0 +1,158 @@
+from __future__ import annotations
+
+import copy
+import sys
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "renderer"))
+
+from build_site import render_site_data_js
+from load_data import get_languages, load_data
+from render_compare import render_compare_page
+from render_home import render_home_page
+from render_language import render_language_page
+from validate_data import validate_data_model
+
+
+class DataSourceTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.data = load_data()
+
+    def test_language_pages_render_topics_and_bodies_from_data(self) -> None:
+        for language in get_languages(self.data):
+            page = render_language_page(
+                language,
+                self.data,
+                page_rel=f"{language['slug']}/index.html",
+            )
+            topics = [
+                topic for topic in self.data["topics"]
+                if topic["language"] == language["slug"]
+            ]
+            with self.subTest(language=language["slug"]):
+                for topic in topics:
+                    self.assertIn(f'id="{topic["slug"]}"', page)
+                    self.assertIn(topic["content_html"], page)
+
+    def test_compare_sections_and_navigation_come_from_data(self) -> None:
+        data = copy.deepcopy(self.data)
+        data["compare_sections"].append({
+            "slug": "data-defined-section",
+            "title": "Data-defined section",
+            "concepts": [],
+        })
+
+        page = render_compare_page(data)
+
+        self.assertIn('href="#data-defined-section">Data-defined section</a>', page)
+        self.assertIn('id="data-defined-section"', page)
+
+    def test_compare_starts_empty_and_offers_language_selection(self) -> None:
+        page = render_compare_page(self.data)
+
+        self.assertIn('id="compare-language-options"', page)
+        self.assertIn('id="compare-language-count" aria-live="polite">0 of 4 selected', page)
+        self.assertIn('id="compare-empty-state"', page)
+        self.assertIn('<table class="compare-table" hidden>', page)
+        self.assertNotIn('type="checkbox" checked', page)
+        self.assertIn('<th class="lang-python" data-language="python" hidden>Python</th>', page)
+        self.assertIn('data-language="python" hidden', page)
+        runtime = (ROOT / "js" / "main.js").read_text(encoding="utf-8")
+        self.assertIn("const maxLanguages = 4;", runtime)
+        self.assertIn("checkbox.disabled = selected.size >= maxLanguages", runtime)
+
+    def test_homepage_copy_comes_from_data(self) -> None:
+        data = copy.deepcopy(self.data)
+        data["site"]["home_description"] = "Unique source-driven homepage copy."
+
+        page = render_home_page(data)
+
+        self.assertIn("Unique source-driven homepage copy.", page)
+
+    def test_language_navigation_is_a_runtime_populated_dropdown(self) -> None:
+        pages = [
+            render_home_page(self.data),
+            render_compare_page(self.data),
+            render_language_page(
+                self.data["languages"][0],
+                self.data,
+                page_rel=f'{self.data["languages"][0]["slug"]}/index.html',
+            ),
+        ]
+
+        for page in pages:
+            with self.subTest(page=page[:80]):
+                self.assertIn('class="language-menu"', page)
+                self.assertIn('class="language-menu-panel"', page)
+                self.assertNotIn('class="lang-btn python"', page)
+
+        runtime = (ROOT / "js" / "main.js").read_text(encoding="utf-8")
+        self.assertIn('nav.querySelector(".language-menu")', runtime)
+        self.assertIn("registry.forEach(function (lang)", runtime)
+        self.assertIn('link.className = "language-option hero-card "', runtime)
+        self.assertIn("link.textContent = lang.name", runtime)
+        self.assertNotIn("language-option-version", runtime)
+        self.assertIn('event.key !== "Escape"', runtime)
+
+    def test_new_language_is_exported_for_dropdown_without_template_edits(self) -> None:
+        data = copy.deepcopy(self.data)
+        data["languages"].append({
+            "slug": "go",
+            "name": "Go",
+            "status": "available",
+            "order": 5,
+            "description": "Go language reference.",
+            "version_label": "Go 1.24+",
+        })
+
+        browser_data = render_site_data_js(data)
+        template = render_home_page(data)
+
+        self.assertIn('"slug":"go","name":"Go"', browser_data)
+        self.assertIn('class="language-menu"', template)
+        self.assertNotIn('class="lang-btn go"', template)
+
+    def test_javascript_is_available_and_renders_a_reference_page(self) -> None:
+        validate_data_model(self.data)
+        javascript = next(
+            language for language in get_languages(self.data)
+            if language["slug"] == "javascript"
+        )
+
+        home_page = render_home_page(self.data)
+        browser_data = render_site_data_js(self.data)
+        javascript_page = render_language_page(
+            javascript,
+            self.data,
+            page_rel="javascript/index.html",
+        )
+        compare_page = render_compare_page(self.data)
+
+        self.assertIn('class="hero-card javascript"', home_page)
+        self.assertIn('"slug":"javascript","name":"JavaScript"', browser_data)
+        self.assertIn("JavaScript Syntax Reference", javascript_page)
+        self.assertIn('id="operators"', javascript_page)
+        self.assertIn("===", javascript_page)
+        self.assertIn(
+            '<th class="lang-javascript" data-language="javascript" hidden>JavaScript</th>',
+            compare_page,
+        )
+        self.assertIn("<code>xs.map(x =&gt; f(x))</code>", compare_page)
+
+    def test_browser_search_and_cross_language_maps_come_from_data(self) -> None:
+        data = copy.deepcopy(self.data)
+        data["topics"][0]["search_keywords"] = "json-owned-search-keyword"
+        data["concepts"][0]["topics"]["python"] = "json-owned-topic"
+
+        browser_data = render_site_data_js(data)
+
+        self.assertIn("json-owned-search-keyword", browser_data)
+        self.assertIn('"python":"json-owned-topic"', browser_data)
+        self.assertNotIn("const SEARCH_INDEX = [", (ROOT / "js" / "main.js").read_text(encoding="utf-8"))
+        self.assertNotIn("const CONCEPTS = {", (ROOT / "js" / "main.js").read_text(encoding="utf-8"))
+
+
+if __name__ == "__main__":
+    unittest.main()
