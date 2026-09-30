@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,47 +11,28 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="../index.html" class="logo"><span class="logo-mark">{ }</span><span class="logo-text">Polyglot Syntax</span></a>
-      <nav class="lang-nav" aria-label="Language navigation"></nav>
+      <nav class="lang-nav" aria-label="Language navigation">
+        <details class="language-menu">
+          <summary class="language-menu-toggle" aria-label="Choose a language">
+            <span>C#</span><span class="language-menu-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="language-menu-panel" aria-label="Available languages"></div>
+        </details>
+      </nav>
+      <a href="../compare/index.html" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Compare</a>
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
     </div>
   </header>
 
   <div class="lang-layout container">
     <aside class="sidebar">
-      <h3>Basics</h3>
-      <a href="#types">Data Types</a>
-      <a href="#variables">Variables & Literals</a>
-      <a href="#operators">Operators</a>
-      <a href="#control">Control Flow</a>
-      <a href="#methods">Methods</a>
-      <h3>OOP</h3>
-      <a href="#classes">Classes & Structs</a>
-      <a href="#records">Records</a>
-      <a href="#inheritance">Inheritance & Interfaces</a>
-      <a href="#properties">Properties & Indexers</a>
-      <h3>Modern Features</h3>
-      <a href="#linq">LINQ</a>
-      <a href="#async">Async / Await</a>
-      <a href="#pattern">Pattern Matching</a>
-      <a href="#generics">Generics</a>
-      <h3>Library</h3>
-      <a href="#collections">Collections</a>
-      <a href="#exceptions">Exceptions</a>
-      <a href="#memory">Spans & Memory</a>
-      <a href="#dotnet">.NET Highlights</a>
-      <a href="#advanced">Advanced</a>
-      <h3>Expansion</h3>
-      <a href="#gotchas">Gotchas</a>
-      <a href="#ecosystem">Ecosystem & Tooling</a>
+      <h3>Basics</h3> <a href="#types">Data Types</a> <a href="#variables">Variables &amp; Literals</a> <a href="#operators">Operators</a> <a href="#control">Control Flow</a> <a href="#methods">Methods</a> <h3>OOP</h3> <a href="#classes">Classes &amp; Structs</a> <a href="#records">Records C# 9+</a> <a href="#inheritance">Inheritance &amp; Interfaces</a> <a href="#properties">Properties, Indexers &amp; Events</a> <h3>Modern Features</h3> <a href="#linq">LINQ</a> <a href="#async">Async / Await</a> <a href="#pattern">Pattern Matching</a> <a href="#generics">Generics</a> <h3>Library</h3> <a href="#collections">Collections</a> <a href="#exceptions">Exceptions</a> <a href="#memory">Spans, Memory &amp; Performance</a> <a href="#dotnet">.NET Highlights</a> <a href="#advanced">Advanced Topics</a> <h3>Expansion</h3> <a href="#gotchas">Gotchas</a> <a href="#ecosystem">Ecosystem &amp; Tooling</a>
     </aside>
 
     <article class="content">
       <h1>C# Syntax Reference</h1>
-      <span class="lang-tag csharp">C# 12 / .NET 8+ · modern idiomatic C#</span>
-
-      <section class="topic" id="types">
-        <h2>Data Types</h2>
-        <pre><code>// Value types
+      <span class="lang-tag csharp">C# 12 / .NET 8+ · modern .NET</span>
+      <section class="topic" id="types"><h2>Data Types</h2><pre><code>// Value types
 bool, byte, sbyte, short, ushort
 int, uint, long, ulong
 float, double, decimal
@@ -70,12 +51,7 @@ string? maybe = null;         // nullable reference types</code></pre>
           <code class="inline">!</code> null-forgiving (sparingly) ·
           <code class="inline">??</code> / <code class="inline">??=</code> ·
           <code class="inline">?.</code> null-conditional
-        </div>
-      </section>
-
-      <section class="topic" id="variables">
-        <h2>Variables & Literals</h2>
-        <pre><code>int a = 42;
+        </div></section> <section class="topic" id="variables"><h2>Variables &amp; Literals</h2><pre><code>int a = 42;
 var inferred = 42;
 const int Max = 100;
 readonly int Id;
@@ -85,12 +61,7 @@ readonly int Id;
 "hello"  $@"path"  $"interp {a}"
 """raw string (C# 11+)"""
 default(int);  default;
-_ = SomeMethod();</code></pre>
-      </section>
-
-      <section class="topic" id="operators">
-        <h2>Operators</h2>
-        <pre><code>+ - * / %  ++ --
+_ = SomeMethod();</code></pre></section> <section class="topic" id="operators"><h2>Operators</h2><pre><code>+ - * / %  ++ --
 = += -= *= /= %=
 == != &lt; &gt; &lt;= &gt;=
 &amp;&amp; || !
@@ -98,12 +69,7 @@ _ = SomeMethod();</code></pre>
 
 x?.Prop   x ?? y   x ??= y
 x is null / x is not null
-arr[^1]   arr[1..^1]</code></pre>
-      </section>
-
-      <section class="topic" id="control">
-        <h2>Control Flow</h2>
-        <pre><code>if (cond) { ... } else if (cond) { ... } else { ... }
+arr[^1]   arr[1..^1]</code></pre></section> <section class="topic" id="control"><h2>Control Flow</h2><pre><code>if (cond) { ... } else if (cond) { ... } else { ... }
 
 switch (x) {
     case 1: ...; break;
@@ -120,12 +86,7 @@ var result = x switch {
 for (int i = 0; i &lt; n; i++) { ... }
 foreach (var item in collection) { ... }
 while (cond) { ... }
-using var stream = File.OpenRead(path);  // C# 8+</code></pre>
-      </section>
-
-      <section class="topic" id="methods">
-        <h2>Methods</h2>
-        <pre><code>public int Add(int a, int b = 0) =&gt; a + b;
+using var stream = File.OpenRead(path);  // C# 8+</code></pre></section> <section class="topic" id="methods"><h2>Methods</h2><pre><code>public int Add(int a, int b = 0) =&gt; a + b;
 void Swap(ref int a, ref int b) { ... }
 bool TryParse(string s, out int result) { ... }
 void Process(in LargeStruct s) { ... }
@@ -134,12 +95,7 @@ void Log(params string[] messages) { ... }
 public static class StringExt {
     public static bool IsBlank(this string? s)
         =&gt; string.IsNullOrWhiteSpace(s);
-}</code></pre>
-      </section>
-
-      <section class="topic" id="classes">
-        <h2>Classes & Structs</h2>
-        <pre><code>public class Animal {
+}</code></pre></section> <section class="topic" id="classes"><h2>Classes &amp; Structs</h2><pre><code>public class Animal {
     private readonly string _name;
     public Animal(string name) =&gt; _name = name;
     public virtual void Speak() { ... }
@@ -152,12 +108,7 @@ public struct Point {
 // Primary constructors (C# 12)
 public class Person(string name, int age) {
     public string Name =&gt; name;
-}</code></pre>
-      </section>
-
-      <section class="topic" id="records">
-        <h2>Records <span class="ver">C# 9+</span></h2>
-        <pre><code>public record Person(string Name, int Age);
+}</code></pre></section> <section class="topic" id="records"><h2>Records C# 9+</h2><pre><code>public record Person(string Name, int Age);
 var p1 = new Person("Ada", 36);
 var p2 = p1 with { Age = 37 };
 
@@ -174,12 +125,7 @@ public record Order {
         </div>
         <div class="callout callout-default"><strong>★ Value-oriented data</strong>
           Prefer <code class="inline">record</code> for immutable DTOs and domain values.
-        </div>
-      </section>
-
-      <section class="topic" id="inheritance">
-        <h2>Inheritance & Interfaces</h2>
-        <pre><code>public class Dog : Animal {
+        </div></section> <section class="topic" id="inheritance"><h2>Inheritance &amp; Interfaces</h2><pre><code>public class Dog : Animal {
     public override void Speak() =&gt; Console.WriteLine("Woof");
 }
 public interface IShape {
@@ -191,12 +137,7 @@ public class Circle : IShape {
     public double Area =&gt; Math.PI * Radius * Radius;
     public void Draw() { ... }
 }
-// Default interface methods (C# 8+)</code></pre>
-      </section>
-
-      <section class="topic" id="properties">
-        <h2>Properties, Indexers & Events</h2>
-        <pre><code>public string Name { get; set; } = "";
+// Default interface methods (C# 8+)</code></pre></section> <section class="topic" id="properties"><h2>Properties, Indexers &amp; Events</h2><pre><code>public string Name { get; set; } = "";
 public string Id { get; init; }
 public int Count { get; private set; }
 public string FullName =&gt; $"{First} {Last}";
@@ -204,12 +145,7 @@ public string this[int index] {
     get =&gt; _items[index];
     set =&gt; _items[index] = value;
 }
-public event EventHandler? SomethingHappened;</code></pre>
-      </section>
-
-      <section class="topic" id="linq">
-        <h2>LINQ</h2>
-        <pre><code>using System.Linq;
+public event EventHandler? SomethingHappened;</code></pre></section> <section class="topic" id="linq"><h2>LINQ</h2><pre><code>using System.Linq;
 var adults = people
     .Where(p =&gt; p.Age &gt;= 18)
     .OrderBy(p =&gt; p.LastName)
@@ -226,12 +162,7 @@ var q = from p in people
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           LINQ is deferred — runs when enumerated. Multiple enumeration can repeat work
           or hit a disposed context. Materialize with <code class="inline">ToList()</code> / <code class="inline">ToArray()</code> when needed.
-        </div>
-      </section>
-
-      <section class="topic" id="async">
-        <h2>Async / Await</h2>
-        <pre><code>public async Task&lt;string&gt; FetchAsync(string url) {
+        </div></section> <section class="topic" id="async"><h2>Async / Await</h2><pre><code>public async Task&lt;string&gt; FetchAsync(string url) {
     using var client = new HttpClient();
     return await client.GetStringAsync(url);
 }
@@ -250,12 +181,7 @@ await foreach (var n in GenerateAsync()) { ... }</code></pre>
           Avoid <code class="inline">.Result</code> / <code class="inline">.Wait()</code> — can deadlock.
           Prefer <code class="inline">await</code>. Pass <code class="inline">CancellationToken</code>.
           Prefer <code class="inline">async Task</code> over <code class="inline">async void</code> (except event handlers).
-        </div>
-      </section>
-
-      <section class="topic" id="pattern">
-        <h2>Pattern Matching</h2>
-        <pre><code>if (obj is Person { Age: &gt; 18, Name: var n }) { ... }
+        </div></section> <section class="topic" id="pattern"><h2>Pattern Matching</h2><pre><code>if (obj is Person { Age: &gt; 18, Name: var n }) { ... }
 string Describe(object o) =&gt; o switch {
     int i when i &gt; 0 =&gt; "positive int",
     string { Length: &gt; 0 } s =&gt; $"non-empty {s}",
@@ -263,23 +189,13 @@ string Describe(object o) =&gt; o switch {
     null =&gt; "null",
     _ =&gt; "something else"
 };
-if (arr is [1, 2, .. var rest]) { ... }  // C# 11</code></pre>
-      </section>
-
-      <section class="topic" id="generics">
-        <h2>Generics</h2>
-        <pre><code>public class Box&lt;T&gt; where T : class, new() {
+if (arr is [1, 2, .. var rest]) { ... }  // C# 11</code></pre></section> <section class="topic" id="generics"><h2>Generics</h2><pre><code>public class Box&lt;T&gt; where T : class, new() {
     public T Value { get; set; } = new();
 }
 IEnumerable&lt;out T&gt;              // covariant
 IComparer&lt;in T&gt;                 // contravariant
 public static T Add&lt;T&gt;(T a, T b) where T : INumber&lt;T&gt;
-    =&gt; a + b;                   // generic math C# 11</code></pre>
-      </section>
-
-      <section class="topic" id="collections">
-        <h2>Collections</h2>
-        <pre><code>List&lt;T&gt;  Dictionary&lt;TKey,TValue&gt;  HashSet&lt;T&gt;
+    =&gt; a + b;                   // generic math C# 11</code></pre></section> <section class="topic" id="collections"><h2>Collections</h2><pre><code>List&lt;T&gt;  Dictionary&lt;TKey,TValue&gt;  HashSet&lt;T&gt;
 Queue&lt;T&gt;  Stack&lt;T&gt;  LinkedList&lt;T&gt;
 ImmutableList&lt;T&gt;  ConcurrentDictionary&lt;...&gt;
 
@@ -292,22 +208,12 @@ var middle = arr[1..^1];</code></pre>
           <code class="inline">List&lt;T&gt;</code> — default collection ·
           <code class="inline">Dictionary&lt;TKey,TValue&gt;</code> — key/value ·
           <code class="inline">HashSet&lt;T&gt;</code> — unique membership
-        </div>
-      </section>
-
-      <section class="topic" id="exceptions">
-        <h2>Exceptions</h2>
-        <pre><code>try { ... }
+        </div></section> <section class="topic" id="exceptions"><h2>Exceptions</h2><pre><code>try { ... }
 catch (ArgumentNullException ex) { ... }
 catch (Exception ex) when (ex.Message.Contains("timeout")) { ... }
 finally { ... }
 throw new InvalidOperationException("msg");
-throw;  // rethrow preserving stack</code></pre>
-      </section>
-
-      <section class="topic" id="memory">
-        <h2>Spans, Memory & Performance</h2>
-        <pre><code>Span&lt;byte&gt; buffer = stackalloc byte[256];
+throw;  // rethrow preserving stack</code></pre></section> <section class="topic" id="memory"><h2>Spans, Memory &amp; Performance</h2><pre><code>Span&lt;byte&gt; buffer = stackalloc byte[256];
 Memory&lt;byte&gt; mem = new byte[1024];
 var pool = ArrayPool&lt;byte&gt;.Shared;
 byte[] buf = pool.Rent(4096);
@@ -317,33 +223,18 @@ ref struct Utf8Parser { ... }</code></pre>
           <code class="inline">Span&lt;T&gt;</code> — stack-only, high-perf slices ·
           <code class="inline">Memory&lt;T&gt;</code> — heap-compatible, usable across <code class="inline">await</code> ·
           Prefer them to avoid allocations in hot paths.
-        </div>
-      </section>
-
-      <section class="topic" id="dotnet">
-        <h2>.NET Highlights</h2>
-        <pre><code>Console.WriteLine("Hello");   // top-level statements
+        </div></section> <section class="topic" id="dotnet"><h2>.NET Highlights</h2><pre><code>Console.WriteLine("Hello");   // top-level statements
 global using System.Text.Json;
 namespace MyApp;
 public class Person {
     public required string Name { get; init; }  // C# 11
 }
 // Minimal APIs, Native AOT, System.Text.Json,
-// Microsoft.Extensions.* (DI, Logging, Config)</code></pre>
-      </section>
-
-      <section class="topic" id="advanced">
-        <h2>Advanced Topics</h2>
-        <pre><code>[Obsolete("Use NewMethod")]
+// Microsoft.Extensions.* (DI, Logging, Config)</code></pre></section> <section class="topic" id="advanced"><h2>Advanced Topics</h2><pre><code>[Obsolete("Use NewMethod")]
 [JsonPropertyName("id")]
 var type = typeof(Person);
 Expression&lt;Func&lt;int, bool&gt;&gt; expr = x =&gt; x &gt; 5;
-// Source generators, unsafe, P/Invoke when needed</code></pre>
-      </section>
-
-      <section class="topic" id="gotchas">
-        <h2>Gotchas</h2>
-        <pre><code>// .Result / .Wait() — can deadlock
+// Source generators, unsafe, P/Invoke when needed</code></pre></section> <section class="topic" id="gotchas"><h2>Gotchas</h2><pre><code>// .Result / .Wait() — can deadlock
 var x = FetchAsync().Result;   // BAD
 var x = await FetchAsync();    // GOOD
 
@@ -364,12 +255,7 @@ List&lt;int&gt; nums = [];    // GOOD: generics avoid boxing entirely
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           Prefer <code class="inline">await</code> over <code class="inline">.Result</code>/<code class="inline">.Wait()</code>.
           Materialize LINQ with <code class="inline">ToList()</code> when enumerating more than once.
-        </div>
-      </section>
-
-      <section class="topic" id="ecosystem">
-        <h2>Ecosystem & Tooling</h2>
-        <pre><code>dotnet new console -n MyApp
+        </div></section> <section class="topic" id="ecosystem"><h2>Ecosystem &amp; Tooling</h2><pre><code>dotnet new console -n MyApp
 dotnet restore
 dotnet build
 dotnet run
@@ -383,16 +269,10 @@ dotnet tool install -g dotnet-ef
         <div class="callout callout-default"><strong>★ Defaults</strong>
           <code class="inline">dotnet</code> CLI · <code class="inline">NuGet</code> ·
           <code class="inline">dotnet test</code> in CI
-        </div>
-      </section>
+        </div></section>
     </article>
   </div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">GitHub</a> · C# reference</p>
-    </div>
-  </footer>
   <script src="../js/site-data.js"></script>
   <script src="../js/main.js"></script>
 </body>

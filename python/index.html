@@ -11,45 +11,28 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="../index.html" class="logo"><span class="logo-mark">{ }</span><span class="logo-text">Polyglot Syntax</span></a>
-      <nav class="lang-nav" aria-label="Language navigation"></nav>
+      <nav class="lang-nav" aria-label="Language navigation">
+        <details class="language-menu">
+          <summary class="language-menu-toggle" aria-label="Choose a language">
+            <span>Python</span><span class="language-menu-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="language-menu-panel" aria-label="Available languages"></div>
+        </details>
+      </nav>
+      <a href="../compare/index.html" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Compare</a>
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
     </div>
   </header>
 
   <div class="lang-layout container">
     <aside class="sidebar">
-      <h3>Basics</h3>
-      <a href="#types">Data Types</a>
-      <a href="#variables">Variables & Assignment</a>
-      <a href="#operators">Operators</a>
-      <a href="#control">Control Flow</a>
-      <a href="#functions">Functions</a>
-      <h3>Data Modeling</h3>
-      <a href="#classes">Classes & OOP</a>
-      <a href="#dataclasses">Dataclasses & Named Tuples</a>
-      <a href="#typing">Type Hints</a>
-      <h3>Collections</h3>
-      <a href="#collections">Collections</a>
-      <a href="#comprehensions">Comprehensions</a>
-      <a href="#iterators">Iterators & Generators</a>
-      <h3>Advanced</h3>
-      <a href="#exceptions">Exceptions</a>
-      <a href="#context">Context Managers</a>
-      <a href="#async">Async / Await</a>
-      <a href="#stdlib">Key Standard Library</a>
-      <a href="#packaging">Packaging</a>
-      <h3>Expansion</h3>
-      <a href="#gotchas">Gotchas</a>
-      <a href="#ecosystem">Ecosystem & Tooling</a>
+      <h3>Basics</h3> <a href="#types">Data Types</a> <a href="#variables">Variables &amp; Assignment</a> <a href="#operators">Operators</a> <a href="#control">Control Flow</a> <a href="#functions">Functions</a> <h3>Data Modeling</h3> <a href="#classes">Classes &amp; OOP</a> <a href="#dataclasses">Dataclasses &amp; Named Tuples</a> <a href="#typing">Type Hints</a> <h3>Collections</h3> <a href="#collections">Collections</a> <a href="#comprehensions">Comprehensions</a> <a href="#iterators">Iterators &amp; Generators</a> <h3>Advanced</h3> <a href="#exceptions">Exceptions</a> <a href="#context">Context Managers</a> <a href="#async">Async / Await</a> <a href="#stdlib">Key Standard Library Modules</a> <a href="#packaging">Packaging</a> <h3>Expansion</h3> <a href="#gotchas">Gotchas</a> <a href="#ecosystem">Ecosystem &amp; Tooling</a>
     </aside>
 
     <article class="content">
       <h1>Python Syntax Reference</h1>
       <span class="lang-tag python">Python 3.12+ · idiomatic modern Python</span>
-
-      <section class="topic" id="types">
-        <h2>Data Types</h2>
-        <pre><code># Scalars
+      <section class="topic" id="types"><h2>Data Types</h2><pre><code># Scalars
 i: int = 42
 f: float = 3.14
 b: bool = True
@@ -60,33 +43,18 @@ lst: list[int] = [1, 2, 3]
 tup: tuple[int, ...] = (1, 2, 3)
 st: set[int] = {1, 2, 3}
 dct: dict[str, int] = {"a": 1}
-bs: bytes = b"raw"</code></pre>
-      </section>
-
-      <section class="topic" id="variables">
-        <h2>Variables & Assignment</h2>
-        <pre><code>x = 42
+bs: bytes = b"raw"</code></pre></section> <section class="topic" id="variables"><h2>Variables &amp; Assignment</h2><pre><code>x = 42
 x, y = 1, 2
 x, y = y, x
 a = b = c = 0
 x += 1
 if (n := len(items)) &gt; 10: print(n)
-first, *rest, last = [1, 2, 3, 4, 5]</code></pre>
-      </section>
-
-      <section class="topic" id="operators">
-        <h2>Operators</h2>
-        <pre><code>+ - * / // % **
+first, *rest, last = [1, 2, 3, 4, 5]</code></pre></section> <section class="topic" id="operators"><h2>Operators</h2><pre><code>+ - * / // % **
 == != &lt; &gt; &lt;= &gt;=
 is  is not  in  not in
 and  or  not
 &amp; | ^ ~ &lt;&lt; &gt;&gt;
-1 &lt; x &lt;= 10</code></pre>
-      </section>
-
-      <section class="topic" id="control">
-        <h2>Control Flow</h2>
-        <pre><code>if x &gt; 0: ...
+1 &lt; x &lt;= 10</code></pre></section> <section class="topic" id="control"><h2>Control Flow</h2><pre><code>if x &gt; 0: ...
 elif x == 0: ...
 else: ...
 
@@ -97,12 +65,7 @@ match command:
 
 for item in iterable: ...
 while condition: ...
-value = a if condition else b</code></pre>
-      </section>
-
-      <section class="topic" id="functions">
-        <h2>Functions</h2>
-        <pre><code>def add(a: int, b: int = 0) -&gt; int:
+value = a if condition else b</code></pre></section> <section class="topic" id="functions"><h2>Functions</h2><pre><code>def add(a: int, b: int = 0) -&gt; int:
     return a + b
 
 def log(*args, **kwargs): ...
@@ -110,12 +73,7 @@ def f(pos_only, /, normal, *, kw_only): ...
 square = lambda x: x * x
 
 @decorator
-def func(): ...</code></pre>
-      </section>
-
-      <section class="topic" id="classes">
-        <h2>Classes & OOP</h2>
-        <pre><code>class Animal:
+def func(): ...</code></pre></section> <section class="topic" id="classes"><h2>Classes &amp; OOP</h2><pre><code>class Animal:
     def __init__(self, name: str):
         self.name = name
     def speak(self) -&gt; str:
@@ -123,12 +81,7 @@ def func(): ...</code></pre>
 
 class Dog(Animal):
     def speak(self) -&gt; str:
-        return f"{self.name} says Woof!"</code></pre>
-      </section>
-
-      <section class="topic" id="dataclasses">
-        <h2>Dataclasses & Named Tuples</h2>
-        <pre><code>from dataclasses import dataclass, field
+        return f"{self.name} says Woof!"</code></pre></section> <section class="topic" id="dataclasses"><h2>Dataclasses &amp; Named Tuples</h2><pre><code>from dataclasses import dataclass, field
 
 @dataclass(slots=True)
 class Point:
@@ -137,12 +90,7 @@ class Point:
     tags: list[str] = field(default_factory=list)</code></pre>
         <div class="callout callout-default"><strong>★ Default data bag</strong>
           Prefer <code class="inline">@dataclass</code> for simple field containers.
-        </div>
-      </section>
-
-      <section class="topic" id="typing">
-        <h2>Type Hints</h2>
-        <pre><code>from collections.abc import Sequence
+        </div></section> <section class="topic" id="typing"><h2>Type Hints</h2><pre><code>from collections.abc import Sequence
 
 # PEP 695 generic syntax (3.12+)
 def first[T](seq: Sequence[T]) -&gt; T | None: ...
@@ -150,65 +98,30 @@ def first[T](seq: Sequence[T]) -&gt; T | None: ...
 # Structural typing
 from typing import Protocol
 class Sized(Protocol):
-    def __len__(self) -&gt; int: ...</code></pre>
-      </section>
-
-      <section class="topic" id="collections">
-        <h2>Collections</h2>
-        <pre><code>lst = [1, 2, 3]; lst.append(4)
+    def __len__(self) -&gt; int: ...</code></pre></section> <section class="topic" id="collections"><h2>Collections</h2><pre><code>lst = [1, 2, 3]; lst.append(4)
 d = {"a": 1}; d.get("b", 0)
 s = {1, 2, 3}
 from collections import deque, Counter, defaultdict</code></pre>
         <div class="callout callout-default"><strong>★ Defaults</strong>
           <code class="inline">list</code> · <code class="inline">dict</code> · <code class="inline">set</code>
-        </div>
-      </section>
-
-      <section class="topic" id="comprehensions">
-        <h2>Comprehensions</h2>
-        <pre><code>squares = [x*x for x in range(10)]
+        </div></section> <section class="topic" id="comprehensions"><h2>Comprehensions</h2><pre><code>squares = [x*x for x in range(10)]
 evens = [x for x in range(20) if x % 2 == 0]
-d = {k: v for k, v in pairs}</code></pre>
-      </section>
-
-      <section class="topic" id="iterators">
-        <h2>Iterators & Generators</h2>
-        <pre><code>def countdown(n):
+d = {k: v for k, v in pairs}</code></pre></section> <section class="topic" id="iterators"><h2>Iterators &amp; Generators</h2><pre><code>def countdown(n):
     while n &gt; 0:
         yield n
         n -= 1
-from itertools import count, chain, islice</code></pre>
-      </section>
-
-      <section class="topic" id="exceptions">
-        <h2>Exceptions</h2>
-        <pre><code>try:
+from itertools import count, chain, islice</code></pre></section> <section class="topic" id="exceptions"><h2>Exceptions</h2><pre><code>try:
     risky()
 except ValueError as e:
     print(e)
 finally:
     cleanup()
-raise ValueError("bad")</code></pre>
-      </section>
-
-      <section class="topic" id="context">
-        <h2>Context Managers</h2>
-        <pre><code>with open("file.txt") as f:
-    data = f.read()</code></pre>
-      </section>
-
-      <section class="topic" id="async">
-        <h2>Async / Await</h2>
-        <pre><code>import asyncio
+raise ValueError("bad")</code></pre></section> <section class="topic" id="context"><h2>Context Managers</h2><pre><code>with open("file.txt") as f:
+    data = f.read()</code></pre></section> <section class="topic" id="async"><h2>Async / Await</h2><pre><code>import asyncio
 async def fetch(url: str) -&gt; str: ...
 async def main():
     await asyncio.gather(fetch("a"), fetch("b"))
-asyncio.run(main())</code></pre>
-      </section>
-
-      <section class="topic" id="stdlib">
-        <h2>Key Standard Library Modules</h2>
-        <table>
+asyncio.run(main())</code></pre></section> <section class="topic" id="stdlib"><h2>Key Standard Library Modules</h2><table>
           <thead><tr><th>Module</th><th>Import</th><th>Use for</th></tr></thead>
           <tbody>
             <tr><td>pathlib</td><td><code class="inline">from pathlib import Path</code></td><td>filesystem paths</td></tr>
@@ -222,19 +135,9 @@ asyncio.run(main())</code></pre>
             <tr><td>logging</td><td><code class="inline">import logging</code></td><td>logging</td></tr>
             <tr><td>argparse</td><td><code class="inline">import argparse</code></td><td>CLI args</td></tr>
           </tbody>
-        </table>
-      </section>
-
-      <section class="topic" id="packaging">
-        <h2>Packaging</h2>
-        <pre><code>python -m venv .venv
+        </table></section> <section class="topic" id="packaging"><h2>Packaging</h2><pre><code>python -m venv .venv
 pip install -e .
-uv / ruff / mypy / pytest</code></pre>
-      </section>
-
-      <section class="topic" id="gotchas">
-        <h2>Gotchas</h2>
-        <pre><code># Mutable default — shared across calls
+uv / ruff / mypy / pytest</code></pre></section> <section class="topic" id="gotchas"><h2>Gotchas</h2><pre><code># Mutable default — shared across calls
 def append(item, bucket=[]):   # BAD
     bucket.append(item); return bucket
 
@@ -260,12 +163,7 @@ list(g); list(g)  # second is []
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           Mutable defaults and late-binding closures are classic traps.
           Prefer <code class="inline">None</code> defaults and default-arg capture in lambdas.
-        </div>
-      </section>
-
-      <section class="topic" id="ecosystem">
-        <h2>Ecosystem & Tooling</h2>
-        <pre><code># Environments
+        </div></section> <section class="topic" id="ecosystem"><h2>Ecosystem &amp; Tooling</h2><pre><code># Environments
 python -m venv .venv &amp;&amp; source .venv/bin/activate
 uv venv
 
@@ -283,16 +181,10 @@ uv run python script.py
         <div class="callout callout-default"><strong>★ Defaults</strong>
           <code class="inline">uv</code> or <code class="inline">pip</code>+venv ·
           <code class="inline">ruff</code> · <code class="inline">pytest</code> · <code class="inline">mypy</code>/<code class="inline">pyright</code>
-        </div>
-      </section>
+        </div></section>
     </article>
   </div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">GitHub</a> · Python reference</p>
-    </div>
-  </footer>
   <script src="../js/site-data.js"></script>
   <script src="../js/main.js"></script>
 </body>

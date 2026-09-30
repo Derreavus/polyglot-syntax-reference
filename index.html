@@ -17,7 +17,15 @@
         <span class="logo-mark">{ }</span>
         <span class="logo-text">Polyglot Syntax</span>
       </a>
-      <nav class="lang-nav" aria-label="Language navigation"></nav>
+      <nav class="lang-nav" aria-label="Language navigation">
+        <details class="language-menu">
+          <summary class="language-menu-toggle" aria-label="Choose a language">
+            <span>Languages</span><span class="language-menu-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="language-menu-panel" aria-label="Available languages"></div>
+        </details>
+      </nav>
+      <a href="compare/index.html" class="lang-btn active" style="color: var(--accent); border: 1px solid var(--accent);">Compare</a>
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
     </div>
   </header>
@@ -26,36 +34,12 @@
     <section class="hero">
       <div class="container">
         <h1>One reference.<br>Every language.</h1>
-
-        <p class="hero-sub">
-          A practical reference for anyone who works with multiple programming
-          languages. Quickly find familiar syntax, concepts, patterns, and
-          common gotchas — no matter which language you're working in.
-        </p>
-
-        <div class="hero-cards" aria-label="Language cards"></div>
-      </div>
-    </section>
-
-    <section class="features container">
-      <h2>What you get</h2>
-      <div class="feature-grid">
-        <div class="feature">
-          <h3>Side-by-side depth</h3>
-          <p>Every language is treated with the same level of detail you would expect from a dedicated pocket reference.</p>
-        </div>
-        <div class="feature">
-          <h3>Consistent structure</h3>
-          <p>Identical topic order across languages so you can jump between them and immediately find the equivalent concept.</p>
-        </div>
-        <div class="feature">
-          <h3>Modern & practical</h3>
-          <p>Covers current language versions (Python 3.12+, Rust 2024 edition, C++20/23, C# 12 / .NET 8+) and real-world idioms.</p>
-        </div>
-        <div class="feature">
-          <h3>Searchable offline-ready</h3>
-          <p>Static site you can fork, host on GitHub Pages, or serve locally. Works without a backend.</p>
-        </div>
+        <p class="hero-sub">A practical reference for anyone who works with multiple programming languages. Quickly find familiar syntax, concepts, patterns, and common gotchas — no matter which language you are working in.</p>
+        <div class="hero-cards" aria-label="Language cards"><a href="python/index.html" class="hero-card python"><h2>Python</h2><p>Readable and versatile. Explore types, collections, async, typing, and the standard library.</p></a>
+<a href="rust/index.html" class="hero-card rust"><h2>Rust</h2><p>Ownership, borrowing, traits, and zero-cost abstractions.</p></a>
+<a href="cpp/index.html" class="hero-card cpp"><h2>C++</h2><p>Modern C++ from fundamentals through templates, RAII, and the STL.</p></a>
+<a href="csharp/index.html" class="hero-card csharp"><h2>C#</h2><p>Expressive and powerful. Explore LINQ, async/await, and the .NET libraries.</p></a>
+<a href="javascript/index.html" class="hero-card javascript"><h2>JavaScript</h2><p>A practical guide to JavaScript syntax, objects, asynchronous code, and the web platform.</p></a></div>
       </div>
     </section>
   </main>
@@ -63,7 +47,6 @@
   <footer class="site-footer">
     <div class="container">
       <p>Polyglot Syntax Reference · Open source · For every programmer</p>
-      <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">View on GitHub</a></p>
     </div>
   </footer>
 

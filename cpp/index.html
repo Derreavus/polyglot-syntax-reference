@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,48 +11,28 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="../index.html" class="logo"><span class="logo-mark">{ }</span><span class="logo-text">Polyglot Syntax</span></a>
-      <nav class="lang-nav" aria-label="Language navigation"></nav>
+      <nav class="lang-nav" aria-label="Language navigation">
+        <details class="language-menu">
+          <summary class="language-menu-toggle" aria-label="Choose a language">
+            <span>C++</span><span class="language-menu-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="language-menu-panel" aria-label="Available languages"></div>
+        </details>
+      </nav>
+      <a href="../compare/index.html" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Compare</a>
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
     </div>
   </header>
 
   <div class="lang-layout container">
     <aside class="sidebar">
-      <h3>Basics</h3>
-      <a href="#types">Data Types</a>
-      <a href="#variables">Variables & Literals</a>
-      <a href="#operators">Operators</a>
-      <a href="#control">Control Flow</a>
-      <a href="#functions">Functions</a>
-      <h3>Memory & Types</h3>
-      <a href="#pointers">Pointers & Smart Pointers</a>
-      <a href="#raii">RAII & Special Members</a>
-      <a href="#classes">Structs & Classes</a>
-      <a href="#inheritance">Inheritance</a>
-      <h3>Templates & Modern</h3>
-      <a href="#templates">Templates</a>
-      <a href="#lambdas">Lambdas</a>
-      <a href="#modern">Modern C++</a>
-      <h3>Library</h3>
-      <a href="#containers">STL Containers</a>
-      <a href="#algorithms">Iterators & Algorithms</a>
-      <a href="#complexity">Complexity Tables</a>
-      <a href="#exceptions">Exceptions</a>
-      <a href="#concurrency">Concurrency</a>
-      <a href="#headers">Key Headers</a>
-      <a href="#patterns">Design Patterns</a>
-      <h3>Expansion</h3>
-      <a href="#gotchas">Gotchas</a>
-      <a href="#ecosystem">Build & Tooling</a>
+      <h3>Basics</h3> <a href="#types">Data Types</a> <a href="#variables">Variables &amp; Literals</a> <a href="#operators">Operators</a> <a href="#control">Control Flow</a> <a href="#functions">Functions</a> <h3>Memory &amp; Types</h3> <a href="#pointers">Pointers &amp; Smart Pointers</a> <a href="#raii">Special Member Functions &amp; Rules</a> <a href="#classes">Structs &amp; Classes</a> <a href="#inheritance">Inheritance &amp; Polymorphism</a> <h3>Templates &amp; Modern</h3> <a href="#templates">Templates</a> <a href="#lambdas">Lambda Expressions</a> <a href="#modern">Modern C++ Highlights</a> <h3>Library</h3> <a href="#containers">STL Containers</a> <a href="#algorithms">Iterators &amp; Algorithms</a> <a href="#complexity">Container Complexity (selected)</a> <a href="#exceptions">Exception Handling</a> <a href="#concurrency">Concurrency (C++11+)</a> <a href="#headers">Key Standard Library Headers</a> <a href="#patterns">Selected Design Patterns</a> <h3>Expansion</h3> <a href="#gotchas">Gotchas</a> <a href="#ecosystem">Build &amp; Tooling</a>
     </aside>
 
     <article class="content">
-      <h1>C++ Pocket Reference</h1>
-      <span class="lang-tag cpp">C++20 / C++23 · focused on modern idioms</span>
-
-      <section class="topic" id="types">
-        <h2>Data Types</h2>
-        <h3>Fundamental Types</h3>
+      <h1>C++ Syntax Reference</h1>
+      <span class="lang-tag cpp">C++20/23 · modern language features</span>
+      <section class="topic" id="types"><h2>Data Types</h2><h3>Fundamental Types</h3>
         <pre><code>bool  char  wchar_t  char8_t  char16_t  char32_t
 short  int  long  long long
 float  double  long double
@@ -62,42 +42,22 @@ void  auto  decltype(x)</code></pre>
 size_t  ptrdiff_t  intptr_t / uintptr_t</code></pre>
         <h3>Storage & Specifiers</h3>
         <pre><code>const  volatile  constexpr  consteval
-mutable  static  extern  inline  thread_local</code></pre>
-      </section>
-
-      <section class="topic" id="variables">
-        <h2>Variables & Literals</h2>
-        <pre><code>int a = 42;
+mutable  static  extern  inline  thread_local</code></pre></section> <section class="topic" id="variables"><h2>Variables &amp; Literals</h2><pre><code>int a = 42;
 auto x = 10;
 int&amp; ref = a;
 int&amp;&amp; rref = 42;
 nullptr;
 std::string str = "hello"s;
-0xFF  0b1010  1'000'000  42uz</code></pre>
-      </section>
-
-      <section class="topic" id="operators">
-        <h2>Operators</h2>
-        <pre><code>+ - * / %   = += -= *= /= %=
+0xFF  0b1010  1'000'000  42uz</code></pre></section> <section class="topic" id="operators"><h2>Operators</h2><pre><code>+ - * / %   = += -= *= /= %=
 == != &lt; &gt; &lt;= &gt;=   &lt;=&gt;        // spaceship C++20
 &amp;&amp; || !   &amp; | ^ ~ &lt;&lt; &gt;&gt;
 *p  &amp;x  p-&gt;m  o.m  new T  delete p
 static_cast&lt;T&gt;(x)  dynamic_cast&lt;T*&gt;(p)
-const_cast  reinterpret_cast  std::bit_cast</code></pre>
-      </section>
-
-      <section class="topic" id="control">
-        <h2>Control Flow</h2>
-        <pre><code>if (int x = get(); x &gt; 0) { ... }
+const_cast  reinterpret_cast  std::bit_cast</code></pre></section> <section class="topic" id="control"><h2>Control Flow</h2><pre><code>if (int x = get(); x &gt; 0) { ... }
 for (auto&amp; v : vec) { ... }
 for (auto&amp;&amp; [k, v] : map) { ... }
 switch (x) { case 1: ...; break; default: ...; }
-int v = cond ? 1 : 0;</code></pre>
-      </section>
-
-      <section class="topic" id="functions">
-        <h2>Functions</h2>
-        <pre><code>int add(int a, int b = 0);
+int v = cond ? 1 : 0;</code></pre></section> <section class="topic" id="functions"><h2>Functions</h2><pre><code>int add(int a, int b = 0);
 void byVal(int x);
 void byRef(int&amp; x);
 void byCRef(const int&amp; x);
@@ -106,12 +66,7 @@ inline int sq(int x) { return x * x; }
 constexpr int cube(int x) { return x * x * x; }
 consteval int pure(int x) { return x * 2; }
 auto mul(int a, int b) -&gt; int { return a * b; }
-void f() noexcept;</code></pre>
-      </section>
-
-      <section class="topic" id="pointers">
-        <h2>Pointers & Smart Pointers</h2>
-        <pre><code>int* p = nullptr;
+void f() noexcept;</code></pre></section> <section class="topic" id="pointers"><h2>Pointers &amp; Smart Pointers</h2><pre><code>int* p = nullptr;
 p = new int(42);  delete p;
 
 auto up = std::make_unique&lt;int&gt;(42);
@@ -136,12 +91,7 @@ std::move(x);  std::forward&lt;T&gt;(x);</code></pre>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           <code class="inline">std::move(x)</code> only casts to an rvalue — it does not move by itself.
           Prefer RAII / smart pointers over raw <code class="inline">new</code>/<code class="inline">delete</code>.
-        </div>
-      </section>
-
-      <section class="topic" id="raii">
-        <h2>Special Member Functions & Rules</h2>
-        <pre><code>Foo();  Foo(const Foo&amp;);  Foo(Foo&amp;&amp;);
+        </div></section> <section class="topic" id="raii"><h2>Special Member Functions &amp; Rules</h2><pre><code>Foo();  Foo(const Foo&amp;);  Foo(Foo&amp;&amp;);
 Foo&amp; operator=(const Foo&amp;);  Foo&amp; operator=(Foo&amp;&amp;);
 ~Foo();
 Foo() = default;
@@ -155,12 +105,7 @@ Foo(const Foo&amp;) = delete;</code></pre>
   std::string name_;
   std::vector&lt;int&gt; data_;
   std::unique_ptr&lt;Impl&gt; impl_;
-};</code></pre>
-      </section>
-
-      <section class="topic" id="classes">
-        <h2>Structs & Classes</h2>
-        <pre><code>struct Point {
+};</code></pre></section> <section class="topic" id="classes"><h2>Structs &amp; Classes</h2><pre><code>struct Point {
   double x, y;
   Point(double x, double y) : x(x), y(y) {}
 };
@@ -171,24 +116,14 @@ public:
   virtual ~Animal() = default;
 private:
   std::string name_;
-};</code></pre>
-      </section>
-
-      <section class="topic" id="inheritance">
-        <h2>Inheritance & Polymorphism</h2>
-        <pre><code>class Dog : public Animal {
+};</code></pre></section> <section class="topic" id="inheritance"><h2>Inheritance &amp; Polymorphism</h2><pre><code>class Dog : public Animal {
   void speak() const override { std::cout &lt;&lt; "Woof\n"; }
 };
 class Shape {
   virtual double area() const = 0;
   virtual ~Shape() = default;
 };
-if (auto* d = dynamic_cast&lt;Dog*&gt;(ptr)) { d-&gt;speak(); }</code></pre>
-      </section>
-
-      <section class="topic" id="templates">
-        <h2>Templates</h2>
-        <pre><code>template&lt;typename T&gt;
+if (auto* d = dynamic_cast&lt;Dog*&gt;(ptr)) { d-&gt;speak(); }</code></pre></section> <section class="topic" id="templates"><h2>Templates</h2><pre><code>template&lt;typename T&gt;
 T maxOf(T a, T b) { return a &gt; b ? a : b; }
 
 template&lt;typename T&gt;
@@ -205,21 +140,11 @@ void log(Args&amp;&amp;... args) { (std::cout &lt;&lt; ... &lt;&lt; args); }
 template&lt;typename T&gt;
 concept Numeric = std::integral&lt;T&gt; || std::floating_point&lt;T&gt;;
 template&lt;Numeric T&gt;
-T add(T a, T b) { return a + b; }</code></pre>
-      </section>
-
-      <section class="topic" id="lambdas">
-        <h2>Lambda Expressions</h2>
-        <pre><code>auto add = [](int a, int b) { return a + b; };
+T add(T a, T b) { return a + b; }</code></pre></section> <section class="topic" id="lambdas"><h2>Lambda Expressions</h2><pre><code>auto add = [](int a, int b) { return a + b; };
 []  [=]  [&amp;]  [x, &amp;y]  [this]  [*this]
 auto id = [](auto x) { return x; };
 auto tmpl = []&lt;typename T&gt;(T x) { return x; };
-auto counter = [n = 0]() mutable { return ++n; };</code></pre>
-      </section>
-
-      <section class="topic" id="modern">
-        <h2>Modern C++ Highlights</h2>
-        <p class="note">Key additions: structured bindings <span class="ver">C++17</span>,
+auto counter = [n = 0]() mutable { return ++n; };</code></pre></section> <section class="topic" id="modern"><h2>Modern C++ Highlights</h2><p class="note">Key additions: structured bindings <span class="ver">C++17</span>,
           concepts & ranges <span class="ver">C++20</span>,
           <code class="inline">std::expected</code> & <code class="inline">std::print</code> <span class="ver">C++23</span></p>
         <pre><code>void f(int&amp;);  void f(int&amp;&amp;);
@@ -234,12 +159,7 @@ std::variant&lt;int, float, std::string&gt; var;
 std::string_view sv = "hello";
 std::span&lt;int&gt; sp{arr};
 std::ranges::sort(v);
-auto operator&lt;=&gt;(const Foo&amp;) const = default;</code></pre>
-      </section>
-
-      <section class="topic" id="containers">
-        <h2>STL Containers</h2>
-        <pre><code>std::vector&lt;T&gt;          // ★ default choice
+auto operator&lt;=&gt;(const Foo&amp;) const = default;</code></pre></section> <section class="topic" id="containers"><h2>STL Containers</h2><pre><code>std::vector&lt;T&gt;          // ★ default choice
 std::array&lt;T,N&gt;  std::deque&lt;T&gt;  std::list&lt;T&gt;
 std::map&lt;K,V&gt;  std::unordered_map&lt;K,V&gt;
 std::set&lt;T&gt;  std::unordered_set&lt;T&gt;
@@ -250,23 +170,13 @@ v.size();  v.empty();  v.reserve(n);</code></pre>
         <div class="callout callout-default"><strong>★ Default container</strong>
           <code class="inline">std::vector&lt;T&gt;</code> is almost always the right default.
           Switch only when profiling shows a real bottleneck.
-        </div>
-      </section>
-
-      <section class="topic" id="algorithms">
-        <h2>Iterators & Algorithms</h2>
-        <pre><code>v.begin() / v.end()  v.rbegin() / v.rend()
+        </div></section> <section class="topic" id="algorithms"><h2>Iterators &amp; Algorithms</h2><pre><code>v.begin() / v.end()  v.rbegin() / v.rend()
 std::sort  std::find  std::find_if
 std::count  std::copy  std::transform
 std::unique  std::accumulate
 std::min_element  std::binary_search
 std::for_each  std::any_of  std::all_of
-std::ranges::sort(v);  std::ranges::find(v, val);</code></pre>
-      </section>
-
-      <section class="topic" id="complexity">
-        <h2>Container Complexity (selected)</h2>
-        <table>
+std::ranges::sort(v);  std::ranges::find(v, val);</code></pre></section> <section class="topic" id="complexity"><h2>Container Complexity (selected)</h2><table>
           <thead>
             <tr><th>Container</th><th>Access</th><th>Find</th><th>Insert (end)</th><th>Insert (mid)</th><th>Erase</th></tr>
           </thead>
@@ -278,33 +188,18 @@ std::ranges::sort(v);  std::ranges::find(v, val);</code></pre>
             <tr><td>unordered_map</td><td>—</td><td>O(1)*</td><td>O(1)*</td><td>—</td><td>O(1)*</td></tr>
           </tbody>
         </table>
-        <p>* amortized / average &nbsp; † with iterator</p>
-      </section>
-
-      <section class="topic" id="exceptions">
-        <h2>Exception Handling</h2>
-        <pre><code>try {
+        <p>* amortized / average &nbsp; † with iterator</p></section> <section class="topic" id="exceptions"><h2>Exception Handling</h2><pre><code>try {
   throw std::runtime_error("oops");
 } catch (const std::exception&amp; e) {
   std::cerr &lt;&lt; e.what();
 } catch (...) { }
-noexcept  noexcept(expr)</code></pre>
-      </section>
-
-      <section class="topic" id="concurrency">
-        <h2>Concurrency (C++11+)</h2>
-        <pre><code>std::thread t(fn, arg1);
+noexcept  noexcept(expr)</code></pre></section> <section class="topic" id="concurrency"><h2>Concurrency (C++11+)</h2><pre><code>std::thread t(fn, arg1);
 t.join();  t.detach();
 std::mutex mtx;
 { std::lock_guard&lt;std::mutex&gt; lk(mtx); /* critical */ }
 auto fut = std::async(std::launch::async, fn);
 int res = fut.get();
-std::atomic&lt;int&gt; counter{0};  counter++;</code></pre>
-      </section>
-
-      <section class="topic" id="headers">
-        <h2>Key Standard Library Headers</h2>
-        <table>
+std::atomic&lt;int&gt; counter{0};  counter++;</code></pre></section> <section class="topic" id="headers"><h2>Key Standard Library Headers</h2><table>
           <thead><tr><th>Header</th><th>Contents</th></tr></thead>
           <tbody>
             <tr><td><code class="inline">&lt;iostream&gt;</code></td><td>cin / cout / cerr</td></tr>
@@ -318,12 +213,7 @@ std::atomic&lt;int&gt; counter{0};  counter++;</code></pre>
             <tr><td><code class="inline">&lt;format&gt;</code> <code class="inline">&lt;print&gt;</code></td><td>C++20 / C++23</td></tr>
             <tr><td><code class="inline">&lt;expected&gt;</code> <code class="inline">&lt;filesystem&gt;</code></td><td>C++23 / C++17</td></tr>
           </tbody>
-        </table>
-      </section>
-
-      <section class="topic" id="patterns">
-        <h2>Selected Design Patterns</h2>
-        <pre><code>// Meyer's singleton (thread-safe since C++11)
+        </table></section> <section class="topic" id="patterns"><h2>Selected Design Patterns</h2><pre><code>// Meyer's singleton (thread-safe since C++11)
 class Logger {
   Logger() = default;
 public:
@@ -333,12 +223,7 @@ public:
   }
   Logger(const Logger&amp;) = delete;
 };
-// Prefer composition; RAII is the core pattern</code></pre>
-      </section>
-
-      <section class="topic" id="gotchas">
-        <h2>Gotchas</h2>
-        <pre><code>// Dangling string_view
+// Prefer composition; RAII is the core pattern</code></pre></section> <section class="topic" id="gotchas"><h2>Gotchas</h2><pre><code>// Dangling string_view
 std::string_view sv = std::string("temp");  // BAD
 
 // Iterator invalidation
@@ -358,12 +243,7 @@ void f(const std::vector&lt;int&gt;&amp; v);  // avoid accidental copies
 </code></pre>
         <div class="callout callout-mistake"><strong>Common mistake</strong>
           <code class="inline">std::move</code> is a cast. Prefer RAII and <code class="inline">unique_ptr</code>.
-        </div>
-      </section>
-
-      <section class="topic" id="ecosystem">
-        <h2>Build & Tooling</h2>
-        <pre><code>cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+        </div></section> <section class="topic" id="ecosystem"><h2>Build &amp; Tooling</h2><pre><code>cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j
 ctest --test-dir build
 
@@ -381,16 +261,10 @@ conan install . --build=missing
         <div class="callout callout-default"><strong>★ Defaults</strong>
           <code class="inline">CMake</code> · <code class="inline">clang-format</code> + sanitizers ·
           <code class="inline">vcpkg</code> or <code class="inline">Conan</code>
-        </div>
-      </section>
+        </div></section>
     </article>
   </div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p><a href="https://github.com/Derreavus/polyglot-syntax-reference">GitHub</a> · C++ reference</p>
-    </div>
-  </footer>
   <script src="../js/site-data.js"></script>
   <script src="../js/main.js"></script>
 </body>

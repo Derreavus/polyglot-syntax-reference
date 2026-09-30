@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript — Polyglot Syntax Reference</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">{ }</span><span class="logo-text">Polyglot Syntax</span></a>
+      <nav class="lang-nav" aria-label="Language navigation">
+        <details class="language-menu">
+          <summary class="language-menu-toggle" aria-label="Choose a language">
+            <span>JavaScript</span><span class="language-menu-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="language-menu-panel" aria-label="Available languages"></div>
+        </details>
+      </nav>
+      <a href="../compare/index.html" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Compare</a>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
+    </div>
+  </header>
+
+  <div class="lang-layout container">
+    <aside class="sidebar">
+      <h3>Basics</h3> <a href="#types">Data Types</a> <a href="#variables">Variables &amp; Assignment</a> <a href="#operators">Operators</a> <a href="#control">Control Flow</a> <h3>Objects &amp; Functions</h3> <a href="#functions">Functions</a> <a href="#objects">Objects &amp; Classes</a> <h3>Collections</h3> <a href="#collections">Collections</a> <a href="#iteration">Iteration &amp; Iterators</a> <a href="#errors">Errors</a> <h3>Async &amp; Modules</h3> <a href="#async">Async &amp; Await</a>
+    </aside>
+
+    <article class="content">
+      <h1>JavaScript Syntax Reference</h1>
+      <span class="lang-tag javascript">ECMAScript 2025 · modern JavaScript</span>
+      <section class="topic" id="types"><h2>Data Types</h2><p>JavaScript has seven primitive types. Objects, arrays, and functions are reference values.</p><pre><code>const count = 42;
+const ratio = 3.14;
+const text = "hello";
+const enabled = true;
+const missing = undefined;
+const empty = null;
+const symbol = Symbol("id");
+const large = 123n;</code></pre></section> <section class="topic" id="variables"><h2>Variables &amp; Assignment</h2><p>Use <code class="inline">const</code> by default, <code class="inline">let</code> when reassignment is needed, and avoid <code class="inline">var</code> in new code.</p><pre><code>const name = "Ada";
+let count = 0;
+count += 1;
+const { name: userName } = user;
+const [first, ...rest] = values;</code></pre></section> <section class="topic" id="operators"><h2>Operators</h2><pre><code>+ - * / % **
+= += -= *= /=
+=== !== == != &lt; &gt; &lt;= &gt;=
+&amp;&amp; || ! ?? ?.
+&amp; | ^ ~ &lt;&lt; &gt;&gt;
+value ?? fallback;
+user?.address?.city;</code></pre><p>Prefer <code class="inline">===</code> and <code class="inline">!==</code> to avoid coercive equality.</p></section> <section class="topic" id="control"><h2>Control Flow</h2><pre><code>if (score &gt;= 90) {
+  grade = "A";
+} else if (score &gt;= 80) {
+  grade = "B";
+} else {
+  grade = "C";
+}
+
+for (const item of items) {
+  console.log(item);
+}
+
+switch (status) {
+  case "ready": start(); break;
+  default: wait();
+}</code></pre></section> <section class="topic" id="functions"><h2>Functions</h2><pre><code>function add(a, b = 0) {
+  return a + b;
+}
+
+const square = (n) =&gt; n * n;
+const logAll = (...values) =&gt; console.log(...values);
+
+function makeCounter() {
+  let count = 0;
+  return () =&gt; ++count;
+}</code></pre></section> <section class="topic" id="objects"><h2>Objects &amp; Classes</h2><pre><code>const point = { x: 2, y: 3 };
+point.x;
+
+class Animal {
+  constructor(name) { this.name = name; }
+  speak() { return `${this.name} makes a sound`; }
+}
+
+class Dog extends Animal {
+  speak() { return `${this.name} barks`; }
+}</code></pre></section> <section class="topic" id="collections"><h2>Collections</h2><pre><code>const items = [1, 2, 3];
+items.push(4);
+const doubled = items.map((n) =&gt; n * 2);
+const evens = items.filter((n) =&gt; n % 2 === 0);
+
+const userById = new Map();
+userById.set("u1", { name: "Ada" });
+
+const tags = new Set(["js", "web"]);</code></pre></section> <section class="topic" id="iteration"><h2>Iteration &amp; Iterators</h2><pre><code>for (const value of values) {
+  console.log(value);
+}
+
+const iterator = values[Symbol.iterator]();
+iterator.next();
+
+function* ids() {
+  yield 1;
+  yield 2;
+}</code></pre></section> <section class="topic" id="errors"><h2>Errors</h2><pre><code>try {
+  const data = JSON.parse(source);
+} catch (error) {
+  console.error(error.message);
+} finally {
+  releaseResources();
+}
+
+throw new Error("Request failed");</code></pre></section> <section class="topic" id="async"><h2>Async &amp; Await</h2><pre><code>async function loadUser(id) {
+  const response = await fetch(`/users/${id}`);
+  if (!response.ok) throw new Error("Request failed");
+  return response.json();
+}
+
+const [user, settings] = await Promise.all([
+  loadUser("u1"),
+  loadSettings(),
+]);</code></pre></section>
+    </article>
+  </div>
+
+  <script src="../js/site-data.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
