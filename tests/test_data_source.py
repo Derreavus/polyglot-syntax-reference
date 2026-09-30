@@ -59,7 +59,7 @@ class DataSourceTests(unittest.TestCase):
         self.assertNotIn('type="checkbox" checked', page)
         self.assertIn('<th class="lang-python" data-language="python" hidden>Python</th>', page)
         self.assertIn('data-language="python" hidden', page)
-        runtime = (ROOT / "js" / "main.js").read_text(encoding="utf-8")
+        runtime = (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8")
         self.assertIn("const maxLanguages = 4;", runtime)
         self.assertIn("checkbox.disabled = selected.size >= maxLanguages", runtime)
 
@@ -88,7 +88,7 @@ class DataSourceTests(unittest.TestCase):
                 self.assertIn('class="language-menu-panel"', page)
                 self.assertNotIn('class="lang-btn python"', page)
 
-        runtime = (ROOT / "js" / "main.js").read_text(encoding="utf-8")
+        runtime = (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8")
         self.assertIn('nav.querySelector(".language-menu")', runtime)
         self.assertIn("registry.forEach(function (lang)", runtime)
         self.assertIn('link.className = "language-option hero-card "', runtime)
@@ -150,8 +150,8 @@ class DataSourceTests(unittest.TestCase):
 
         self.assertIn("json-owned-search-keyword", browser_data)
         self.assertIn('"python":"json-owned-topic"', browser_data)
-        self.assertNotIn("const SEARCH_INDEX = [", (ROOT / "js" / "main.js").read_text(encoding="utf-8"))
-        self.assertNotIn("const CONCEPTS = {", (ROOT / "js" / "main.js").read_text(encoding="utf-8"))
+        self.assertNotIn("const SEARCH_INDEX = [", (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8"))
+        self.assertNotIn("const CONCEPTS = {", (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@ __pycache__/
 *.pyo
 *.pyd
 output/staging/
+dist/
 .DS_Store
 Thumbs.db
 .venv/

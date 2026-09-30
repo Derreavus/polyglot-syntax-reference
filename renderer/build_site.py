@@ -12,7 +12,14 @@ from render_language import render_language_page
 from validate_data import validate_data_model
 
 
-OUTPUT_ROOT = ROOT / "output" / "staging"
+OUTPUT_ROOT = ROOT / "dist"
+STATIC_ROOT = ROOT / "src" / "static"
+
+
+def clean_output_dir() -> None:
+    """Start every build from an empty dist/ so removed pages never linger."""
+    if OUTPUT_ROOT.exists():
+        shutil.rmtree(OUTPUT_ROOT)
 
 
 def ensure_output_dirs() -> None:
@@ -77,35 +84,13 @@ def generate_site_data_js(data: dict) -> None:
 
 
 def copy_static_assets() -> None:
-    for source_rel in ("css/style.css", "js/main.js"):
-        source = ROOT / source_rel
-        target = OUTPUT_ROOT / source_rel
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, target)
-
-
-def publish_local_output() -> None:
-    for source in OUTPUT_ROOT.rglob("*"):
+    """Copy every hand-authored file under src/static/ into dist/."""
+    for source in sorted(STATIC_ROOT.rglob("*")):
         if not source.is_file():
             continue
-        relative_path = source.relative_to(OUTPUT_ROOT)
-        target = ROOT / relative_path
+        target = OUTPUT_ROOT / source.relative_to(STATIC_ROOT)
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
-
-
-def validate_local_output_sync() -> None:
-    mismatches = [
-        str(source.relative_to(OUTPUT_ROOT))
-        for source in OUTPUT_ROOT.rglob("*")
-        if source.is_file()
-        and (
-            not (ROOT / source.relative_to(OUTPUT_ROOT)).is_file()
-            or source.read_bytes() != (ROOT / source.relative_to(OUTPUT_ROOT)).read_bytes()
-        )
-    ]
-    if mismatches:
-        raise ValueError(f"repository output differs from staging: {', '.join(mismatches)}")
 
 
 def build_homepage(data: dict) -> None:
@@ -174,14 +159,15 @@ def validate_generated_site(data: dict) -> None:
     ]
     missing_markers = [marker for marker in required_runtime_markers if marker not in js_text]
     if missing_markers:
-        raise ValueError(f"runtime parity markers missing from staging JS: {', '.join(missing_markers)}")
+        raise ValueError(f"runtime parity markers missing from dist JS: {', '.join(missing_markers)}")
 
-    print("OK   staged output validation")
+    print("OK   built output validation")
 
 
 def main() -> int:
     data = load_data()
     validate_data_model(data)
+    clean_output_dir()
     ensure_output_dirs()
     generate_site_data_js(data)
     copy_static_assets()
@@ -189,9 +175,7 @@ def main() -> int:
     build_compare_page(data)
     build_language_pages(data)
     validate_generated_site(data)
-    publish_local_output()
-    validate_local_output_sync()
-    print(f"Generated staging site at {OUTPUT_ROOT}")
+    print(f"Generated site at {OUTPUT_ROOT}")
     return 0
 
 

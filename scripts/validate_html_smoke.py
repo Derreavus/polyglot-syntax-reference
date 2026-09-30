@@ -16,11 +16,11 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+SITE = Path(__file__).resolve().parents[1] / "dist"  # generated site; run renderer/build_site.py first
 
 
 def check_file(path: Path) -> list[str]:
-    rel = path.relative_to(ROOT)
+    rel = path.relative_to(SITE)
     text = path.read_text(encoding="utf-8", errors="replace")
     errors = []
 
@@ -46,7 +46,7 @@ def check_file(path: Path) -> list[str]:
 
 def main() -> int:
     errors: list[str] = []
-    pages = sorted(ROOT.rglob("*.html"))
+    pages = sorted(SITE.rglob("*.html"))
     if not pages:
         print("FAIL: no HTML files found")
         return 1

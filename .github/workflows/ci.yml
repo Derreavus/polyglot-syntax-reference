@@ -28,16 +28,7 @@ jobs:
       - name: Build site from data/site_data.json
         run: python3 renderer/build_site.py
 
-      - name: Generated output is up to date
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "::error::Committed output differs from a fresh build. Run 'python renderer/build_site.py' and commit the result."
-            git status --short
-            git --no-pager diff --stat
-            exit 1
-          fi
-
-      - name: Staging parity check
+      - name: Build parity check
         run: python3 scripts/validate_staging_parity.py
 
       - name: Content lint (generics, structure, version badges)

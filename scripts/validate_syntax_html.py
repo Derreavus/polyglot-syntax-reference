@@ -16,7 +16,7 @@ from pathlib import Path
 
 from language_registry import language_slugs
 
-ROOT = Path(__file__).resolve().parents[1]
+SITE = Path(__file__).resolve().parents[1] / "dist"  # generated site; run renderer/build_site.py first
 LANGS = tuple(language_slugs())
 
 UNICODE_SUBSTITUTES = {
@@ -141,7 +141,7 @@ def validate_structure(lang: str, html_text: str) -> list[str]:
 
 
 def validate_lang(lang: str) -> list[str]:
-    path = ROOT / lang / "index.html"
+    path = SITE / lang / "index.html"
     errors: list[str] = []
     if not path.exists():
         return [f"{lang}/index.html missing"]
@@ -173,7 +173,7 @@ def validate_lang(lang: str) -> list[str]:
 
 
 def validate_compare() -> list[str]:
-    path = ROOT / "compare" / "index.html"
+    path = SITE / "compare" / "index.html"
     if not path.exists():
         return ["compare/index.html missing"]
     html_text = path.read_text(encoding="utf-8")

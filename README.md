@@ -137,9 +137,11 @@ You do not need to be an expert in every language covered. The reference is inte
 
 ## Structured Content and Local Build
 
-The canonical authored content and site configuration live in [data/site_data.json](data/site_data.json). The HTML pages and browser-facing data files are generated from that file by [renderer/build_site.py](renderer/build_site.py); do not edit generated HTML or `js/site-data.js` by hand.
+The canonical authored content and site configuration live in [data/site_data.json](data/site_data.json). The HTML pages and browser-facing data files are generated from that file by [renderer/build_site.py](renderer/build_site.py); do not edit generated HTML or `js/site-data.js` by hand. Hand-authored static assets (`css/style.css`, `js/main.js`) live in [src/static](src/static) and are copied into the build unchanged.
 
-The build writes a preview to [output/staging](output/staging) and synchronizes the same generated pages to the repository root for GitHub Pages. Running the build changes local files only; it does not publish or push anything.
+The build writes the complete site to `dist/`, which is gitignored and rebuilt from scratch on every run. Running the build changes local files only; it does not publish or push anything.
+
+> **Transitional note:** the pages, `css/` and `js/` at the repository root are the last generated copy, kept only so GitHub Pages keeps serving the site until it is switched to Actions-based deployment. They are no longer updated by the build and are removed after the switch. Edit `data/site_data.json` and `src/static/` instead.
 
 ### Content model
 
@@ -160,12 +162,12 @@ The comparison page uses the same registry to build its language selector. It st
 
 ### Local preview
 
-To preview the staged build locally:
+To preview the built site locally:
 
 ```bash
 python renderer/build_site.py
 python -m unittest discover -s tests
-python scripts/serve_staging.py --host 127.0.0.1 --port 8123 --directory output/staging
+python scripts/serve_staging.py --host 127.0.0.1 --port 8123 --directory dist
 ```
 
 Then open:
@@ -180,8 +182,8 @@ To add a future language:
 
 1. Add the language, its sections, and complete topics to [data/site_data.json](data/site_data.json).
 2. Add or update its comparison values and concept mappings in the same file.
-3. Regenerate both local outputs with [renderer/build_site.py](renderer/build_site.py).
-4. Validate and review the staging site. Never author changes directly in generated HTML.
+3. Rebuild with [renderer/build_site.py](renderer/build_site.py).
+4. Validate and review the `dist/` build. Never author changes directly in generated HTML.
 
 This keeps the architecture static-site friendly while making the content source easier to maintain and validate offline.
 

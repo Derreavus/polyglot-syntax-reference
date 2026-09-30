@@ -13,7 +13,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DIRECTORY = ROOT / "output" / "staging"
+DEFAULT_DIRECTORY = ROOT / "dist"
 
 
 class QuietHTTPRequestHandler(SimpleHTTPRequestHandler):
@@ -25,7 +25,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Serve the generated staging site locally.")
     parser.add_argument("--host", default="127.0.0.1", help="Host interface to bind to (default: 127.0.0.1)")
     parser.add_argument("--port", type=int, default=8000, help="Port to bind to (default: 8000)")
-    parser.add_argument("--directory", type=Path, default=DEFAULT_DIRECTORY, help="Directory to serve (default: output/staging)")
+    parser.add_argument("--directory", type=Path, default=DEFAULT_DIRECTORY, help="Directory to serve (default: dist)")
     args = parser.parse_args()
 
     directory = args.directory.resolve()

@@ -21,13 +21,13 @@ from urllib.parse import urlparse, unquote
 
 from language_registry import language_slugs
 
-ROOT = Path(__file__).resolve().parents[1]
+SITE = Path(__file__).resolve().parents[1] / "dist"  # generated site; run renderer/build_site.py first
 
 REQUIRED_PAGES = ["index.html", "compare/index.html"] + [f"{slug}/index.html" for slug in language_slugs()]
 
 
 def collect_html_files() -> list[Path]:
-    return sorted(ROOT.rglob("*.html"))
+    return sorted(SITE.rglob("*.html"))
 
 
 def extract_ids(html: str) -> set[str]:
@@ -56,7 +56,7 @@ def resolve_target(page: Path, href: str) -> tuple[Path | None, str | None]:
 
     target = (page.parent / path).resolve()
     try:
-        target.relative_to(ROOT.resolve())
+        target.relative_to(SITE.resolve())
     except ValueError:
         return target, frag
 
@@ -67,7 +67,7 @@ def main() -> int:
     errors: list[str] = []
 
     for req in REQUIRED_PAGES:
-        if not (ROOT / req).exists():
+        if not (SITE / req).exists():
             errors.append(f"required page missing: {req}")
 
     pages = collect_html_files()
@@ -78,7 +78,7 @@ def main() -> int:
         id_cache[page.resolve()] = extract_ids(html)
 
     for page in pages:
-        rel = page.relative_to(ROOT)
+        rel = page.relative_to(SITE)
         html = page.read_text(encoding="utf-8")
         for href in extract_hrefs(html):
             target, frag = resolve_target(page, href)
@@ -108,7 +108,7 @@ def main() -> int:
                     errors.append(f"{rel}: missing fragment #{frag} (from href={href!r})")
 
     for asset in ("css/style.css", "js/main.js"):
-        if not (ROOT / asset).exists():
+        if not (SITE / asset).exists():
             errors.append(f"required asset missing: {asset}")
 
     if errors:

@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "output" / "staging"
+OUT = ROOT / "dist"
 DATA_PATH = ROOT / "data" / "site_data.json"
 MINIMUM_TOPIC_COUNTS = {
     "python": 18,
