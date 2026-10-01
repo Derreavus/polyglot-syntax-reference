@@ -53,6 +53,9 @@ class DataSourceTests(unittest.TestCase):
         page = render_compare_page(self.data)
 
         self.assertIn('id="lane-add"', page)
+        self.assertIn('id="compare-layout"', page)
+        self.assertIn('id="lane-bar-viewport"', page)
+        self.assertLess(page.index('id="lane-bar"'), page.index('id="compare-board"'))
         self.assertIn('id="lane-menu"', page)
         self.assertIn('data-max-lanes="4"', page)
         self.assertIn('id="compare-empty-state"', page)

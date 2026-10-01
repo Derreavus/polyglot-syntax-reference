@@ -199,7 +199,9 @@
   }
 
   function initCompareBoard() {
+    const layout = document.getElementById("compare-layout");
     const board = document.getElementById("compare-board");
+    const barViewport = document.getElementById("lane-bar-viewport");
     const bar = document.getElementById("lane-bar");
     const addBtn = document.getElementById("lane-add");
     const addLabel = document.getElementById("lane-add-label");
@@ -209,7 +211,7 @@
     const menu = document.getElementById("lane-menu-list");
     const emptyState = document.getElementById("compare-empty-state");
     const status = document.getElementById("compare-status");
-    if (!board || !bar || !addBtn || !addLabel || !menuBox || !menu || !emptyState) return;
+    if (!layout || !barViewport || !board || !bar || !addBtn || !addLabel || !menuBox || !menu || !emptyState) return;
     bindScrollFade(board, "x");
     bindScrollFade(menu, "y");
 
@@ -279,7 +281,7 @@
 
     function renderCells() {
       // repeat() needs at least one track, so an empty board still reserves one lane column
-      board.style.setProperty("--lanes", String(Math.max(selected.length, 1)));
+      layout.style.setProperty("--lanes", String(Math.max(selected.length, 1)));
       document.querySelectorAll(".compare-table [data-language]").forEach(function (cell) {
         const slug = cell.getAttribute("data-language");
         const index = selected.indexOf(slug);
@@ -378,11 +380,21 @@
       if (returnFocus) addBtn.focus();
     }
 
+    // The lane bar sits outside the board so it can stay pinned while the page scrolls. Keep the
+    // two scrolled to the same sideways position, whichever one the user swipes.
+    function syncScroll(from, to) {
+      if (Math.abs(to.scrollLeft - from.scrollLeft) > 0.5) to.scrollLeft = from.scrollLeft;
+      layout.setAttribute("data-scrolled", from.scrollLeft > 1 ? "true" : "false");
+    }
+    board.addEventListener("scroll", function () { syncScroll(board, barViewport); }, { passive: true });
+    barViewport.addEventListener("scroll", function () { syncScroll(barViewport, board); }, { passive: true });
+
     function update() {
       renderLanes();
       renderCells();
       renderAddButton();
       writeSelectionToUrl();
+      syncScroll(board, barViewport);
     }
 
     function addLanguage(slug) {

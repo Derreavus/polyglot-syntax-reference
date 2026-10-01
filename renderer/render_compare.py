@@ -99,8 +99,8 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
       {toc_html}
     </nav>
 
-    <div class="compare-board scroll-fade" id="compare-board" data-max-lanes="{max_lanes}" style="--lanes: 1;">
-      <div class="compare-board-inner">
+    <div class="compare-layout" id="compare-layout" style="--lanes: 1;">
+      <div class="lane-bar-viewport scroll-fade" id="lane-bar-viewport">
         <div class="lane-bar" id="lane-bar" role="group" aria-label="Languages being compared">
           <div class="lane-add-wrap">
             <button type="button" id="lane-add" class="lane-add" aria-haspopup="menu" aria-expanded="false" aria-controls="lane-menu">
@@ -109,11 +109,15 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
             </button>
           </div>
         </div>
+      </div>
 
-        <p id="compare-empty-state" class="compare-empty-state">Use <strong>Add language</strong> to pick up to {max_lanes} languages and compare them side by side.</p>
-        <noscript><p class="compare-empty-state">The comparison view needs JavaScript to choose languages.</p></noscript>
+      <div class="compare-board scroll-fade" id="compare-board" data-max-lanes="{max_lanes}">
+        <div class="compare-board-inner">
+          <p id="compare-empty-state" class="compare-empty-state">Use <strong>Add language</strong> to pick up to {max_lanes} languages and compare them side by side.</p>
+          <noscript><p class="compare-empty-state">The comparison view needs JavaScript to choose languages.</p></noscript>
 
-        {sections_html}
+          {sections_html}
+        </div>
       </div>
     </div>
     <div id="lane-menu-backdrop" class="lane-menu-backdrop" hidden></div>
