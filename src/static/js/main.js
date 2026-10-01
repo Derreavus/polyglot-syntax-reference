@@ -204,6 +204,8 @@
     const addBtn = document.getElementById("lane-add");
     const addLabel = document.getElementById("lane-add-label");
     const menuBox = document.getElementById("lane-menu");
+    const menuBackdrop = document.getElementById("lane-menu-backdrop");
+    const sheetMode = window.matchMedia("(max-width: 700px)");
     const menu = document.getElementById("lane-menu-list");
     const emptyState = document.getElementById("compare-empty-state");
     const status = document.getElementById("compare-status");
@@ -337,10 +339,31 @@
       return Array.from(menu.querySelectorAll(".lane-menu-item"));
     }
 
+    // Wide screens anchor the menu under the Add button; on phones CSS turns it into a bottom sheet.
+    function positionMenu() {
+      if (sheetMode.matches) {
+        menuBox.style.removeProperty("--menu-top");
+        menuBox.style.removeProperty("--menu-left");
+        menuBox.style.removeProperty("--menu-width");
+        menu.style.removeProperty("max-height");
+        return;
+      }
+      const rect = addBtn.getBoundingClientRect();
+      const width = Math.min(Math.max(rect.width, 224), window.innerWidth - 16);
+      const left = Math.max(8, Math.min(rect.left, window.innerWidth - width - 8));
+      menuBox.style.setProperty("--menu-top", Math.round(rect.bottom + 6) + "px");
+      menuBox.style.setProperty("--menu-left", Math.round(left) + "px");
+      menuBox.style.setProperty("--menu-width", Math.round(width) + "px");
+      menu.style.maxHeight = Math.max(160, Math.min(288, window.innerHeight - rect.bottom - 24)) + "px";
+    }
+
     function openMenu() {
       if (addBtn.disabled) return;
       renderMenu();
+      positionMenu();
       menuBox.hidden = false;
+      if (menuBackdrop) menuBackdrop.hidden = !sheetMode.matches;
+      document.body.classList.add("menu-open");
       addBtn.setAttribute("aria-expanded", "true");
       const items = menuItems();
       if (items.length) items[0].focus();
@@ -349,6 +372,8 @@
     function closeMenu(returnFocus) {
       if (menuBox.hidden) return;
       menuBox.hidden = true;
+      if (menuBackdrop) menuBackdrop.hidden = true;
+      document.body.classList.remove("menu-open");
       addBtn.setAttribute("aria-expanded", "false");
       if (returnFocus) addBtn.focus();
     }
@@ -398,8 +423,11 @@
       else if (e.key === "Escape") { e.preventDefault(); closeMenu(true); }
       else if (e.key === "Tab") { closeMenu(false); }
     });
+    if (menuBackdrop) menuBackdrop.addEventListener("click", function () { closeMenu(true); });
+    window.addEventListener("scroll", function () { if (!menuBox.hidden && !sheetMode.matches) closeMenu(false); }, { passive: true });
+    window.addEventListener("resize", function () { if (!menuBox.hidden) { if (sheetMode.matches) positionMenu(); else closeMenu(false); } });
     document.addEventListener("click", function (e) {
-      if (!menuBox.hidden && !e.target.closest(".lane-add-wrap")) closeMenu(false);
+      if (!menuBox.hidden && !e.target.closest(".lane-add-wrap") && !e.target.closest("#lane-menu")) closeMenu(false);
     });
 
     update();

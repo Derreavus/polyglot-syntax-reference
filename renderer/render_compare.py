@@ -107,7 +107,6 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
               <span class="lane-add-icon" aria-hidden="true">+</span>
               <span id="lane-add-label">Add language</span>
             </button>
-            <div id="lane-menu" class="lane-menu" hidden><div id="lane-menu-list" class="lane-menu-list scroll-fade" role="menu" aria-label="Available languages"></div></div>
           </div>
         </div>
 
@@ -116,6 +115,11 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
 
         {sections_html}
       </div>
+    </div>
+    <div id="lane-menu-backdrop" class="lane-menu-backdrop" hidden></div>
+    <div id="lane-menu" class="lane-menu" hidden>
+      <p class="lane-menu-title">Add a language</p>
+      <div id="lane-menu-list" class="lane-menu-list scroll-fade" role="menu" aria-label="Available languages"></div>
     </div>
     <p id="compare-status" class="sr-only" role="status" aria-live="polite"></p>
   </main>

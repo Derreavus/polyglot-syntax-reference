@@ -65,6 +65,18 @@ class DataSourceTests(unittest.TestCase):
         self.assertIn("function initCompareBoard()", runtime)
         self.assertIn('board.getAttribute("data-max-lanes")', runtime)
 
+    def test_compare_menu_is_outside_the_scrolling_board(self) -> None:
+        page = render_compare_page(self.data)
+
+        board_start = page.index('id="compare-board"')
+        backdrop_start = page.index('id="lane-menu-backdrop"')
+        self.assertNotIn('id="lane-menu"', page[board_start:backdrop_start])
+        self.assertIn('class="lane-menu-title"', page)
+        runtime = (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8")
+        styles = (ROOT / "src" / "static" / "css" / "style.css").read_text(encoding="utf-8")
+        self.assertIn("function positionMenu()", runtime)
+        self.assertIn('body.menu-open { overflow: hidden; }', styles)
+
     def test_compare_lane_limit_comes_from_data(self) -> None:
         data = copy.deepcopy(self.data)
         data["site"]["compare_max_languages"] = 3
