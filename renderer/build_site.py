@@ -8,7 +8,7 @@ import shutil
 from load_data import ROOT, get_languages, load_data
 from render_compare import render_compare_page
 from render_home import render_home_page
-from render_language import render_language_page
+from render_language import render_language_page, wrap_tables
 from validate_data import validate_data_model
 
 
@@ -134,7 +134,7 @@ def validate_generated_site(data: dict) -> None:
                 f"{slug}: generated topic mismatch; missing={missing_topics}, extra={extra_topics}"
             )
         for topic in expected_topics:
-            if topic["content_html"] not in text:
+            if wrap_tables(topic["content_html"]) not in text:
                 raise ValueError(f"{slug}#{topic['slug']}: full topic content was not rendered")
         if f'id="{slug}"' not in text and f'class="lang-tag {slug}"' not in text:
             raise ValueError(f"{slug}: missing language token in generated page")

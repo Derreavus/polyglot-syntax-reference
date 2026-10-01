@@ -45,6 +45,7 @@ def render_home_page(data: dict[str, Any], page_rel: str = "index.html") -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html.escape(brand)}</title>
   <meta name="description" content="{html.escape(site["home_meta_description"], quote=True)}">
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="{css_path}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

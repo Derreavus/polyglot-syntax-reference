@@ -12,7 +12,7 @@ from build_site import render_site_data_js
 from load_data import get_languages, load_data
 from render_compare import render_compare_page
 from render_home import render_home_page
-from render_language import render_language_page
+from render_language import render_language_page, wrap_tables
 from validate_data import validate_data_model
 
 
@@ -34,7 +34,7 @@ class DataSourceTests(unittest.TestCase):
             with self.subTest(language=language["slug"]):
                 for topic in topics:
                     self.assertIn(f'id="{topic["slug"]}"', page)
-                    self.assertIn(topic["content_html"], page)
+                    self.assertIn(wrap_tables(topic["content_html"]), page)
 
     def test_compare_sections_and_navigation_come_from_data(self) -> None:
         data = copy.deepcopy(self.data)
@@ -94,6 +94,27 @@ class DataSourceTests(unittest.TestCase):
         data["languages"][0]["color"] = "red"
         with self.assertRaisesRegex(ValueError, "color must be a #rrggbb"):
             validate_data_model(data)
+
+    def test_language_page_has_section_drawer_and_scrolling_tables(self) -> None:
+        language = self.data["languages"][0]
+        page = render_language_page(language, self.data, page_rel=f"{language['slug']}/index.html")
+
+        self.assertIn('document.documentElement.classList.add("js")', page)
+        self.assertIn('<aside class="sidebar" id="sections-drawer"', page)
+        self.assertIn('class="drawer-close"', page)
+        self.assertIn('class="sidebar-scroll scroll-fade"', page)
+        for lang in self.data["languages"]:
+            rendered = render_language_page(lang, self.data, page_rel=f"{lang['slug']}/index.html")
+            self.assertEqual(rendered.count("<table"), rendered.count('<div class="table-scroll scroll-fade"><table'))
+
+    def test_scroll_cues_replace_visible_scrollbars_in_runtime_assets(self) -> None:
+        runtime = (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8")
+        styles = (ROOT / "src" / "static" / "css" / "style.css").read_text(encoding="utf-8")
+
+        self.assertIn("function bindScrollFade(", runtime)
+        self.assertIn("function initSectionDrawer()", runtime)
+        self.assertIn("scrollbar-width: none", styles)
+        self.assertIn('.scroll-fade[data-fade="end"]', styles)
 
     def test_homepage_copy_comes_from_data(self) -> None:
         data = copy.deepcopy(self.data)

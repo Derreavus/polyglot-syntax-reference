@@ -13,6 +13,9 @@ import re
 import sys
 from pathlib import Path
 
+# Content tables are wrapped in a scroll container at render time; compare against the unwrapped markup.
+TABLE_WRAPPER = re.compile(r'<div class="table-scroll scroll-fade">(<table\b.*?</table>)</div>', re.DOTALL)
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "dist"
 DATA_PATH = ROOT / "data" / "site_data.json"
@@ -103,7 +106,7 @@ def main() -> int:
             content_html = topic.get("content_html")
             if not isinstance(content_html, str) or not content_html.strip():
                 errors.append(f"{slug}#{topic['slug']}: missing full topic content")
-            elif content_html not in text:
+            elif content_html not in TABLE_WRAPPER.sub(r"\1", text):
                 errors.append(f"{slug}#{topic['slug']}: full topic content not rendered")
 
     runtime_js = OUT / "js" / "main.js"

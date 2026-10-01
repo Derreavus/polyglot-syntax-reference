@@ -28,6 +28,32 @@
   const path = location.pathname;
   const registry = Array.isArray(window.POLYGLOT_LANGUAGES) ? window.POLYGLOT_LANGUAGES.slice() : [];
 
+  // Marks a scrollable element with data-fade="start|end|both|none" so CSS can fade the edge
+  // that has more content. Used instead of visible scrollbars on menus and lists.
+  function bindScrollFade(el, axis) {
+    if (!el || el.getAttribute("data-fade-bound")) return;
+    el.setAttribute("data-fade-bound", "1");
+    const horizontal = axis === "x";
+    el.setAttribute("data-fade-axis", horizontal ? "x" : "y");
+    function refresh() {
+      const size = horizontal ? el.clientWidth : el.clientHeight;
+      const total = horizontal ? el.scrollWidth : el.scrollHeight;
+      const pos = Math.abs(horizontal ? el.scrollLeft : el.scrollTop);
+      let state = "none";
+      if (total > size + 1) {
+        const atStart = pos <= 1;
+        const atEnd = pos + size >= total - 1;
+        state = atStart ? "end" : atEnd ? "start" : "both";
+      }
+      if (el.getAttribute("data-fade") !== state) el.setAttribute("data-fade", state);
+    }
+    el.addEventListener("scroll", refresh, { passive: true });
+    window.addEventListener("resize", refresh);
+    if (window.ResizeObserver) new ResizeObserver(refresh).observe(el);
+    if (window.MutationObserver) new MutationObserver(refresh).observe(el, { childList: true, subtree: true });
+    refresh();
+  }
+
   function getPageInfo() {
     const pageSegments = path.split("/").filter(Boolean);
     const lastSegment = pageSegments[pageSegments.length - 1] || "";
@@ -113,6 +139,11 @@
       const menuPanel = languageMenu && languageMenu.querySelector(".language-menu-panel");
       if (!languageMenu || !menuPanel) return;
 
+      const menuList = document.createElement("div");
+      menuList.className = "language-menu-list scroll-fade";
+      menuPanel.appendChild(menuList);
+      bindScrollFade(menuList, "y");
+
       registry.forEach(function (lang) {
         const link = document.createElement("a");
         link.href = navPathFor(lang.slug);
@@ -123,7 +154,7 @@
         link.addEventListener("click", function () {
           languageMenu.open = false;
         });
-        menuPanel.appendChild(link);
+        menuList.appendChild(link);
       });
     });
 
@@ -172,10 +203,13 @@
     const bar = document.getElementById("lane-bar");
     const addBtn = document.getElementById("lane-add");
     const addLabel = document.getElementById("lane-add-label");
-    const menu = document.getElementById("lane-menu");
+    const menuBox = document.getElementById("lane-menu");
+    const menu = document.getElementById("lane-menu-list");
     const emptyState = document.getElementById("compare-empty-state");
     const status = document.getElementById("compare-status");
-    if (!board || !bar || !addBtn || !addLabel || !menu || !emptyState) return;
+    if (!board || !bar || !addBtn || !addLabel || !menuBox || !menu || !emptyState) return;
+    bindScrollFade(board, "x");
+    bindScrollFade(menu, "y");
 
     const maxLanes = parseInt(board.getAttribute("data-max-lanes"), 10) || 4;
     const bySlug = {};
@@ -306,15 +340,15 @@
     function openMenu() {
       if (addBtn.disabled) return;
       renderMenu();
-      menu.hidden = false;
+      menuBox.hidden = false;
       addBtn.setAttribute("aria-expanded", "true");
       const items = menuItems();
       if (items.length) items[0].focus();
     }
 
     function closeMenu(returnFocus) {
-      if (menu.hidden) return;
-      menu.hidden = true;
+      if (menuBox.hidden) return;
+      menuBox.hidden = true;
       addBtn.setAttribute("aria-expanded", "false");
       if (returnFocus) addBtn.focus();
     }
@@ -349,10 +383,10 @@
     }
 
     addBtn.addEventListener("click", function () {
-      if (menu.hidden) openMenu(); else closeMenu(true);
+      if (menuBox.hidden) openMenu(); else closeMenu(true);
     });
     addBtn.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowDown" && menu.hidden) { e.preventDefault(); openMenu(); }
+      if (e.key === "ArrowDown" && menuBox.hidden) { e.preventDefault(); openMenu(); }
     });
     menu.addEventListener("keydown", function (e) {
       const items = menuItems();
@@ -365,7 +399,7 @@
       else if (e.key === "Tab") { closeMenu(false); }
     });
     document.addEventListener("click", function (e) {
-      if (!menu.hidden && !e.target.closest(".lane-add-wrap")) closeMenu(false);
+      if (!menuBox.hidden && !e.target.closest(".lane-add-wrap")) closeMenu(false);
     });
 
     update();
@@ -390,6 +424,8 @@
 
     const input = document.getElementById("cmd-input");
     const results = document.getElementById("cmd-results");
+    results.classList.add("scroll-fade");
+    bindScrollFade(results, "y");
     let activeIndex = 0;
     let currentHits = [];
 
@@ -518,7 +554,9 @@
     btn.className = "search-trigger";
     btn.type = "button";
     btn.setAttribute("aria-label", "Search");
-    btn.innerHTML = '<span class="search-trigger-label">Search</span> <kbd>/</kbd>';
+    btn.innerHTML =
+      '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>' +
+      '<span class="search-trigger-label">Search</span> <kbd>/</kbd>';
     btn.addEventListener("click", openFn);
     const theme = document.getElementById("theme-toggle");
     if (theme) headerInner.insertBefore(btn, theme); else headerInner.appendChild(btn);
@@ -642,6 +680,136 @@
 
   addBreadcrumbs();
 
+  document.querySelectorAll(".table-scroll").forEach(function (el) { bindScrollFade(el, "x"); });
+
+  // ---- Phone/tablet: sections become a slide-in drawer opened from a floating button ----
+  let notifyActiveSection = function () {};
+
+  function initSectionDrawer() {
+    const drawer = document.querySelector(".sidebar");
+    if (!drawer || !currentLang) return null;
+    const scroller = drawer.querySelector(".sidebar-scroll");
+    const closeBtn = drawer.querySelector(".drawer-close");
+    if (!scroller || !closeBtn || !drawer.querySelector('a[href^="#"]')) return null;
+
+    bindScrollFade(scroller, "y");
+
+    const narrow = window.matchMedia("(max-width: 860px)");
+    const backdrop = document.createElement("div");
+    backdrop.id = "drawer-backdrop";
+    backdrop.hidden = true;
+    document.body.appendChild(backdrop);
+
+    const fab = document.createElement("button");
+    fab.id = "sections-fab";
+    fab.type = "button";
+    fab.setAttribute("aria-controls", drawer.id);
+    fab.setAttribute("aria-expanded", "false");
+    fab.innerHTML =
+      '<span class="fab-icon" aria-hidden="true"><i></i><i></i><i></i></span>' +
+      '<span class="fab-label">Sections</span>';
+    document.body.appendChild(fab);
+    const fabLabel = fab.querySelector(".fab-label");
+
+    let currentTitle = "";
+    let activeLink = null;
+    let lastY = window.scrollY;
+
+    function isOpen() { return drawer.classList.contains("is-open"); }
+
+    function updateFab() {
+      const atTop = window.scrollY < 120;
+      const showTitle = !atTop && currentTitle;
+      fabLabel.textContent = showTitle ? currentTitle : "Sections";
+      fab.setAttribute(
+        "aria-label",
+        showTitle ? "Open sections menu. Current section: " + currentTitle : "Open sections menu"
+      );
+    }
+
+    function open() {
+      if (!narrow.matches || isOpen()) return;
+      drawer.classList.add("is-open");
+      drawer.setAttribute("role", "dialog");
+      drawer.setAttribute("aria-modal", "true");
+      backdrop.hidden = false;
+      document.body.classList.add("drawer-open");
+      fab.setAttribute("aria-expanded", "true");
+      if (activeLink) scroller.scrollTop = Math.max(0, activeLink.offsetTop - scroller.clientHeight / 2);
+      closeBtn.focus();
+    }
+
+    function close(returnFocus) {
+      if (!isOpen()) return;
+      drawer.classList.remove("is-open");
+      backdrop.hidden = true;
+      document.body.classList.remove("drawer-open");
+      fab.setAttribute("aria-expanded", "false");
+      if (returnFocus) fab.focus();
+    }
+
+    function applyMode() {
+      if (narrow.matches) {
+        drawer.setAttribute("aria-label", "Sections");
+      } else {
+        close(false);
+        drawer.removeAttribute("role");
+        drawer.removeAttribute("aria-modal");
+      }
+    }
+
+    fab.addEventListener("click", open);
+    closeBtn.addEventListener("click", function () { close(true); });
+    backdrop.addEventListener("click", function () { close(true); });
+    drawer.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest('a[href^="#"]')) close(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (!isOpen()) return;
+      if (e.key === "Escape") { e.preventDefault(); close(true); return; }
+      if (e.key !== "Tab") return;
+      const focusable = Array.from(drawer.querySelectorAll('button, a[href]'));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    // The button shows its label at the top of the page, then shrinks to the icon while scrolling
+    // down and returns with the current section's name when scrolling back up.
+    let ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        const y = window.scrollY;
+        const delta = y - lastY;
+        if (y < 120 || delta < -8) fab.classList.remove("is-compact");
+        else if (delta > 8) fab.classList.add("is-compact");
+        if (Math.abs(delta) > 8 || y < 120) lastY = y;
+        updateFab();
+        ticking = false;
+      });
+    }, { passive: true });
+
+    if (narrow.addEventListener) narrow.addEventListener("change", applyMode);
+    else if (narrow.addListener) narrow.addListener(applyMode);
+    applyMode();
+    updateFab();
+
+    return {
+      setActive: function (link) {
+        activeLink = link;
+        currentTitle = link.textContent.trim();
+        updateFab();
+      }
+    };
+  }
+
+  const sectionDrawer = initSectionDrawer();
+  if (sectionDrawer) notifyActiveSection = sectionDrawer.setActive;
+
   const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
   if (sidebarLinks.length) {
     const map = new Map();
@@ -658,6 +826,7 @@
           if (entry.isIntersecting) {
             sidebarLinks.forEach(function (l) { l.classList.remove("active"); });
             link.classList.add("active");
+            notifyActiveSection(link);
           }
         });
       },

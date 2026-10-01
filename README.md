@@ -165,14 +165,18 @@ The comparison page uses the same registry to build its **Add language** menu. I
 To preview the built site locally:
 
 ```bash
-python renderer/build_site.py
-python -m unittest discover -s tests
-python scripts/serve_staging.py --host 127.0.0.1 --port 8123 --directory dist
+python scripts/serve_staging.py
 ```
+
+This builds the site, serves `dist/`, and rebuilds automatically when you save a change under `data/`, `src/` or `renderer/`. Refresh the browser after the "Rebuilt" message. Responses are sent uncached, so a refresh always shows the latest build. Options: `--port 8123` to change the port, `--no-watch` to disable auto-rebuild, `--no-build` to serve existing output.
 
 Then open:
 
-- http://127.0.0.1:8123/
+- http://127.0.0.1:8000/
+
+Preview only through this script (or by opening files inside `dist/`). A server started at the repository root, such as an editor's "Go Live" button or `python -m http.server`, serves the frozen legacy pages at the root, not the current build. If the script reports that the port is already in use, an older preview server is still running; stop it or pick another port.
+
+Run the checks separately with `python -m unittest discover -s tests` and the scripts in `scripts/validate_*.py`.
 
 This is a local-only workflow. The remote deployment remains unchanged until you explicitly choose to publish.
 

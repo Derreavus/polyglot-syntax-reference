@@ -2,8 +2,17 @@ from __future__ import annotations
 
 import html
 import os
+import re
 from pathlib import Path
 from typing import Any
+
+
+TABLE_PATTERN = re.compile(r"<table\b.*?</table>", re.DOTALL)
+
+
+def wrap_tables(body_html: str) -> str:
+    """Give each content table its own horizontal scroller so wide tables never widen the page."""
+    return TABLE_PATTERN.sub(lambda match: f'<div class="table-scroll scroll-fade">{match.group(0)}</div>', body_html)
 
 
 def relative_asset_path(page_rel: str, target_rel: str) -> str:
@@ -44,7 +53,7 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
     for topic in topics:
         content_html = topic.get("content_html")
         if content_html:
-            body_html = content_html
+            body_html = wrap_tables(content_html)
         else:
             examples = [
                 example for example in data.get("examples", [])
@@ -71,6 +80,7 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html.escape(language["name"]) } — {html.escape(site["brand"])}</title>
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="{css_path}">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -92,8 +102,14 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
   </header>
 
   <div class="lang-layout container">
-    <aside class="sidebar">
-      {' '.join(sidebar_parts)}
+    <aside class="sidebar" id="sections-drawer" aria-label="Sections">
+      <div class="drawer-head">
+        <h2 class="drawer-title">Sections</h2>
+        <button type="button" class="drawer-close" aria-label="Close sections menu">&times;</button>
+      </div>
+      <div class="sidebar-scroll scroll-fade">
+        {' '.join(sidebar_parts)}
+      </div>
     </aside>
 
     <article class="content">

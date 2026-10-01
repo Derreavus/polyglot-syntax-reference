@@ -68,6 +68,7 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html.escape(page_title)} — {html.escape(site["brand"])}</title>
   <meta name="description" content="{html.escape(page_description, quote=True)}">
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="{css_path}">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -98,7 +99,7 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
       {toc_html}
     </nav>
 
-    <div class="compare-board" id="compare-board" data-max-lanes="{max_lanes}" style="--lanes: 1;">
+    <div class="compare-board scroll-fade" id="compare-board" data-max-lanes="{max_lanes}" style="--lanes: 1;">
       <div class="compare-board-inner">
         <div class="lane-bar" id="lane-bar" role="group" aria-label="Languages being compared">
           <div class="lane-add-wrap">
@@ -106,7 +107,7 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
               <span class="lane-add-icon" aria-hidden="true">+</span>
               <span id="lane-add-label">Add language</span>
             </button>
-            <div id="lane-menu" class="lane-menu" role="menu" aria-label="Available languages" hidden></div>
+            <div id="lane-menu" class="lane-menu" hidden><div id="lane-menu-list" class="lane-menu-list scroll-fade" role="menu" aria-label="Available languages"></div></div>
           </div>
         </div>
 
