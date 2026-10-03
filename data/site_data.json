@@ -43,7 +43,21 @@
       "order": 5,
       "description": "A practical guide to JavaScript syntax, objects, asynchronous code, and the web platform.",
       "version_label": "ECMAScript 2025 · modern JavaScript",
-      "color": "#f7df1e"
+      "color": "#f7df1e",
+      "changelog_links": [
+        {
+          "title": "TC39 finished proposals, grouped by the edition that includes them",
+          "url": "https://github.com/tc39/proposals/blob/main/finished-proposals.md"
+        },
+        {
+          "title": "ECMA-262 editions, including historical snapshots",
+          "url": "https://ecma-international.org/publications-and-standards/standards/ecma-262/"
+        },
+        {
+          "title": "ECMAScript living specification (latest draft)",
+          "url": "https://tc39.es/ecma262/"
+        }
+      ]
     }
   ],
   "concepts": [
@@ -1753,5 +1767,1103 @@
     "compare_description": "Side-by-side syntax comparison across the supported languages.",
     "compare_heading": "Same Concept, Different Language",
     "compare_intro": "Jump between the supported languages without losing your place."
-  }
+  },
+  "versions": [
+    {
+      "language": "javascript",
+      "id": "es3",
+      "label": "ES3 (baseline)",
+      "released": "1999-12",
+      "order": 1,
+      "status": "released",
+      "note": "Baseline. Features that have existed since the earliest editions (ES1 to ES3) are recorded as added here."
+    },
+    {
+      "language": "javascript",
+      "id": "es5",
+      "label": "ES5",
+      "aliases": [
+        "ES5.1"
+      ],
+      "released": "2009-12",
+      "order": 2,
+      "status": "released",
+      "note": "Includes the ES5.1 revision (June 2011)."
+    },
+    {
+      "language": "javascript",
+      "id": "es2015",
+      "label": "ES2015",
+      "aliases": [
+        "ES6"
+      ],
+      "released": "2015-06",
+      "order": 3,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2016",
+      "label": "ES2016",
+      "released": "2016-06",
+      "order": 4,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2017",
+      "label": "ES2017",
+      "released": "2017-06",
+      "order": 5,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2018",
+      "label": "ES2018",
+      "released": "2018-06",
+      "order": 6,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2019",
+      "label": "ES2019",
+      "released": "2019-06",
+      "order": 7,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2020",
+      "label": "ES2020",
+      "released": "2020-06",
+      "order": 8,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2021",
+      "label": "ES2021",
+      "released": "2021-06",
+      "order": 9,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2022",
+      "label": "ES2022",
+      "released": "2022-06",
+      "order": 10,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2023",
+      "label": "ES2023",
+      "released": "2023-06",
+      "order": 11,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2024",
+      "label": "ES2024",
+      "released": "2024-06",
+      "order": 12,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2025",
+      "label": "ES2025",
+      "released": "2025-06",
+      "order": 13,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2026",
+      "label": "ES2026",
+      "released": "2026-06",
+      "order": 14,
+      "status": "released"
+    },
+    {
+      "language": "javascript",
+      "id": "es2027",
+      "label": "ES2027",
+      "released": "2027-06",
+      "order": 15,
+      "status": "draft",
+      "note": "Draft edition, expected June 2027. Contents can still change."
+    }
+  ],
+  "features": [
+    {
+      "language": "javascript",
+      "slug": "with-statement",
+      "title": "with statement",
+      "category": "syntax",
+      "summary": "Adds an object's properties to the scope chain for a block, so bare names resolve against the object.",
+      "topic": "control",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added"
+        },
+        {
+          "version": "es5",
+          "kind": "removed",
+          "note": "Using with in strict-mode code is a SyntaxError. Sloppy-mode code can still use it, but class bodies and modules are always strict.",
+          "scope": "strict mode only"
+        }
+      ],
+      "migration": {
+        "legacy": "with (config.server) {\n  console.log(host, port);\n}",
+        "modern": "const { host, port } = config.server;\nconsole.log(host, port);",
+        "note": "Destructure the names you need into local constants (ES2015)."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "arguments-callee",
+      "title": "arguments.callee",
+      "category": "behavior",
+      "summary": "arguments.callee refers to the function that is currently running, from inside that function.",
+      "topic": "functions",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added"
+        },
+        {
+          "version": "es5",
+          "kind": "removed",
+          "note": "Accessing arguments.callee throws a TypeError in strict-mode functions.",
+          "scope": "strict mode only"
+        }
+      ],
+      "migration": {
+        "legacy": "var fact = function (n) {\n  return n <= 1 ? 1 : n * arguments.callee(n - 1);\n};",
+        "modern": "var fact = function f(n) {\n  return n <= 1 ? 1 : n * f(n - 1);\n};",
+        "note": "Give the function expression a name and call it by that name."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "octal-literals",
+      "title": "Legacy octal literals",
+      "category": "syntax",
+      "summary": "Integer literals written with a leading zero, such as 0755, and octal escape sequences in strings.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added",
+          "note": "Described in the informative compatibility annex rather than the core grammar."
+        },
+        {
+          "version": "es5",
+          "kind": "removed",
+          "note": "Legacy octal literals and octal escape sequences are a SyntaxError in strict mode.",
+          "scope": "strict mode only"
+        }
+      ],
+      "replaced_by": [
+        "binary-octal-literals"
+      ],
+      "migration": {
+        "legacy": "var mode = 0755;",
+        "modern": "const mode = 0o755;",
+        "note": "Use the 0o prefix (ES2015)."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "string-substr",
+      "title": "String.prototype.substr()",
+      "category": "library",
+      "summary": "Extracts part of a string using a start index and a length.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added",
+          "note": "Documented in the informative compatibility annex, not the core language."
+        },
+        {
+          "version": null,
+          "kind": "deprecated",
+          "note": "Legacy feature kept for web compatibility. Prefer slice() or substring(). It is not scheduled for removal."
+        }
+      ],
+      "migration": {
+        "legacy": "var part = text.substr(2, 3);",
+        "modern": "var part = text.slice(2, 5);",
+        "note": "substr takes (start, length); slice takes (start, end)."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "escape-unescape",
+      "title": "escape() and unescape()",
+      "category": "library",
+      "summary": "Global functions that apply a percent-style encoding to strings.",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added",
+          "note": "Documented in the informative compatibility annex, not the core language."
+        },
+        {
+          "version": null,
+          "kind": "deprecated",
+          "note": "Legacy functions that do not encode Unicode correctly. Use encodeURIComponent() and decodeURIComponent()."
+        }
+      ],
+      "replaced_by": [
+        "encode-uri-component"
+      ],
+      "migration": {
+        "legacy": "var encoded = escape(\"a b&c\");",
+        "modern": "var encoded = encodeURIComponent(\"a b&c\");",
+        "note": "Results differ for non-ASCII characters and for characters such as +, / and @."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "encode-uri-component",
+      "title": "encodeURI() and encodeURIComponent()",
+      "category": "library",
+      "summary": "Functions that encode and decode strings for use inside URIs.",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "for-in-enumeration",
+      "title": "for...in enumeration",
+      "category": "behavior",
+      "summary": "for...in loops over an object's enumerable string keys, including inherited ones.",
+      "topic": "iteration",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added"
+        },
+        {
+          "version": "es2020",
+          "kind": "changed",
+          "note": "The order in which for...in visits keys is now specified, so engines agree on it."
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "strict-mode",
+      "title": "Strict mode",
+      "category": "behavior",
+      "summary": "The 'use strict' directive switches code to a restricted variant of the language with more errors.",
+      "history": [
+        {
+          "version": "es5",
+          "kind": "added"
+        },
+        {
+          "version": "es2015",
+          "kind": "changed",
+          "note": "Class bodies and module code are always strict, with no directive needed."
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "json-object",
+      "title": "JSON.parse() and JSON.stringify()",
+      "category": "library",
+      "summary": "A built-in JSON object for parsing and producing JSON text.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es5",
+          "kind": "added"
+        },
+        {
+          "version": "es2019",
+          "kind": "changed",
+          "note": "JSON.stringify now escapes lone surrogates so its output is always well-formed, and U+2028 and U+2029 are allowed inside string literals."
+        }
+      ],
+      "migration": {
+        "legacy": "var data = eval(\"(\" + text + \")\");",
+        "modern": "var data = JSON.parse(text);",
+        "note": "eval runs arbitrary code; JSON.parse only parses data."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "array-iteration-methods",
+      "title": "Array iteration methods",
+      "category": "library",
+      "summary": "forEach, map, filter, reduce, reduceRight, some, every, indexOf and lastIndexOf on arrays.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es5",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var evens = [];\nfor (var i = 0; i < nums.length; i++) {\n  if (nums[i] % 2 === 0) evens.push(nums[i]);\n}",
+        "modern": "var evens = nums.filter(function (n) {\n  return n % 2 === 0;\n});"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "function-bind",
+      "title": "Function.prototype.bind()",
+      "category": "library",
+      "summary": "Returns a function with a fixed this value and optional leading arguments.",
+      "topic": "functions",
+      "history": [
+        {
+          "version": "es5",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var self = this;\nbutton.onclick = function () {\n  self.handle();\n};",
+        "modern": "button.onclick = this.handle.bind(this);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "let-const",
+      "title": "let and const",
+      "category": "syntax",
+      "summary": "Block-scoped variable declarations, with const for bindings that are never reassigned.",
+      "topic": "variables",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "for (var i = 0; i < 3; i++) {\n  setTimeout(function () { console.log(i); }, 0);\n}",
+        "modern": "for (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}",
+        "note": "var is function-scoped, so every callback sees the final i (3). let creates a new binding per iteration (0, 1, 2)."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "arrow-functions",
+      "title": "Arrow functions",
+      "category": "syntax",
+      "summary": "Compact function syntax whose this is taken from the surrounding code.",
+      "topic": "functions",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var self = this;\nitems.forEach(function (item) {\n  self.add(item);\n});",
+        "modern": "items.forEach((item) => {\n  this.add(item);\n});",
+        "note": "Arrow functions have no own this, arguments or prototype, so they cannot replace every function expression."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "classes",
+      "title": "Classes",
+      "category": "syntax",
+      "summary": "class declarations with constructors, methods, extends and super.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        },
+        {
+          "version": "es2022",
+          "kind": "changed",
+          "note": "Class bodies gained public and private fields, private methods and static initialization blocks."
+        }
+      ],
+      "migration": {
+        "legacy": "function Point(x, y) {\n  this.x = x;\n  this.y = y;\n}\nPoint.prototype.toString = function () {\n  return \"(\" + this.x + \", \" + this.y + \")\";\n};",
+        "modern": "class Point {\n  constructor(x, y) {\n    this.x = x;\n    this.y = y;\n  }\n  toString() {\n    return `(${this.x}, ${this.y})`;\n  }\n}",
+        "note": "A class must be called with new, and class declarations are not usable before their line runs."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "template-literals",
+      "title": "Template literals",
+      "category": "syntax",
+      "summary": "Backtick strings with ${expression} interpolation, multi-line text and tagged templates.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        },
+        {
+          "version": "es2018",
+          "kind": "changed",
+          "note": "Tagged templates may contain invalid escape sequences; their cooked value is undefined instead of a SyntaxError."
+        }
+      ],
+      "migration": {
+        "legacy": "var message = \"Hello, \" + name + \"! You have \" + count + \" messages.\";",
+        "modern": "const message = `Hello, ${name}! You have ${count} messages.`;"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "destructuring",
+      "title": "Destructuring",
+      "category": "syntax",
+      "summary": "Pattern syntax that unpacks arrays and objects into variables.",
+      "topic": "variables",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var host = options.host;\nvar port = options.port;",
+        "modern": "const { host, port } = options;"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "default-rest-spread",
+      "title": "Default, rest and spread parameters",
+      "category": "syntax",
+      "summary": "Default parameter values, rest parameters, and spread in calls and array literals.",
+      "topic": "functions",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "function log(level) {\n  level = level || \"info\";\n  var parts = Array.prototype.slice.call(arguments, 1);\n  console.log.apply(console, [level].concat(parts));\n}",
+        "modern": "function log(level = \"info\", ...parts) {\n  console.log(level, ...parts);\n}",
+        "note": "A default applies only when the argument is undefined. The || pattern also replaces 0, empty strings and false."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "es-modules",
+      "title": "ES modules",
+      "category": "syntax",
+      "summary": "import and export statements for native modules.",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "promises",
+      "title": "Promises",
+      "category": "library",
+      "summary": "Promise objects for asynchronous results, with then, catch, Promise.all and Promise.race.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "readConfig(function (err, config) {\n  if (err) return handle(err);\n  loadUser(config, function (err, user) {\n    if (err) return handle(err);\n    render(user);\n  });\n});",
+        "modern": "readConfig()\n  .then((config) => loadUser(config))\n  .then((user) => render(user))\n  .catch(handle);",
+        "note": "The functions must return promises. Wrap callback-style APIs with new Promise."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "binary-octal-literals",
+      "title": "Binary and octal literals",
+      "category": "syntax",
+      "summary": "0b and 0o prefixes for binary and octal integer literals.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "string-search-methods",
+      "title": "String search methods",
+      "category": "library",
+      "summary": "includes(), startsWith(), endsWith() and repeat() on strings.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "if (url.indexOf(\"https://\") === 0) {\n  secure();\n}",
+        "modern": "if (url.startsWith(\"https://\")) {\n  secure();\n}"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "object-assign",
+      "title": "Object.assign()",
+      "category": "library",
+      "summary": "Copies own enumerable properties from one or more objects onto a target object.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var copy = {};\nfor (var key in source) {\n  if (Object.prototype.hasOwnProperty.call(source, key)) {\n    copy[key] = source[key];\n  }\n}",
+        "modern": "const copy = Object.assign({}, source);",
+        "note": "Object.assign also copies symbol-keyed properties and runs setters on the target."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "array-includes",
+      "title": "Array.prototype.includes()",
+      "category": "library",
+      "summary": "Tests whether an array contains a value.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2016",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "if (list.indexOf(item) !== -1) {\n  found();\n}",
+        "modern": "if (list.includes(item)) {\n  found();\n}",
+        "note": "includes can find NaN; indexOf cannot."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "exponent-operator",
+      "title": "Exponentiation operator",
+      "category": "syntax",
+      "summary": "The ** operator and the **= assignment operator.",
+      "topic": "operators",
+      "history": [
+        {
+          "version": "es2016",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var big = Math.pow(2, 10);",
+        "modern": "const big = 2 ** 10;",
+        "note": "** is right-associative: 2 ** 3 ** 2 is 2 ** 9."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "async-await",
+      "title": "async functions and await",
+      "category": "syntax",
+      "summary": "async functions return promises, and await pauses them until a promise settles.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2017",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "function load() {\n  return fetchUser().then(function (user) {\n    return fetchPosts(user.id);\n  });\n}",
+        "modern": "async function load() {\n  const user = await fetchUser();\n  return fetchPosts(user.id);\n}",
+        "note": "An async function always returns a promise, even when it returns a plain value."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "object-values-entries",
+      "title": "Object.values() and Object.entries()",
+      "category": "library",
+      "summary": "Return an object's own enumerable property values, or its key-value pairs.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2017",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var pairs = Object.keys(obj).map(function (key) {\n  return [key, obj[key]];\n});",
+        "modern": "const pairs = Object.entries(obj);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "object-rest-spread",
+      "title": "Object rest and spread",
+      "category": "syntax",
+      "summary": "Rest and spread syntax for object properties: { ...a, ...b } and const { x, ...rest } = obj.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2018",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var merged = Object.assign({}, defaults, overrides);",
+        "modern": "const merged = { ...defaults, ...overrides };",
+        "note": "Spread defines properties on the new object; Object.assign calls setters on its target."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "array-flat",
+      "title": "Array.prototype.flat() and flatMap()",
+      "category": "library",
+      "summary": "Flatten nested arrays, or map and flatten in one step.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2019",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var flat = [].concat.apply([], nested);",
+        "modern": "const flat = nested.flat();",
+        "note": "flat() flattens one level by default; pass Infinity to flatten completely."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "optional-catch-binding",
+      "title": "Optional catch binding",
+      "category": "syntax",
+      "summary": "A catch clause can omit the error variable when it is not needed.",
+      "topic": "errors",
+      "history": [
+        {
+          "version": "es2019",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "try {\n  risky();\n} catch (unused) {\n  recover();\n}",
+        "modern": "try {\n  risky();\n} catch {\n  recover();\n}"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "optional-chaining",
+      "title": "Optional chaining",
+      "category": "syntax",
+      "summary": "The ?. operator stops and returns undefined when the left side is null or undefined.",
+      "topic": "operators",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var city = user && user.address && user.address.city;",
+        "modern": "const city = user?.address?.city;",
+        "note": "&& stops on any falsy value (0, empty string, false). ?. stops only on null and undefined."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "nullish-coalescing",
+      "title": "Nullish coalescing",
+      "category": "syntax",
+      "summary": "The ?? operator returns its right side only when the left side is null or undefined.",
+      "topic": "operators",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var port = options.port || 3000;",
+        "modern": "const port = options.port ?? 3000;",
+        "note": "|| also replaces 0, empty strings and false. ?? replaces only null and undefined."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "bigint",
+      "title": "BigInt",
+      "category": "syntax",
+      "summary": "Integers of arbitrary size, written with an n suffix such as 123n.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "dynamic-import",
+      "title": "Dynamic import()",
+      "category": "syntax",
+      "summary": "import() loads a module at run time and returns a promise for its namespace.",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "logical-assignment",
+      "title": "Logical assignment operators",
+      "category": "syntax",
+      "summary": "The &&=, ||= and ??= operators assign only when a condition on the left side holds.",
+      "topic": "operators",
+      "history": [
+        {
+          "version": "es2021",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "if (!opts.timeout) {\n  opts.timeout = 30;\n}",
+        "modern": "opts.timeout ||= 30;",
+        "note": "||= replaces any falsy value. Use ??= to replace only null or undefined."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "string-replaceall",
+      "title": "String.prototype.replaceAll()",
+      "category": "library",
+      "summary": "Replaces every occurrence of a string or pattern.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2021",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var snake = text.replace(/-/g, \"_\");",
+        "modern": "const snake = text.replaceAll(\"-\", \"_\");",
+        "note": "A string argument is matched literally. A regular expression argument must have the g flag."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "class-fields",
+      "title": "Class fields and private members",
+      "category": "syntax",
+      "summary": "Field declarations in class bodies, including #private fields and methods, static fields and static blocks.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2022",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "class Counter {\n  constructor() {\n    this._count = 0;\n  }\n}",
+        "modern": "class Counter {\n  #count = 0;\n}",
+        "note": "A #private field is enforced by the language. An _underscore name is only a convention."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "top-level-await",
+      "title": "Top-level await",
+      "category": "syntax",
+      "summary": "await can be used at the top level of a module.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2022",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "(async () => {\n  const data = await load();\n  start(data);\n})();",
+        "modern": "const data = await load();\nstart(data);",
+        "note": "Only valid in module code."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "array-at",
+      "title": "Array.prototype.at()",
+      "category": "library",
+      "summary": "Reads an element by index, counting from the end when the index is negative. Also on strings and typed arrays.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2022",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var last = list[list.length - 1];",
+        "modern": "const last = list.at(-1);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "object-hasown",
+      "title": "Object.hasOwn()",
+      "category": "library",
+      "summary": "Tests whether an object has an own property, without going through the prototype.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2022",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "if (Object.prototype.hasOwnProperty.call(obj, key)) {\n  use(obj[key]);\n}",
+        "modern": "if (Object.hasOwn(obj, key)) {\n  use(obj[key]);\n}"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "array-find-last",
+      "title": "findLast() and findLastIndex()",
+      "category": "library",
+      "summary": "Search an array from the end.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2023",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const last = list.slice().reverse().find((n) => n % 2 === 0);",
+        "modern": "const last = list.findLast((n) => n % 2 === 0);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "change-array-by-copy",
+      "title": "toSorted(), toReversed(), toSpliced() and with()",
+      "category": "library",
+      "summary": "Copying versions of sort, reverse and splice, plus with() to replace one element.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2023",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const sorted = list.slice().sort();",
+        "modern": "const sorted = list.toSorted();",
+        "note": "sort(), reverse() and splice() change the array in place. The new methods return a copy."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "object-groupby",
+      "title": "Object.groupBy() and Map.groupBy()",
+      "category": "library",
+      "summary": "Group the items of an iterable by a key function.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2024",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const byType = {};\nitems.forEach((item) => {\n  (byType[item.type] = byType[item.type] || []).push(item);\n});",
+        "modern": "const byType = Object.groupBy(items, (item) => item.type);",
+        "note": "Object.groupBy returns an object with a null prototype."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "promise-withresolvers",
+      "title": "Promise.withResolvers()",
+      "category": "library",
+      "summary": "Returns a promise together with its resolve and reject functions.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2024",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "let resolve, reject;\nconst promise = new Promise((res, rej) => {\n  resolve = res;\n  reject = rej;\n});",
+        "modern": "const { promise, resolve, reject } = Promise.withResolvers();"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "iterator-helpers",
+      "title": "Iterator helpers",
+      "category": "library",
+      "summary": "Iterator methods such as map, filter, take, drop, flatMap and toArray, which work lazily.",
+      "topic": "iteration",
+      "history": [
+        {
+          "version": "es2025",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const doubled = [...numbers()].map((n) => n * 2);",
+        "modern": "const doubled = numbers().map((n) => n * 2).toArray();",
+        "note": "Helpers pull values one at a time. Spreading into an array first evaluates the whole sequence."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "set-methods",
+      "title": "Set methods",
+      "category": "library",
+      "summary": "union(), intersection(), difference(), symmetricDifference(), isSubsetOf(), isSupersetOf() and isDisjointFrom().",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2025",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const both = new Set([...a].filter((x) => b.has(x)));",
+        "modern": "const both = a.intersection(b);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "promise-try",
+      "title": "Promise.try()",
+      "category": "library",
+      "summary": "Calls a function and always returns a promise, even if the function throws synchronously.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2025",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const result = new Promise((resolve) => resolve(task()));",
+        "modern": "const result = Promise.try(task);",
+        "note": "A synchronous exception becomes a rejection."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "import-attributes",
+      "title": "Import attributes and JSON modules",
+      "category": "syntax",
+      "summary": "A with { type: \"json\" } clause on imports, used to import JSON modules.",
+      "history": [
+        {
+          "version": "es2025",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "array-fromasync",
+      "title": "Array.fromAsync()",
+      "category": "library",
+      "summary": "Builds an array from an async iterable and returns a promise for it.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2026",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "async function collect() {\n  const items = [];\n  for await (const item of stream()) {\n    items.push(item);\n  }\n  return items;\n}",
+        "modern": "async function collect() {\n  return Array.fromAsync(stream());\n}"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "error-iserror",
+      "title": "Error.isError()",
+      "category": "library",
+      "summary": "Reliably tests whether a value is an error object.",
+      "topic": "errors",
+      "history": [
+        {
+          "version": "es2026",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const isError = value instanceof Error;",
+        "modern": "const isError = Error.isError(value);",
+        "note": "instanceof fails for errors created in another realm, such as an iframe."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "explicit-resource-management",
+      "title": "using declarations",
+      "category": "syntax",
+      "summary": "using and await using declarations dispose of a resource automatically when the block ends.",
+      "history": [
+        {
+          "version": "es2027",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const handle = open();\ntry {\n  use(handle);\n} finally {\n  handle.close();\n}",
+        "modern": "using handle = open();\nuse(handle);",
+        "note": "The resource needs a [Symbol.dispose]() method."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "temporal",
+      "title": "Temporal",
+      "category": "library",
+      "summary": "A modern date and time API that fixes many problems of the Date object.",
+      "history": [
+        {
+          "version": "es2027",
+          "kind": "added"
+        }
+      ]
+    }
+  ]
 }

@@ -25,6 +25,10 @@
     });
   }
 
+  // Everything below resolves URLs from this script's own location, so links stay correct on
+  // /python/, /python/index.html, nested pages, GitHub project sites, and file:// previews alike.
+  const scriptEl = document.currentScript || document.querySelector('script[src$="js/main.js"]');
+  const siteRoot = scriptEl && scriptEl.src ? new URL("../", scriptEl.src).href : "";
   const path = location.pathname;
   const registry = Array.isArray(window.POLYGLOT_LANGUAGES) ? window.POLYGLOT_LANGUAGES.slice() : [];
 
@@ -55,28 +59,24 @@
   }
 
   function getPageInfo() {
-    const pageSegments = path.split("/").filter(Boolean);
-    const lastSegment = pageSegments[pageSegments.length - 1] || "";
-    const isIndexPage = lastSegment === "index.html" || pageSegments.length === 0;
-    const parentSegment = isIndexPage && pageSegments.length > 1 ? pageSegments[pageSegments.length - 2] : null;
-    const currentPageSegment = isIndexPage ? parentSegment : lastSegment;
-    const isNestedPage = Boolean(parentSegment) && (parentSegment === "compare" || registry.some(function (lang) { return lang.slug === parentSegment; }));
+    const rootPath = siteRoot ? new URL(siteRoot).pathname : "/";
+    const relative = path.indexOf(rootPath) === 0 ? path.slice(rootPath.length) : path;
+    const segments = relative.split("/").filter(function (part) { return part && part !== "index.html"; });
+    const first = segments[0] || "";
+    const isLanguage = registry.some(function (lang) { return lang.slug === first; });
     return {
-      pageSegments: pageSegments,
-      isIndexPage: isIndexPage,
-      isNestedPage: isNestedPage,
-      currentPageSegment: currentPageSegment,
+      segments: segments,
+      lang: isLanguage ? first : null,
+      isCompare: first === "compare",
+      isVersions: isLanguage && segments[1] === "versions",
     };
   }
 
   function getCurrentLang() {
-    const pageInfo = getPageInfo();
-    if (!pageInfo.currentPageSegment) return null;
-    return registry.some(function (lang) { return lang.slug === pageInfo.currentPageSegment; }) ? pageInfo.currentPageSegment : null;
+    return getPageInfo().lang;
   }
 
   let currentLang = getCurrentLang();
-  const basePrefix = getPageInfo().isNestedPage ? "../" : "";
 
   function buildLangMeta() {
     const meta = {};
@@ -126,8 +126,7 @@
   }
 
   function navPathFor(slug) {
-    const isNestedPage = getPageInfo().isNestedPage;
-    return (isNestedPage ? "../" : "") + slug + "/index.html";
+    return siteRoot + slug + "/index.html";
   }
 
   function renderLanguageNavigation() {
@@ -179,23 +178,144 @@
     const homepageCards = document.querySelector(".hero-cards");
     if (!homepageCards) return;
 
-    const isNestedPage = getPageInfo().isNestedPage;
-
     homepageCards.innerHTML = "";
     registry.forEach(function (lang) {
       const card = document.createElement("a");
-      card.href = (isNestedPage ? "../" : "") + lang.slug + "/index.html";
+      card.href = siteRoot + lang.slug + "/index.html";
       card.className = "hero-card " + lang.slug;
       card.innerHTML = "<h2>" + escapeHtml(lang.name) + "</h2><p>" + escapeHtml(lang.description || "") + "</p>";
       homepageCards.appendChild(card);
     });
 
     const compareCard = document.createElement("a");
-    compareCard.href = (isNestedPage ? "../" : "") + "compare/index.html";
+    compareCard.href = siteRoot + "compare/index.html";
     compareCard.className = "hero-card";
     compareCard.style.borderColor = "var(--accent)";
     compareCard.innerHTML = '<h2 style="color:var(--accent);">Compare</h2><p>Same concept, different language — compare syntax and approaches across languages.</p>';
     homepageCards.appendChild(compareCard);
+  }
+
+  // ---- Version history page: pick "from" and "to" versions, filter by type of change ----
+  function initVersionsPage() {
+    const list = document.getElementById("version-list");
+    const fromSelect = document.getElementById("version-from");
+    const toSelect = document.getElementById("version-to");
+    if (!list || !fromSelect || !toSelect) return;
+
+    const breakingBox = document.getElementById("breaking-only");
+    const summary = document.getElementById("version-summary");
+    const emptyMessage = document.getElementById("version-empty");
+    const kindButtons = Array.from(document.querySelectorAll(".kind-filter"));
+    const blocks = Array.from(list.querySelectorAll(".version-block"));
+
+    const orderOf = {};
+    const labelOf = {};
+    Array.from(fromSelect.options).concat(Array.from(toSelect.options)).forEach(function (option) {
+      orderOf[option.value] = parseInt(option.getAttribute("data-order"), 10);
+      labelOf[option.value] = option.textContent.replace(/ \(draft\)$/, "");
+    });
+    const defaults = { from: "", to: toSelect.value };
+    const allKinds = kindButtons.map(function (button) { return button.getAttribute("data-kind"); });
+
+    const params = new URLSearchParams(location.search);
+    const state = {
+      from: orderOf[params.get("from")] !== undefined && params.get("from") !== null ? params.get("from") : defaults.from,
+      to: orderOf[params.get("to")] !== undefined && params.get("to") ? params.get("to") : defaults.to,
+      kinds: params.get("kinds")
+        ? params.get("kinds").split(",").filter(function (kind) { return allKinds.indexOf(kind) !== -1; })
+        : allKinds.slice(),
+      breaking: params.get("breaking") === "1",
+    };
+    if (!state.kinds.length) state.kinds = allKinds.slice();
+
+    function writeUrl() {
+      const query = [];
+      if (state.from !== defaults.from) query.push("from=" + encodeURIComponent(state.from));
+      if (state.to !== defaults.to) query.push("to=" + encodeURIComponent(state.to));
+      if (state.kinds.length !== allKinds.length) query.push("kinds=" + state.kinds.join(","));
+      if (state.breaking) query.push("breaking=1");
+      try {
+        history.replaceState(null, "", location.pathname + (query.length ? "?" + query.join("&") : "") + location.hash);
+      } catch (err) { /* URL sync is a convenience only */ }
+    }
+
+    function apply() {
+      const fromOrder = orderOf[state.from] || 0;
+      const toOrder = orderOf[state.to];
+      const validRange = fromOrder < toOrder;
+      let shown = 0;
+      blocks.forEach(function (block) {
+        const blockOrder = block.getAttribute("data-order");
+        let visible = 0;
+        block.querySelectorAll(".change").forEach(function (item) {
+          let inRange;
+          if (blockOrder === "") {
+            // Undated entries (deprecations with no edition) apply to any version that has the feature.
+            inRange = parseInt(item.getAttribute("data-added-order"), 10) <= toOrder;
+          } else {
+            inRange = parseInt(blockOrder, 10) > fromOrder && parseInt(blockOrder, 10) <= toOrder;
+          }
+          const show = validRange && inRange &&
+            state.kinds.indexOf(item.getAttribute("data-kind")) !== -1 &&
+            (!state.breaking || item.getAttribute("data-breaking") === "true");
+          item.hidden = !show;
+          if (show) visible += 1;
+        });
+        block.hidden = visible === 0;
+        shown += visible;
+      });
+      fromSelect.value = state.from;
+      toSelect.value = state.to;
+      kindButtons.forEach(function (button) {
+        button.setAttribute("aria-pressed", state.kinds.indexOf(button.getAttribute("data-kind")) !== -1 ? "true" : "false");
+      });
+      if (breakingBox) breakingBox.checked = state.breaking;
+      emptyMessage.hidden = shown > 0;
+      if (!validRange) {
+        summary.textContent = "Choose a starting version that is older than the version you are moving to.";
+      } else {
+        const noun = shown === 1 ? " change" : " changes";
+        summary.textContent = state.from === ""
+          ? shown + noun + " up to " + labelOf[state.to] + "."
+          : shown + noun + " between " + labelOf[state.from] + " and " + labelOf[state.to] + ".";
+      }
+      writeUrl();
+    }
+
+    function revealHash() {
+      const id = decodeURIComponent(location.hash.slice(1));
+      const target = id ? document.getElementById(id) : null;
+      if (!target) return;
+      if (target.hidden || (target.closest && target.closest("[hidden]"))) {
+        const block = target.closest(".version-block");
+        state.from = "";
+        state.kinds = allKinds.slice();
+        state.breaking = false;
+        const blockOrder = block ? parseInt(block.getAttribute("data-order"), 10) : NaN;
+        if (!isNaN(blockOrder) && blockOrder > orderOf[state.to]) {
+          state.to = block.id.replace(/^v-/, "");
+        }
+        apply();
+      }
+      target.scrollIntoView();
+    }
+
+    fromSelect.addEventListener("change", function () { state.from = fromSelect.value; apply(); });
+    toSelect.addEventListener("change", function () { state.to = toSelect.value; apply(); });
+    if (breakingBox) breakingBox.addEventListener("change", function () { state.breaking = breakingBox.checked; apply(); });
+    kindButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const kind = button.getAttribute("data-kind");
+        const index = state.kinds.indexOf(kind);
+        if (index === -1) state.kinds.push(kind);
+        else if (state.kinds.length > 1) state.kinds.splice(index, 1);
+        apply();
+      });
+    });
+    window.addEventListener("hashchange", revealHash);
+
+    apply();
+    revealHash();
   }
 
   function initCompareBoard() {
@@ -262,7 +382,7 @@
 
         const link = document.createElement("a");
         link.className = "lane-name";
-        link.href = "../" + encodeURIComponent(slug) + "/";
+        link.href = siteRoot + encodeURIComponent(slug) + "/index.html";
         link.title = "Open the " + lang.name + " reference";
         link.textContent = lang.name;
 
@@ -484,7 +604,7 @@
 
     function itemHref(item) {
       if (item.lang === currentLang) return "#" + item.id;
-      return basePrefix + LANG_META[item.lang].path + "#" + item.id;
+      return siteRoot + LANG_META[item.lang].path + "#" + item.id;
     }
 
     function render(q) {
@@ -607,6 +727,7 @@
   renderLanguageNavigation();
   renderHomepageCards();
   initCompareBoard();
+  initVersionsPage();
   ensurePalette();
 
   function addCopyButtons() {

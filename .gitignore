@@ -7,3 +7,5 @@ dist/
 .DS_Store
 Thumbs.db
 .venv/
+node_modules/
+package-lock.json

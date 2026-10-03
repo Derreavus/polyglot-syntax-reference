@@ -9,6 +9,8 @@ from load_data import ROOT, get_languages, load_data
 from render_compare import render_compare_page
 from render_home import render_home_page
 from render_language import render_language_page, wrap_tables
+from render_versions import render_versions_page
+from versioning import features_for, has_versioning, versions_for
 from validate_data import validate_data_model
 
 
@@ -26,6 +28,8 @@ def ensure_output_dirs() -> None:
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
     for lang in get_languages(load_data()):
         (OUTPUT_ROOT / lang["slug"]).mkdir(parents=True, exist_ok=True)
+        if has_versioning(load_data(), lang["slug"]):
+            (OUTPUT_ROOT / lang["slug"] / "versions").mkdir(parents=True, exist_ok=True)
     (OUTPUT_ROOT / "compare").mkdir(parents=True, exist_ok=True)
 
 
@@ -111,10 +115,23 @@ def build_language_pages(data: dict) -> None:
         page_path.write_text(page, encoding="utf-8", newline="\n")
 
 
+def build_versions_pages(data: dict) -> None:
+    for language in get_languages(data):
+        slug = language["slug"]
+        if not has_versioning(data, slug):
+            continue
+        page_path = OUTPUT_ROOT / slug / "versions" / "index.html"
+        page = render_versions_page(language, data, page_rel=f"{slug}/versions/index.html")
+        page_path.write_text(page, encoding="utf-8", newline="\n")
+
+
 def validate_generated_site(data: dict) -> None:
     languages = get_languages(data)
     required = {"index.html", "compare/index.html"}
     required.update(f"{lang['slug']}/index.html" for lang in languages)
+    required.update(
+        f"{lang['slug']}/versions/index.html" for lang in languages if has_versioning(data, lang["slug"])
+    )
 
     missing = [path for path in sorted(required) if not (OUTPUT_ROOT / path).exists()]
     if missing:
@@ -138,6 +155,26 @@ def validate_generated_site(data: dict) -> None:
                 raise ValueError(f"{slug}#{topic['slug']}: full topic content was not rendered")
         if f'id="{slug}"' not in text and f'class="lang-tag {slug}"' not in text:
             raise ValueError(f"{slug}: missing language token in generated page")
+
+    for lang in languages:
+        slug = lang["slug"]
+        if not has_versioning(data, slug):
+            continue
+        versions_text = (OUTPUT_ROOT / slug / "versions" / "index.html").read_text(encoding="utf-8")
+        for feature in features_for(data, slug):
+            if f'id="feature-{feature["slug"]}"' not in versions_text:
+                raise ValueError(f"{slug}: version page is missing feature '{feature['slug']}'")
+        for version in versions_for(data, slug):
+            has_events = any(
+                event["version"] == version["id"]
+                for feature in features_for(data, slug)
+                for event in feature["history"]
+            )
+            if has_events and f'id="v-{version["id"]}"' not in versions_text:
+                raise ValueError(f"{slug}: version page is missing version '{version['id']}'")
+        for link in lang.get("changelog_links", []):
+            if link["url"] not in versions_text:
+                raise ValueError(f"{slug}: version page is missing changelog link {link['url']}")
 
     compare_text = (OUTPUT_ROOT / "compare" / "index.html").read_text(encoding="utf-8")
     required_sections = [section["slug"] for section in data["compare_sections"]]
@@ -174,6 +211,7 @@ def main() -> int:
     build_homepage(data)
     build_compare_page(data)
     build_language_pages(data)
+    build_versions_pages(data)
     validate_generated_site(data)
     print(f"Generated site at {OUTPUT_ROOT}")
     return 0

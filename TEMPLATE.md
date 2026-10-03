@@ -24,6 +24,8 @@ consistency with the existing reference, current language standards.
       default or classic footgun in that section
 - [ ] `concepts` mappings added for every concept the language has a topic for
 - [ ] A value for the new language added to **every** row in `compare`
+- [ ] If the language has version history: `versions`, `features` and `changelog_links`
+      added (see [Version history](#6-version-history-optional))
 - [ ] `python renderer/build_site.py` succeeds and the checks in the
       [Verify](#verify) section pass
 - [ ] Reviewed the built site locally (`python scripts/serve_staging.py`)
@@ -142,6 +144,55 @@ Every object in `compare` needs a value for the new language key:
 The compare page picks up the new language in its **Add language** menu
 automatically; no page or script changes are needed. Compare cells are rendered as inline code, so `<` and `>` are escaped for you
 here, unlike in `content_html`.
+
+## 6. Version history (optional)
+
+A language gets a version history page once it has `versions`. Add the pieces in this order.
+
+**Versions** (one per release, oldest first):
+
+```json
+{ "language": "go", "id": "go1.21", "label": "Go 1.21", "aliases": [],
+  "released": "2023-08", "order": 12, "status": "released" }
+```
+
+`order` must be unique and increasing, and dates must not go backwards. Use `status: "draft"`
+for a release that is not out yet; drafts must come after every released version. The first
+version can be a baseline for features that have existed since the beginning.
+
+**Changelog links** on the language entry (required once it has versions):
+
+```json
+"changelog_links": [
+  { "title": "Official release notes", "url": "https://go.dev/doc/devel/release" }
+]
+```
+
+**Features** (things you can recognise in code):
+
+```json
+{
+  "language": "go", "slug": "generics", "title": "Generics", "category": "syntax",
+  "summary": "Type parameters on functions and types.",
+  "topic": "generics",
+  "history": [
+    { "version": "go1.18", "kind": "added" },
+    { "version": "go1.21", "kind": "changed", "note": "Type inference was extended." }
+  ],
+  "migration": { "legacy": "func Max(a, b interface{}) ...", "modern": "func Max[T cmp.Ordered](a, b T) T ...",
+                 "note": "Optional explanation." }
+}
+```
+
+- `category` is `syntax`, `library`, `behavior` or `tooling`.
+- Event kinds are `added`, `changed`, `deprecated` and `removed`. There is exactly one `added` event and
+  it comes first. There is at most one `deprecated` and at most one `removed`, and `removed` comes last.
+  `changed` and `removed` need a `note`. Add `"breaking": true` to a `changed` event that can break old code.
+- A `deprecated` event may use `"version": null` (with a `note`) when no release deprecated it.
+- `scope` limits an event, for example `"scope": "strict mode only"`.
+- `replaced_by` lists the feature slugs that replace a deprecated or removed feature.
+- A `migration` needs both snippets. Make the newer snippet valid in the version that added the feature.
+- `topic` must be an existing topic slug for the same language, or left out.
 
 ---
 

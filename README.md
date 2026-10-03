@@ -82,7 +82,7 @@ Code examples are designed to be copied directly and use the actual syntax of th
 
 ### Version information
 
-Language features include version information where relevant, so you can identify when particular syntax or functionality was introduced.
+Languages that have version data get a **Version history** page (for example `javascript/versions/`). It lists what was added, changed, deprecated and removed in each version, with before-and-after examples, so you can work out what old code was doing and how to move it to a newer version. Choose the version you are upgrading from and the one you are moving to, and the page shows everything in between. See [Version history](#version-history).
 
 ### Practical guidance
 
@@ -179,6 +179,25 @@ Preview only through this script (or by opening files inside `dist/`). A server 
 Run the checks separately with `python -m unittest discover -s tests` and the scripts in `scripts/validate_*.py`.
 
 This is a local-only workflow. The remote deployment remains unchanged until you explicitly choose to publish.
+
+### Version history
+
+Version data lives in [data/site_data.json](data/site_data.json) next to the rest of the content and is validated on every build. It is language-neutral, so the same model is used for every language. JavaScript is the first language to use it.
+
+- **`versions`**: the ordered releases of a language. Each has an `id`, a `label`, a release date, an `order` number and a `status` of `released` or `draft`. For JavaScript a version is an **ECMAScript edition** (ES5, ES2015 and so on), not a browser or Node.js release.
+- **`features`**: things you can recognise in code, such as `let` and `const` or `Array.prototype.includes()`. Each has a `history` of events: `added`, `changed`, `deprecated` and `removed`. A feature can link to the reference `topic` that explains it, name what replaced it (`replaced_by`), and carry a `migration` pair with an older and a newer way to write the same thing.
+- **`changelog_links`** on the language: links to the official changelogs. The page shows these as its sources instead of citing a source for every event.
+
+How the model behaves:
+
+- `added: V` means available in V. `removed: V` means not available in V. A removal with a `scope` (for example strict mode only) means the feature still works elsewhere and is shown as restricted.
+- A deprecation may have no version. JavaScript marks many legacy features this way without any edition deprecating them, so they appear in their own "no removal planned" section.
+- Every comparison uses the integer `order`, never the label. The page shows changes with `from < version <= to`.
+- History is stored as changes, never copied per version. A fact stays true until a later event changes it, so the reference pages stay current and the version tools annotate them.
+
+The build rejects data that breaks the rules: duplicate or out-of-order versions, a first event that is not `added`, events out of order or after a removal, a removal in the same version as its deprecation, unknown versions, topics or replacements, replacement cycles, and a language with versions but no changelog links.
+
+For JavaScript, `node scripts/check_js_examples.js` (after `npm install --no-save acorn`) also checks the before-and-after snippets by parsing them in the edition they belong to. It is optional and not part of CI.
 
 ### Adding a new language
 

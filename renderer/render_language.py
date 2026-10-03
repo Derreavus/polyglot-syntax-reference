@@ -6,6 +6,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from versioning import has_versioning
+
 
 TABLE_PATTERN = re.compile(r"<table\b.*?</table>", re.DOTALL)
 
@@ -35,6 +37,12 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
     for topic in topics:
         key = topic.get("section")
         topics_by_section.setdefault(key, []).append(topic)
+
+    history_link_html = (
+        '<a class="version-history-link" href="versions/index.html">Version history: what changed between releases \u2192</a>'
+        if has_versioning(data, language["slug"])
+        else ""
+    )
 
     css_path = relative_asset_path(page_rel, "css/style.css")
     js_path = relative_asset_path(page_rel, "js/site-data.js")
@@ -115,6 +123,7 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
     <article class="content">
       <h1>{html.escape(language["name"]) } Syntax Reference</h1>
       <span class="lang-tag {html.escape(language["slug"])}">{html.escape(language.get("version_label", ""))}</span>
+      {history_link_html}
       {' '.join(topic_html)}
     </article>
   </div>

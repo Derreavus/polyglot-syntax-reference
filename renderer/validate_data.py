@@ -3,6 +3,8 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from validate_versioning import validate_versioning
+
 
 REQUIRED_LANGUAGE_KEYS = {"slug", "name", "order"}
 REQUIRED_TOPIC_KEYS = {"language", "section", "slug", "title", "concept"}
@@ -165,5 +167,7 @@ def validate_data_model(data: dict[str, Any]) -> None:
     for index, row in enumerate(compare_rows):
         _require(isinstance(row, dict), f"compare[{index}] must be an object")
         _require(any(key in row for key in ("label", "concept")), f"compare[{index}] must include a label or concept")
+
+    validate_versioning(data)
 
     print("OK   staged data validation")
