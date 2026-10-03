@@ -800,3 +800,94 @@ a.change-title:hover { text-decoration-color: var(--accent); }
   .version-selects select { min-width: 0; width: 100%; }
   .version-block h2 { font-size: 1.25rem; }
 }
+
+/* ---------- Version notes on topic pages ---------- */
+.version-notes { margin: 0.35rem 0 1rem; font-size: 0.875rem; }
+.version-notes summary {
+  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; min-height: 36px;
+  cursor: pointer; color: var(--text-muted);
+}
+.version-notes summary:hover { color: var(--text); }
+.version-notes summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.vn-meta { color: var(--text-muted); font-size: 0.8rem; }
+.vn-flag { font-size: 0.72rem; color: var(--kind-deprecated); border: 1px solid var(--kind-deprecated); border-radius: 999px; padding: 0 0.45rem; }
+.vn-list {
+  list-style: none; display: grid; gap: 0.1rem; margin-top: 0.35rem; padding: 0.35rem 0.75rem;
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.vn-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.75rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.vn-list li:last-child { border-bottom: 0; }
+.vn-list a { color: var(--text); font-weight: 500; }
+.vn-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.vn-since, .vn-status { font-size: 0.72rem; padding: 0 0.5rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); }
+.vn-since { color: var(--kind-added); border-color: color-mix(in srgb, var(--kind-added) 45%, transparent); }
+.vn-since.vn-draft { color: var(--kind-deprecated); border-style: dashed; border-color: var(--kind-deprecated); }
+.vn-deprecated { color: var(--kind-deprecated); border-color: color-mix(in srgb, var(--kind-deprecated) 45%, transparent); }
+.vn-removed { color: var(--kind-removed); border-color: color-mix(in srgb, var(--kind-removed) 45%, transparent); }
+.vn-changed { color: var(--kind-changed); border-color: color-mix(in srgb, var(--kind-changed) 45%, transparent); }
+
+/* ---------- Version page: view switch and "What can I use?" ---------- */
+.view-switch {
+  display: inline-flex; margin: 0 0 1rem; padding: 0.2rem; gap: 0.2rem;
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 999px;
+}
+.view-tab {
+  min-height: 40px; padding: 0.3rem 1.1rem; font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  color: var(--text-muted); background: transparent; border: 0; border-radius: 999px;
+}
+.view-tab[aria-pressed="true"] { color: var(--text); background: var(--bg-elevated); box-shadow: 0 0 0 1px var(--accent) inset; }
+.view-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.version-panel[hidden] { display: none; }
+.feature-search { flex: 1 1 14rem; }
+.feature-search input {
+  min-height: 44px; padding: 0.4rem 0.7rem; font: inherit; font-size: 0.95rem; width: 100%;
+  color: var(--text); background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px;
+}
+.feature-search input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.state-filters { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.state-filter, .state-badge { --state-color: var(--text-muted); }
+.state-filter.state-available, .state-badge.state-available { --state-color: var(--kind-added); }
+.state-filter.state-deprecated, .state-badge.state-deprecated { --state-color: var(--kind-deprecated); }
+.state-filter.state-restricted, .state-badge.state-restricted { --state-color: var(--kind-removed); }
+.state-filter.state-removed, .state-badge.state-removed { --state-color: var(--kind-removed); }
+.state-filter {
+  min-height: 40px; padding: 0.3rem 0.95rem; font: inherit; font-size: 0.875rem; font-weight: 600; cursor: pointer;
+  color: var(--text); background: transparent; border: 1px solid var(--state-color); border-radius: 999px;
+}
+.state-filter[aria-pressed="true"] { background: color-mix(in srgb, var(--state-color) 20%, transparent); }
+.state-filter[aria-pressed="false"] { opacity: 0.55; border-style: dashed; }
+.state-filter:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.feature-index { list-style: none; display: grid; gap: 0.6rem; margin-top: 1rem; }
+.feature-card {
+  padding: 0.8rem 1rem; background: var(--bg-card);
+  border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: var(--radius); scroll-margin-top: 5rem;
+}
+.feature-card[hidden] { display: none; }
+.feature-card[data-state="available"] { border-left-color: var(--kind-added); }
+.feature-card[data-state="deprecated"] { border-left-color: var(--kind-deprecated); }
+.feature-card[data-state="restricted"], .feature-card[data-state="removed"] { border-left-color: var(--kind-removed); }
+.feature-card[data-state="not-yet"] { opacity: 0.85; }
+.state-badge {
+  padding: 0.1rem 0.55rem; font-size: 0.75rem; font-weight: 700;
+  color: var(--state-color); background: color-mix(in srgb, var(--state-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--state-color) 45%, transparent); border-radius: 999px;
+}
+.feature-timeline { margin-top: 0.3rem; font-size: 0.82rem; color: var(--text-muted); }
+.feature-card .migration[hidden] { display: none; }
+.feature-card .migration pre { margin: 0.4rem 0 0; }
+
+/* ---------- Fixes: source links, narrow-phone layout of the version page ---------- */
+.version-sources a { color: var(--accent); }
+.version-sources a:hover { text-decoration-thickness: 2px; }
+.feature-search, .feature-search input { min-width: 0; }
+@media (max-width: 700px) {
+  .view-switch { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+  .view-tab { padding: 0.3rem 0.5rem; font-size: 0.85rem; line-height: 1.2; }
+  #panel-available .version-selects { grid-template-columns: 1fr; }
+}
+/* Grid items must be allowed to shrink, or a long code line widens the whole page */
+.feature-index, .change-list { grid-template-columns: minmax(0, 1fr); }
+.feature-card, .change { min-width: 0; }
+@media (max-width: 700px) { .view-tab { min-height: 44px; } }
+/* Long API names such as Object.getOwnPropertyDescriptors() may break anywhere instead of widening the page */
+.change-title, .vn-list a, .feature-timeline, .change-summary, .change-note { overflow-wrap: anywhere; min-width: 0; }

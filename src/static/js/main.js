@@ -195,51 +195,77 @@
     homepageCards.appendChild(compareCard);
   }
 
-  // ---- Version history page: pick "from" and "to" versions, filter by type of change ----
+  // ---- Version history page: upgrade changes between two versions, or what one version can use ----
   function initVersionsPage() {
     const list = document.getElementById("version-list");
     const fromSelect = document.getElementById("version-from");
     const toSelect = document.getElementById("version-to");
-    if (!list || !fromSelect || !toSelect) return;
+    const atSelect = document.getElementById("available-at");
+    if (!list || !fromSelect || !toSelect || !atSelect) return;
 
     const breakingBox = document.getElementById("breaking-only");
     const summary = document.getElementById("version-summary");
     const emptyMessage = document.getElementById("version-empty");
     const kindButtons = Array.from(document.querySelectorAll(".kind-filter"));
+    const stateButtons = Array.from(document.querySelectorAll(".state-filter"));
+    const viewTabs = Array.from(document.querySelectorAll(".view-tab"));
+    const panels = { changes: document.getElementById("panel-changes"), available: document.getElementById("panel-available") };
     const blocks = Array.from(list.querySelectorAll(".version-block"));
+    const cards = Array.from(document.querySelectorAll(".feature-card"));
+    const searchBox = document.getElementById("feature-search");
+    const availableSummary = document.getElementById("available-summary");
+    const availableEmpty = document.getElementById("available-empty");
 
     const orderOf = {};
     const labelOf = {};
-    Array.from(fromSelect.options).concat(Array.from(toSelect.options)).forEach(function (option) {
+    Array.from(fromSelect.options).concat(Array.from(toSelect.options), Array.from(atSelect.options)).forEach(function (option) {
       orderOf[option.value] = parseInt(option.getAttribute("data-order"), 10);
       labelOf[option.value] = option.textContent.replace(/ \(draft\)$/, "");
     });
-    const defaults = { from: "", to: toSelect.value };
     const allKinds = kindButtons.map(function (button) { return button.getAttribute("data-kind"); });
+    const allStates = stateButtons.map(function (button) { return button.getAttribute("data-state"); });
+    const defaults = { from: "", to: toSelect.value, at: atSelect.value };
 
+    function pickList(raw, allowed) {
+      const chosen = raw ? raw.split(",").filter(function (item) { return allowed.indexOf(item) !== -1; }) : [];
+      return chosen.length ? chosen : allowed.slice();
+    }
     const params = new URLSearchParams(location.search);
+    const validId = function (id) { return id !== null && orderOf[id] !== undefined; };
     const state = {
-      from: orderOf[params.get("from")] !== undefined && params.get("from") !== null ? params.get("from") : defaults.from,
-      to: orderOf[params.get("to")] !== undefined && params.get("to") ? params.get("to") : defaults.to,
-      kinds: params.get("kinds")
-        ? params.get("kinds").split(",").filter(function (kind) { return allKinds.indexOf(kind) !== -1; })
-        : allKinds.slice(),
+      view: params.get("view") === "available" ? "available" : "changes",
+      from: validId(params.get("from")) ? params.get("from") : defaults.from,
+      to: params.get("to") && validId(params.get("to")) ? params.get("to") : defaults.to,
+      kinds: pickList(params.get("kinds"), allKinds),
       breaking: params.get("breaking") === "1",
+      at: params.get("at") && validId(params.get("at")) ? params.get("at") : defaults.at,
+      states: pickList(params.get("states"), allStates),
+      q: params.get("q") || "",
     };
-    if (!state.kinds.length) state.kinds = allKinds.slice();
 
     function writeUrl() {
       const query = [];
+      if (state.view !== "changes") query.push("view=" + state.view);
       if (state.from !== defaults.from) query.push("from=" + encodeURIComponent(state.from));
       if (state.to !== defaults.to) query.push("to=" + encodeURIComponent(state.to));
       if (state.kinds.length !== allKinds.length) query.push("kinds=" + state.kinds.join(","));
       if (state.breaking) query.push("breaking=1");
+      if (state.at !== defaults.at) query.push("at=" + encodeURIComponent(state.at));
+      if (state.states.length !== allStates.length) query.push("states=" + state.states.join(","));
+      if (state.q) query.push("q=" + encodeURIComponent(state.q));
       try {
         history.replaceState(null, "", location.pathname + (query.length ? "?" + query.join("&") : "") + location.hash);
       } catch (err) { /* URL sync is a convenience only */ }
     }
 
-    function apply() {
+    function toggle(listOfValues, value) {
+      const index = listOfValues.indexOf(value);
+      if (index === -1) listOfValues.push(value);
+      else if (listOfValues.length > 1) listOfValues.splice(index, 1);
+    }
+
+    // ---- upgrade changes
+    function applyChanges() {
       const fromOrder = orderOf[state.from] || 0;
       const toOrder = orderOf[state.to];
       const validRange = fromOrder < toOrder;
@@ -279,6 +305,67 @@
           ? shown + noun + " up to " + labelOf[state.to] + "."
           : shown + noun + " between " + labelOf[state.from] + " and " + labelOf[state.to] + ".";
       }
+    }
+
+    // ---- what can I use in one version
+    const STATE_TEXT = { available: "Available", deprecated: "Deprecated", restricted: "Restricted", removed: "Removed", "not-yet": "Not yet" };
+
+    // Mirrors lifecycle_state() in renderer/versioning.py: added: V is available in V, removed: V is not.
+    function stateAt(card, at) {
+      if (at < parseInt(card.getAttribute("data-added"), 10)) return "not-yet";
+      let result = "available";
+      const deprecated = card.getAttribute("data-deprecated");
+      if (deprecated === "any" || (deprecated !== "" && at >= parseInt(deprecated, 10))) result = "deprecated";
+      const removed = card.getAttribute("data-removed");
+      if (removed !== "" && at >= parseInt(removed, 10)) {
+        return card.getAttribute("data-removed-scope") ? "restricted" : "removed";
+      }
+      return result;
+    }
+
+    function applyAvailable() {
+      const at = orderOf[state.at];
+      const query = state.q.trim().toLowerCase();
+      const counts = { available: 0, deprecated: 0, restricted: 0, removed: 0, "not-yet": 0 };
+      let shown = 0;
+      cards.forEach(function (card) {
+        const cardState = stateAt(card, at);
+        card.setAttribute("data-state", cardState);
+        const badge = card.querySelector("[data-state-badge]");
+        badge.textContent = STATE_TEXT[cardState];
+        badge.className = "state-badge state-" + cardState;
+        card.querySelectorAll(".migration").forEach(function (block) {
+          block.hidden = block.getAttribute("data-show-when").split(" ").indexOf(cardState) === -1;
+        });
+        const matches = !query || card.getAttribute("data-search").indexOf(query) !== -1;
+        if (matches) counts[cardState] += 1;
+        const show = matches && state.states.indexOf(cardState) !== -1;
+        card.hidden = !show;
+        if (show) shown += 1;
+      });
+      atSelect.value = state.at;
+      if (searchBox && searchBox.value !== state.q) searchBox.value = state.q;
+      stateButtons.forEach(function (button) {
+        const kind = button.getAttribute("data-state");
+        button.setAttribute("aria-pressed", state.states.indexOf(kind) !== -1 ? "true" : "false");
+      });
+      availableEmpty.hidden = shown > 0;
+      availableSummary.textContent =
+        "In " + labelOf[state.at] + ": " + counts.available + " available, " + counts.deprecated + " deprecated, " +
+        counts.restricted + " restricted, " + counts.removed + " removed, " + counts["not-yet"] + " not yet available. Showing " + shown + ".";
+    }
+
+    function applyView() {
+      Object.keys(panels).forEach(function (name) { panels[name].hidden = name !== state.view; });
+      viewTabs.forEach(function (tab) {
+        tab.setAttribute("aria-pressed", tab.getAttribute("data-view") === state.view ? "true" : "false");
+      });
+    }
+
+    function apply() {
+      applyView();
+      applyChanges();
+      applyAvailable();
       writeUrl();
     }
 
@@ -286,32 +373,37 @@
       const id = decodeURIComponent(location.hash.slice(1));
       const target = id ? document.getElementById(id) : null;
       if (!target) return;
-      if (target.hidden || (target.closest && target.closest("[hidden]"))) {
+      const inChanges = panels.changes.contains(target);
+      state.view = inChanges ? "changes" : "available";
+      if (inChanges) {
         const block = target.closest(".version-block");
         state.from = "";
         state.kinds = allKinds.slice();
         state.breaking = false;
         const blockOrder = block ? parseInt(block.getAttribute("data-order"), 10) : NaN;
-        if (!isNaN(blockOrder) && blockOrder > orderOf[state.to]) {
-          state.to = block.id.replace(/^v-/, "");
-        }
-        apply();
+        if (!isNaN(blockOrder) && blockOrder > orderOf[state.to]) state.to = block.id.replace(/^v-/, "");
+      } else {
+        state.states = allStates.slice();
+        state.q = "";
       }
+      apply();
       target.scrollIntoView();
     }
 
+    viewTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () { state.view = tab.getAttribute("data-view"); apply(); });
+    });
     fromSelect.addEventListener("change", function () { state.from = fromSelect.value; apply(); });
     toSelect.addEventListener("change", function () { state.to = toSelect.value; apply(); });
+    atSelect.addEventListener("change", function () { state.at = atSelect.value; apply(); });
     if (breakingBox) breakingBox.addEventListener("change", function () { state.breaking = breakingBox.checked; apply(); });
     kindButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        const kind = button.getAttribute("data-kind");
-        const index = state.kinds.indexOf(kind);
-        if (index === -1) state.kinds.push(kind);
-        else if (state.kinds.length > 1) state.kinds.splice(index, 1);
-        apply();
-      });
+      button.addEventListener("click", function () { toggle(state.kinds, button.getAttribute("data-kind")); apply(); });
     });
+    stateButtons.forEach(function (button) {
+      button.addEventListener("click", function () { toggle(state.states, button.getAttribute("data-state")); apply(); });
+    });
+    if (searchBox) searchBox.addEventListener("input", function () { state.q = searchBox.value; apply(); });
     window.addEventListener("hashchange", revealHash);
 
     apply();

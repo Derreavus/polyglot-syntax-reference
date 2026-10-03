@@ -13,6 +13,9 @@
  *     strict mode when the data describes the restriction as a SyntaxError (a run-time TypeError cannot be
  *     detected by parsing).
  * Library features (new functions and methods) cannot be checked by parsing, so only the first rule applies.
+ *
+ * It also parses every code block in the JavaScript reference topics, as module code, so a typo in a
+ * published example is caught before it ships.
  */
 const fs = require("fs");
 const path = require("path");
@@ -22,7 +25,8 @@ const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "site
 const ECMA = { es3: 3, es5: 5 };
 for (let year = 2015; year <= 2027; year += 1) ECMA["es" + year] = year;
 const NOT_PARSEABLE = new Set(["explicit-resource-management"]); // acorn has no support for `using` yet
-const MODULE_ONLY = new Set(["top-level-await"]);
+const MODULE_ONLY = new Set(["top-level-await", "export-star-as"]);
+const NON_JS_TOPICS = new Set(["ecosystem"]); // its code block is a package.json file
 
 function parses(code, ecmaVersion, sourceType, strict) {
   try {
@@ -67,5 +71,19 @@ for (const feature of data.features.filter((f) => f.language === "javascript" &&
     }
   }
 }
-console.log(`Checked ${checked} examples, ${problems} problem(s).`);
+// ---- Reference topics: every code block must parse as current JavaScript (module code allows top-level await)
+const unescape = (text) =>
+  text.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#x27;/g, "'").replace(/&amp;/g, "&");
+let blocks = 0;
+for (const topic of data.topics.filter((t) => t.language === "javascript" && !NON_JS_TOPICS.has(t.slug))) {
+  const found = topic.content_html.match(/<pre><code>[\s\S]*?<\/code><\/pre>/g) || [];
+  for (const block of found) {
+    blocks += 1;
+    const source = unescape(block.replace(/^<pre><code>/, "").replace(/<\/code><\/pre>$/, ""));
+    const result = parses(source, "latest", "module", false);
+    if (result !== true) report(`topic ${topic.slug}: code block does not parse (${result})`);
+  }
+}
+
+console.log(`Checked ${checked} examples and ${blocks} reference code blocks, ${problems} problem(s).`);
 process.exit(problems ? 1 : 0);

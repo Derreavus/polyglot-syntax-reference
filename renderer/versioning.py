@@ -90,3 +90,23 @@ def changes_between(
 
 def is_breaking(event: dict[str, Any]) -> bool:
     return event["kind"] == "removed" or bool(event.get("breaking"))
+
+
+def short_label(version: dict[str, Any]) -> str:
+    """Label without a trailing qualifier such as "(baseline)"."""
+    return version["label"].split(" (")[0]
+
+
+def lifecycle_facts(feature: dict[str, Any], versions_by_id: dict[str, dict[str, Any]]) -> dict[str, Any]:
+    """What a reader wants to know about a feature at a glance."""
+    history = feature["history"]
+    deprecated = next((e for e in history if e["kind"] == "deprecated"), None)
+    removed = next((e for e in history if e["kind"] == "removed"), None)
+    return {
+        "added": versions_by_id[history[0]["version"]],
+        "deprecated": deprecated,
+        "deprecated_version": versions_by_id[deprecated["version"]] if deprecated and deprecated["version"] else None,
+        "removed": removed,
+        "removed_version": versions_by_id[removed["version"]] if removed else None,
+        "changed_versions": [versions_by_id[e["version"]] for e in history if e["kind"] == "changed"],
+    }

@@ -42,7 +42,7 @@
       "status": "available",
       "order": 5,
       "description": "A practical guide to JavaScript syntax, objects, asynchronous code, and the web platform.",
-      "version_label": "ECMAScript 2025 · modern JavaScript",
+      "version_label": "ECMAScript 2026 · modern JavaScript",
       "color": "#f7df1e",
       "changelog_links": [
         {
@@ -130,7 +130,7 @@
         "rust": "structs",
         "cpp": "classes",
         "csharp": "classes",
-        "javascript": "objects"
+        "javascript": "classes"
       }
     },
     {
@@ -326,123 +326,29 @@
     {
       "language": "javascript",
       "slug": "objects",
-      "title": "Objects & Functions",
+      "title": "Functions & Objects",
       "sort_order": 2
     },
     {
       "language": "javascript",
       "slug": "collections",
-      "title": "Collections",
+      "title": "Collections & Data",
       "sort_order": 3
     },
     {
       "language": "javascript",
       "slug": "async",
-      "title": "Async & Modules",
+      "title": "Async, Modules & Errors",
       "sort_order": 4
+    },
+    {
+      "language": "javascript",
+      "slug": "expansion",
+      "title": "Expansion",
+      "sort_order": 5
     }
   ],
   "topics": [
-    {
-      "language": "javascript",
-      "section": "basics",
-      "slug": "types",
-      "title": "Data Types",
-      "concept": "types",
-      "sort_order": 1,
-      "content_html": "<p>JavaScript has seven primitive types. Objects, arrays, and functions are reference values.</p><pre><code>const count = 42;\nconst ratio = 3.14;\nconst text = \"hello\";\nconst enabled = true;\nconst missing = undefined;\nconst empty = null;\nconst symbol = Symbol(\"id\");\nconst large = 123n;</code></pre>",
-      "search_keywords": "number string boolean bigint symbol undefined null object"
-    },
-    {
-      "language": "javascript",
-      "section": "basics",
-      "slug": "variables",
-      "title": "Variables & Assignment",
-      "concept": "variables",
-      "sort_order": 2,
-      "content_html": "<p>Use <code class=\"inline\">const</code> by default, <code class=\"inline\">let</code> when reassignment is needed, and avoid <code class=\"inline\">var</code> in new code.</p><pre><code>const name = \"Ada\";\nlet count = 0;\ncount += 1;\nconst { name: userName } = user;\nconst [first, ...rest] = values;</code></pre>",
-      "search_keywords": "const let var assignment destructuring"
-    },
-    {
-      "language": "javascript",
-      "section": "basics",
-      "slug": "operators",
-      "title": "Operators",
-      "concept": "operators",
-      "sort_order": 3,
-      "content_html": "<pre><code>+ - * / % **\n= += -= *= /=\n=== !== == != &lt; &gt; &lt;= &gt;=\n&amp;&amp; || ! ?? ?.\n&amp; | ^ ~ &lt;&lt; &gt;&gt;\nvalue ?? fallback;\nuser?.address?.city;</code></pre><p>Prefer <code class=\"inline\">===</code> and <code class=\"inline\">!==</code> to avoid coercive equality.</p>",
-      "search_keywords": "arithmetic strict equality comparison logical nullish optional chaining bitwise"
-    },
-    {
-      "language": "javascript",
-      "section": "basics",
-      "slug": "control",
-      "title": "Control Flow",
-      "concept": "control",
-      "sort_order": 4,
-      "content_html": "<pre><code>if (score &gt;= 90) {\n  grade = \"A\";\n} else if (score &gt;= 80) {\n  grade = \"B\";\n} else {\n  grade = \"C\";\n}\n\nfor (const item of items) {\n  console.log(item);\n}\n\nswitch (status) {\n  case \"ready\": start(); break;\n  default: wait();\n}</code></pre>",
-      "search_keywords": "if else switch for of while break"
-    },
-    {
-      "language": "javascript",
-      "section": "objects",
-      "slug": "functions",
-      "title": "Functions",
-      "concept": "functions",
-      "sort_order": 5,
-      "content_html": "<pre><code>function add(a, b = 0) {\n  return a + b;\n}\n\nconst square = (n) =&gt; n * n;\nconst logAll = (...values) =&gt; console.log(...values);\n\nfunction makeCounter() {\n  let count = 0;\n  return () =&gt; ++count;\n}</code></pre>",
-      "search_keywords": "function arrow default parameter rest closure callback"
-    },
-    {
-      "language": "javascript",
-      "section": "objects",
-      "slug": "objects",
-      "title": "Objects & Classes",
-      "concept": "classes",
-      "sort_order": 6,
-      "content_html": "<pre><code>const point = { x: 2, y: 3 };\npoint.x;\n\nclass Animal {\n  constructor(name) { this.name = name; }\n  speak() { return `${this.name} makes a sound`; }\n}\n\nclass Dog extends Animal {\n  speak() { return `${this.name} barks`; }\n}</code></pre>",
-      "search_keywords": "object class constructor prototype inheritance extends methods"
-    },
-    {
-      "language": "javascript",
-      "section": "collections",
-      "slug": "collections",
-      "title": "Collections",
-      "concept": "collections",
-      "sort_order": 7,
-      "content_html": "<pre><code>const items = [1, 2, 3];\nitems.push(4);\nconst doubled = items.map((n) =&gt; n * 2);\nconst evens = items.filter((n) =&gt; n % 2 === 0);\n\nconst userById = new Map();\nuserById.set(\"u1\", { name: \"Ada\" });\n\nconst tags = new Set([\"js\", \"web\"]);</code></pre>",
-      "search_keywords": "array map set filter reduce collection"
-    },
-    {
-      "language": "javascript",
-      "section": "collections",
-      "slug": "iteration",
-      "title": "Iteration & Iterators",
-      "concept": "iterators",
-      "sort_order": 8,
-      "content_html": "<pre><code>for (const value of values) {\n  console.log(value);\n}\n\nconst iterator = values[Symbol.iterator]();\niterator.next();\n\nfunction* ids() {\n  yield 1;\n  yield 2;\n}</code></pre>",
-      "search_keywords": "for of iterator Symbol.iterator generator yield"
-    },
-    {
-      "language": "javascript",
-      "section": "collections",
-      "slug": "errors",
-      "title": "Errors",
-      "concept": "exceptions",
-      "sort_order": 9,
-      "content_html": "<pre><code>try {\n  const data = JSON.parse(source);\n} catch (error) {\n  console.error(error.message);\n} finally {\n  releaseResources();\n}\n\nthrow new Error(\"Request failed\");</code></pre>",
-      "search_keywords": "try catch finally throw Error"
-    },
-    {
-      "language": "javascript",
-      "section": "async",
-      "slug": "async",
-      "title": "Async & Await",
-      "concept": "async",
-      "sort_order": 10,
-      "content_html": "<pre><code>async function loadUser(id) {\n  const response = await fetch(`/users/${id}`);\n  if (!response.ok) throw new Error(\"Request failed\");\n  return response.json();\n}\n\nconst [user, settings] = await Promise.all([\n  loadUser(\"u1\"),\n  loadSettings(),\n]);</code></pre>",
-      "search_keywords": "async await Promise fetch Promise.all"
-    },
     {
       "language": "python",
       "section": "basics",
@@ -1229,6 +1135,196 @@
       "concept": null,
       "sort_order": 20,
       "content_html": "<pre><code>dotnet new console -n MyApp\ndotnet restore\ndotnet build\ndotnet run\ndotnet test\ndotnet publish -c Release\ndotnet add package Newtonsoft.Json\ndotnet tool install -g dotnet-ef\n\n// NuGet · ASP.NET Core · EF Core · MSBuild\n</code></pre>\n        <div class=\"callout callout-default\"><strong>★ Defaults</strong>\n          <code class=\"inline\">dotnet</code> CLI · <code class=\"inline\">NuGet</code> ·\n          <code class=\"inline\">dotnet test</code> in CI\n        </div>"
+    },
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "types",
+      "title": "Data Types",
+      "concept": "types",
+      "sort_order": 1,
+      "content_html": "<pre><code>// Primitives\nconst count = 42;              // number (64-bit floating point)\nconst big = 9007199254740993n; // bigint\nconst text = \"hello\";          // string\nconst ok = true;               // boolean\nconst nothing = null;          // intentional absence\nlet missing;                   // undefined\nconst id = Symbol(\"id\");       // unique symbol\n\ntypeof count;        // \"number\"\ntypeof big;          // \"bigint\"\ntypeof (() =&gt; 1);    // \"function\"\ntypeof null;         // \"object\" (a historical mistake)\n\nNumber.isInteger(3.0);    // true\n0.1 + 0.2;                // 0.30000000000000004\nNumber.MAX_SAFE_INTEGER;  // 9007199254740991\nObject.is(NaN, NaN);      // true, while NaN === NaN is false</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Use <code class=\"inline\">===</code> and <code class=\"inline\">!==</code>. Test for \"no value\" with <code class=\"inline\">value == null</code>, which is true only for <code class=\"inline\">null</code> and <code class=\"inline\">undefined</code>.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">typeof null</code> is <code class=\"inline\">\"object\"</code>, so check <code class=\"inline\">value === null</code> first. Floating-point sums such as <code class=\"inline\">0.1 + 0.2</code> are inexact; compare money in whole cents or with <code class=\"inline\">BigInt</code>.</div>",
+      "search_keywords": "number string boolean null undefined symbol bigint typeof primitive coercion equality"
+    },
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "variables",
+      "title": "Variables & Assignment",
+      "concept": "variables",
+      "sort_order": 2,
+      "content_html": "<pre><code>const limit = 10;   // the binding cannot be reassigned\nlet total = 0;      // block scoped, can be reassigned\nvar legacy = 1;     // function scoped; avoid in new code\n\nconst user = { name: \"Ada\" };\nuser.name = \"Grace\";   // allowed: const protects the binding, not the object\nObject.freeze(user);   // shallow freeze: properties can no longer change\n\n// let and const are not usable before their declaration runs\n// console.log(later);  // ReferenceError (temporal dead zone)\nlet later = 1;\n\n// var is hoisted and starts as undefined\nconsole.log(typeof hoisted);  // \"undefined\"\nvar hoisted = 1;\n\nfor (let i = 0; i &lt; 3; i++) {\n  setTimeout(() =&gt; console.log(i), 0);  // 0, 1, 2\n}</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Start with <code class=\"inline\">const</code>, switch to <code class=\"inline\">let</code> only when the variable is reassigned, and leave <code class=\"inline\">var</code> to legacy code.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">const</code> does not make an object immutable, it only stops reassignment. With <code class=\"inline\">var</code> in a loop every callback shares one variable, which is why <code class=\"inline\">let</code> is safer.</div>",
+      "search_keywords": "let const var scope hoisting temporal dead zone block scope freeze"
+    },
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "operators",
+      "title": "Operators",
+      "concept": "operators",
+      "sort_order": 3,
+      "content_html": "<pre><code>1 === 1;            // strict equality, no coercion\n\"5\" == 5;           // true (coerces); avoid\n2 ** 10;            // 1024\n(-5) % 3;           // -2 (the sign follows the left operand)\n\n// Fallbacks\nconst name = input || \"anonymous\";   // any falsy value falls back\nconst port = config.port ?? 3000;    // only null and undefined fall back\nconst avatar = user?.profile?.avatar;\nconst first = list?.[0];\nconst out = handler?.(event);\n\n// Logical assignment\noptions.retries ||= 3;\ncache ??= new Map();\nready &amp;&amp;= check();\n\n\"id\" in { id: 1 };          // true\n[] instanceof Array;        // true\nvoid 0;                     // undefined\na ? b : c;                  // conditional</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Use <code class=\"inline\">??</code> for defaults when <code class=\"inline\">0</code>, <code class=\"inline\">\"\"</code> or <code class=\"inline\">false</code> are valid values, and <code class=\"inline\">?.</code> to read through values that may be missing.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">||</code> replaces every falsy value, so <code class=\"inline\">count || 10</code> turns a real <code class=\"inline\">0</code> into <code class=\"inline\">10</code>. Use <code class=\"inline\">count ?? 10</code>.</div>",
+      "search_keywords": "equality nullish coalescing optional chaining logical assignment exponent spread typeof instanceof in"
+    },
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "control",
+      "title": "Control Flow",
+      "concept": "control",
+      "sort_order": 4,
+      "content_html": "<pre><code>if (score &gt;= 90) {\n  grade = \"A\";\n} else if (score &gt;= 80) {\n  grade = \"B\";\n} else {\n  grade = \"C\";\n}\n\nswitch (kind) {\n  case \"circle\":\n    area = Math.PI * r ** 2;\n    break;\n  case \"square\":\n    area = side ** 2;\n    break;\n  default:\n    throw new Error(\"unknown shape\");\n}\n\nfor (let i = 0; i &lt; 3; i++) {}\nfor (const item of items) {}          // values of an iterable\nfor (const key in object) {}          // enumerable keys, including inherited ones\nwhile (queue.length) { queue.shift(); }\ndo { attempt(); } while (failed);\n\nouter: for (const row of grid) {\n  for (const cell of row) {\n    if (cell === target) break outer;\n  }\n}</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Use <code class=\"inline\">for...of</code> for arrays and other iterables, and <code class=\"inline\">Object.keys()</code> or <code class=\"inline\">Object.entries()</code> for objects.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> A <code class=\"inline\">switch</code> case falls through to the next one unless it ends with <code class=\"inline\">break</code>, <code class=\"inline\">return</code> or <code class=\"inline\">throw</code>. <code class=\"inline\">for...in</code> also visits inherited keys and gives array indexes as strings.</div>",
+      "search_keywords": "if else switch for while do break continue label for of for in ternary"
+    },
+    {
+      "language": "javascript",
+      "section": "basics",
+      "slug": "strings",
+      "title": "Strings",
+      "concept": null,
+      "sort_order": 5,
+      "content_html": "<pre><code>const s = \"Hello, World\";\ns.length;                    // 12\ns.at(-1);                    // \"d\"\ns.slice(0, 5);               // \"Hello\"\ns.toUpperCase();             // \"HELLO, WORLD\"\ns.includes(\"World\");         // true\ns.startsWith(\"He\");          // true\ns.padStart(15, \"*\");         // \"***Hello, World\"\ns.replaceAll(\"l\", \"L\");      // \"HeLLo, WorLd\"\n\"a,b,c\".split(\",\");          // [\"a\", \"b\", \"c\"]\n\"  hi  \".trim();             // \"hi\"\n\nconst who = \"Ada\";\n`Hello, ${who}! ${1 + 2} items`;   // template literal\nString.raw`C:\\temp\\new`;           // backslashes kept as written\n\n\"😀\".length;                 // 2 (UTF-16 code units)\n[...\"😀\"].length;            // 1 (code points)\n\"é\".normalize(\"NFD\").length; // 2 (letter plus combining accent)\n\"a\".localeCompare(\"b\");      // -1, locale-aware comparison</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Use template literals instead of <code class=\"inline\">+</code> concatenation, and <code class=\"inline\">slice()</code> instead of <code class=\"inline\">substr()</code>.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">length</code> counts UTF-16 code units, not what a reader sees as characters. For emoji and combined characters use <code class=\"inline\">[...text]</code> or <code class=\"inline\">Intl.Segmenter</code>. Strings are immutable, so methods return new strings.</div>",
+      "search_keywords": "string template literal slice split padStart replaceAll includes unicode normalize length code point"
+    },
+    {
+      "language": "javascript",
+      "section": "objects",
+      "slug": "functions",
+      "title": "Functions",
+      "concept": "functions",
+      "sort_order": 6,
+      "content_html": "<pre><code>function add(a, b = 0) {\n  return a + b;\n}\n\nconst square = (n) =&gt; n * n;\nconst logAll = (...values) =&gt; console.log(...values);\n\nfunction makeCounter() {\n  let count = 0;\n  return () =&gt; ++count;      // closure over count\n}\n\nconst user = {\n  name: \"Ada\",\n  hi() { return `Hi ${this.name}`; },\n};\nconst detached = user.hi;\n// detached();               // this is lost: TypeError in strict mode\nuser.hi.call({ name: \"Grace\" });   // \"Hi Grace\"\nconst bound = user.hi.bind(user);\nbound();                           // \"Hi Ada\"\n\n(function () { /* runs immediately */ })();</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Use arrow functions for callbacks and short helpers, and method syntax for functions stored on objects.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> Arrow functions have no own <code class=\"inline\">this</code>, so they make poor object methods. Passing a method as a callback also detaches <code class=\"inline\">this</code>; use an arrow wrapper or <code class=\"inline\">bind()</code>.</div>",
+      "search_keywords": "function arrow default rest spread closure this call apply bind iife callback hoisting"
+    },
+    {
+      "language": "javascript",
+      "section": "objects",
+      "slug": "objects",
+      "title": "Objects",
+      "concept": null,
+      "sort_order": 7,
+      "content_html": "<pre><code>const user = {\n  name: \"Ada\",\n  age: 36,\n  greet() { return `Hi ${this.name}`; },\n  get label() { return `${this.name} (${this.age})`; },\n};\n\nuser.name;                  // dot access\nuser[\"age\"];                // bracket access\nuser.email ?? \"none\";       // missing property is undefined\nObject.hasOwn(user, \"age\"); // true, ignores the prototype chain\n\nObject.keys(user);          // [\"name\", \"age\", \"greet\", \"label\"]\nObject.entries({ a: 1 });   // [[\"a\", 1]]\nObject.fromEntries([[\"a\", 1]]);   // { a: 1 }\n\nconst copy = { ...user, age: 37 };      // shallow copy with a change\nconst { name, ...rest } = user;         // pull one key out\nconst fullCopy = structuredClone(user); // deep copy (host API, not ECMAScript)\n\nconst proto = { hello() { return \"hi\"; } };\nconst child = Object.create(proto);\nObject.getPrototypeOf(child) === proto;   // true\nchild.hello();                            // found on the prototype</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Use object literals with shorthand properties, and <code class=\"inline\">Map</code> instead of an object when keys are not known in advance.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> Spread and <code class=\"inline\">Object.assign()</code> make shallow copies, so nested objects are still shared. Use <code class=\"inline\">structuredClone()</code> for a deep copy.</div>",
+      "search_keywords": "object literal property keys values entries spread prototype create getter setter freeze hasOwn shorthand"
+    },
+    {
+      "language": "javascript",
+      "section": "objects",
+      "slug": "classes",
+      "title": "Classes",
+      "concept": "classes",
+      "sort_order": 8,
+      "content_html": "<pre><code>class Account {\n  #balance = 0;                // private field\n  static count = 0;\n\n  constructor(owner) {\n    this.owner = owner;\n    Account.count++;\n  }\n\n  get balance() { return this.#balance; }\n\n  deposit(amount) {\n    if (amount &lt;= 0) throw new RangeError(\"amount must be positive\");\n    this.#balance += amount;\n    return this;\n  }\n\n  static from(data) { return new Account(data.owner); }\n\n  #audit() { return `${this.owner}: ${this.#balance}`; }\n  toString() { return this.#audit(); }\n}\n\nclass Savings extends Account {\n  constructor(owner, rate) {\n    super(owner);              // must run before using this\n    this.rate = rate;\n  }\n}\n\nconst a = new Account(\"Ada\").deposit(50);\na.balance;                     // 50\na instanceof Account;          // true</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Keep state private with <code class=\"inline\">#fields</code>, and expose it through getters and methods.</div>\n<div class=\"callout callout-use\"><strong>When to use</strong> Use a class when several objects share behavior and state. A plain object plus functions is simpler when they do not.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> Calling a class without <code class=\"inline\">new</code> throws a <code class=\"inline\">TypeError</code>. A class declaration cannot be used before the line that defines it.</div>",
+      "search_keywords": "class constructor extends super static private field getter setter instanceof new method inheritance"
+    },
+    {
+      "language": "javascript",
+      "section": "objects",
+      "slug": "destructuring",
+      "title": "Destructuring & Spread",
+      "concept": null,
+      "sort_order": 9,
+      "content_html": "<pre><code>const [first, , third = 0, ...tail] = list;\nconst { name, age: years = 0, address: { city } = {} } = user;\n\nfunction connect({ host = \"localhost\", port = 80 } = {}) {\n  return `${host}:${port}`;\n}\n\nlet a = 1;\nlet b = 2;\n[a, b] = [b, a];                        // swap\n\nconst merged = { ...defaults, ...overrides };\nconst all = [...left, ...right];\nMath.max(...numbers);\n\nfor (const [key, value] of Object.entries(settings)) {\n  console.log(key, value);\n}</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Destructure function parameters to give options readable names and defaults.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> Destructuring <code class=\"inline\">null</code> or <code class=\"inline\">undefined</code> throws a <code class=\"inline\">TypeError</code>. Give the pattern a fallback, as in <code class=\"inline\">const { x } = value ?? {}</code>.</div>",
+      "search_keywords": "destructuring spread rest default parameters swap object array nested"
+    },
+    {
+      "language": "javascript",
+      "section": "collections",
+      "slug": "collections",
+      "title": "Collections",
+      "concept": "collections",
+      "sort_order": 10,
+      "content_html": "<pre><code>const nums = [3, 1, 2];\nnums.push(4);                      // mutates\nnums.at(-1);                       // 4\nnums.map((n) =&gt; n * 2);            // [6, 2, 4, 8]\nnums.filter((n) =&gt; n &gt; 1);         // [3, 2, 4]\nnums.reduce((sum, n) =&gt; sum + n, 0);   // 10\nnums.find((n) =&gt; n &gt; 2);           // 3\nnums.includes(2);                  // true\nnums.toSorted((x, y) =&gt; x - y);    // [1, 2, 3, 4], a sorted copy\nArray.from({ length: 3 }, (_, i) =&gt; i);   // [0, 1, 2]\n[[1], [2, [3]]].flat(Infinity);    // [1, 2, 3]\n\nconst ages = new Map([[\"Ada\", 36]]);\nages.set(\"Grace\", 45);\nages.get(\"Ada\");                   // 36\nages.has(\"Linus\");                 // false\nfor (const [name, age] of ages) {}\n\nconst unique = new Set([1, 2, 2, 3]);\nunique.has(2);                     // true\nnew Set([1, 2]).union(new Set([2, 3]));   // Set {1, 2, 3}\n\nObject.groupBy(items, (item) =&gt; item.type);</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Prefer the copying methods (<code class=\"inline\">toSorted</code>, <code class=\"inline\">toReversed</code>, <code class=\"inline\">with</code>) when other code might still hold the original array.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">[10, 2, 1].sort()</code> gives <code class=\"inline\">[1, 10, 2]</code> because the default order compares strings. Always pass a comparator for numbers. <code class=\"inline\">sort()</code> also changes the array in place.</div>\n<table><thead><tr><th>Need</th><th>Use</th></tr></thead><tbody><tr><td>Ordered list of values</td><td><code class=\"inline\">Array</code></td></tr><tr><td>Lookup by any kind of key</td><td><code class=\"inline\">Map</code></td></tr><tr><td>Unique values, fast membership test</td><td><code class=\"inline\">Set</code></td></tr><tr><td>Keys that must not keep objects alive</td><td><code class=\"inline\">WeakMap</code></td></tr><tr><td>Binary data</td><td><code class=\"inline\">Uint8Array</code> and other typed arrays</td></tr></tbody></table>",
+      "search_keywords": "array map filter reduce find sort set map group flat includes at toSorted groupBy union"
+    },
+    {
+      "language": "javascript",
+      "section": "collections",
+      "slug": "iteration",
+      "title": "Iteration & Iterators",
+      "concept": "iterators",
+      "sort_order": 11,
+      "content_html": "<pre><code>for (const x of [1, 2, 3]) {}\nfor (const [i, x] of [\"a\", \"b\"].entries()) {}\n\nfunction* range(start, end) {\n  for (let i = start; i &lt; end; i++) yield i;\n}\n[...range(0, 3)];                 // [0, 1, 2]\n\nclass Countdown {\n  constructor(from) { this.from = from; }\n  *[Symbol.iterator]() {\n    for (let i = this.from; i &gt; 0; i--) yield i;\n  }\n}\n[...new Countdown(3)];            // [3, 2, 1]\n\nconst it = [10, 20][Symbol.iterator]();\nit.next();                        // { value: 10, done: false }\n\n// Iterator helpers (ES2025): lazy, one value at a time\nrange(0, Infinity)\n  .filter((n) =&gt; n % 2 === 0)\n  .map((n) =&gt; n * n)\n  .take(3)\n  .toArray();                     // [0, 4, 16]\n\n// Async iteration\nfor await (const chunk of stream) {}</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Use a generator function to make a custom sequence. It already implements the iterator protocol.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> An iterator can only be consumed once. Spreading a generator twice gives an empty second result.</div>",
+      "search_keywords": "iterator iterable generator yield for of symbol iterator async iteration iterator helpers take map filter"
+    },
+    {
+      "language": "javascript",
+      "section": "collections",
+      "slug": "regexp",
+      "title": "Regular Expressions",
+      "concept": null,
+      "sort_order": 12,
+      "content_html": "<pre><code>const re = /(?&lt;year&gt;\\d{4})-(?&lt;month&gt;\\d{2})/u;\nconst match = \"Released 2026-06\".match(re);\nmatch.groups.year;                        // \"2026\"\n\n\"a1b2\".replace(/\\d/g, (d) =&gt; d * 2);      // \"a2b4\"\n\"2026-06\".replace(re, \"$&lt;month&gt;/$&lt;year&gt;\");  // \"06/2026\"\n\nfor (const m of \"one two\".matchAll(/\\w+/g)) {\n  console.log(m[0], m.index);\n}\n\n/(?&lt;=\\$)\\d+/.exec(\"cost $42\")[0];         // \"42\" (lookbehind)\n/\\p{L}+/u.test(\"héllo\");                  // true (Unicode property)\n\nnew RegExp(RegExp.escape(userInput), \"i\");   // safe pattern from text</code></pre>\n<table><thead><tr><th>Flag</th><th>Meaning</th></tr></thead><tbody><tr><td><code class=\"inline\">g</code></td><td>find every match</td></tr><tr><td><code class=\"inline\">i</code></td><td>ignore case</td></tr><tr><td><code class=\"inline\">m</code></td><td><code class=\"inline\">^</code> and <code class=\"inline\">$</code> match at line breaks</td></tr><tr><td><code class=\"inline\">s</code></td><td><code class=\"inline\">.</code> also matches newlines</td></tr><tr><td><code class=\"inline\">u</code> / <code class=\"inline\">v</code></td><td>Unicode mode; <code class=\"inline\">v</code> adds set operations</td></tr><tr><td><code class=\"inline\">y</code></td><td>sticky: match only at <code class=\"inline\">lastIndex</code></td></tr><tr><td><code class=\"inline\">d</code></td><td>report match start and end indices</td></tr></tbody></table>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Add the <code class=\"inline\">u</code> flag (or <code class=\"inline\">v</code>) so patterns treat text as Unicode code points.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> A regular expression with the <code class=\"inline\">g</code> flag remembers <code class=\"inline\">lastIndex</code>, so calling <code class=\"inline\">test()</code> on it repeatedly can alternate between <code class=\"inline\">true</code> and <code class=\"inline\">false</code>. Create it inside the function, or reset <code class=\"inline\">lastIndex</code>.</div>",
+      "search_keywords": "regexp regex pattern match replace test exec matchAll named groups lookbehind flags unicode sticky escape"
+    },
+    {
+      "language": "javascript",
+      "section": "collections",
+      "slug": "json",
+      "title": "JSON",
+      "concept": null,
+      "sort_order": 13,
+      "content_html": "<pre><code>const text = JSON.stringify({ id: 1, tags: [\"a\", \"b\"] }, null, 2);   // pretty-printed\nconst data = JSON.parse(text);\n\n// Reviver: rebuild values while parsing\nconst parsed = JSON.parse('{\"when\":\"2026-06-30T00:00:00.000Z\"}', (key, value) =&gt;\n  key === \"when\" ? new Date(value) : value\n);\n\n// What stringify leaves out or changes\nJSON.stringify({ a: undefined, b: () =&gt; 1, c: NaN });   // '{\"c\":null}'\nJSON.stringify(new Date(0));                            // '\"1970-01-01T00:00:00.000Z\"'\n// JSON.stringify(10n);                                  // TypeError: BigInt\n\n// Control the output with toJSON\nconst money = { cents: 250, toJSON() { return (this.cents / 100).toFixed(2); } };\nJSON.stringify(money);                                   // '\"2.50\"'\n\ntry {\n  JSON.parse(\"{ invalid }\");\n} catch (error) {\n  console.log(error instanceof SyntaxError);             // true\n}</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Always wrap <code class=\"inline\">JSON.parse()</code> of outside input in <code class=\"inline\">try</code>/<code class=\"inline\">catch</code>; invalid text throws a <code class=\"inline\">SyntaxError</code>.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">undefined</code>, functions and symbols are dropped from objects, <code class=\"inline\">NaN</code> becomes <code class=\"inline\">null</code>, and <code class=\"inline\">BigInt</code> throws. Dates come back as strings, so convert them with a reviver.</div>",
+      "search_keywords": "json parse stringify reviver replacer toJSON date bigint space pretty"
+    },
+    {
+      "language": "javascript",
+      "section": "collections",
+      "slug": "dates",
+      "title": "Dates & Time",
+      "concept": null,
+      "sort_order": 14,
+      "content_html": "<pre><code>const now = new Date();\nDate.now();                                   // milliseconds since 1970-01-01 UTC\nnew Date(\"2026-06-30T12:00:00Z\").toISOString();\nnew Date(2026, 5, 30);                        // month is 0-based: this is June\n\nconst d = new Date(\"2026-06-30T12:00:00Z\");\nd.getUTCFullYear();                           // 2026\nd.getTime();                                  // number of milliseconds\nd.setUTCDate(d.getUTCDate() + 7);             // adds a week, and mutates d\n\nnew Intl.DateTimeFormat(\"en-GB\", { dateStyle: \"medium\", timeZone: \"UTC\" }).format(d);\nd.toLocaleDateString(\"en-US\", { month: \"long\", day: \"numeric\" });\n\n// Temporal: the modern API (ES2027 draft, check runtime support first)\nconst today = Temporal.Now.plainDateISO();\nTemporal.PlainDate.from(\"2026-06-30\").add({ days: 7 });</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Store and send time as UTC ISO strings, and format it for people with <code class=\"inline\">Intl.DateTimeFormat</code>.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">new Date(2026, 5, 30)</code> is June, because months start at 0. A date-only string like <code class=\"inline\">\"2026-06-30\"</code> is read as UTC, while <code class=\"inline\">\"2026-06-30T00:00:00\"</code> is read as local time.</div>",
+      "search_keywords": "date time temporal timezone iso toISOString getMonth setDate intl DateTimeFormat locale utc instant"
+    },
+    {
+      "language": "javascript",
+      "section": "async",
+      "slug": "async",
+      "title": "Async & Await",
+      "concept": "async",
+      "sort_order": 15,
+      "content_html": "<pre><code>async function load(url) {\n  try {\n    const response = await fetch(url);      // fetch is a host API\n    if (!response.ok) throw new Error(`HTTP ${response.status}`);\n    return await response.json();\n  } catch (error) {\n    console.error(\"load failed\", error);\n    throw error;\n  }\n}\n\nconst sleep = (ms) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, ms));\n\n// Parallel instead of one after another\nconst [users, posts] = await Promise.all([load(\"/users\"), load(\"/posts\")]);\n\nawait Promise.allSettled(tasks);       // every outcome, never rejects\nawait Promise.race([task(), sleep(1000)]);\nawait Promise.any([mirrorA(), mirrorB()]);   // first success\n\nconst { promise, resolve, reject } = Promise.withResolvers();\n\nconst controller = new AbortController();  // host API for cancelling\nfetch(url, { signal: controller.signal });\ncontroller.abort();</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Start independent work together and <code class=\"inline\">await</code> the group with <code class=\"inline\">Promise.all()</code>, instead of awaiting one call after another.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">array.forEach(async ...)</code> does not wait for the promises it creates. Use <code class=\"inline\">for...of</code> with <code class=\"inline\">await</code>, or <code class=\"inline\">Promise.all(array.map(...))</code>. A promise that rejects with nobody handling it is reported as an unhandled rejection.</div>",
+      "search_keywords": "async await promise all allSettled race any withResolvers try setTimeout abort fetch sequential parallel"
+    },
+    {
+      "language": "javascript",
+      "section": "async",
+      "slug": "modules",
+      "title": "Modules",
+      "concept": null,
+      "sort_order": 16,
+      "content_html": "<pre><code>// math.js\nexport const PI = 3.14159;\nexport function add(a, b) { return a + b; }\nexport default class Calculator {}</code></pre>\n<pre><code>// main.js\nimport Calculator, { PI, add as sum } from \"./math.js\";\nimport * as math from \"./math.js\";\nimport data from \"./data.json\" with { type: \"json\" };\n\nexport * from \"./helpers.js\";\nexport * as utils from \"./utils.js\";\n\nconst heavy = await import(\"./heavy.js\");   // dynamic import, top-level await\nconsole.log(import.meta.url);               // location of this module</code></pre>\n<pre><code>// CommonJS, the older Node.js style\nconst fs = require(\"fs\");\nmodule.exports = { read: (path) =&gt; fs.readFileSync(path, \"utf8\") };</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Use ES modules with explicit file extensions in import paths.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">import</code> and <code class=\"inline\">require</code> do not mix freely. Node.js treats <code class=\"inline\">.mjs</code> files, and <code class=\"inline\">.js</code> files under <code class=\"inline\">\"type\": \"module\"</code> in <code class=\"inline\">package.json</code>, as modules. In a browser use <code class=\"inline\">&lt;script type=\"module\"&gt;</code>.</div>",
+      "search_keywords": "module import export default dynamic import require commonjs esm import.meta top-level await json type module"
+    },
+    {
+      "language": "javascript",
+      "section": "async",
+      "slug": "errors",
+      "title": "Errors",
+      "concept": "exceptions",
+      "sort_order": 17,
+      "content_html": "<pre><code>try {\n  risky();\n} catch (error) {\n  if (error instanceof TypeError) {\n    recover();\n  } else {\n    throw error;                  // do not swallow what you cannot handle\n  }\n} finally {\n  cleanup();                      // always runs\n}\n\nclass ValidationError extends Error {\n  constructor(message, options) {\n    super(message, options);\n    this.name = \"ValidationError\";\n  }\n}\n\ntry {\n  parse(input);\n} catch (cause) {\n  throw new ValidationError(\"Invalid input\", { cause });   // keep the original error\n}\n\nError.isError(value);             // true for real errors, even from another realm\nnew AggregateError([new Error(\"a\"), new Error(\"b\")], \"several failed\");</code></pre>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Throw <code class=\"inline\">Error</code> objects, not strings, so callers get a stack trace and a <code class=\"inline\">name</code>.</div>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> <code class=\"inline\">catch (error)</code> can receive anything that was thrown, so check its type before using <code class=\"inline\">error.message</code>. Optional catch binding, <code class=\"inline\">catch { }</code>, is fine when the error is not needed.</div>",
+      "search_keywords": "error try catch finally throw custom error cause aggregate rangeerror typeerror isError"
+    },
+    {
+      "language": "javascript",
+      "section": "expansion",
+      "slug": "gotchas",
+      "title": "Gotchas",
+      "concept": null,
+      "sort_order": 18,
+      "content_html": "<pre><code>0.1 + 0.2 === 0.3;             // false\n\"10\" + 1;                      // \"101\"  (string concatenation)\n\"10\" - 1;                      // 9      (numeric subtraction)\n[] + {};                       // \"[object Object]\"\n\nparseInt(\"12px\");              // 12\nNumber(\"12px\");                // NaN\n[1, 2, 3].map(parseInt);       // [1, NaN, NaN]  (index is passed as the radix)\ntypeof NaN;                    // \"number\"\nNaN === NaN;                   // false\n\nArray(3).fill([]);             // three references to the SAME array\nconst grid = Array.from({ length: 3 }, () =&gt; []);   // three separate arrays\n\nconst arr = [1, 2, 3];\ndelete arr[1];                 // leaves a hole: [1, empty, 3]\narr.length;                    // still 3\n\n[10, 2, 1].sort();             // [1, 10, 2]</code></pre>\n<div class=\"callout callout-mistake\"><strong>Common mistake</strong> Most of these come from implicit type coercion. Convert values explicitly with <code class=\"inline\">Number()</code>, <code class=\"inline\">String()</code> and <code class=\"inline\">Boolean()</code>, and compare with <code class=\"inline\">===</code>.</div>",
+      "search_keywords": "gotchas pitfalls coercion parseInt NaN this array holes fill map parseInt equality sort"
+    },
+    {
+      "language": "javascript",
+      "section": "expansion",
+      "slug": "ecosystem",
+      "title": "Ecosystem & Tooling",
+      "concept": null,
+      "sort_order": 19,
+      "content_html": "<table><thead><tr><th>Area</th><th>Common choices</th></tr></thead><tbody><tr><td>Runtimes</td><td>Browsers, Node.js, Deno, Bun</td></tr><tr><td>Package managers</td><td>npm, pnpm, Yarn</td></tr><tr><td>Types</td><td>TypeScript, or JSDoc comments checked by the TypeScript compiler</td></tr><tr><td>Build and bundle</td><td>Vite, esbuild, Rollup, webpack</td></tr><tr><td>Lint and format</td><td>ESLint, Prettier, Biome</td></tr><tr><td>Tests</td><td>Vitest, Jest, the built-in <code class=\"inline\">node:test</code> runner</td></tr><tr><td>Older runtimes</td><td>Babel for syntax, polyfills for library features, <code class=\"inline\">browserslist</code> to choose targets</td></tr></tbody></table>\n<pre><code>{\n  \"name\": \"example\",\n  \"type\": \"module\",\n  \"engines\": { \"node\": \"&gt;=20\" },\n  \"scripts\": {\n    \"test\": \"node --test\",\n    \"lint\": \"eslint .\"\n  }\n}</code></pre>\n<div class=\"callout callout-use\"><strong>When to use</strong> Moving old code forward? The version history page lists which edition added, changed or removed each feature, with older and newer code side by side.</div>\n<div class=\"callout callout-default\"><strong>★ Default</strong> Pick the language edition your oldest supported runtime can run, and let a build step transpile only what it cannot.</div>",
+      "search_keywords": "node npm pnpm yarn typescript eslint prettier vite esbuild babel polyfill browserslist test vitest jest runtime deno bun package.json"
     }
   ],
   "examples": [
@@ -1961,7 +2057,7 @@
         {
           "version": "es3",
           "kind": "added",
-          "note": "Described in the informative compatibility annex rather than the core grammar."
+          "note": "Described in the compatibility annex (Annex B) rather than the core grammar."
         },
         {
           "version": "es5",
@@ -1985,17 +2081,17 @@
       "title": "String.prototype.substr()",
       "category": "library",
       "summary": "Extracts part of a string using a start index and a length.",
-      "topic": "types",
+      "topic": "strings",
       "history": [
         {
           "version": "es3",
           "kind": "added",
-          "note": "Documented in the informative compatibility annex, not the core language."
+          "note": "New in the compatibility annex (Annex B), which first appeared in ES3. Not part of the core language."
         },
         {
           "version": null,
           "kind": "deprecated",
-          "note": "Legacy feature kept for web compatibility. Prefer slice() or substring(). It is not scheduled for removal."
+          "note": "Legacy feature kept for web compatibility (Annex B). Prefer slice() or substring(). It is not scheduled for removal."
         }
       ],
       "migration": {
@@ -2010,16 +2106,17 @@
       "title": "escape() and unescape()",
       "category": "library",
       "summary": "Global functions that apply a percent-style encoding to strings.",
+      "topic": "strings",
       "history": [
         {
           "version": "es3",
           "kind": "added",
-          "note": "Documented in the informative compatibility annex, not the core language."
+          "note": "Part of the core language in the earliest editions. Moved to the compatibility annex (Annex B) in ES3."
         },
         {
           "version": null,
           "kind": "deprecated",
-          "note": "Legacy functions that do not encode Unicode correctly. Use encodeURIComponent() and decodeURIComponent()."
+          "note": "Legacy functions kept for web compatibility (Annex B). They use a non-standard %uXXXX form for characters above U+00FF. Use encodeURIComponent() and decodeURIComponent()."
         }
       ],
       "replaced_by": [
@@ -2059,7 +2156,7 @@
         {
           "version": "es2020",
           "kind": "changed",
-          "note": "The order in which for...in visits keys is now specified, so engines agree on it."
+          "note": "The order is now partly specified. For ordinary objects, own keys come first (integer indices in ascending order, then string keys in the order they were added), followed by inherited keys. Proxies and other exotic objects, and objects changed during the loop, can still differ."
         }
       ]
     },
@@ -2087,7 +2184,7 @@
       "title": "JSON.parse() and JSON.stringify()",
       "category": "library",
       "summary": "A built-in JSON object for parsing and producing JSON text.",
-      "topic": "objects",
+      "topic": "json",
       "history": [
         {
           "version": "es5",
@@ -2185,7 +2282,7 @@
       "title": "Classes",
       "category": "syntax",
       "summary": "class declarations with constructors, methods, extends and super.",
-      "topic": "objects",
+      "topic": "classes",
       "history": [
         {
           "version": "es2015",
@@ -2209,7 +2306,7 @@
       "title": "Template literals",
       "category": "syntax",
       "summary": "Backtick strings with ${expression} interpolation, multi-line text and tagged templates.",
-      "topic": "types",
+      "topic": "strings",
       "history": [
         {
           "version": "es2015",
@@ -2232,7 +2329,7 @@
       "title": "Destructuring",
       "category": "syntax",
       "summary": "Pattern syntax that unpacks arrays and objects into variables.",
-      "topic": "variables",
+      "topic": "destructuring",
       "history": [
         {
           "version": "es2015",
@@ -2269,6 +2366,7 @@
       "title": "ES modules",
       "category": "syntax",
       "summary": "import and export statements for native modules.",
+      "topic": "modules",
       "history": [
         {
           "version": "es2015",
@@ -2312,10 +2410,10 @@
     {
       "language": "javascript",
       "slug": "string-search-methods",
-      "title": "String search methods",
+      "title": "includes(), startsWith(), endsWith() and repeat()",
       "category": "library",
-      "summary": "includes(), startsWith(), endsWith() and repeat() on strings.",
-      "topic": "types",
+      "summary": "String methods for testing whether text contains, starts with or ends with another string, and for repeating a string.",
+      "topic": "strings",
       "history": [
         {
           "version": "es2015",
@@ -2535,6 +2633,7 @@
       "title": "Dynamic import()",
       "category": "syntax",
       "summary": "import() loads a module at run time and returns a promise for its namespace.",
+      "topic": "modules",
       "history": [
         {
           "version": "es2020",
@@ -2567,7 +2666,7 @@
       "title": "String.prototype.replaceAll()",
       "category": "library",
       "summary": "Replaces every occurrence of a string or pattern.",
-      "topic": "types",
+      "topic": "strings",
       "history": [
         {
           "version": "es2021",
@@ -2586,7 +2685,7 @@
       "title": "Class fields and private members",
       "category": "syntax",
       "summary": "Field declarations in class bodies, including #private fields and methods, static fields and static blocks.",
-      "topic": "objects",
+      "topic": "classes",
       "history": [
         {
           "version": "es2022",
@@ -2605,7 +2704,7 @@
       "title": "Top-level await",
       "category": "syntax",
       "summary": "await can be used at the top level of a module.",
-      "topic": "async",
+      "topic": "modules",
       "history": [
         {
           "version": "es2022",
@@ -2790,6 +2889,7 @@
       "title": "Import attributes and JSON modules",
       "category": "syntax",
       "summary": "A with { type: \"json\" } clause on imports, used to import JSON modules.",
+      "topic": "modules",
       "history": [
         {
           "version": "es2025",
@@ -2858,6 +2958,839 @@
       "title": "Temporal",
       "category": "library",
       "summary": "A modern date and time API that fixes many problems of the Date object.",
+      "topic": "dates",
+      "history": [
+        {
+          "version": "es2027",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "generators-iterators",
+      "title": "Iterators and generators",
+      "category": "syntax",
+      "summary": "The iterator protocol, for...of loops, and generator functions (function*) that produce values with yield.",
+      "topic": "iteration",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "function range(start, end) {\n  var current = start;\n  return {\n    next: function () {\n      return current < end\n        ? { value: current++, done: false }\n        : { value: undefined, done: true };\n    }\n  };\n}",
+        "modern": "function* range(start, end) {\n  for (let i = start; i < end; i++) {\n    yield i;\n  }\n}",
+        "note": "A generator function returns an iterator that works with for...of and spread."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "map-set-collections",
+      "title": "Map, Set, WeakMap and WeakSet",
+      "category": "library",
+      "summary": "Keyed and unique-value collections whose keys can be any value, not just strings.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var counts = {};\nwords.forEach(function (word) {\n  counts[word] = (counts[word] || 0) + 1;\n});",
+        "modern": "const counts = new Map();\nwords.forEach((word) => counts.set(word, (counts.get(word) || 0) + 1));",
+        "note": "A plain object only has string and symbol keys, and inherits properties such as toString."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "symbols",
+      "title": "Symbols",
+      "category": "library",
+      "summary": "A primitive type for unique property keys, including well-known symbols such as Symbol.iterator.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "proxy-reflect",
+      "title": "Proxy and Reflect",
+      "category": "library",
+      "summary": "Proxy objects intercept operations on another object, and Reflect exposes those operations as functions.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "typed-arrays",
+      "title": "Typed arrays",
+      "category": "library",
+      "summary": "Fixed-type views over binary data, such as Uint8Array and Float64Array.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "array-es2015-methods",
+      "title": "Array.from(), Array.of(), find() and friends",
+      "category": "library",
+      "summary": "Array.from, Array.of, find, findIndex, fill, copyWithin and the keys, values and entries iterators.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var args = Array.prototype.slice.call(arrayLike);",
+        "modern": "const args = Array.from(arrayLike);",
+        "note": "Array.from also accepts any iterable and an optional mapping function."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "object-literal-shorthand",
+      "title": "Shorthand and computed object properties",
+      "category": "syntax",
+      "summary": "{ name, age } shorthand, method shorthand, and [expression] computed property names in object literals.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var user = { name: name, age: age };\nuser[prefix + \"Id\"] = id;",
+        "modern": "const user = { name, age, [prefix + \"Id\"]: id };"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "number-math-methods",
+      "title": "Number and Math additions",
+      "category": "library",
+      "summary": "Number.isInteger, Number.isSafeInteger, Number.EPSILON, Math.trunc, Math.sign, Math.hypot and related functions.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var isInt = typeof x === \"number\" && isFinite(x) && Math.floor(x) === x;",
+        "modern": "const isInt = Number.isInteger(x);",
+        "note": "Number.isNaN and Number.isFinite do not convert their argument, unlike the global isNaN and isFinite."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "unicode-code-points",
+      "title": "Unicode code point support",
+      "category": "library",
+      "summary": "String.fromCodePoint(), codePointAt(), normalize(), \\u{...} escapes and the u flag for regular expressions.",
+      "topic": "strings",
+      "history": [
+        {
+          "version": "es2015",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "string-padding",
+      "title": "padStart() and padEnd()",
+      "category": "library",
+      "summary": "Pad a string to a minimum length at the start or the end.",
+      "topic": "strings",
+      "history": [
+        {
+          "version": "es2017",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var label = (\"00\" + n).slice(-2);",
+        "modern": "const label = String(n).padStart(2, \"0\");"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "trailing-commas-params",
+      "title": "Trailing commas in parameters",
+      "category": "syntax",
+      "summary": "A trailing comma is allowed in function parameter lists and call arguments.",
+      "topic": "functions",
+      "history": [
+        {
+          "version": "es2017",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "function connect(host, port) {\n  return open(host, port);\n}",
+        "modern": "function connect(\n  host,\n  port,\n) {\n  return open(host, port,);\n}",
+        "note": "Adding a parameter later changes only one line in a diff."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "shared-memory-atomics",
+      "title": "SharedArrayBuffer and Atomics",
+      "category": "library",
+      "summary": "Memory shared between agents and atomic operations for coordinating access to it.",
+      "history": [
+        {
+          "version": "es2017",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "object-getownpropertydescriptors",
+      "title": "Object.getOwnPropertyDescriptors()",
+      "category": "library",
+      "summary": "Returns the full property descriptors of an object, including getters and setters.",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2017",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "async-iteration",
+      "title": "Async iteration and async generators",
+      "category": "syntax",
+      "summary": "for await...of loops and async function* generators for sequences that arrive over time.",
+      "topic": "iteration",
+      "history": [
+        {
+          "version": "es2018",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "async function readAll(reader) {\n  const chunks = [];\n  let result = await reader.read();\n  while (!result.done) {\n    chunks.push(result.value);\n    result = await reader.read();\n  }\n  return chunks;\n}",
+        "modern": "async function readAll(source) {\n  const chunks = [];\n  for await (const chunk of source) {\n    chunks.push(chunk);\n  }\n  return chunks;\n}",
+        "note": "The source must be an async iterable, meaning it has a Symbol.asyncIterator method."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "promise-finally",
+      "title": "Promise.prototype.finally()",
+      "category": "library",
+      "summary": "Runs a callback when a promise settles, whether it was fulfilled or rejected.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2018",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "task().then(\n  function (value) { cleanup(); return value; },\n  function (error) { cleanup(); throw error; }\n);",
+        "modern": "task().finally(cleanup);",
+        "note": "The callback receives no arguments, and the original result or error passes through."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "regexp-named-groups",
+      "title": "Named capture groups",
+      "category": "syntax",
+      "summary": "(?<name>...) captures that can be read from the groups property of a match.",
+      "topic": "regexp",
+      "history": [
+        {
+          "version": "es2018",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var match = /(\\d{4})-(\\d{2})/.exec(text);\nvar year = match[1];",
+        "modern": "const { groups } = /(?<year>\\d{4})-(?<month>\\d{2})/.exec(text);\nconst year = groups.year;"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "regexp-lookbehind",
+      "title": "Lookbehind assertions",
+      "category": "syntax",
+      "summary": "(?<=...) and (?<!...) match text only when it is preceded, or not preceded, by a pattern.",
+      "topic": "regexp",
+      "history": [
+        {
+          "version": "es2018",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var match = /\\$(\\d+)/.exec(text);\nvar amount = match && match[1];",
+        "modern": "var match = /(?<=\\$)\\d+/.exec(text);\nvar amount = match && match[0];",
+        "note": "The lookbehind is checked but not included in the match."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "regexp-unicode-property-escapes",
+      "title": "Unicode property escapes",
+      "category": "syntax",
+      "summary": "\\p{...} and \\P{...} match characters by Unicode property, with the u flag.",
+      "topic": "regexp",
+      "history": [
+        {
+          "version": "es2018",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var hasLetters = /[a-zA-Z]/.test(text);",
+        "modern": "const hasLetters = /\\p{L}/u.test(text);",
+        "note": "The older pattern only covers ASCII letters."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "regexp-dotall",
+      "title": "The s (dotAll) flag",
+      "category": "syntax",
+      "summary": "With the s flag, . also matches line terminators.",
+      "topic": "regexp",
+      "history": [
+        {
+          "version": "es2018",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var block = /start[\\s\\S]*?end/;",
+        "modern": "const block = /start.*?end/s;"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "object-fromentries",
+      "title": "Object.fromEntries()",
+      "category": "library",
+      "summary": "Builds an object from key-value pairs. It is the inverse of Object.entries().",
+      "topic": "objects",
+      "history": [
+        {
+          "version": "es2019",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var obj = entries.reduce(function (acc, pair) {\n  acc[pair[0]] = pair[1];\n  return acc;\n}, {});",
+        "modern": "const obj = Object.fromEntries(entries);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "string-trim-start-end",
+      "title": "trimStart() and trimEnd()",
+      "category": "library",
+      "summary": "Standard names for trimming one side of a string. They replace the older trimLeft() and trimRight().",
+      "topic": "strings",
+      "history": [
+        {
+          "version": "es2019",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var cleaned = text.trimLeft();",
+        "modern": "const cleaned = text.trimStart();",
+        "note": "trimLeft and trimRight are still available as aliases in Annex B."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "array-sort",
+      "title": "Array.prototype.sort()",
+      "category": "behavior",
+      "summary": "Sorts an array in place. The default order compares elements as strings.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added"
+        },
+        {
+          "version": "es2019",
+          "kind": "changed",
+          "note": "sort must be stable: elements that compare as equal keep their original relative order."
+        },
+        {
+          "version": "es2021",
+          "kind": "changed",
+          "note": "The algorithm is specified more precisely, so fewer cases leave the result order up to the implementation."
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "function-tostring",
+      "title": "Function.prototype.toString()",
+      "category": "behavior",
+      "summary": "Returns a string describing a function.",
+      "topic": "functions",
+      "history": [
+        {
+          "version": "es3",
+          "kind": "added"
+        },
+        {
+          "version": "es2019",
+          "kind": "changed",
+          "note": "It must return the function's original source text, or a standard placeholder for built-in and bound functions."
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "symbol-description",
+      "title": "Symbol.prototype.description",
+      "category": "library",
+      "summary": "Reads the description a symbol was created with.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2019",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "string-matchall",
+      "title": "String.prototype.matchAll()",
+      "category": "library",
+      "summary": "Returns an iterator over every match of a global regular expression, including capture groups.",
+      "topic": "strings",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var matches = [];\nvar match;\nwhile ((match = re.exec(text)) !== null) {\n  matches.push(match);\n}",
+        "modern": "const matches = [...text.matchAll(re)];",
+        "note": "The regular expression must have the g flag."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "promise-allsettled",
+      "title": "Promise.allSettled()",
+      "category": "library",
+      "summary": "Waits for every promise to settle and reports each outcome, without stopping at the first rejection.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "Promise.all(promises.map(function (p) {\n  return p.then(\n    function (value) { return { status: \"fulfilled\", value: value }; },\n    function (reason) { return { status: \"rejected\", reason: reason }; }\n  );\n}));",
+        "modern": "Promise.allSettled(promises);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "globalthis",
+      "title": "globalThis",
+      "category": "library",
+      "summary": "A standard way to reach the global object in any environment.",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var root = typeof window !== \"undefined\" ? window : typeof global !== \"undefined\" ? global : this;",
+        "modern": "const root = globalThis;"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "import-meta",
+      "title": "import.meta",
+      "category": "syntax",
+      "summary": "An object, filled in by the host, that carries information about the current module.",
+      "topic": "modules",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "export-star-as",
+      "title": "export * as namespace",
+      "category": "syntax",
+      "summary": "Re-exports a whole module as a single named export.",
+      "topic": "modules",
+      "history": [
+        {
+          "version": "es2020",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "import * as utils from \"./utils.js\";\nexport { utils };",
+        "modern": "export * as utils from \"./utils.js\";"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "promise-any",
+      "title": "Promise.any() and AggregateError",
+      "category": "library",
+      "summary": "Resolves with the first fulfilled promise, or rejects with an AggregateError holding every reason.",
+      "topic": "async",
+      "history": [
+        {
+          "version": "es2021",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "weakref-finalization",
+      "title": "WeakRef and FinalizationRegistry",
+      "category": "library",
+      "summary": "References that do not keep an object alive, and callbacks that run after an object is collected.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2021",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "numeric-separators",
+      "title": "Numeric separators",
+      "category": "syntax",
+      "summary": "Underscores in numeric literals, such as 1_000_000, to make long numbers readable.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2021",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var million = 1000000;",
+        "modern": "const million = 1_000_000;"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "private-in-check",
+      "title": "Private brand checks (#x in obj)",
+      "category": "syntax",
+      "summary": "Tests whether an object has a given private field, without risking an error.",
+      "topic": "classes",
+      "history": [
+        {
+          "version": "es2022",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "regexp-match-indices",
+      "title": "RegExp match indices (d flag)",
+      "category": "syntax",
+      "summary": "With the d flag, a match also reports the start and end index of each capture.",
+      "topic": "regexp",
+      "history": [
+        {
+          "version": "es2022",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "error-cause",
+      "title": "Error cause",
+      "category": "library",
+      "summary": "new Error(message, { cause }) records the error that led to this one.",
+      "topic": "errors",
+      "history": [
+        {
+          "version": "es2022",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var wrapped = new Error(\"Load failed: \" + err.message);\nwrapped.cause = err;",
+        "modern": "const wrapped = new Error(\"Load failed\", { cause: err });"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "hashbang",
+      "title": "Hashbang comments",
+      "category": "syntax",
+      "summary": "A #! line at the very start of a file is treated as a comment, so scripts can be executable.",
+      "history": [
+        {
+          "version": "es2023",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "symbols-as-weak-keys",
+      "title": "Symbols as weak collection keys",
+      "category": "library",
+      "summary": "Most symbols can be used as WeakMap keys and WeakSet or WeakRef targets.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2023",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "resizable-arraybuffer",
+      "title": "Resizable and transferable ArrayBuffers",
+      "category": "library",
+      "summary": "ArrayBuffers that can be resized in place, or transferred to a new owner with transfer().",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2024",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "regexp-v-flag",
+      "title": "RegExp v flag",
+      "category": "syntax",
+      "summary": "The v flag adds set operations and string literals inside character classes.",
+      "topic": "regexp",
+      "history": [
+        {
+          "version": "es2024",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "string-well-formed",
+      "title": "isWellFormed() and toWellFormed()",
+      "category": "library",
+      "summary": "Check whether a string contains lone surrogates, or replace them with U+FFFD.",
+      "topic": "strings",
+      "history": [
+        {
+          "version": "es2024",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "atomics-waitasync",
+      "title": "Atomics.waitAsync()",
+      "category": "library",
+      "summary": "Waits for a change to shared memory without blocking the thread.",
+      "history": [
+        {
+          "version": "es2024",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "regexp-escape",
+      "title": "RegExp.escape()",
+      "category": "library",
+      "summary": "Escapes a string so it can be used safely inside a regular expression.",
+      "topic": "regexp",
+      "history": [
+        {
+          "version": "es2025",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "var safe = text.replace(/[.*+?^${}()|[\\]\\\\]/g, \"\\\\$&\");",
+        "modern": "const safe = RegExp.escape(text);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "regexp-modifiers",
+      "title": "Regular expression modifiers",
+      "category": "syntax",
+      "summary": "Turn flags such as i on or off for part of a pattern, for example (?i:abc).",
+      "topic": "regexp",
+      "history": [
+        {
+          "version": "es2025",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "float16",
+      "title": "Float16Array and Math.f16round()",
+      "category": "library",
+      "summary": "A 16-bit floating-point typed array, with DataView getFloat16 and setFloat16.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2025",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "math-sumprecise",
+      "title": "Math.sumPrecise()",
+      "category": "library",
+      "summary": "Adds numbers and returns the correctly rounded total, avoiding the error that builds up in a running sum.",
+      "topic": "types",
+      "history": [
+        {
+          "version": "es2026",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "const total = numbers.reduce((sum, n) => sum + n, 0);",
+        "modern": "const total = Math.sumPrecise(numbers);",
+        "note": "A running sum rounds at every step. sumPrecise rounds once, at the end."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "uint8array-base64",
+      "title": "Uint8Array base64 and hex",
+      "category": "library",
+      "summary": "toBase64(), toHex(), and the matching fromBase64() and fromHex() for converting bytes to and from text.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2026",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "json-source-text",
+      "title": "JSON source text access",
+      "category": "library",
+      "summary": "JSON.parse revivers can see the original source text of a value, and JSON.rawJSON() writes numbers exactly.",
+      "topic": "json",
+      "history": [
+        {
+          "version": "es2026",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "iterator-concat",
+      "title": "Iterator.concat()",
+      "category": "library",
+      "summary": "Joins several iterables into one iterator.",
+      "topic": "iteration",
+      "history": [
+        {
+          "version": "es2026",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "map-getorinsert",
+      "title": "Map getOrInsert() and getOrInsertComputed()",
+      "category": "library",
+      "summary": "Reads a key, adding a default or a computed value first if it is missing. Also on WeakMap.",
+      "topic": "collections",
+      "history": [
+        {
+          "version": "es2026",
+          "kind": "added"
+        }
+      ],
+      "migration": {
+        "legacy": "if (!cache.has(key)) {\n  cache.set(key, compute(key));\n}\nconst value = cache.get(key);",
+        "modern": "const value = cache.getOrInsertComputed(key, compute);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "atomics-pause",
+      "title": "Atomics.pause()",
+      "category": "library",
+      "summary": "A hint that the current agent is busy-waiting, so the processor can save power.",
+      "history": [
+        {
+          "version": "es2027",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "slug": "joint-iteration",
+      "title": "Joint iteration",
+      "category": "library",
+      "summary": "Iterate several iterators together in lockstep.",
+      "topic": "iteration",
       "history": [
         {
           "version": "es2027",

@@ -286,5 +286,62 @@ class VersionPageRenderingTests(unittest.TestCase):
         self.assertIn(".kind-filter", styles)
 
 
+class TopicNotesAndAvailabilityTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.data = load_data()
+        self.language = next(l for l in self.data["languages"] if l["slug"] == "javascript")
+        self.language_page = render_language_page(self.language, self.data, page_rel="javascript/index.html")
+        self.versions_page = render_versions_page(self.language, self.data, page_rel="javascript/versions/index.html")
+
+    def topic_section(self, slug: str) -> str:
+        start = self.language_page.index(f'<section class="topic" id="{slug}">')
+        return self.language_page[start:self.language_page.index("</section>", start)]
+
+    def test_topics_list_their_features_in_collapsed_version_notes(self) -> None:
+        strings = self.topic_section("strings")
+        self.assertIn('<details class="version-notes">', strings)
+        self.assertNotIn("<details class=\"version-notes\" open", strings)
+        self.assertIn('href="versions/index.html#feature-string-substr"', strings)
+        expected = len([f for f in features_for(self.data, "javascript") if f.get("topic") == "strings"])
+        self.assertEqual(strings.count("<li><a href="), expected)
+
+    def test_version_notes_show_legacy_restricted_changed_and_draft_status(self) -> None:
+        self.assertIn(">Legacy<", self.topic_section("strings"))
+        self.assertIn("Restricted in ES5 (strict mode only)", self.topic_section("types"))
+        self.assertIn("Changed in ES2018", self.topic_section("strings"))
+        self.assertIn("Draft in ES2027", self.topic_section("dates"))
+
+    def test_topics_without_features_and_other_languages_have_no_notes(self) -> None:
+        python = next(l for l in self.data["languages"] if l["slug"] == "python")
+        python_page = render_language_page(python, self.data, page_rel="python/index.html")
+        self.assertNotIn("version-notes", python_page)
+        linked = {f["topic"] for f in features_for(self.data, "javascript") if f.get("topic")}
+        for slug in {t["slug"] for t in self.data["topics"] if t["language"] == "javascript"} - linked:
+            self.assertNotIn("version-notes", self.topic_section(slug))
+
+    def test_every_feature_has_a_card_with_the_data_the_browser_needs(self) -> None:
+        for item in features_for(self.data, "javascript"):
+            self.assertIn(f'id="index-{item["slug"]}"', self.versions_page)
+        self.assertEqual(self.versions_page.count('class="feature-card"'), len(features_for(self.data, "javascript")))
+        self.assertIn('data-deprecated="any"', self.versions_page)
+        self.assertRegex(self.versions_page, r'data-removed="2" data-removed-scope="strict mode only"')
+
+    def test_older_and_newer_code_are_shown_for_the_right_states(self) -> None:
+        self.assertIn('data-show-when="not-yet"', self.versions_page)
+        self.assertIn('data-show-when="deprecated restricted removed"', self.versions_page)
+
+    def test_state_rules_are_mirrored_in_the_browser_script(self) -> None:
+        runtime = (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8")
+        self.assertIn("function stateAt(", runtime)
+        self.assertIn("lifecycle_state() in renderer/versioning.py", runtime)
+
+    def test_javascript_reference_is_fully_linked_to_real_topics(self) -> None:
+        topics = {t["slug"] for t in self.data["topics"] if t["language"] == "javascript"}
+        self.assertGreaterEqual(len(topics), 19)
+        for item in features_for(self.data, "javascript"):
+            if item.get("topic"):
+                self.assertIn(item["topic"], topics)
+
+
 if __name__ == "__main__":
     unittest.main()

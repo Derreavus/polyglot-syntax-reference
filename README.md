@@ -54,7 +54,7 @@ Currently covered:
 - **Python**
 - **Rust**
 
-JavaScript is included as a starter reference. New languages can be added through the JSON source without editing the shared page templates.
+JavaScript has a full reference (19 topics) and is the first language with version history. New languages can be added through the JSON source without editing the shared page templates.
 
 ---
 
@@ -82,7 +82,7 @@ Code examples are designed to be copied directly and use the actual syntax of th
 
 ### Version information
 
-Languages that have version data get a **Version history** page (for example `javascript/versions/`). It lists what was added, changed, deprecated and removed in each version, with before-and-after examples, so you can work out what old code was doing and how to move it to a newer version. Choose the version you are upgrading from and the one you are moving to, and the page shows everything in between. See [Version history](#version-history).
+Languages that have version data get a **Version history** page (for example `javascript/versions/`). It lists what was added, changed, deprecated and removed in each version, with before-and-after examples, so you can work out what old code was doing and how to move it to a newer version. The page has two views. **Upgrade changes** lists everything between the version you are upgrading from and the one you are moving to. **What can I use?** shows, for one version, which features are available, deprecated, restricted, removed or not yet available, with the older way to write each missing one. Each topic on the language page also has a collapsed **Version notes** list that links into the history. See [Version history](#version-history).
 
 ### Practical guidance
 
@@ -197,7 +197,9 @@ How the model behaves:
 
 The build rejects data that breaks the rules: duplicate or out-of-order versions, a first event that is not `added`, events out of order or after a removal, a removal in the same version as its deprecation, unknown versions, topics or replacements, replacement cycles, and a language with versions but no changelog links.
 
-For JavaScript, `node scripts/check_js_examples.js` (after `npm install --no-save acorn`) also checks the before-and-after snippets by parsing them in the edition they belong to. It is optional and not part of CI.
+For JavaScript, `node scripts/check_js_examples.js` (after `npm install --no-save acorn`) also checks the before-and-after snippets by parsing them in the edition they belong to, and parses every code block in the JavaScript reference topics. It is optional and not part of CI.
+
+A feature with a `topic` appears in that topic's **Version notes**. The **What can I use?** view computes each feature's state in the browser with the same rules as `lifecycle_state()` in `renderer/versioning.py`, and the tests keep the two in step.
 
 ### Adding a new language
 
@@ -236,7 +238,7 @@ Examples should use valid, current syntax and avoid misleading shortcuts or lang
 
 ## Project Status
 
-Polyglot Syntax Reference currently covers C++, C#, JavaScript, Python, and Rust. JavaScript is a starter reference that is still being expanded.
+Polyglot Syntax Reference currently covers C++, C#, JavaScript, Python, and Rust. JavaScript also has version history; the other languages do not yet.
 
 The project continues to evolve, with a focus on content accuracy, practical guidance, validated examples, accessibility, and cross-language navigation.
 

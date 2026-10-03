@@ -8,11 +8,22 @@ from typing import Any
 from render_language import relative_asset_path
 from versioning import (
     KIND_LABELS,
+    STATES,
     features_for,
     is_breaking,
+    lifecycle_facts,
+    short_label,
     version_orders,
     versions_for,
 )
+
+STATE_LABELS = {
+    "available": "Available",
+    "deprecated": "Deprecated",
+    "restricted": "Restricted",
+    "removed": "Removed",
+    "not-yet": "Not yet",
+}
 
 MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 KIND_ORDER = ("removed", "deprecated", "changed", "added")
@@ -155,6 +166,59 @@ def render_versions_page(
             f'<ul class="change-list">{list_html}</ul></section>'
         )
 
+    def card_html(feature: dict[str, Any]) -> str:
+        facts = lifecycle_facts(feature, version_by_id)
+        added = facts["added"]
+        deprecated = facts["deprecated"]
+        removed = facts["removed"]
+        dep_value = "" if deprecated is None else ("any" if deprecated["version"] is None else str(orders[deprecated["version"]]))
+        rem_value = "" if removed is None else str(orders[removed["version"]])
+        scope = _esc(removed.get("scope", "")) if removed else ""
+        timeline = [f'Added in {_esc(short_label(added))}']
+        for version in facts["changed_versions"]:
+            timeline.append(f'changed in {_esc(short_label(version))}')
+        if deprecated is not None:
+            timeline.append("deprecated, no removal planned" if facts["deprecated_version"] is None else f'deprecated in {_esc(short_label(facts["deprecated_version"]))}')
+        if removed is not None:
+            timeline.append(("restricted" if scope else "removed") + f' in {_esc(short_label(facts["removed_version"]))}' + (f" ({scope})" if scope else ""))
+        migration = feature.get("migration")
+        legacy_block = modern_block = ""
+        if migration:
+            legacy_block = (
+                '<details class="migration" data-show-when="not-yet"><summary>What to write in this version instead</summary>'
+                f'<pre><code>{_esc(migration["legacy"])}</code></pre>'
+                + (f'<p class="migration-note">{_esc(migration["note"])}</p>' if migration.get("note") else "")
+                + "</details>"
+            )
+            modern_block = (
+                '<details class="migration" data-show-when="deprecated restricted removed"><summary>Newer way to write it</summary>'
+                f'<pre><code>{_esc(migration["modern"])}</code></pre></details>'
+            )
+        replaced = _replaced_by_html(feature, features_by_slug).replace('href="#feature-', 'href="#index-')
+        topic = feature.get("topic")
+        title = (
+            f'<a class="change-title" href="../index.html#{_esc(topic)}">{_esc(feature["title"])}</a>'
+            if topic else f'<span class="change-title">{_esc(feature["title"])}</span>'
+        )
+        search = _esc(f'{feature["title"]} {feature["summary"]} {feature["category"]}'.lower())
+        return (
+            f'<li class="feature-card" id="index-{_esc(feature["slug"])}" data-added="{orders[added["id"]]}" '
+            f'data-deprecated="{dep_value}" data-removed="{rem_value}" data-removed-scope="{scope}" '
+            f'data-search="{search}" data-state="available">'
+            f'<div class="change-head"><span class="state-badge" data-state-badge>Available</span>{title}'
+            f'<span class="category-tag">{_esc(feature["category"])}</span></div>'
+            f'<p class="change-summary">{_esc(feature["summary"])}</p>'
+            f'<p class="feature-timeline">{" · ".join(timeline)}</p>'
+            f'{legacy_block}{modern_block}{replaced}</li>'
+        )
+
+    ordered_features = sorted(features, key=lambda f: (orders[f["history"][0]["version"]], f["title"].lower()))
+    cards_html = "\n".join(card_html(feature) for feature in ordered_features)
+    state_buttons = "".join(
+        f'<button type="button" class="state-filter state-{state}" data-state="{state}" aria-pressed="true">{STATE_LABELS[state]}</button>'
+        for state in STATES
+    )
+
     def option(version: dict[str, Any], selected: bool) -> str:
         draft = " (draft)" if version["status"] == "draft" else ""
         return (
@@ -168,6 +232,8 @@ def render_versions_page(
         option(v, False) for v in versions
     )
     to_options = "".join(option(v, v["id"] == default_to) for v in versions)
+
+    at_options = "".join(option(v, v["id"] == default_to) for v in versions)
 
     kind_buttons = "".join(
         f'<button type="button" class="kind-filter kind-{kind}" data-kind="{kind}" aria-pressed="true">{KIND_LABELS[kind]}</button>'
@@ -218,22 +284,44 @@ def render_versions_page(
   <main class="container versions-main">
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="{home_path}">Home</a> / <a href="{language_path}">{name}</a> / <span>Version history</span></nav>
     <h1>{name} version history</h1>
-    <p class="versions-intro">What was added, changed, deprecated and removed between {name} versions. Choose the version your code was written for and the one you are moving to, and the list shows everything in between.</p>
+    <p class="versions-intro">What was added, changed, deprecated and removed between {name} versions. See everything that changes between the version your code was written for and the one you are moving to, or check what a particular version can and cannot use.</p>
 
-    <section class="version-controls" aria-label="Choose versions">
-      <div class="version-selects">
-        <label>Upgrading from<select id="version-from">{from_options}</select></label>
-        <label>to<select id="version-to">{to_options}</select></label>
-      </div>
-      <div class="kind-filters" role="group" aria-label="Types of change to show">{kind_buttons}</div>
-      <label class="breaking-only"><input type="checkbox" id="breaking-only"> Breaking changes only</label>
-      <p id="version-summary" class="version-summary" role="status" aria-live="polite"></p>
-    </section>
-
-    <div id="version-list" data-language="{html.escape(slug)}">
-      {"".join(blocks)}
+    <div class="view-switch" role="group" aria-label="Choose a view">
+      <button type="button" class="view-tab" data-view="changes" aria-pressed="true">Upgrade changes</button>
+      <button type="button" class="view-tab" data-view="available" aria-pressed="false">What can I use?</button>
     </div>
-    <p id="version-empty" class="version-empty" hidden>No changes match these choices.</p>
+
+    <div id="panel-changes" class="version-panel">
+      <section class="version-controls" aria-label="Choose versions">
+        <div class="version-selects">
+          <label>Upgrading from<select id="version-from">{from_options}</select></label>
+          <label>to<select id="version-to">{to_options}</select></label>
+        </div>
+        <div class="kind-filters" role="group" aria-label="Types of change to show">{kind_buttons}</div>
+        <label class="breaking-only"><input type="checkbox" id="breaking-only"> Breaking changes only</label>
+        <p id="version-summary" class="version-summary" role="status" aria-live="polite"></p>
+      </section>
+
+      <div id="version-list" data-language="{html.escape(slug)}">
+        {"".join(blocks)}
+      </div>
+      <p id="version-empty" class="version-empty" hidden>No changes match these choices.</p>
+    </div>
+
+    <div id="panel-available" class="version-panel" hidden>
+      <section class="version-controls" aria-label="Choose a version to check">
+        <div class="version-selects">
+          <label>My code runs on<select id="available-at">{at_options}</select></label>
+          <label class="feature-search">Filter by name<input type="search" id="feature-search" placeholder="for example, optional chaining" autocomplete="off"></label>
+        </div>
+        <div class="state-filters" role="group" aria-label="States to show">{state_buttons}</div>
+        <p id="available-summary" class="version-summary" role="status" aria-live="polite"></p>
+      </section>
+      <ul id="feature-index" class="feature-index">
+        {cards_html}
+      </ul>
+      <p id="available-empty" class="version-empty" hidden>No features match these choices.</p>
+    </div>
 
     <section class="version-sources">
       <h2>Official changelogs</h2>

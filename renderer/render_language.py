@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from versioning import has_versioning
+from versioning import features_for, has_versioning, lifecycle_facts, short_label, version_orders, versions_for
 
 
 TABLE_PATTERN = re.compile(r"<table\b.*?</table>", re.DOTALL)
@@ -15,6 +15,49 @@ TABLE_PATTERN = re.compile(r"<table\b.*?</table>", re.DOTALL)
 def wrap_tables(body_html: str) -> str:
     """Give each content table its own horizontal scroller so wide tables never widen the page."""
     return TABLE_PATTERN.sub(lambda match: f'<div class="table-scroll scroll-fade">{match.group(0)}</div>', body_html)
+
+
+def version_notes_html(topic_slug: str, features: list[dict[str, Any]], versions_by_id: dict[str, dict[str, Any]], orders: dict[str, int]) -> str:
+    """A collapsed "Version notes" list for the features that belong to a topic."""
+    items = [f for f in features if f.get("topic") == topic_slug]
+    if not items:
+        return ""
+    items.sort(key=lambda f: (orders[f["history"][0]["version"]], f["title"].lower()))
+    rows: list[str] = []
+    legacy = 0
+    for feature in items:
+        facts = lifecycle_facts(feature, versions_by_id)
+        added = facts["added"]
+        draft = " vn-draft" if added["status"] == "draft" else ""
+        since = f"Draft in {short_label(added)}" if added["status"] == "draft" else f"Since {short_label(added)}"
+        chips = [f'<span class="vn-since{draft}">{html.escape(since)}</span>']
+        if facts["deprecated"] is not None:
+            legacy += 1
+            if facts["deprecated_version"] is None:
+                chips.append('<span class="vn-status vn-deprecated">Legacy</span>')
+            else:
+                chips.append(f'<span class="vn-status vn-deprecated">Deprecated in {html.escape(short_label(facts["deprecated_version"]))}</span>')
+        if facts["removed"] is not None:
+            scope = facts["removed"].get("scope")
+            where = f" ({html.escape(scope)})" if scope else ""
+            word = "Restricted" if scope else "Removed"
+            chips.append(f'<span class="vn-status vn-removed">{word} in {html.escape(short_label(facts["removed_version"]))}{where}</span>')
+        if facts["changed_versions"]:
+            names = ", ".join(short_label(v) for v in facts["changed_versions"])
+            chips.append(f'<span class="vn-status vn-changed">Changed in {html.escape(names)}</span>')
+        rows.append(
+            f'<li><a href="versions/index.html#feature-{html.escape(feature["slug"])}">{html.escape(feature["title"])}</a>'
+            f'<span class="vn-chips">{"".join(chips)}</span></li>'
+        )
+    first, last = items[0]["history"][0]["version"], max(items, key=lambda f: orders[f["history"][0]["version"]])["history"][0]["version"]
+    span = short_label(versions_by_id[first]) if first == last else f"{short_label(versions_by_id[first])} to {short_label(versions_by_id[last])}"
+    flag = f' <span class="vn-flag">{legacy} legacy</span>' if legacy else ""
+    count = f"{len(items)} feature" + ("" if len(items) == 1 else "s")
+    return (
+        '<details class="version-notes"><summary>Version notes '
+        f'<span class="vn-meta">{count}, {html.escape(span)}</span>{flag}</summary>'
+        f'<ul class="vn-list">{"".join(rows)}</ul></details>'
+    )
 
 
 def relative_asset_path(page_rel: str, target_rel: str) -> str:
@@ -57,6 +100,12 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
             href = f'#{topic.get("slug")}'
             sidebar_parts.append(f'<a href="{href}">{html.escape(topic.get("title", ""))}</a>')
 
+    versioned = has_versioning(data, language["slug"])
+    all_versions = versions_for(data, language["slug"]) if versioned else []
+    versions_by_id = {v["id"]: v for v in all_versions}
+    version_order_map = version_orders(all_versions)
+    language_features = features_for(data, language["slug"]) if versioned else []
+
     topic_html: list[str] = []
     for topic in topics:
         content_html = topic.get("content_html")
@@ -78,6 +127,7 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
         topic_html.append(
             f'<section class="topic" id="{html.escape(topic.get("slug", ""))}">'
             f'<h2>{html.escape(topic.get("title", ""))}</h2>'
+            f'{version_notes_html(topic.get("slug", ""), language_features, versions_by_id, version_order_map) if versioned else ""}'
             f'{body_html}'
             f'</section>'
         )
