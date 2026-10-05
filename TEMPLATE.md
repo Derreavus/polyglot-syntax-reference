@@ -24,8 +24,8 @@ consistency with the existing reference, current language standards.
       default or classic footgun in that section
 - [ ] `concepts` mappings added for every concept the language has a topic for
 - [ ] A value for the new language added to **every** row in `compare`
-- [ ] If the language has version history: `versions`, `features` and `changelog_links`
-      added (see [Version history](#6-version-history-optional))
+- [ ] If the language has version history: `tracks`, `versions` and `features` added
+      (see [Version history](#6-version-history-optional))
 - [ ] `python renderer/build_site.py` succeeds and the checks in the
       [Verify](#verify) section pass
 - [ ] Reviewed the built site locally (`python scripts/serve_staging.py`)
@@ -147,52 +147,70 @@ here, unlike in `content_html`.
 
 ## 6. Version history (optional)
 
-A language gets a version history page once it has `versions`. Add the pieces in this order.
+A language gets version history pages once it has `tracks`. A **track** is one ordered list of versions.
+Most languages need one (the releases of the language). Add a second when a runtime or compiler has its
+own releases that differ from the language's, as Node.js does for JavaScript. Add the pieces in this order.
 
-**Versions** (one per release, oldest first):
+**Tracks** (the first one, by `order`, gets the short address `/<language>/versions/`; the others get
+`/<language>/versions/<track id>/`):
 
 ```json
-{ "language": "go", "id": "go1.21", "label": "Go 1.21", "aliases": [],
+{ "language": "go", "id": "go", "label": "Go", "kind": "language", "order": 1,
+  "description": "Releases of the Go language and toolchain.",
+  "changelog_links": [
+    { "title": "Official release notes", "url": "https://go.dev/doc/devel/release" }
+  ] }
+```
+
+`kind` is `language` or `runtime`. `changelog_links` are required, must use https, and are shown as the
+page's sources, so there is no need to cite a source for each event.
+
+**Versions** (one per release, oldest first, each naming its track):
+
+```json
+{ "language": "go", "track": "go", "id": "go1.21", "label": "Go 1.21", "aliases": [],
   "released": "2023-08", "order": 12, "status": "released" }
 ```
 
-`order` must be unique and increasing, and dates must not go backwards. Use `status: "draft"`
-for a release that is not out yet; drafts must come after every released version. The first
-version can be a baseline for features that have existed since the beginning.
+- `order` must be unique and increasing within a track, and dates must not go backwards. Use
+  `status: "draft"` for a release that is not out yet; drafts must come after every released version.
+- The first version can be a baseline for features that have existed since the beginning.
+- A runtime version can add `codename`, `lts_from`, `end_of_life` and `engine` (for example `"V8 12.4"`).
+  The page shows them, and marks a version "support ended" once `end_of_life` has passed.
 
-**Changelog links** on the language entry (required once it has versions):
-
-```json
-"changelog_links": [
-  { "title": "Official release notes", "url": "https://go.dev/doc/devel/release" }
-]
-```
-
-**Features** (things you can recognise in code):
+**Features** (things you can recognise in code). `history` maps a track id to that track's events, so a
+feature can be on one track or on several:
 
 ```json
 {
   "language": "go", "slug": "generics", "title": "Generics", "category": "syntax",
   "summary": "Type parameters on functions and types.",
   "topic": "generics",
-  "history": [
-    { "version": "go1.18", "kind": "added" },
-    { "version": "go1.21", "kind": "changed", "note": "Type inference was extended." }
-  ],
+  "history": {
+    "go": [
+      { "version": "go1.18", "kind": "added" },
+      { "version": "go1.21", "kind": "changed", "note": "Type inference was extended." }
+    ]
+  },
   "migration": { "legacy": "func Max(a, b interface{}) ...", "modern": "func Max[T cmp.Ordered](a, b T) T ...",
                  "note": "Optional explanation." }
 }
 ```
 
 - `category` is `syntax`, `library`, `behavior` or `tooling`.
-- Event kinds are `added`, `changed`, `deprecated` and `removed`. There is exactly one `added` event and
-  it comes first. There is at most one `deprecated` and at most one `removed`, and `removed` comes last.
-  `changed` and `removed` need a `note`. Add `"breaking": true` to a `changed` event that can break old code.
+- Event kinds are `added`, `changed`, `deprecated` and `removed`. Each track's list has exactly one `added`
+  event and it comes first. There is at most one `deprecated` and at most one `removed`, and `removed`
+  comes last. `changed` and `removed` need a `note`. Add `"breaking": true` to a `changed` event that can
+  break old code.
+- Add `"release": "16.6.0"` to name the exact release inside a version where the change first appeared.
 - A `deprecated` event may use `"version": null` (with a `note`) when no release deprecated it.
 - `scope` limits an event, for example `"scope": "strict mode only"`.
-- `replaced_by` lists the feature slugs that replace a deprecated or removed feature.
+- `replaced_by` lists the feature slugs that replace a deprecated or removed feature. They may be on a
+  different track.
 - A `migration` needs both snippets. Make the newer snippet valid in the version that added the feature.
 - `topic` must be an existing topic slug for the same language, or left out.
+- Each track is checked on its own. Do not try to keep tracks in step: a runtime can ship a feature before
+  the language standard publishes it.
 
 ---
 

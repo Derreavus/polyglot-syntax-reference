@@ -43,21 +43,7 @@
       "order": 5,
       "description": "A practical guide to JavaScript syntax, objects, asynchronous code, and the web platform.",
       "version_label": "ECMAScript 2026 · modern JavaScript",
-      "color": "#f7df1e",
-      "changelog_links": [
-        {
-          "title": "TC39 finished proposals, grouped by the edition that includes them",
-          "url": "https://github.com/tc39/proposals/blob/main/finished-proposals.md"
-        },
-        {
-          "title": "ECMA-262 editions, including historical snapshots",
-          "url": "https://ecma-international.org/publications-and-standards/standards/ecma-262/"
-        },
-        {
-          "title": "ECMAScript living specification (latest draft)",
-          "url": "https://tc39.es/ecma262/"
-        }
-      ]
+      "color": "#f7df1e"
     }
   ],
   "concepts": [
@@ -1867,6 +1853,7 @@
   "versions": [
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es3",
       "label": "ES3 (baseline)",
       "released": "1999-12",
@@ -1876,6 +1863,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es5",
       "label": "ES5",
       "aliases": [
@@ -1888,6 +1876,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2015",
       "label": "ES2015",
       "aliases": [
@@ -1899,6 +1888,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2016",
       "label": "ES2016",
       "released": "2016-06",
@@ -1907,6 +1897,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2017",
       "label": "ES2017",
       "released": "2017-06",
@@ -1915,6 +1906,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2018",
       "label": "ES2018",
       "released": "2018-06",
@@ -1923,6 +1915,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2019",
       "label": "ES2019",
       "released": "2019-06",
@@ -1931,6 +1924,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2020",
       "label": "ES2020",
       "released": "2020-06",
@@ -1939,6 +1933,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2021",
       "label": "ES2021",
       "released": "2021-06",
@@ -1947,6 +1942,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2022",
       "label": "ES2022",
       "released": "2022-06",
@@ -1955,6 +1951,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2023",
       "label": "ES2023",
       "released": "2023-06",
@@ -1963,6 +1960,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2024",
       "label": "ES2024",
       "released": "2024-06",
@@ -1971,6 +1969,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2025",
       "label": "ES2025",
       "released": "2025-06",
@@ -1979,6 +1978,7 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2026",
       "label": "ES2026",
       "released": "2026-06",
@@ -1987,12 +1987,313 @@
     },
     {
       "language": "javascript",
+      "track": "ecmascript",
       "id": "es2027",
       "label": "ES2027",
       "released": "2027-06",
       "order": 15,
       "status": "draft",
       "note": "Draft edition, expected June 2027. Contents can still change."
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-0.10",
+      "label": "Node.js 0.10 (baseline)",
+      "released": "2013-03-11",
+      "order": 1,
+      "status": "released",
+      "end_of_life": "2016-10-31",
+      "engine": "V8 3.14",
+      "note": "Baseline. Features that this release or an earlier one already supported are recorded as added here."
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-0.12",
+      "label": "Node.js 0.12",
+      "released": "2015-02-06",
+      "order": 2,
+      "status": "released",
+      "end_of_life": "2016-12-31",
+      "engine": "V8 3.28"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-4",
+      "label": "Node.js 4",
+      "released": "2015-09-08",
+      "order": 3,
+      "status": "released",
+      "codename": "Argon",
+      "lts_from": "2015-10-12",
+      "end_of_life": "2018-04-30",
+      "engine": "V8 4.5",
+      "note": "The first release after io.js and Node.js merged, so the io.js 1.x to 3.x releases are not listed."
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-5",
+      "label": "Node.js 5",
+      "released": "2015-10-29",
+      "order": 4,
+      "status": "released",
+      "end_of_life": "2016-06-30",
+      "engine": "V8 4.6"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-6",
+      "label": "Node.js 6",
+      "released": "2016-04-26",
+      "order": 5,
+      "status": "released",
+      "codename": "Boron",
+      "lts_from": "2016-10-18",
+      "end_of_life": "2019-04-30",
+      "engine": "V8 5"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-7",
+      "label": "Node.js 7",
+      "released": "2016-10-25",
+      "order": 6,
+      "status": "released",
+      "end_of_life": "2017-06-30",
+      "engine": "V8 5.4"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-8",
+      "label": "Node.js 8",
+      "released": "2017-05-30",
+      "order": 7,
+      "status": "released",
+      "codename": "Carbon",
+      "lts_from": "2017-10-31",
+      "end_of_life": "2019-12-31",
+      "engine": "V8 5.8"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-9",
+      "label": "Node.js 9",
+      "released": "2017-10-01",
+      "order": 8,
+      "status": "released",
+      "end_of_life": "2018-06-30",
+      "engine": "V8 6.2"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-10",
+      "label": "Node.js 10",
+      "released": "2018-04-24",
+      "order": 9,
+      "status": "released",
+      "codename": "Dubnium",
+      "lts_from": "2018-10-30",
+      "end_of_life": "2021-04-30",
+      "engine": "V8 6.6"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-11",
+      "label": "Node.js 11",
+      "released": "2018-10-23",
+      "order": 10,
+      "status": "released",
+      "end_of_life": "2019-06-01",
+      "engine": "V8 7.0"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-12",
+      "label": "Node.js 12",
+      "released": "2019-04-23",
+      "order": 11,
+      "status": "released",
+      "codename": "Erbium",
+      "lts_from": "2019-10-21",
+      "end_of_life": "2022-04-30",
+      "engine": "V8 7.4"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-13",
+      "label": "Node.js 13",
+      "released": "2019-10-22",
+      "order": 12,
+      "status": "released",
+      "end_of_life": "2020-06-01",
+      "engine": "V8 7.8"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-14",
+      "label": "Node.js 14",
+      "released": "2020-04-21",
+      "order": 13,
+      "status": "released",
+      "codename": "Fermium",
+      "lts_from": "2020-10-27",
+      "end_of_life": "2023-04-30",
+      "engine": "V8 8.1"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-15",
+      "label": "Node.js 15",
+      "released": "2020-10-20",
+      "order": 14,
+      "status": "released",
+      "end_of_life": "2021-06-01",
+      "engine": "V8 8.6"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-16",
+      "label": "Node.js 16",
+      "released": "2021-04-20",
+      "order": 15,
+      "status": "released",
+      "codename": "Gallium",
+      "lts_from": "2021-10-26",
+      "end_of_life": "2023-09-11",
+      "engine": "V8 9.0"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-17",
+      "label": "Node.js 17",
+      "released": "2021-10-19",
+      "order": 16,
+      "status": "released",
+      "end_of_life": "2022-06-01",
+      "engine": "V8 9.5"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-18",
+      "label": "Node.js 18",
+      "released": "2022-04-19",
+      "order": 17,
+      "status": "released",
+      "codename": "Hydrogen",
+      "lts_from": "2022-10-25",
+      "end_of_life": "2025-04-30",
+      "engine": "V8 10.1"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-19",
+      "label": "Node.js 19",
+      "released": "2022-10-18",
+      "order": 18,
+      "status": "released",
+      "end_of_life": "2023-06-01",
+      "engine": "V8 10.7"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-20",
+      "label": "Node.js 20",
+      "released": "2023-04-18",
+      "order": 19,
+      "status": "released",
+      "codename": "Iron",
+      "lts_from": "2023-10-24",
+      "end_of_life": "2026-04-30",
+      "engine": "V8 11.3"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-21",
+      "label": "Node.js 21",
+      "released": "2023-10-17",
+      "order": 20,
+      "status": "released",
+      "end_of_life": "2024-06-01",
+      "engine": "V8 11.8"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-22",
+      "label": "Node.js 22",
+      "released": "2024-04-24",
+      "order": 21,
+      "status": "released",
+      "codename": "Jod",
+      "lts_from": "2024-10-29",
+      "end_of_life": "2027-04-30",
+      "engine": "V8 12.4"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-23",
+      "label": "Node.js 23",
+      "released": "2024-10-16",
+      "order": 22,
+      "status": "released",
+      "end_of_life": "2025-06-01",
+      "engine": "V8 12.9"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-24",
+      "label": "Node.js 24",
+      "released": "2025-05-06",
+      "order": 23,
+      "status": "released",
+      "codename": "Krypton",
+      "lts_from": "2025-10-28",
+      "end_of_life": "2028-04-30",
+      "engine": "V8 13.6"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-25",
+      "label": "Node.js 25",
+      "released": "2025-10-15",
+      "order": 24,
+      "status": "released",
+      "end_of_life": "2026-06-01",
+      "engine": "V8 14.1"
+    },
+    {
+      "language": "javascript",
+      "track": "node",
+      "id": "node-26",
+      "label": "Node.js 26",
+      "released": "2026-05-05",
+      "order": 25,
+      "status": "released",
+      "lts_from": "2026-10-28",
+      "end_of_life": "2029-04-30",
+      "engine": "V8 14.6"
     }
   ],
   "features": [
@@ -2003,18 +2304,26 @@
       "category": "syntax",
       "summary": "Adds an object's properties to the scope chain for a block, so bare names resolve against the object.",
       "topic": "control",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added"
-        },
-        {
-          "version": "es5",
-          "kind": "removed",
-          "note": "Using with in strict-mode code is a SyntaxError. Sloppy-mode code can still use it, but class bodies and modules are always strict.",
-          "scope": "strict mode only"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added"
+          },
+          {
+            "version": "es5",
+            "kind": "removed",
+            "note": "Using with in strict-mode code is a SyntaxError. Sloppy-mode code can still use it, but class bodies and modules are always strict.",
+            "scope": "strict mode only"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "with (config.server) {\n  console.log(host, port);\n}",
         "modern": "const { host, port } = config.server;\nconsole.log(host, port);",
@@ -2028,18 +2337,26 @@
       "category": "behavior",
       "summary": "arguments.callee refers to the function that is currently running, from inside that function.",
       "topic": "functions",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added"
-        },
-        {
-          "version": "es5",
-          "kind": "removed",
-          "note": "Accessing arguments.callee throws a TypeError in strict-mode functions.",
-          "scope": "strict mode only"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added"
+          },
+          {
+            "version": "es5",
+            "kind": "removed",
+            "note": "Accessing arguments.callee throws a TypeError in strict-mode functions.",
+            "scope": "strict mode only"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var fact = function (n) {\n  return n <= 1 ? 1 : n * arguments.callee(n - 1);\n};",
         "modern": "var fact = function f(n) {\n  return n <= 1 ? 1 : n * f(n - 1);\n};",
@@ -2053,19 +2370,27 @@
       "category": "syntax",
       "summary": "Integer literals written with a leading zero, such as 0755, and octal escape sequences in strings.",
       "topic": "types",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added",
-          "note": "Described in the compatibility annex (Annex B) rather than the core grammar."
-        },
-        {
-          "version": "es5",
-          "kind": "removed",
-          "note": "Legacy octal literals and octal escape sequences are a SyntaxError in strict mode.",
-          "scope": "strict mode only"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added",
+            "note": "Described in the compatibility annex (Annex B) rather than the core grammar."
+          },
+          {
+            "version": "es5",
+            "kind": "removed",
+            "note": "Legacy octal literals and octal escape sequences are a SyntaxError in strict mode.",
+            "scope": "strict mode only"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      },
       "replaced_by": [
         "binary-octal-literals"
       ],
@@ -2082,18 +2407,26 @@
       "category": "library",
       "summary": "Extracts part of a string using a start index and a length.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added",
-          "note": "New in the compatibility annex (Annex B), which first appeared in ES3. Not part of the core language."
-        },
-        {
-          "version": null,
-          "kind": "deprecated",
-          "note": "Legacy feature kept for web compatibility (Annex B). Prefer slice() or substring(). It is not scheduled for removal."
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added",
+            "note": "New in the compatibility annex (Annex B), which first appeared in ES3. Not part of the core language."
+          },
+          {
+            "version": null,
+            "kind": "deprecated",
+            "note": "Legacy feature kept for web compatibility (Annex B). Prefer slice() or substring(). It is not scheduled for removal."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var part = text.substr(2, 3);",
         "modern": "var part = text.slice(2, 5);",
@@ -2107,18 +2440,26 @@
       "category": "library",
       "summary": "Global functions that apply a percent-style encoding to strings.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added",
-          "note": "Part of the core language in the earliest editions. Moved to the compatibility annex (Annex B) in ES3."
-        },
-        {
-          "version": null,
-          "kind": "deprecated",
-          "note": "Legacy functions kept for web compatibility (Annex B). They use a non-standard %uXXXX form for characters above U+00FF. Use encodeURIComponent() and decodeURIComponent()."
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added",
+            "note": "Part of the core language in the earliest editions. Moved to the compatibility annex (Annex B) in ES3."
+          },
+          {
+            "version": null,
+            "kind": "deprecated",
+            "note": "Legacy functions kept for web compatibility (Annex B). They use a non-standard %uXXXX form for characters above U+00FF. Use encodeURIComponent() and decodeURIComponent()."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      },
       "replaced_by": [
         "encode-uri-component"
       ],
@@ -2134,12 +2475,20 @@
       "title": "encodeURI() and encodeURIComponent()",
       "category": "library",
       "summary": "Functions that encode and decode strings for use inside URIs.",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2148,17 +2497,25 @@
       "category": "behavior",
       "summary": "for...in loops over an object's enumerable string keys, including inherited ones.",
       "topic": "iteration",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added"
-        },
-        {
-          "version": "es2020",
-          "kind": "changed",
-          "note": "The order is now partly specified. For ordinary objects, own keys come first (integer indices in ascending order, then string keys in the order they were added), followed by inherited keys. Proxies and other exotic objects, and objects changed during the loop, can still differ."
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added"
+          },
+          {
+            "version": "es2020",
+            "kind": "changed",
+            "note": "The order is now partly specified. For ordinary objects, own keys come first (integer indices in ascending order, then string keys in the order they were added), followed by inherited keys. Proxies and other exotic objects, and objects changed during the loop, can still differ."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2166,17 +2523,25 @@
       "title": "Strict mode",
       "category": "behavior",
       "summary": "The 'use strict' directive switches code to a restricted variant of the language with more errors.",
-      "history": [
-        {
-          "version": "es5",
-          "kind": "added"
-        },
-        {
-          "version": "es2015",
-          "kind": "changed",
-          "note": "Class bodies and module code are always strict, with no directive needed."
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es5",
+            "kind": "added"
+          },
+          {
+            "version": "es2015",
+            "kind": "changed",
+            "note": "Class bodies and module code are always strict, with no directive needed."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2185,17 +2550,30 @@
       "category": "library",
       "summary": "A built-in JSON object for parsing and producing JSON text.",
       "topic": "json",
-      "history": [
-        {
-          "version": "es5",
-          "kind": "added"
-        },
-        {
-          "version": "es2019",
-          "kind": "changed",
-          "note": "JSON.stringify now escapes lone surrogates so its output is always well-formed, and U+2028 and U+2029 are allowed inside string literals."
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es5",
+            "kind": "added"
+          },
+          {
+            "version": "es2019",
+            "kind": "changed",
+            "note": "JSON.stringify now escapes lone surrogates so its output is always well-formed, and U+2028 and U+2029 are allowed inside string literals."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          },
+          {
+            "version": "node-12",
+            "kind": "changed",
+            "note": "JSON.stringify returns well-formed output and string literals may contain U+2028 and U+2029."
+          }
+        ]
+      },
       "migration": {
         "legacy": "var data = eval(\"(\" + text + \")\");",
         "modern": "var data = JSON.parse(text);",
@@ -2209,12 +2587,20 @@
       "category": "library",
       "summary": "forEach, map, filter, reduce, reduceRight, some, every, indexOf and lastIndexOf on arrays.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es5",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es5",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var evens = [];\nfor (var i = 0; i < nums.length; i++) {\n  if (nums[i] % 2 === 0) evens.push(nums[i]);\n}",
         "modern": "var evens = nums.filter(function (n) {\n  return n % 2 === 0;\n});"
@@ -2227,12 +2613,20 @@
       "category": "library",
       "summary": "Returns a function with a fixed this value and optional leading arguments.",
       "topic": "functions",
-      "history": [
-        {
-          "version": "es5",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es5",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var self = this;\nbutton.onclick = function () {\n  self.handle();\n};",
         "modern": "button.onclick = this.handle.bind(this);"
@@ -2245,12 +2639,20 @@
       "category": "syntax",
       "summary": "Block-scoped variable declarations, with const for bindings that are never reassigned.",
       "topic": "variables",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-6",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "for (var i = 0; i < 3; i++) {\n  setTimeout(function () { console.log(i); }, 0);\n}",
         "modern": "for (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}",
@@ -2264,12 +2666,20 @@
       "category": "syntax",
       "summary": "Compact function syntax whose this is taken from the surrounding code.",
       "topic": "functions",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var self = this;\nitems.forEach(function (item) {\n  self.add(item);\n});",
         "modern": "items.forEach((item) => {\n  this.add(item);\n});",
@@ -2283,17 +2693,25 @@
       "category": "syntax",
       "summary": "class declarations with constructors, methods, extends and super.",
       "topic": "classes",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        },
-        {
-          "version": "es2022",
-          "kind": "changed",
-          "note": "Class bodies gained public and private fields, private methods and static initialization blocks."
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          },
+          {
+            "version": "es2022",
+            "kind": "changed",
+            "note": "Class bodies gained public and private fields, private methods and static initialization blocks."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-6",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "function Point(x, y) {\n  this.x = x;\n  this.y = y;\n}\nPoint.prototype.toString = function () {\n  return \"(\" + this.x + \", \" + this.y + \")\";\n};",
         "modern": "class Point {\n  constructor(x, y) {\n    this.x = x;\n    this.y = y;\n  }\n  toString() {\n    return `(${this.x}, ${this.y})`;\n  }\n}",
@@ -2307,17 +2725,31 @@
       "category": "syntax",
       "summary": "Backtick strings with ${expression} interpolation, multi-line text and tagged templates.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        },
-        {
-          "version": "es2018",
-          "kind": "changed",
-          "note": "Tagged templates may contain invalid escape sequences; their cooked value is undefined instead of a SyntaxError."
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          },
+          {
+            "version": "es2018",
+            "kind": "changed",
+            "note": "Tagged templates may contain invalid escape sequences; their cooked value is undefined instead of a SyntaxError."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          },
+          {
+            "version": "node-8",
+            "kind": "changed",
+            "release": "8.10.0",
+            "note": "Tagged templates accept invalid escape sequences."
+          }
+        ]
+      },
       "migration": {
         "legacy": "var message = \"Hello, \" + name + \"! You have \" + count + \" messages.\";",
         "modern": "const message = `Hello, ${name}! You have ${count} messages.`;"
@@ -2330,12 +2762,20 @@
       "category": "syntax",
       "summary": "Pattern syntax that unpacks arrays and objects into variables.",
       "topic": "destructuring",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-6",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var host = options.host;\nvar port = options.port;",
         "modern": "const { host, port } = options;"
@@ -2348,12 +2788,20 @@
       "category": "syntax",
       "summary": "Default parameter values, rest parameters, and spread in calls and array literals.",
       "topic": "functions",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-6",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "function log(level) {\n  level = level || \"info\";\n  var parts = Array.prototype.slice.call(arguments, 1);\n  console.log.apply(console, [level].concat(parts));\n}",
         "modern": "function log(level = \"info\", ...parts) {\n  console.log(level, ...parts);\n}",
@@ -2367,12 +2815,22 @@
       "category": "syntax",
       "summary": "import and export statements for native modules.",
       "topic": "modules",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-13",
+            "kind": "added",
+            "release": "13.2.0",
+            "note": "ES modules need a .mjs file name, or \"type\": \"module\" in the nearest package.json. Earlier releases that supported it: 12.17.0 to 12.19.0."
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2381,12 +2839,21 @@
       "category": "library",
       "summary": "Promise objects for asynchronous results, with then, catch, Promise.all and Promise.race.",
       "topic": "async",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.12",
+            "kind": "added",
+            "release": "0.12.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "readConfig(function (err, config) {\n  if (err) return handle(err);\n  loadUser(config, function (err, user) {\n    if (err) return handle(err);\n    render(user);\n  });\n});",
         "modern": "readConfig()\n  .then((config) => loadUser(config))\n  .then((user) => render(user))\n  .catch(handle);",
@@ -2400,12 +2867,20 @@
       "category": "syntax",
       "summary": "0b and 0o prefixes for binary and octal integer literals.",
       "topic": "types",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2414,12 +2889,20 @@
       "category": "library",
       "summary": "String methods for testing whether text contains, starts with or ends with another string, and for repeating a string.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "if (url.indexOf(\"https://\") === 0) {\n  secure();\n}",
         "modern": "if (url.startsWith(\"https://\")) {\n  secure();\n}"
@@ -2432,12 +2915,20 @@
       "category": "library",
       "summary": "Copies own enumerable properties from one or more objects onto a target object.",
       "topic": "objects",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var copy = {};\nfor (var key in source) {\n  if (Object.prototype.hasOwnProperty.call(source, key)) {\n    copy[key] = source[key];\n  }\n}",
         "modern": "const copy = Object.assign({}, source);",
@@ -2451,12 +2942,20 @@
       "category": "library",
       "summary": "Tests whether an array contains a value.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2016",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2016",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-6",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "if (list.indexOf(item) !== -1) {\n  found();\n}",
         "modern": "if (list.includes(item)) {\n  found();\n}",
@@ -2470,12 +2969,20 @@
       "category": "syntax",
       "summary": "The ** operator and the **= assignment operator.",
       "topic": "operators",
-      "history": [
-        {
-          "version": "es2016",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2016",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-7",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var big = Math.pow(2, 10);",
         "modern": "const big = 2 ** 10;",
@@ -2489,12 +2996,21 @@
       "category": "syntax",
       "summary": "async functions return promises, and await pauses them until a promise settles.",
       "topic": "async",
-      "history": [
-        {
-          "version": "es2017",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2017",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-7",
+            "kind": "added",
+            "release": "7.6.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "function load() {\n  return fetchUser().then(function (user) {\n    return fetchPosts(user.id);\n  });\n}",
         "modern": "async function load() {\n  const user = await fetchUser();\n  return fetchPosts(user.id);\n}",
@@ -2508,12 +3024,20 @@
       "category": "library",
       "summary": "Return an object's own enumerable property values, or its key-value pairs.",
       "topic": "objects",
-      "history": [
-        {
-          "version": "es2017",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2017",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-7",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var pairs = Object.keys(obj).map(function (key) {\n  return [key, obj[key]];\n});",
         "modern": "const pairs = Object.entries(obj);"
@@ -2526,12 +3050,21 @@
       "category": "syntax",
       "summary": "Rest and spread syntax for object properties: { ...a, ...b } and const { x, ...rest } = obj.",
       "topic": "objects",
-      "history": [
-        {
-          "version": "es2018",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2018",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-8",
+            "kind": "added",
+            "release": "8.3.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var merged = Object.assign({}, defaults, overrides);",
         "modern": "const merged = { ...defaults, ...overrides };",
@@ -2545,12 +3078,20 @@
       "category": "library",
       "summary": "Flatten nested arrays, or map and flatten in one step.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2019",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2019",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-11",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var flat = [].concat.apply([], nested);",
         "modern": "const flat = nested.flat();",
@@ -2564,12 +3105,20 @@
       "category": "syntax",
       "summary": "A catch clause can omit the error variable when it is not needed.",
       "topic": "errors",
-      "history": [
-        {
-          "version": "es2019",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2019",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "try {\n  risky();\n} catch (unused) {\n  recover();\n}",
         "modern": "try {\n  risky();\n} catch {\n  recover();\n}"
@@ -2582,12 +3131,20 @@
       "category": "syntax",
       "summary": "The ?. operator stops and returns undefined when the left side is null or undefined.",
       "topic": "operators",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-14",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var city = user && user.address && user.address.city;",
         "modern": "const city = user?.address?.city;",
@@ -2601,12 +3158,20 @@
       "category": "syntax",
       "summary": "The ?? operator returns its right side only when the left side is null or undefined.",
       "topic": "operators",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-14",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var port = options.port || 3000;",
         "modern": "const port = options.port ?? 3000;",
@@ -2620,12 +3185,21 @@
       "category": "syntax",
       "summary": "Integers of arbitrary size, written with an n suffix such as 123n.",
       "topic": "types",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-10",
+            "kind": "added",
+            "release": "10.4.0"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2634,12 +3208,22 @@
       "category": "syntax",
       "summary": "import() loads a module at run time and returns a promise for its namespace.",
       "topic": "modules",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-13",
+            "kind": "added",
+            "release": "13.2.0",
+            "note": "Earlier releases that supported it: 12.17.0 to 12.19.0."
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2648,12 +3232,20 @@
       "category": "syntax",
       "summary": "The &&=, ||= and ??= operators assign only when a condition on the left side holds.",
       "topic": "operators",
-      "history": [
-        {
-          "version": "es2021",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2021",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-15",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "if (!opts.timeout) {\n  opts.timeout = 30;\n}",
         "modern": "opts.timeout ||= 30;",
@@ -2667,12 +3259,20 @@
       "category": "library",
       "summary": "Replaces every occurrence of a string or pattern.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es2021",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2021",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-15",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var snake = text.replace(/-/g, \"_\");",
         "modern": "const snake = text.replaceAll(\"-\", \"_\");",
@@ -2686,12 +3286,21 @@
       "category": "syntax",
       "summary": "Field declarations in class bodies, including #private fields and methods, static fields and static blocks.",
       "topic": "classes",
-      "history": [
-        {
-          "version": "es2022",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2022",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added",
+            "release": "16.11.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "class Counter {\n  constructor() {\n    this._count = 0;\n  }\n}",
         "modern": "class Counter {\n  #count = 0;\n}",
@@ -2705,12 +3314,21 @@
       "category": "syntax",
       "summary": "await can be used at the top level of a module.",
       "topic": "modules",
-      "history": [
-        {
-          "version": "es2022",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2022",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-14",
+            "kind": "added",
+            "release": "14.8.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "(async () => {\n  const data = await load();\n  start(data);\n})();",
         "modern": "const data = await load();\nstart(data);",
@@ -2724,12 +3342,21 @@
       "category": "library",
       "summary": "Reads an element by index, counting from the end when the index is negative. Also on strings and typed arrays.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2022",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2022",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added",
+            "release": "16.6.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var last = list[list.length - 1];",
         "modern": "const last = list.at(-1);"
@@ -2742,12 +3369,21 @@
       "category": "library",
       "summary": "Tests whether an object has an own property, without going through the prototype.",
       "topic": "objects",
-      "history": [
-        {
-          "version": "es2022",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2022",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added",
+            "release": "16.9.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "if (Object.prototype.hasOwnProperty.call(obj, key)) {\n  use(obj[key]);\n}",
         "modern": "if (Object.hasOwn(obj, key)) {\n  use(obj[key]);\n}"
@@ -2760,12 +3396,20 @@
       "category": "library",
       "summary": "Search an array from the end.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2023",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2023",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-18",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "const last = list.slice().reverse().find((n) => n % 2 === 0);",
         "modern": "const last = list.findLast((n) => n % 2 === 0);"
@@ -2778,12 +3422,20 @@
       "category": "library",
       "summary": "Copying versions of sort, reverse and splice, plus with() to replace one element.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2023",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2023",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-20",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "const sorted = list.slice().sort();",
         "modern": "const sorted = list.toSorted();",
@@ -2797,12 +3449,20 @@
       "category": "library",
       "summary": "Group the items of an iterable by a key function.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2024",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2024",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-21",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "const byType = {};\nitems.forEach((item) => {\n  (byType[item.type] = byType[item.type] || []).push(item);\n});",
         "modern": "const byType = Object.groupBy(items, (item) => item.type);",
@@ -2816,12 +3476,20 @@
       "category": "library",
       "summary": "Returns a promise together with its resolve and reject functions.",
       "topic": "async",
-      "history": [
-        {
-          "version": "es2024",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2024",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-22",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "let resolve, reject;\nconst promise = new Promise((res, rej) => {\n  resolve = res;\n  reject = rej;\n});",
         "modern": "const { promise, resolve, reject } = Promise.withResolvers();"
@@ -2834,12 +3502,20 @@
       "category": "library",
       "summary": "Iterator methods such as map, filter, take, drop, flatMap and toArray, which work lazily.",
       "topic": "iteration",
-      "history": [
-        {
-          "version": "es2025",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2025",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-22",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "const doubled = [...numbers()].map((n) => n * 2);",
         "modern": "const doubled = numbers().map((n) => n * 2).toArray();",
@@ -2853,12 +3529,20 @@
       "category": "library",
       "summary": "union(), intersection(), difference(), symmetricDifference(), isSubsetOf(), isSupersetOf() and isDisjointFrom().",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2025",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2025",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-22",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "const both = new Set([...a].filter((x) => b.has(x)));",
         "modern": "const both = a.intersection(b);"
@@ -2871,12 +3555,20 @@
       "category": "library",
       "summary": "Calls a function and always returns a promise, even if the function throws synchronously.",
       "topic": "async",
-      "history": [
-        {
-          "version": "es2025",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2025",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-23",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "const result = new Promise((resolve) => resolve(task()));",
         "modern": "const result = Promise.try(task);",
@@ -2890,12 +3582,22 @@
       "category": "syntax",
       "summary": "A with { type: \"json\" } clause on imports, used to import JSON modules.",
       "topic": "modules",
-      "history": [
-        {
-          "version": "es2025",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2025",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-20",
+            "kind": "added",
+            "release": "20.10.0",
+            "note": "Also backported to 18.20.0."
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2904,12 +3606,20 @@
       "category": "library",
       "summary": "Builds an array from an async iterable and returns a promise for it.",
       "topic": "async",
-      "history": [
-        {
-          "version": "es2026",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2026",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-22",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "async function collect() {\n  const items = [];\n  for await (const item of stream()) {\n    items.push(item);\n  }\n  return items;\n}",
         "modern": "async function collect() {\n  return Array.fromAsync(stream());\n}"
@@ -2922,12 +3632,22 @@
       "category": "library",
       "summary": "Reliably tests whether a value is an error object.",
       "topic": "errors",
-      "history": [
-        {
-          "version": "es2026",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2026",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-24",
+            "kind": "added",
+            "release": "24.3.0",
+            "note": "Partly supported from 24.0.0, where it returned false for DOMException instances (Node.js issue 56497). Fully supported from 24.3.0."
+          }
+        ]
+      },
       "migration": {
         "legacy": "const isError = value instanceof Error;",
         "modern": "const isError = Error.isError(value);",
@@ -2940,12 +3660,20 @@
       "title": "using declarations",
       "category": "syntax",
       "summary": "using and await using declarations dispose of a resource automatically when the block ends.",
-      "history": [
-        {
-          "version": "es2027",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2027",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-24",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "const handle = open();\ntry {\n  use(handle);\n} finally {\n  handle.close();\n}",
         "modern": "using handle = open();\nuse(handle);",
@@ -2959,12 +3687,20 @@
       "category": "library",
       "summary": "A modern date and time API that fixes many problems of the Date object.",
       "topic": "dates",
-      "history": [
-        {
-          "version": "es2027",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2027",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-26",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -2973,12 +3709,20 @@
       "category": "syntax",
       "summary": "The iterator protocol, for...of loops, and generator functions (function*) that produce values with yield.",
       "topic": "iteration",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "function range(start, end) {\n  var current = start;\n  return {\n    next: function () {\n      return current < end\n        ? { value: current++, done: false }\n        : { value: undefined, done: true };\n    }\n  };\n}",
         "modern": "function* range(start, end) {\n  for (let i = start; i < end; i++) {\n    yield i;\n  }\n}",
@@ -2992,12 +3736,21 @@
       "category": "library",
       "summary": "Keyed and unique-value collections whose keys can be any value, not just strings.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.12",
+            "kind": "added",
+            "release": "0.12.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var counts = {};\nwords.forEach(function (word) {\n  counts[word] = (counts[word] || 0) + 1;\n});",
         "modern": "const counts = new Map();\nwords.forEach((word) => counts.set(word, (counts.get(word) || 0) + 1));",
@@ -3011,12 +3764,21 @@
       "category": "library",
       "summary": "A primitive type for unique property keys, including well-known symbols such as Symbol.iterator.",
       "topic": "types",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.12",
+            "kind": "added",
+            "release": "0.12.0"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3025,12 +3787,20 @@
       "category": "library",
       "summary": "Proxy objects intercept operations on another object, and Reflect exposes those operations as functions.",
       "topic": "objects",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-6",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3039,12 +3809,20 @@
       "category": "library",
       "summary": "Fixed-type views over binary data, such as Uint8Array and Float64Array.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3053,12 +3831,20 @@
       "category": "library",
       "summary": "Array.from, Array.of, find, findIndex, fill, copyWithin and the keys, values and entries iterators.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var args = Array.prototype.slice.call(arrayLike);",
         "modern": "const args = Array.from(arrayLike);",
@@ -3072,12 +3858,20 @@
       "category": "syntax",
       "summary": "{ name, age } shorthand, method shorthand, and [expression] computed property names in object literals.",
       "topic": "objects",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var user = { name: name, age: age };\nuser[prefix + \"Id\"] = id;",
         "modern": "const user = { name, age, [prefix + \"Id\"]: id };"
@@ -3090,12 +3884,21 @@
       "category": "library",
       "summary": "Number.isInteger, Number.isSafeInteger, Number.EPSILON, Math.trunc, Math.sign, Math.hypot and related functions.",
       "topic": "types",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.12",
+            "kind": "added",
+            "release": "0.12.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var isInt = typeof x === \"number\" && isFinite(x) && Math.floor(x) === x;",
         "modern": "const isInt = Number.isInteger(x);",
@@ -3109,12 +3912,20 @@
       "category": "library",
       "summary": "String.fromCodePoint(), codePointAt(), normalize(), \\u{...} escapes and the u flag for regular expressions.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es2015",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2015",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-4",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3123,12 +3934,20 @@
       "category": "library",
       "summary": "Pad a string to a minimum length at the start or the end.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es2017",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2017",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-8",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var label = (\"00\" + n).slice(-2);",
         "modern": "const label = String(n).padStart(2, \"0\");"
@@ -3141,12 +3960,20 @@
       "category": "syntax",
       "summary": "A trailing comma is allowed in function parameter lists and call arguments.",
       "topic": "functions",
-      "history": [
-        {
-          "version": "es2017",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2017",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-8",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "function connect(host, port) {\n  return open(host, port);\n}",
         "modern": "function connect(\n  host,\n  port,\n) {\n  return open(host, port,);\n}",
@@ -3159,12 +3986,21 @@
       "title": "SharedArrayBuffer and Atomics",
       "category": "library",
       "summary": "Memory shared between agents and atomic operations for coordinating access to it.",
-      "history": [
-        {
-          "version": "es2017",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2017",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-8",
+            "kind": "added",
+            "release": "8.10.0"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3173,12 +4009,20 @@
       "category": "library",
       "summary": "Returns the full property descriptors of an object, including getters and setters.",
       "topic": "objects",
-      "history": [
-        {
-          "version": "es2017",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2017",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-7",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3187,12 +4031,20 @@
       "category": "syntax",
       "summary": "for await...of loops and async function* generators for sequences that arrive over time.",
       "topic": "iteration",
-      "history": [
-        {
-          "version": "es2018",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2018",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "async function readAll(reader) {\n  const chunks = [];\n  let result = await reader.read();\n  while (!result.done) {\n    chunks.push(result.value);\n    result = await reader.read();\n  }\n  return chunks;\n}",
         "modern": "async function readAll(source) {\n  const chunks = [];\n  for await (const chunk of source) {\n    chunks.push(chunk);\n  }\n  return chunks;\n}",
@@ -3206,12 +4058,20 @@
       "category": "library",
       "summary": "Runs a callback when a promise settles, whether it was fulfilled or rejected.",
       "topic": "async",
-      "history": [
-        {
-          "version": "es2018",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2018",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "task().then(\n  function (value) { cleanup(); return value; },\n  function (error) { cleanup(); throw error; }\n);",
         "modern": "task().finally(cleanup);",
@@ -3225,12 +4085,20 @@
       "category": "syntax",
       "summary": "(?<name>...) captures that can be read from the groups property of a match.",
       "topic": "regexp",
-      "history": [
-        {
-          "version": "es2018",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2018",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var match = /(\\d{4})-(\\d{2})/.exec(text);\nvar year = match[1];",
         "modern": "const { groups } = /(?<year>\\d{4})-(?<month>\\d{2})/.exec(text);\nconst year = groups.year;"
@@ -3243,12 +4111,21 @@
       "category": "syntax",
       "summary": "(?<=...) and (?<!...) match text only when it is preceded, or not preceded, by a pattern.",
       "topic": "regexp",
-      "history": [
-        {
-          "version": "es2018",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2018",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-8",
+            "kind": "added",
+            "release": "8.10.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var match = /\\$(\\d+)/.exec(text);\nvar amount = match && match[1];",
         "modern": "var match = /(?<=\\$)\\d+/.exec(text);\nvar amount = match && match[0];",
@@ -3262,12 +4139,20 @@
       "category": "syntax",
       "summary": "\\p{...} and \\P{...} match characters by Unicode property, with the u flag.",
       "topic": "regexp",
-      "history": [
-        {
-          "version": "es2018",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2018",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var hasLetters = /[a-zA-Z]/.test(text);",
         "modern": "const hasLetters = /\\p{L}/u.test(text);",
@@ -3281,12 +4166,21 @@
       "category": "syntax",
       "summary": "With the s flag, . also matches line terminators.",
       "topic": "regexp",
-      "history": [
-        {
-          "version": "es2018",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2018",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-8",
+            "kind": "added",
+            "release": "8.10.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var block = /start[\\s\\S]*?end/;",
         "modern": "const block = /start.*?end/s;"
@@ -3299,12 +4193,20 @@
       "category": "library",
       "summary": "Builds an object from key-value pairs. It is the inverse of Object.entries().",
       "topic": "objects",
-      "history": [
-        {
-          "version": "es2019",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2019",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-12",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var obj = entries.reduce(function (acc, pair) {\n  acc[pair[0]] = pair[1];\n  return acc;\n}, {});",
         "modern": "const obj = Object.fromEntries(entries);"
@@ -3317,12 +4219,20 @@
       "category": "library",
       "summary": "Standard names for trimming one side of a string. They replace the older trimLeft() and trimRight().",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es2019",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2019",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-10",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var cleaned = text.trimLeft();",
         "modern": "const cleaned = text.trimStart();",
@@ -3336,22 +4246,35 @@
       "category": "behavior",
       "summary": "Sorts an array in place. The default order compares elements as strings.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added"
-        },
-        {
-          "version": "es2019",
-          "kind": "changed",
-          "note": "sort must be stable: elements that compare as equal keep their original relative order."
-        },
-        {
-          "version": "es2021",
-          "kind": "changed",
-          "note": "The algorithm is specified more precisely, so fewer cases leave the result order up to the implementation."
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added"
+          },
+          {
+            "version": "es2019",
+            "kind": "changed",
+            "note": "sort must be stable: elements that compare as equal keep their original relative order."
+          },
+          {
+            "version": "es2021",
+            "kind": "changed",
+            "note": "The algorithm is specified more precisely, so fewer cases leave the result order up to the implementation."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          },
+          {
+            "version": "node-12",
+            "kind": "changed",
+            "note": "Array.prototype.sort is stable."
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3360,17 +4283,25 @@
       "category": "behavior",
       "summary": "Returns a string describing a function.",
       "topic": "functions",
-      "history": [
-        {
-          "version": "es3",
-          "kind": "added"
-        },
-        {
-          "version": "es2019",
-          "kind": "changed",
-          "note": "It must return the function's original source text, or a standard placeholder for built-in and bound functions."
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es3",
+            "kind": "added"
+          },
+          {
+            "version": "es2019",
+            "kind": "changed",
+            "note": "It must return the function's original source text, or a standard placeholder for built-in and bound functions."
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3379,12 +4310,20 @@
       "category": "library",
       "summary": "Reads the description a symbol was created with.",
       "topic": "types",
-      "history": [
-        {
-          "version": "es2019",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2019",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-11",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3393,12 +4332,20 @@
       "category": "library",
       "summary": "Returns an iterator over every match of a global regular expression, including capture groups.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-12",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var matches = [];\nvar match;\nwhile ((match = re.exec(text)) !== null) {\n  matches.push(match);\n}",
         "modern": "const matches = [...text.matchAll(re)];",
@@ -3412,12 +4359,21 @@
       "category": "library",
       "summary": "Waits for every promise to settle and reports each outcome, without stopping at the first rejection.",
       "topic": "async",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-12",
+            "kind": "added",
+            "release": "12.9.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "Promise.all(promises.map(function (p) {\n  return p.then(\n    function (value) { return { status: \"fulfilled\", value: value }; },\n    function (reason) { return { status: \"rejected\", reason: reason }; }\n  );\n}));",
         "modern": "Promise.allSettled(promises);"
@@ -3429,12 +4385,20 @@
       "title": "globalThis",
       "category": "library",
       "summary": "A standard way to reach the global object in any environment.",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-12",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var root = typeof window !== \"undefined\" ? window : typeof global !== \"undefined\" ? global : this;",
         "modern": "const root = globalThis;"
@@ -3447,12 +4411,22 @@
       "category": "syntax",
       "summary": "An object, filled in by the host, that carries information about the current module.",
       "topic": "modules",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-13",
+            "kind": "added",
+            "release": "13.2.0",
+            "note": "The engine accepts the syntax from 10.4.0, but import.meta only works inside ES modules, which Node.js runs without a flag from 13.2.0."
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3461,12 +4435,21 @@
       "category": "syntax",
       "summary": "Re-exports a whole module as a single named export.",
       "topic": "modules",
-      "history": [
-        {
-          "version": "es2020",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2020",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-13",
+            "kind": "added",
+            "release": "13.2.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "import * as utils from \"./utils.js\";\nexport { utils };",
         "modern": "export * as utils from \"./utils.js\";"
@@ -3479,12 +4462,20 @@
       "category": "library",
       "summary": "Resolves with the first fulfilled promise, or rejects with an AggregateError holding every reason.",
       "topic": "async",
-      "history": [
-        {
-          "version": "es2021",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2021",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-15",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3493,12 +4484,21 @@
       "category": "library",
       "summary": "References that do not keep an object alive, and callbacks that run after an object is collected.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2021",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2021",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-14",
+            "kind": "added",
+            "release": "14.6.0"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3507,12 +4507,21 @@
       "category": "syntax",
       "summary": "Underscores in numeric literals, such as 1_000_000, to make long numbers readable.",
       "topic": "types",
-      "history": [
-        {
-          "version": "es2021",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2021",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-12",
+            "kind": "added",
+            "release": "12.5.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var million = 1000000;",
         "modern": "const million = 1_000_000;"
@@ -3525,12 +4534,21 @@
       "category": "syntax",
       "summary": "Tests whether an object has a given private field, without risking an error.",
       "topic": "classes",
-      "history": [
-        {
-          "version": "es2022",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2022",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added",
+            "release": "16.4.0"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3539,12 +4557,20 @@
       "category": "syntax",
       "summary": "With the d flag, a match also reports the start and end index of each capture.",
       "topic": "regexp",
-      "history": [
-        {
-          "version": "es2022",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2022",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3553,12 +4579,21 @@
       "category": "library",
       "summary": "new Error(message, { cause }) records the error that led to this one.",
       "topic": "errors",
-      "history": [
-        {
-          "version": "es2022",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2022",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added",
+            "release": "16.9.0"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var wrapped = new Error(\"Load failed: \" + err.message);\nwrapped.cause = err;",
         "modern": "const wrapped = new Error(\"Load failed\", { cause: err });"
@@ -3570,12 +4605,20 @@
       "title": "Hashbang comments",
       "category": "syntax",
       "summary": "A #! line at the very start of a file is treated as a comment, so scripts can be executable.",
-      "history": [
-        {
-          "version": "es2023",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2023",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3584,12 +4627,22 @@
       "category": "library",
       "summary": "Most symbols can be used as WeakMap keys and WeakSet or WeakRef targets.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2023",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2023",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-20",
+            "kind": "added",
+            "release": "20.1.0",
+            "note": "Also backported to 18.20.0."
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3598,12 +4651,20 @@
       "category": "library",
       "summary": "ArrayBuffers that can be resized in place, or transferred to a new owner with transfer().",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2024",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2024",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-21",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3612,12 +4673,20 @@
       "category": "syntax",
       "summary": "The v flag adds set operations and string literals inside character classes.",
       "topic": "regexp",
-      "history": [
-        {
-          "version": "es2024",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2024",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-20",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3626,12 +4695,20 @@
       "category": "library",
       "summary": "Check whether a string contains lone surrogates, or replace them with U+FFFD.",
       "topic": "strings",
-      "history": [
-        {
-          "version": "es2024",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2024",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-20",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3639,12 +4716,20 @@
       "title": "Atomics.waitAsync()",
       "category": "library",
       "summary": "Waits for a change to shared memory without blocking the thread.",
-      "history": [
-        {
-          "version": "es2024",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2024",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3653,12 +4738,20 @@
       "category": "library",
       "summary": "Escapes a string so it can be used safely inside a regular expression.",
       "topic": "regexp",
-      "history": [
-        {
-          "version": "es2025",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2025",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-24",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "var safe = text.replace(/[.*+?^${}()|[\\]\\\\]/g, \"\\\\$&\");",
         "modern": "const safe = RegExp.escape(text);"
@@ -3671,12 +4764,20 @@
       "category": "syntax",
       "summary": "Turn flags such as i on or off for part of a pattern, for example (?i:abc).",
       "topic": "regexp",
-      "history": [
-        {
-          "version": "es2025",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2025",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-23",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3685,12 +4786,20 @@
       "category": "library",
       "summary": "A 16-bit floating-point typed array, with DataView getFloat16 and setFloat16.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2025",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2025",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-24",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3699,12 +4808,14 @@
       "category": "library",
       "summary": "Adds numbers and returns the correctly rounded total, avoiding the error that builds up in a running sum.",
       "topic": "types",
-      "history": [
-        {
-          "version": "es2026",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2026",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "const total = numbers.reduce((sum, n) => sum + n, 0);",
         "modern": "const total = Math.sumPrecise(numbers);",
@@ -3718,12 +4829,20 @@
       "category": "library",
       "summary": "toBase64(), toHex(), and the matching fromBase64() and fromHex() for converting bytes to and from text.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2026",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2026",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-25",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3732,12 +4851,20 @@
       "category": "library",
       "summary": "JSON.parse revivers can see the original source text of a value, and JSON.rawJSON() writes numbers exactly.",
       "topic": "json",
-      "history": [
-        {
-          "version": "es2026",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2026",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-21",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3746,12 +4873,20 @@
       "category": "library",
       "summary": "Joins several iterables into one iterator.",
       "topic": "iteration",
-      "history": [
-        {
-          "version": "es2026",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2026",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-26",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3760,12 +4895,20 @@
       "category": "library",
       "summary": "Reads a key, adding a default or a computed value first if it is missing. Also on WeakMap.",
       "topic": "collections",
-      "history": [
-        {
-          "version": "es2026",
-          "kind": "added"
-        }
-      ],
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2026",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-26",
+            "kind": "added"
+          }
+        ]
+      },
       "migration": {
         "legacy": "if (!cache.has(key)) {\n  cache.set(key, compute(key));\n}\nconst value = cache.get(key);",
         "modern": "const value = cache.getOrInsertComputed(key, compute);"
@@ -3777,12 +4920,20 @@
       "title": "Atomics.pause()",
       "category": "library",
       "summary": "A hint that the current agent is busy-waiting, so the processor can save power.",
-      "history": [
-        {
-          "version": "es2027",
-          "kind": "added"
-        }
-      ]
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2027",
+            "kind": "added"
+          }
+        ],
+        "node": [
+          {
+            "version": "node-24",
+            "kind": "added"
+          }
+        ]
+      }
     },
     {
       "language": "javascript",
@@ -3791,10 +4942,372 @@
       "category": "library",
       "summary": "Iterate several iterators together in lockstep.",
       "topic": "iteration",
-      "history": [
+      "history": {
+        "ecmascript": [
+          {
+            "version": "es2027",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "commonjs-modules",
+      "title": "CommonJS modules (require and module.exports)",
+      "category": "library",
+      "summary": "The module system Node.js started with: require() loads a module and module.exports defines what it shares.",
+      "topic": "modules",
+      "history": {
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "const fs = require(\"fs\");\nmodule.exports = { read: (file) => fs.readFileSync(file, \"utf8\") };",
+        "modern": "import fs from \"fs\";\nexport const read = (file) => fs.readFileSync(file, \"utf8\");",
+        "note": "ES modules need a .mjs file name, or \"type\": \"module\" in the nearest package.json."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "import-assertions",
+      "title": "Import assertions (assert { type })",
+      "category": "syntax",
+      "summary": "The earlier syntax for importing JSON modules, import data from \"./data.json\" assert { type: \"json\" }.",
+      "topic": "modules",
+      "history": {
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added",
+            "release": "16.14.0"
+          },
+          {
+            "version": "node-22",
+            "kind": "removed",
+            "release": "22.0.0",
+            "note": "Import assertions stopped working. Use the with keyword from import attributes instead.",
+            "breaking": true
+          }
+        ]
+      },
+      "replaced_by": [
+        "import-attributes"
+      ],
+      "migration": {
+        "legacy": "import data from \"./data.json\" assert { type: \"json\" };",
+        "modern": "import data from \"./data.json\" with { type: \"json\" };",
+        "note": "Import attributes need Node.js 18.20 or 20.10 and later."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "buffer-alloc-from",
+      "title": "Buffer.alloc(), Buffer.allocUnsafe() and Buffer.from()",
+      "category": "library",
+      "summary": "Safe ways to create a Buffer: a zero-filled one of a given size, an uninitialised one, or a copy of existing data.",
+      "history": {
+        "node": [
+          {
+            "version": "node-5",
+            "kind": "added",
+            "release": "5.10.0"
+          }
+        ]
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "buffer-constructor",
+      "title": "new Buffer() and Buffer()",
+      "category": "library",
+      "summary": "The original Buffer constructor, which could be called with a size, a string, an array or another buffer.",
+      "history": {
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          },
+          {
+            "version": "node-10",
+            "kind": "deprecated",
+            "release": "10.0.0",
+            "note": "Printing a runtime warning from 10.0.0 for code outside node_modules (DEP0005), because the constructor raises security and usability concerns."
+          }
+        ]
+      },
+      "replaced_by": [
+        "buffer-alloc-from"
+      ],
+      "migration": {
+        "legacy": "const zeroed = new Buffer(16);\nconst copy = new Buffer(\"text\", \"utf8\");",
+        "modern": "const zeroed = Buffer.alloc(16);\nconst copy = Buffer.from(\"text\", \"utf8\");",
+        "note": "Buffer.alloc() fills the buffer with zeros. Buffer.allocUnsafe() does not, and is faster."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "crypto-createcipheriv",
+      "title": "crypto.createCipheriv() and createDecipheriv()",
+      "category": "library",
+      "summary": "Create a cipher or decipher from an explicit key and initialization vector.",
+      "history": {
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "crypto-createcipher",
+      "title": "crypto.createCipher() and createDecipher()",
+      "category": "library",
+      "summary": "Create a cipher or decipher from a password, deriving the key internally.",
+      "history": {
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          },
+          {
+            "version": "node-10",
+            "kind": "deprecated",
+            "release": "10.0.0",
+            "note": "Deprecated from 10.0.0 (DEP0106)."
+          },
+          {
+            "version": "node-22",
+            "kind": "removed",
+            "release": "22.0.0",
+            "note": "Removed because they used a weak key derivation function (unsalted MD5) and a static initialization vector.",
+            "breaking": true
+          }
+        ]
+      },
+      "replaced_by": [
+        "crypto-createcipheriv"
+      ],
+      "migration": {
+        "legacy": "const cipher = crypto.createCipher(\"aes-256-cbc\", password);",
+        "modern": "const salt = crypto.randomBytes(16);\nconst key = crypto.scryptSync(password, salt, 32);\nconst iv = crypto.randomBytes(16);\nconst cipher = crypto.createCipheriv(\"aes-256-cbc\", key, iv);",
+        "note": "Store the salt and the IV with the encrypted data. Data encrypted with createCipher() cannot be decrypted by this code."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "fs-exists",
+      "title": "fs.exists()",
+      "category": "library",
+      "summary": "Reports through a callback whether a path exists.",
+      "topic": "async",
+      "history": {
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          },
+          {
+            "version": "node-4",
+            "kind": "deprecated",
+            "note": "Deprecated since v1.0.0, in the io.js line that merged into Node.js 4. Use fs.access() or fs.stat(), or simply try the operation and handle the error."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fs.exists(file, (exists) => {\n  if (exists) load(file);\n});",
+        "modern": "fs.access(file, (error) => {\n  if (!error) load(file);\n});",
+        "note": "Checking and then using a file can race with other processes. Opening the file and handling the error avoids that."
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "util-isarray",
+      "title": "util.isArray()",
+      "category": "library",
+      "summary": "An early helper for testing whether a value is an array.",
+      "history": {
+        "node": [
+          {
+            "version": "node-0.10",
+            "kind": "added"
+          },
+          {
+            "version": "node-4",
+            "kind": "deprecated",
+            "release": "4.0.0",
+            "note": "Deprecated since v4.0.0. Use Array.isArray(). The function is still present."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "if (util.isArray(value)) {\n  walk(value);\n}",
+        "modern": "if (Array.isArray(value)) {\n  walk(value);\n}"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "util-promisify",
+      "title": "util.promisify()",
+      "category": "library",
+      "summary": "Turns a function that takes an error-first callback into one that returns a promise.",
+      "topic": "async",
+      "history": {
+        "node": [
+          {
+            "version": "node-8",
+            "kind": "added",
+            "release": "8.0.0"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "const readFile = (file) =>\n  new Promise((resolve, reject) => {\n    fs.readFile(file, \"utf8\", (error, text) => (error ? reject(error) : resolve(text)));\n  });",
+        "modern": "const readFile = util.promisify(fs.readFile);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "fs-promises",
+      "title": "fs.promises",
+      "category": "library",
+      "summary": "Promise-returning versions of the file system functions, also available as fs/promises.",
+      "topic": "async",
+      "history": {
+        "node": [
+          {
+            "version": "node-10",
+            "kind": "added",
+            "release": "10.0.0"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fs.readFile(file, \"utf8\", (error, text) => {\n  if (error) return handle(error);\n  use(text);\n});",
+        "modern": "const text = await fs.promises.readFile(file, \"utf8\");\nuse(text);"
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "fetch-api",
+      "title": "fetch()",
+      "category": "library",
+      "summary": "The Fetch API for HTTP requests, available as a global function.",
+      "topic": "async",
+      "history": {
+        "node": [
+          {
+            "version": "node-18",
+            "kind": "added",
+            "release": "18.0.0"
+          }
+        ]
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "abort-controller",
+      "title": "AbortController",
+      "category": "library",
+      "summary": "Signals that an operation, such as a fetch, should be cancelled.",
+      "topic": "async",
+      "history": {
+        "node": [
+          {
+            "version": "node-14",
+            "kind": "added",
+            "release": "14.17.0"
+          }
+        ]
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "structured-clone",
+      "title": "structuredClone()",
+      "category": "library",
+      "summary": "Makes a deep copy of a value, including Map, Set, Date and nested objects.",
+      "topic": "objects",
+      "history": {
+        "node": [
+          {
+            "version": "node-17",
+            "kind": "added",
+            "release": "17.0.0"
+          }
+        ]
+      }
+    },
+    {
+      "language": "javascript",
+      "slug": "node-test-runner",
+      "title": "node:test",
+      "category": "tooling",
+      "summary": "A test runner built into Node.js.",
+      "topic": "ecosystem",
+      "history": {
+        "node": [
+          {
+            "version": "node-16",
+            "kind": "added",
+            "release": "16.17.0"
+          }
+        ]
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "language": "javascript",
+      "id": "ecmascript",
+      "label": "ECMAScript",
+      "kind": "language",
+      "order": 1,
+      "description": "Editions of the language standard, ECMA-262. This is what the language itself defines, whichever engine runs it.",
+      "changelog_links": [
         {
-          "version": "es2027",
-          "kind": "added"
+          "title": "TC39 finished proposals, grouped by the edition that includes them",
+          "url": "https://github.com/tc39/proposals/blob/main/finished-proposals.md"
+        },
+        {
+          "title": "ECMA-262 editions, including historical snapshots",
+          "url": "https://ecma-international.org/publications-and-standards/standards/ecma-262/"
+        },
+        {
+          "title": "ECMAScript living specification (latest draft)",
+          "url": "https://tc39.es/ecma262/"
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "id": "node",
+      "label": "Node.js",
+      "kind": "runtime",
+      "order": 2,
+      "description": "Releases of the Node.js runtime. A language feature can only be used once the runtime's engine supports it, so this track records the first Node.js release that runs each one, plus APIs that exist only in Node.js.",
+      "changelog_links": [
+        {
+          "title": "Node.js release schedule: release dates, long-term support and end of life",
+          "url": "https://github.com/nodejs/Release"
+        },
+        {
+          "title": "Node.js changelog",
+          "url": "https://github.com/nodejs/node/blob/main/CHANGELOG.md"
+        },
+        {
+          "title": "Node.js API documentation, with a history table for each API",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "title": "MDN browser compatibility data, the source for engine feature support",
+          "url": "https://github.com/mdn/browser-compat-data"
         }
       ]
     }

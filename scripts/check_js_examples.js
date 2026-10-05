@@ -41,13 +41,13 @@ let problems = 0;
 let checked = 0;
 const report = (message) => { problems += 1; console.log("PROBLEM: " + message); };
 
-for (const feature of data.features.filter((f) => f.language === "javascript" && f.migration)) {
+for (const feature of data.features.filter((f) => f.language === "javascript" && f.migration && f.history.ecmascript)) {
   if (NOT_PARSEABLE.has(feature.slug)) { console.log("skipped (parser limitation): " + feature.slug); continue; }
   const sourceType = MODULE_ONLY.has(feature.slug) ? "module" : "script";
-  const edition = ECMA[feature.history[0].version];
-  const scopedRemoval = feature.history.some((e) => e.kind === "removed" && e.scope);
+  const edition = ECMA[feature.history.ecmascript[0].version];
+  const scopedRemoval = feature.history.ecmascript.some((e) => e.kind === "removed" && e.scope);
   // Only removals described as a SyntaxError can be checked by parsing; a TypeError happens at run time.
-  const syntaxErrorInStrict = feature.history.some((e) => e.kind === "removed" && e.scope && /SyntaxError/.test(e.note || ""));
+  const syntaxErrorInStrict = feature.history.ecmascript.some((e) => e.kind === "removed" && e.scope && /SyntaxError/.test(e.note || ""));
   checked += 1;
 
   if (scopedRemoval) {
@@ -71,6 +71,18 @@ for (const feature of data.features.filter((f) => f.language === "javascript" &&
     }
   }
 }
+// ---- Node.js-only features: their before/after snippets must be valid JavaScript (as a script or a module)
+let nodeOnly = 0;
+for (const feature of data.features.filter((f) => f.language === "javascript" && f.migration && !f.history.ecmascript)) {
+  nodeOnly += 1;
+  for (const key of ["legacy", "modern"]) {
+    const asScript = parses(feature.migration[key], "latest", "script", false);
+    const asModule = asScript === true ? true : parses(feature.migration[key], "latest", "module", false);
+    // acorn does not parse the removed `assert { type }` import syntax
+    if (asModule !== true && feature.slug !== "import-assertions") report(`${feature.slug}: ${key} code does not parse (${asModule})`);
+  }
+}
+
 // ---- Reference topics: every code block must parse as current JavaScript (module code allows top-level await)
 const unescape = (text) =>
   text.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#x27;/g, "'").replace(/&amp;/g, "&");
@@ -85,5 +97,5 @@ for (const topic of data.topics.filter((t) => t.language === "javascript" && !NO
   }
 }
 
-console.log(`Checked ${checked} examples and ${blocks} reference code blocks, ${problems} problem(s).`);
+console.log(`Checked ${checked} ECMAScript examples, ${nodeOnly} Node.js-only examples and ${blocks} reference code blocks, ${problems} problem(s).`);
 process.exit(problems ? 1 : 0);

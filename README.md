@@ -184,18 +184,32 @@ This is a local-only workflow. The remote deployment remains unchanged until you
 
 Version data lives in [data/site_data.json](data/site_data.json) next to the rest of the content and is validated on every build. It is language-neutral, so the same model is used for every language. JavaScript is the first language to use it.
 
-- **`versions`**: the ordered releases of a language. Each has an `id`, a `label`, a release date, an `order` number and a `status` of `released` or `draft`. For JavaScript a version is an **ECMAScript edition** (ES5, ES2015 and so on), not a browser or Node.js release.
-- **`features`**: things you can recognise in code, such as `let` and `const` or `Array.prototype.includes()`. Each has a `history` of events: `added`, `changed`, `deprecated` and `removed`. A feature can link to the reference `topic` that explains it, name what replaced it (`replaced_by`), and carry a `migration` pair with an older and a newer way to write the same thing.
-- **`changelog_links`** on the language: links to the official changelogs. The page shows these as its sources instead of citing a source for every event.
+A language has one or more **tracks**. A track is its own ordered list of versions with its own release metadata, and a feature keeps a separate history on each track it belongs to. JavaScript has two:
+
+- **ECMAScript** (a `language` track): editions of the standard, ES3 baseline to ES2027 draft.
+- **Node.js** (a `runtime` track): major releases from 0.10 to 26, with the V8 engine version, long-term support dates, code names and end-of-life dates.
+
+They are separate on purpose. A language feature is only usable once the runtime's engine supports it, so `Array.prototype.at()` was added in ES2022 but first ran in Node.js 16.6. Some features exist on one track only: `crypto.createCipher()` is Node.js only, and `Math.sumPrecise()` has no Node.js entry until a release supports it.
+
+The data has four parts:
+
+- **`tracks`**: `id`, `label`, `kind` (`language` or `runtime`), `order`, a `description`, and `changelog_links` to the official changelogs. The page shows these as its sources instead of citing a source for every event.
+- **`versions`**: each belongs to a `track`. It has an `id`, a `label`, a release date, an `order` number (counted separately for each track) and a `status` of `released` or `draft`. Runtime versions can also carry `codename`, `lts_from`, `end_of_life` and `engine`.
+- **`features`**: things you can recognise in code, such as `let` and `const` or `fs.promises`. Each has a `history` that maps a track id to a list of events: `added`, `changed`, `deprecated` and `removed`. An event can name the exact `release` inside a version (`16.6.0`). A feature can link to the reference `topic` that explains it, name what replaced it (`replaced_by`, which can point at a feature on another track), and carry a `migration` pair with an older and a newer way to write it.
 
 How the model behaves:
 
 - `added: V` means available in V. `removed: V` means not available in V. A removal with a `scope` (for example strict mode only) means the feature still works elsewhere and is shown as restricted.
 - A deprecation may have no version. JavaScript marks many legacy features this way without any edition deprecating them, so they appear in their own "no removal planned" section.
-- Every comparison uses the integer `order`, never the label. The page shows changes with `from < version <= to`.
+- Every comparison uses the integer `order` within one track, never the label. The page shows changes with `from < version <= to`.
 - History is stored as changes, never copied per version. A fact stays true until a later event changes it, so the reference pages stay current and the version tools annotate them.
+- Each track is validated on its own. Events are never compared across tracks, because a runtime can ship a feature before the standard publishes it.
 
-The build rejects data that breaks the rules: duplicate or out-of-order versions, a first event that is not `added`, events out of order or after a removal, a removal in the same version as its deprecation, unknown versions, topics or replacements, replacement cycles, and a language with versions but no changelog links.
+Each track has its own page: `/javascript/versions/` for the first track and `/javascript/versions/node/` for the next. Each page has two views. **Upgrade changes** lists everything between the version you are upgrading from and the one you are moving to. **What can I use?** shows, for one version, which features are available, deprecated, restricted, removed or not yet available, with the older way to write each missing one. Each topic on the language page also has a collapsed **Version notes** list with a chip for every track. The "support ends" dates on the Node.js page switch to "support ended" in the browser once the date has passed.
+
+The Node.js availability of language features comes from [MDN's browser compatibility data](https://github.com/mdn/browser-compat-data), using the first release with full, unflagged support. Release dates, support windows and end-of-life dates come from the [nodejs/Release schedule](https://github.com/nodejs/Release). Node.js-only APIs were checked against the history recorded in the Node.js type definitions, and the removal of `crypto.createCipher()` in Node.js 22 against the Node.js project's own notes. It is a snapshot: refresh it when a new Node.js version ships.
+
+The build rejects data that breaks the rules: duplicate or out-of-order versions within a track, a track with no versions or no https changelog links, a history that names an unknown track, a first event that is not `added`, events out of order or after a removal, a removal in the same version as its deprecation, unknown versions, topics or replacements, replacement cycles, and support dates in the wrong order.
 
 For JavaScript, `node scripts/check_js_examples.js` (after `npm install --no-save acorn`) also checks the before-and-after snippets by parsing them in the edition they belong to, and parses every code block in the JavaScript reference topics. It is optional and not part of CI.
 

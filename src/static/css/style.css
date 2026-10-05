@@ -11,6 +11,7 @@
   --cpp: #00599c;
   --csharp: #239120;
   --code-bg: #12151c;
+  --link: var(--accent);
   --kind-added: #3fb950;
   --kind-changed: #58a6ff;
   --kind-deprecated: #d29922;
@@ -28,6 +29,7 @@
   --text: #1a1d24;
   --text-muted: #5c6575;
   --code-bg: #f0f2f5;
+  --link: #0f766e;
   --kind-added: #1a7f37;
   --kind-changed: #0969da;
   --kind-deprecated: #9a6700;
@@ -891,3 +893,41 @@ a.change-title:hover { text-decoration-color: var(--accent); }
 @media (max-width: 700px) { .view-tab { min-height: 44px; } }
 /* Long API names such as Object.getOwnPropertyDescriptors() may break anywhere instead of widening the page */
 .change-title, .vn-list a, .feature-timeline, .change-summary, .change-note { overflow-wrap: anywhere; min-width: 0; }
+
+/* ---------- Version tracks (for example ECMAScript and Node.js) ---------- */
+.track-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0 1rem; }
+.track-tab {
+  display: grid; gap: 0.1rem; min-height: 56px; padding: 0.5rem 1.1rem; text-decoration: none;
+  color: var(--text-muted); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.track-tab:hover { color: var(--text); border-color: var(--accent); }
+.track-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.track-tab[aria-current="page"] { color: var(--text); border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+.track-tab-name { font-weight: 700; font-size: 1rem; }
+.track-tab-kind { font-size: 0.75rem; color: var(--text-muted); }
+.track-description { max-width: 70ch; margin-bottom: 0.6rem; color: var(--text); }
+.codename-badge, .lts-badge {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.1rem 0.5rem; color: var(--kind-changed); border: 1px solid color-mix(in srgb, var(--kind-changed) 50%, transparent); border-radius: 4px;
+}
+.eol { color: var(--text-muted); }
+.eol.eol-past { color: var(--kind-removed); }
+.release-tag { font-size: 0.75rem; color: var(--text-muted); padding: 0 0.4rem; border: 1px dashed var(--border); border-radius: 4px; }
+.change-tracks { margin-top: 0.45rem; font-size: 0.82rem; color: var(--text-muted); overflow-wrap: anywhere; }
+.change-tracks a { color: var(--accent); }
+.vn-since.vn-runtime { color: var(--kind-changed); border-color: color-mix(in srgb, var(--kind-changed) 45%, transparent); }
+@media (max-width: 700px) {
+  .track-tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .track-tab { padding: 0.5rem 0.75rem; }
+}
+a.vn-since { text-decoration: none; }
+a.vn-since:hover { background: color-mix(in srgb, currentColor 14%, transparent); }
+
+/* Links inside change entries and feature cards used the browser's default blue, which is hard to read on the dark theme */
+.change a, .feature-card a, .migration-note a { color: var(--accent); }
+.change a.change-title, .feature-card a.change-title { color: var(--text); }
+.change-replaced a, .change-origin { text-underline-offset: 3px; }
+.change a, .feature-card a, .migration-note a, .version-sources a, .change-tracks a,
+.version-history-link, .breadcrumbs a:hover, .migration summary { color: var(--link); }
+.change a.change-title, .feature-card a.change-title { color: var(--text); }
+.breadcrumbs a { color: var(--text-muted); }

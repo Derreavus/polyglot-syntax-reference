@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from versioning import features_for, has_versioning, lifecycle_facts, short_label, version_orders, versions_for
+from versioning import features_for, has_versioning, lifecycle_facts, release_text, short_label, track_page_rel, tracks_for, version_orders, versions_for
 
 
 TABLE_PATTERN = re.compile(r"<table\b.*?</table>", re.DOTALL)
@@ -17,45 +17,82 @@ def wrap_tables(body_html: str) -> str:
     return TABLE_PATTERN.sub(lambda match: f'<div class="table-scroll scroll-fade">{match.group(0)}</div>', body_html)
 
 
-def version_notes_html(topic_slug: str, features: list[dict[str, Any]], versions_by_id: dict[str, dict[str, Any]], orders: dict[str, int]) -> str:
-    """A collapsed "Version notes" list for the features that belong to a topic."""
+def _since_text(track: dict[str, Any], version: dict[str, Any], event: dict[str, Any]) -> str:
+    label = release_text(version, event)
+    if track["kind"] == "runtime":
+        return f"{label}+"
+    return f"Draft in {label}" if version["status"] == "draft" else f"Since {label}"
+
+
+def version_notes_html(topic_slug: str, features: list[dict[str, Any]], tracks: list[dict[str, Any]], versions: dict[str, dict[str, dict[str, Any]]], orders: dict[str, dict[str, int]], href_for) -> str:
+    """A collapsed "Version notes" list for the features that belong to a topic, across every track."""
     items = [f for f in features if f.get("topic") == topic_slug]
     if not items:
         return ""
-    items.sort(key=lambda f: (orders[f["history"][0]["version"]], f["title"].lower()))
+    primary = tracks[0]["id"]
+
+    def sort_key(feature: dict[str, Any]) -> tuple[int, int, str]:
+        for rank, track in enumerate(tracks):
+            if track["id"] in feature["history"]:
+                first = feature["history"][track["id"]][0]["version"]
+                return (rank, orders[track["id"]][first], feature["title"].lower())
+        return (len(tracks), 0, feature["title"].lower())
+
+    items.sort(key=sort_key)
     rows: list[str] = []
     legacy = 0
     for feature in items:
-        facts = lifecycle_facts(feature, versions_by_id)
-        added = facts["added"]
-        draft = " vn-draft" if added["status"] == "draft" else ""
-        since = f"Draft in {short_label(added)}" if added["status"] == "draft" else f"Since {short_label(added)}"
-        chips = [f'<span class="vn-since{draft}">{html.escape(since)}</span>']
-        if facts["deprecated"] is not None:
-            legacy += 1
-            if facts["deprecated_version"] is None:
-                chips.append('<span class="vn-status vn-deprecated">Legacy</span>')
-            else:
-                chips.append(f'<span class="vn-status vn-deprecated">Deprecated in {html.escape(short_label(facts["deprecated_version"]))}</span>')
-        if facts["removed"] is not None:
-            scope = facts["removed"].get("scope")
-            where = f" ({html.escape(scope)})" if scope else ""
-            word = "Restricted" if scope else "Removed"
-            chips.append(f'<span class="vn-status vn-removed">{word} in {html.escape(short_label(facts["removed_version"]))}{where}</span>')
-        if facts["changed_versions"]:
-            names = ", ".join(short_label(v) for v in facts["changed_versions"])
-            chips.append(f'<span class="vn-status vn-changed">Changed in {html.escape(names)}</span>')
+        chips: list[str] = []
+        flagged = False
+        for track in tracks:
+            if track["id"] not in feature["history"]:
+                continue
+            facts = lifecycle_facts(feature, track["id"], versions[track["id"]])
+            added = facts["added"]
+            draft = " vn-draft" if added["status"] == "draft" else ""
+            runtime = " vn-runtime" if track["kind"] == "runtime" else ""
+            target = f'{href_for(track["id"])}#feature-{html.escape(feature["slug"])}'
+            chips.append(f'<a class="vn-since{draft}{runtime}" href="{target}">{html.escape(_since_text(track, added, facts["added_event"]))}</a>')
+            prefix = f'{track["label"]}: ' if track["id"] != primary else ""
+            if facts["deprecated"] is not None:
+                flagged = True
+                if facts["deprecated_version"] is None:
+                    text = "Legacy"
+                else:
+                    text = f'Deprecated in {short_label(facts["deprecated_version"])}'
+                chips.append(f'<span class="vn-status vn-deprecated">{html.escape(prefix + text)}</span>')
+            if facts["removed"] is not None:
+                flagged = True
+                scope = facts["removed"].get("scope")
+                where = f" ({scope})" if scope else ""
+                word = "Restricted" if scope else "Removed"
+                removed_label = short_label(facts["removed_version"])
+                text = f"{prefix}{word} in {removed_label}{where}"
+                chips.append(f'<span class="vn-status vn-removed">{html.escape(text)}</span>')
+            if facts["changed_versions"]:
+                names = ", ".join(short_label(v) for v in facts["changed_versions"])
+                text = f"{prefix}Changed in {names}"
+                chips.append(f'<span class="vn-status vn-changed">{html.escape(text)}</span>')
+        legacy += 1 if flagged else 0
+        first_track = next(track["id"] for track in tracks if track["id"] in feature["history"])
         rows.append(
-            f'<li><a href="versions/index.html#feature-{html.escape(feature["slug"])}">{html.escape(feature["title"])}</a>'
+            f'<li><a href="{href_for(first_track)}#feature-{html.escape(feature["slug"])}">{html.escape(feature["title"])}</a>'
             f'<span class="vn-chips">{"".join(chips)}</span></li>'
         )
-    first, last = items[0]["history"][0]["version"], max(items, key=lambda f: orders[f["history"][0]["version"]])["history"][0]["version"]
-    span = short_label(versions_by_id[first]) if first == last else f"{short_label(versions_by_id[first])} to {short_label(versions_by_id[last])}"
+    primary_items = [f for f in items if primary in f["history"]]
+    if primary_items:
+        firsts = [f["history"][primary][0]["version"] for f in primary_items]
+        lo = min(firsts, key=lambda v: orders[primary][v])
+        hi = max(firsts, key=lambda v: orders[primary][v])
+        span = short_label(versions[primary][lo]) if lo == hi else f"{short_label(versions[primary][lo])} to {short_label(versions[primary][hi])}"
+    else:
+        span = ""
     flag = f' <span class="vn-flag">{legacy} legacy</span>' if legacy else ""
     count = f"{len(items)} feature" + ("" if len(items) == 1 else "s")
+    meta = f"{count}, {html.escape(span)}" if span else count
     return (
         '<details class="version-notes"><summary>Version notes '
-        f'<span class="vn-meta">{count}, {html.escape(span)}</span>{flag}</summary>'
+        f'<span class="vn-meta">{meta}</span>{flag}</summary>'
         f'<ul class="vn-list">{"".join(rows)}</ul></details>'
     )
 
@@ -81,11 +118,12 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
         key = topic.get("section")
         topics_by_section.setdefault(key, []).append(topic)
 
-    history_link_html = (
-        '<a class="version-history-link" href="versions/index.html">Version history: what changed between releases \u2192</a>'
-        if has_versioning(data, language["slug"])
-        else ""
-    )
+    history_link_html = ""
+    if has_versioning(data, language["slug"]):
+        names = " and ".join(track["label"] for track in tracks_for(data, language["slug"]))
+        history_link_html = (
+            f'<a class="version-history-link" href="versions/index.html">Version history: {html.escape(names)} \u2192</a>'
+        )
 
     css_path = relative_asset_path(page_rel, "css/style.css")
     js_path = relative_asset_path(page_rel, "js/site-data.js")
@@ -101,10 +139,17 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
             sidebar_parts.append(f'<a href="{href}">{html.escape(topic.get("title", ""))}</a>')
 
     versioned = has_versioning(data, language["slug"])
-    all_versions = versions_for(data, language["slug"]) if versioned else []
-    versions_by_id = {v["id"]: v for v in all_versions}
-    version_order_map = version_orders(all_versions)
+    language_tracks = tracks_for(data, language["slug"]) if versioned else []
+    track_versions = {
+        track["id"]: {v["id"]: v for v in versions_for(data, language["slug"], track["id"])} for track in language_tracks
+    }
+    track_orders = {
+        track["id"]: version_orders(versions_for(data, language["slug"], track["id"])) for track in language_tracks
+    }
     language_features = features_for(data, language["slug"]) if versioned else []
+
+    def href_for(track_id: str) -> str:
+        return relative_asset_path(page_rel, track_page_rel(data, language["slug"], track_id))
 
     topic_html: list[str] = []
     for topic in topics:
@@ -127,7 +172,7 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
         topic_html.append(
             f'<section class="topic" id="{html.escape(topic.get("slug", ""))}">'
             f'<h2>{html.escape(topic.get("title", ""))}</h2>'
-            f'{version_notes_html(topic.get("slug", ""), language_features, versions_by_id, version_order_map) if versioned else ""}'
+            f'{version_notes_html(topic.get("slug", ""), language_features, language_tracks, track_versions, track_orders, href_for) if versioned else ""}'
             f'{body_html}'
             f'</section>'
         )

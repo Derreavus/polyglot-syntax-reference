@@ -10,7 +10,7 @@ from render_compare import render_compare_page
 from render_home import render_home_page
 from render_language import render_language_page, wrap_tables
 from render_versions import render_versions_page
-from versioning import features_for, has_versioning, versions_for
+from versioning import features_for, has_versioning, history_for, track_page_rel, tracks_for, versions_for
 from validate_data import validate_data_model
 
 
@@ -28,8 +28,8 @@ def ensure_output_dirs() -> None:
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
     for lang in get_languages(load_data()):
         (OUTPUT_ROOT / lang["slug"]).mkdir(parents=True, exist_ok=True)
-        if has_versioning(load_data(), lang["slug"]):
-            (OUTPUT_ROOT / lang["slug"] / "versions").mkdir(parents=True, exist_ok=True)
+        for track in tracks_for(load_data(), lang["slug"]):
+            (OUTPUT_ROOT / track_page_rel(load_data(), lang["slug"], track["id"])).parent.mkdir(parents=True, exist_ok=True)
     (OUTPUT_ROOT / "compare").mkdir(parents=True, exist_ok=True)
 
 
@@ -118,20 +118,22 @@ def build_language_pages(data: dict) -> None:
 def build_versions_pages(data: dict) -> None:
     for language in get_languages(data):
         slug = language["slug"]
-        if not has_versioning(data, slug):
-            continue
-        page_path = OUTPUT_ROOT / slug / "versions" / "index.html"
-        page = render_versions_page(language, data, page_rel=f"{slug}/versions/index.html")
-        page_path.write_text(page, encoding="utf-8", newline="\n")
+        for track in tracks_for(data, slug):
+            page_rel = track_page_rel(data, slug, track["id"])
+            page_path = OUTPUT_ROOT / page_rel
+            page_path.parent.mkdir(parents=True, exist_ok=True)
+            page = render_versions_page(language, track, data, page_rel=page_rel)
+            page_path.write_text(page, encoding="utf-8", newline="\n")
 
 
 def validate_generated_site(data: dict) -> None:
     languages = get_languages(data)
     required = {"index.html", "compare/index.html"}
     required.update(f"{lang['slug']}/index.html" for lang in languages)
-    required.update(
-        f"{lang['slug']}/versions/index.html" for lang in languages if has_versioning(data, lang["slug"])
-    )
+    for lang in languages:
+        required.update(
+            track_page_rel(data, lang["slug"], track["id"]) for track in tracks_for(data, lang["slug"])
+        )
 
     missing = [path for path in sorted(required) if not (OUTPUT_ROOT / path).exists()]
     if missing:
@@ -158,23 +160,25 @@ def validate_generated_site(data: dict) -> None:
 
     for lang in languages:
         slug = lang["slug"]
-        if not has_versioning(data, slug):
-            continue
-        versions_text = (OUTPUT_ROOT / slug / "versions" / "index.html").read_text(encoding="utf-8")
-        for feature in features_for(data, slug):
-            if f'id="feature-{feature["slug"]}"' not in versions_text:
-                raise ValueError(f"{slug}: version page is missing feature '{feature['slug']}'")
-        for version in versions_for(data, slug):
-            has_events = any(
-                event["version"] == version["id"]
-                for feature in features_for(data, slug)
-                for event in feature["history"]
-            )
-            if has_events and f'id="v-{version["id"]}"' not in versions_text:
-                raise ValueError(f"{slug}: version page is missing version '{version['id']}'")
-        for link in lang.get("changelog_links", []):
-            if link["url"] not in versions_text:
-                raise ValueError(f"{slug}: version page is missing changelog link {link['url']}")
+        for track in tracks_for(data, slug):
+            where = f"{slug}/{track['id']}"
+            versions_text = (OUTPUT_ROOT / track_page_rel(data, slug, track["id"])).read_text(encoding="utf-8")
+            for feature in features_for(data, slug, track["id"]):
+                if f'id="feature-{feature["slug"]}"' not in versions_text:
+                    raise ValueError(f"{where}: version page is missing feature '{feature['slug']}'")
+                if f'id="index-{feature["slug"]}"' not in versions_text:
+                    raise ValueError(f"{where}: version page is missing a card for '{feature['slug']}'")
+            for version in versions_for(data, slug, track["id"]):
+                has_events = any(
+                    event["version"] == version["id"]
+                    for feature in features_for(data, slug, track["id"])
+                    for event in history_for(feature, track["id"])
+                )
+                if has_events and f'id="v-{version["id"]}"' not in versions_text:
+                    raise ValueError(f"{where}: version page is missing version '{version['id']}'")
+            for link in track["changelog_links"]:
+                if link["url"] not in versions_text:
+                    raise ValueError(f"{where}: version page is missing source link {link['url']}")
 
     compare_text = (OUTPUT_ROOT / "compare" / "index.html").read_text(encoding="utf-8")
     required_sections = [section["slug"] for section in data["compare_sections"]]

@@ -195,6 +195,19 @@
     homepageCards.appendChild(compareCard);
   }
 
+  // ---- Support end dates: say "ended" once the date has passed, using the reader's clock ----
+  function initSupportDates() {
+    const now = Date.now();
+    document.querySelectorAll(".eol[data-eol]").forEach(function (node) {
+      const text = node.getAttribute("data-eol-text") || node.getAttribute("data-eol");
+      const end = Date.parse(node.getAttribute("data-eol") + "T23:59:59Z");
+      if (!isNaN(end) && end < now) {
+        node.classList.add("eol-past");
+        node.textContent = "Support ended " + text;
+      }
+    });
+  }
+
   // ---- Version history page: upgrade changes between two versions, or what one version can use ----
   function initVersionsPage() {
     const list = document.getElementById("version-list");
@@ -820,6 +833,7 @@
   renderHomepageCards();
   initCompareBoard();
   initVersionsPage();
+  initSupportDates();
   ensurePalette();
 
   function addCopyButtons() {
