@@ -5,6 +5,8 @@ import os
 from pathlib import Path
 from typing import Any
 
+from theme import language_theme_style
+
 
 def relative_asset_path(page_rel: str, target_rel: str) -> str:
     return os.path.relpath(target_rel, start=str(Path(page_rel).parent)).replace('\\', '/')
@@ -70,6 +72,7 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
   <meta name="description" content="{html.escape(page_description, quote=True)}">
   <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="{css_path}">
+  {language_theme_style(data)}
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>

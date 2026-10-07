@@ -14,7 +14,7 @@ from typing import Any
 EVENT_KINDS = ("added", "changed", "deprecated", "removed")
 CATEGORIES = ("syntax", "library", "behavior", "tooling")
 VERSION_STATUSES = ("released", "draft")
-TRACK_KINDS = ("language", "runtime")
+TRACK_KINDS = ("standard", "runtime", "implementation", "environment")
 STATES = ("not-yet", "available", "deprecated", "restricted", "removed")
 
 KIND_LABELS = {

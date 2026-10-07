@@ -1,46 +1,106 @@
 {
+  "site": {
+    "brand": "Polyglot Syntax Reference",
+    "brand_short": "Polyglot Syntax",
+    "home_meta_description": "An extensible syntax reference for switching between languages.",
+    "home_heading_lines": [
+      "One reference.",
+      "Every language."
+    ],
+    "home_description": "A practical reference for anyone who works with multiple programming languages. Quickly find familiar syntax, concepts, patterns, and common gotchas — no matter which language you are working in.",
+    "footer": "Polyglot Syntax Reference · Open source · For every programmer",
+    "compare_title": "Compare Languages",
+    "compare_description": "Side-by-side syntax comparison across the supported languages.",
+    "compare_heading": "Same Concept, Different Language",
+    "compare_intro": "Jump between the supported languages without losing your place."
+  },
+  "categories": [
+    {
+      "slug": "programming",
+      "name": "Programming languages",
+      "order": 1,
+      "description": "Syntax, idioms and standard-library quick reference for general-purpose programming languages."
+    }
+  ],
   "languages": [
     {
       "slug": "python",
       "name": "Python",
       "status": "available",
       "order": 1,
+      "category": "programming",
       "description": "Readable and versatile. Explore types, collections, async, typing, and the standard library.",
       "version_label": "Python 3.12+ · idiomatic modern Python",
-      "color": "#3776ab"
+      "color": "#3776ab",
+      "color_text": "#6db3f2",
+      "syntax_checks": {
+        "any": [
+          "list[int]",
+          "TypeVar",
+          "def first["
+        ]
+      }
     },
     {
       "slug": "rust",
       "name": "Rust",
       "status": "available",
       "order": 2,
+      "category": "programming",
       "description": "Ownership, borrowing, traits, and zero-cost abstractions.",
       "version_label": "Rust 2024 edition · safe systems programming",
-      "color": "#dea584"
+      "color": "#dea584",
+      "color_text": "#dea584",
+      "syntax_checks": {
+        "all": [
+          "Vec<",
+          "Option<",
+          "Result<"
+        ]
+      }
     },
     {
       "slug": "cpp",
       "name": "C++",
       "status": "available",
       "order": 3,
+      "category": "programming",
       "description": "Modern C++ from fundamentals through templates, RAII, and the STL.",
       "version_label": "C++20/23 · modern language features",
-      "color": "#00599c"
+      "color": "#00599c",
+      "color_text": "#4da3ff",
+      "syntax_checks": {
+        "all": [
+          "template<typename T>",
+          "make_unique<",
+          "vector<",
+          "static_cast<"
+        ]
+      }
     },
     {
       "slug": "csharp",
       "name": "C#",
       "status": "available",
       "order": 4,
+      "category": "programming",
       "description": "Expressive and powerful. Explore LINQ, async/await, and the .NET libraries.",
       "version_label": "C# 12 / .NET 8+ · modern .NET",
-      "color": "#239120"
+      "color": "#239120",
+      "color_text": "#3ddc84",
+      "syntax_checks": {
+        "all": [
+          "List<",
+          "<T>"
+        ]
+      }
     },
     {
       "slug": "javascript",
       "name": "JavaScript",
       "status": "available",
       "order": 5,
+      "category": "programming",
       "description": "A practical guide to JavaScript syntax, objects, asynchronous code, and the web platform.",
       "version_label": "ECMAScript 2026 · modern JavaScript",
       "color": "#f7df1e"
@@ -1835,21 +1895,6 @@
       "concepts": null
     }
   ],
-  "site": {
-    "brand": "Polyglot Syntax Reference",
-    "brand_short": "Polyglot Syntax",
-    "home_meta_description": "An extensible syntax reference for switching between languages.",
-    "home_heading_lines": [
-      "One reference.",
-      "Every language."
-    ],
-    "home_description": "A practical reference for anyone who works with multiple programming languages. Quickly find familiar syntax, concepts, patterns, and common gotchas — no matter which language you are working in.",
-    "footer": "Polyglot Syntax Reference · Open source · For every programmer",
-    "compare_title": "Compare Languages",
-    "compare_description": "Side-by-side syntax comparison across the supported languages.",
-    "compare_heading": "Same Concept, Different Language",
-    "compare_intro": "Jump between the supported languages without losing your place."
-  },
   "versions": [
     {
       "language": "javascript",
@@ -5267,7 +5312,7 @@
       "language": "javascript",
       "id": "ecmascript",
       "label": "ECMAScript",
-      "kind": "language",
+      "kind": "standard",
       "order": 1,
       "description": "Editions of the language standard, ECMA-262. This is what the language itself defines, whichever engine runs it.",
       "changelog_links": [

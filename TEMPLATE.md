@@ -42,17 +42,26 @@ In `languages`:
   "name": "Go",
   "status": "available",
   "order": 6,
+  "category": "programming",
   "description": "One-line description shown on the homepage card.",
   "version_label": "Go 1.22+ · statically typed, compiled",
-  "color": "#00add8"
+  "color": "#00add8",
+  "color_text": "#5dc9e2",
+  "syntax_checks": { "all": ["[]int", "func("] }
 }
 ```
 
-`slug` becomes the folder and URL (`/go/`), and `order` controls dropdown and
-card order. The `version_label` is the badge shown under the page title, so state
-the version or edition there.
-`color` is optional (`#rrggbb`); it tints the language's lane on the compare page and
-its dot in the Add language menu. Without it, the site accent color is used.
+`slug` becomes the folder and URL (`/go/`) and a CSS class, so it must start with a letter and use only
+lowercase letters, digits and `-`. `order` controls dropdown and card order. The `version_label` is the badge
+shown under the page title, so state the version or edition there.
+
+- `category` must match a `slug` in the top-level `categories` list.
+- `color` is required (`#rrggbb`). The build turns it into the language's tag, card, button and search-result
+  colors, and the lane color on the compare page. Nothing in the stylesheet names a language.
+- `color_text` is optional. Use it when the main color is too dark to read as text on the dark theme. Without
+  it, the text color is the main color blended with the page's text color, which adapts to both themes.
+- `syntax_checks` is optional. Snippets under `all` must each appear on the language page, and at least one
+  snippet under `any` must. Use it to protect syntax that is easy to corrupt in HTML, such as generics.
 
 ## 2. Add sections
 
@@ -155,14 +164,15 @@ own releases that differ from the language's, as Node.js does for JavaScript. Ad
 `/<language>/versions/<track id>/`):
 
 ```json
-{ "language": "go", "id": "go", "label": "Go", "kind": "language", "order": 1,
+{ "language": "go", "id": "go", "label": "Go", "kind": "standard", "order": 1,
   "description": "Releases of the Go language and toolchain.",
   "changelog_links": [
     { "title": "Official release notes", "url": "https://go.dev/doc/devel/release" }
   ] }
 ```
 
-`kind` is `language` or `runtime`. `changelog_links` are required, must use https, and are shown as the
+`kind` is `standard` (editions of a language standard), `runtime`, `implementation` (a particular compiler or
+interpreter) or `environment` (where code runs, such as a browser). `changelog_links` are required, must use https, and are shown as the
 page's sources, so there is no need to cite a source for each event.
 
 **Versions** (one per release, oldest first, each naming its track):

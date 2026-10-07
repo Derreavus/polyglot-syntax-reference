@@ -22,3 +22,10 @@ def load_languages() -> list[dict[str, object]]:
 
 def language_slugs() -> list[str]:
     return [str(lang["slug"]) for lang in load_languages()]
+
+
+def language_entry(slug: str) -> dict[str, object]:
+    for language in load_languages():
+        if language["slug"] == slug:
+            return language
+    raise KeyError(slug)

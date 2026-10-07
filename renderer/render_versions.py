@@ -5,6 +5,8 @@ from __future__ import annotations
 import html
 from typing import Any
 
+from theme import language_theme_style
+
 from render_language import relative_asset_path
 from versioning import (
     KIND_LABELS,
@@ -30,8 +32,13 @@ STATE_LABELS = {
     "removed": "Removed",
     "not-yet": "Not yet",
 }
-KIND_NOUN = {"language": "edition", "runtime": "release"}
-TRACK_KIND_LABEL = {"language": "Language standard", "runtime": "Runtime"}
+KIND_NOUN = {"standard": "edition", "runtime": "release", "implementation": "release", "environment": "version"}
+TRACK_KIND_LABEL = {
+    "standard": "Language standard",
+    "runtime": "Runtime",
+    "implementation": "Implementation",
+    "environment": "Environment",
+}
 
 
 def format_date(value: str) -> str:
@@ -347,6 +354,7 @@ def render_versions_page(
   <meta name="description" content="What was added, changed, deprecated and removed in each {track_label} {noun} for {name}, with before-and-after examples for upgrading old code.">
   <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="{css_path}">
+  {language_theme_style(data)}
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>

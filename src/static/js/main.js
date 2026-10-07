@@ -26,7 +26,7 @@
   }
 
   // Everything below resolves URLs from this script's own location, so links stay correct on
-  // /python/, /python/index.html, nested pages, GitHub project sites, and file:// previews alike.
+  // /<language>/, /<language>/index.html, nested pages, GitHub project sites, and file:// previews alike.
   const scriptEl = document.currentScript || document.querySelector('script[src$="js/main.js"]');
   const siteRoot = scriptEl && scriptEl.src ? new URL("../", scriptEl.src).href : "";
   const path = location.pathname;

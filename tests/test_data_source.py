@@ -101,14 +101,21 @@ class DataSourceTests(unittest.TestCase):
         self.assertGreater(row_count, 0)
         self.assertEqual(page.count('<td role="cell" data-language="go" hidden>'), row_count)
 
-    def test_language_color_is_optional_but_must_be_a_hex_color(self) -> None:
+    def test_language_color_is_required_and_text_color_is_optional(self) -> None:
         data = copy.deepcopy(self.data)
         del data["languages"][0]["color"]
+        with self.assertRaisesRegex(ValueError, "missing keys: color"):
+            validate_data_model(data)
+
+        data = copy.deepcopy(self.data)
+        data["languages"][0].pop("color_text", None)
         validate_data_model(data)
 
-        data["languages"][0]["color"] = "red"
-        with self.assertRaisesRegex(ValueError, "color must be a #rrggbb"):
-            validate_data_model(data)
+        for key in ("color", "color_text"):
+            data = copy.deepcopy(self.data)
+            data["languages"][0][key] = "red"
+            with self.assertRaisesRegex(ValueError, f"{key} must be a #rrggbb"):
+                validate_data_model(data)
 
     def test_language_page_has_section_drawer_and_scrolling_tables(self) -> None:
         language = self.data["languages"][0]
@@ -170,7 +177,9 @@ class DataSourceTests(unittest.TestCase):
             "slug": "go",
             "name": "Go",
             "status": "available",
-            "order": 5,
+            "order": 6,
+            "category": "programming",
+            "color": "#00add8",
             "description": "Go language reference.",
             "version_label": "Go 1.24+",
         })

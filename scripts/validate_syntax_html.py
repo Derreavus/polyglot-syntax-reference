@@ -14,7 +14,7 @@ import re
 import sys
 from pathlib import Path
 
-from language_registry import language_slugs
+from language_registry import language_entry, language_slugs
 
 SITE = Path(__file__).resolve().parents[1] / "dist"  # generated site; run renderer/build_site.py first
 LANGS = tuple(language_slugs())
@@ -95,34 +95,20 @@ def has_escaped_generic(html_text: str, *needles: str) -> bool:
 
 
 def expected_generics_present(lang: str, html_text: str) -> list[str]:
-    checks = {
-        "cpp": [
-            "template<typename T>",
-            "make_unique<",
-            "vector<",
-            "static_cast<",
-        ],
-        "rust": [
-            "Vec<",
-            "Option<",
-            "Result<",
-        ],
-        "csharp": [
-            "List<",
-            "<T>",
-        ],
-        "python": [
-            "list[int]",
-            "TypeVar",
-            "def first[",
-        ],
-    }
-    missing = []
-    for needle in checks.get(lang, []):
-        if needle not in html_text and html_lib.escape(needle, quote=False) not in html_text:
-            if lang == "python" and any(item in html_text for item in ("TypeVar", "def first[", "list[int]")):
-                continue
-            missing.append(needle)
+    """Snippets the data says must survive on the page (generics are easy to corrupt in HTML).
+
+    ``languages[].syntax_checks.all`` lists snippets that must all appear, and ``.any`` lists snippets
+    of which at least one must appear.
+    """
+    checks = language_entry(lang).get("syntax_checks") or {}
+
+    def present(needle: str) -> bool:
+        return needle in html_text or html_lib.escape(needle, quote=False) in html_text
+
+    missing = [needle for needle in checks.get("all", []) if not present(needle)]
+    any_of = checks.get("any", [])
+    if any_of and not any(present(needle) for needle in any_of):
+        missing.append("one of: " + ", ".join(any_of))
     return missing
 
 

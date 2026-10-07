@@ -6,6 +6,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from theme import language_theme_style
+
 from versioning import features_for, has_versioning, lifecycle_facts, release_text, short_label, track_page_rel, tracks_for, version_orders, versions_for
 
 
@@ -19,7 +21,7 @@ def wrap_tables(body_html: str) -> str:
 
 def _since_text(track: dict[str, Any], version: dict[str, Any], event: dict[str, Any]) -> str:
     label = release_text(version, event)
-    if track["kind"] == "runtime":
+    if track["kind"] != "standard":
         return f"{label}+"
     return f"Draft in {label}" if version["status"] == "draft" else f"Since {label}"
 
@@ -50,7 +52,7 @@ def version_notes_html(topic_slug: str, features: list[dict[str, Any]], tracks: 
             facts = lifecycle_facts(feature, track["id"], versions[track["id"]])
             added = facts["added"]
             draft = " vn-draft" if added["status"] == "draft" else ""
-            runtime = " vn-runtime" if track["kind"] == "runtime" else ""
+            runtime = " vn-runtime" if track["kind"] != "standard" else ""
             target = f'{href_for(track["id"])}#feature-{html.escape(feature["slug"])}'
             chips.append(f'<a class="vn-since{draft}{runtime}" href="{target}">{html.escape(_since_text(track, added, facts["added_event"]))}</a>')
             prefix = f'{track["label"]}: ' if track["id"] != primary else ""
@@ -185,6 +187,7 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
   <title>{html.escape(language["name"]) } — {html.escape(site["brand"])}</title>
   <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="{css_path}">
+  {language_theme_style(data)}
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>

@@ -6,7 +6,10 @@ from typing import Any
 from validate_versioning import validate_versioning
 
 
-REQUIRED_LANGUAGE_KEYS = {"slug", "name", "order"}
+REQUIRED_LANGUAGE_KEYS = {"slug", "name", "order", "category", "color"}
+LANGUAGE_SLUG_PATTERN = re.compile(r"^[a-z][a-z0-9-]*$")  # also used as a CSS class name
+HEX_COLOR = re.compile(r"^#[0-9a-fA-F]{6}$")
+REQUIRED_CATEGORY_KEYS = {"slug", "name", "order", "description"}
 REQUIRED_TOPIC_KEYS = {"language", "section", "slug", "title", "concept"}
 REQUIRED_SECTION_KEYS = {"language", "slug", "title"}
 
@@ -55,6 +58,27 @@ def validate_data_model(data: dict[str, Any]) -> None:
     for key in required_site_keys - {"home_heading_lines"}:
         _require(isinstance(site[key], str) and site[key].strip(), f"data.site.{key} must be a non-empty string")
 
+    categories = data.get("categories", [])
+    _require(isinstance(categories, list) and categories, "data.categories must be a non-empty list")
+    category_slugs: set[str] = set()
+    for index, category in enumerate(categories):
+        _require(isinstance(category, dict), f"categories[{index}] must be an object")
+        missing = sorted(REQUIRED_CATEGORY_KEYS - set(category))
+        _require(not missing, f"categories[{index}] missing keys: {', '.join(missing)}")
+        slug = category["slug"]
+        _require(
+            isinstance(slug, str) and LANGUAGE_SLUG_PATTERN.match(slug) is not None,
+            f"categories[{index}].slug must be lowercase letters, digits and '-'",
+        )
+        _require(slug not in category_slugs, f"duplicate category slug: {slug}")
+        category_slugs.add(slug)
+        _require(isinstance(category["name"], str) and category["name"].strip(), f"category '{slug}'.name must be non-empty")
+        _require(
+            isinstance(category["description"], str) and category["description"].strip(),
+            f"category '{slug}'.description must be non-empty",
+        )
+        _require(isinstance(category["order"], int) and not isinstance(category["order"], bool), f"category '{slug}'.order must be an integer")
+
     language_slugs = set()
     for index, language in enumerate(languages):
         _require(isinstance(language, dict), f"languages[{index}] must be an object")
@@ -62,13 +86,33 @@ def validate_data_model(data: dict[str, Any]) -> None:
         _require(not missing, f"languages[{index}] missing keys: {', '.join(missing)}")
         slug = language["slug"]
         _require(isinstance(slug, str) and slug.strip(), f"languages[{index}].slug must be a non-empty string")
+        _require(
+            LANGUAGE_SLUG_PATTERN.match(slug) is not None,
+            f"languages[{index}].slug '{slug}' must start with a letter and use lowercase letters, digits and '-'",
+        )
         _require(slug not in language_slugs, f"duplicate language slug: {slug}")
         language_slugs.add(slug)
-        color = language.get("color")
         _require(
-            color is None or (isinstance(color, str) and re.fullmatch(r"#[0-9a-fA-F]{6}", color) is not None),
-            f"languages[{index}].color must be a #rrggbb hex string",
+            language["category"] in category_slugs,
+            f"language '{slug}' references unknown category '{language['category']}'",
         )
+        for key in ("color", "color_text"):
+            if key in language:
+                _require(
+                    isinstance(language[key], str) and HEX_COLOR.match(language[key]) is not None,
+                    f"languages[{index}].{key} must be a #rrggbb hex string",
+                )
+        checks = language.get("syntax_checks")
+        if checks is not None:
+            _require(
+                isinstance(checks, dict) and set(checks) <= {"all", "any"},
+                f"language '{slug}'.syntax_checks may only contain 'all' and 'any'",
+            )
+            for mode, needles in checks.items():
+                _require(
+                    isinstance(needles, list) and all(isinstance(n, str) and n for n in needles),
+                    f"language '{slug}'.syntax_checks.{mode} must be a list of non-empty strings",
+                )
 
     concept_slugs = set()
     for index, concept in enumerate(concepts):

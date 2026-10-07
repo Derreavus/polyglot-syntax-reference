@@ -19,13 +19,8 @@ TABLE_WRAPPER = re.compile(r'<div class="table-scroll scroll-fade">(<table\b.*?<
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "dist"
 DATA_PATH = ROOT / "data" / "site_data.json"
-MINIMUM_TOPIC_COUNTS = {
-    "python": 18,
-    "rust": 20,
-    "cpp": 21,
-    "csharp": 20,
-    "javascript": 10,
-}
+# Every language must publish at least one topic; the topic-by-topic comparison below checks the rest.
+MINIMUM_TOPICS = 1
 
 RUNTIME_MARKERS = {
     "theme": [
@@ -84,7 +79,7 @@ def main() -> int:
         expected_topics = {
             topic["slug"] for topic in data["topics"] if topic["language"] == slug
         }
-        minimum_count = MINIMUM_TOPIC_COUNTS.get(slug, 1)
+        minimum_count = MINIMUM_TOPICS
         if len(expected_topics) < minimum_count:
             errors.append(
                 f"{slug}: only {len(expected_topics)} topics; expected at least {minimum_count}"

@@ -186,14 +186,14 @@ Version data lives in [data/site_data.json](data/site_data.json) next to the res
 
 A language has one or more **tracks**. A track is its own ordered list of versions with its own release metadata, and a feature keeps a separate history on each track it belongs to. JavaScript has two:
 
-- **ECMAScript** (a `language` track): editions of the standard, ES3 baseline to ES2027 draft.
+- **ECMAScript** (a `standard` track): editions of the standard, ES3 baseline to ES2027 draft.
 - **Node.js** (a `runtime` track): major releases from 0.10 to 26, with the V8 engine version, long-term support dates, code names and end-of-life dates.
 
 They are separate on purpose. A language feature is only usable once the runtime's engine supports it, so `Array.prototype.at()` was added in ES2022 but first ran in Node.js 16.6. Some features exist on one track only: `crypto.createCipher()` is Node.js only, and `Math.sumPrecise()` has no Node.js entry until a release supports it.
 
 The data has four parts:
 
-- **`tracks`**: `id`, `label`, `kind` (`language` or `runtime`), `order`, a `description`, and `changelog_links` to the official changelogs. The page shows these as its sources instead of citing a source for every event.
+- **`tracks`**: `id`, `label`, `kind` (`standard`, `runtime`, `implementation` or `environment`), `order`, a `description`, and `changelog_links` to the official changelogs. The page shows these as its sources instead of citing a source for every event.
 - **`versions`**: each belongs to a `track`. It has an `id`, a `label`, a release date, an `order` number (counted separately for each track) and a `status` of `released` or `draft`. Runtime versions can also carry `codename`, `lts_from`, `end_of_life` and `engine`.
 - **`features`**: things you can recognise in code, such as `let` and `const` or `fs.promises`. Each has a `history` that maps a track id to a list of events: `added`, `changed`, `deprecated` and `removed`. An event can name the exact `release` inside a version (`16.6.0`). A feature can link to the reference `topic` that explains it, name what replaced it (`replaced_by`, which can point at a feature on another track), and carry a `migration` pair with an older and a newer way to write it.
 
@@ -214,6 +214,12 @@ The build rejects data that breaks the rules: duplicate or out-of-order versions
 For JavaScript, `node scripts/check_js_examples.js` (after `npm install --no-save acorn`) also checks the before-and-after snippets by parsing them in the edition they belong to, and parses every code block in the JavaScript reference topics. It is optional and not part of CI.
 
 A feature with a `topic` appears in that topic's **Version notes**. The **What can I use?** view computes each feature's state in the browser with the same rules as `lifecycle_state()` in `renderer/versioning.py`, and the tests keep the two in step.
+
+### Categories and the language-neutral rule
+
+Every language belongs to a **category** (`categories` in the data file). Today there is one, programming languages, so the site looks the same, but the data is ready for databases, spreadsheets, shells and other kinds of reference without renaming anything.
+
+Adding a language takes data and content only. Nothing in the renderers, scripts or stylesheet may name a particular language: colors are generated from each language's `color`, and the checks for generics or topic counts come from the data. `tests/test_architecture.py` enforces this. It builds a made-up sixth language from data alone, and scans the code for any reference to a real language.
 
 ### Adding a new language
 
