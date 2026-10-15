@@ -55,12 +55,17 @@ def render_site_data_js(data: dict) -> str:
         }
         for topic in data["topics"]
     ]
+    site_payload = json.dumps(
+        {"brand": data["site"]["brand"], "brand_short": data["site"]["brand_short"]},
+        ensure_ascii=True, separators=(",", ":"),
+    )
     languages_payload = json.dumps(languages, ensure_ascii=True, separators=(",", ":"))
     concepts_payload = json.dumps(concepts, ensure_ascii=True, separators=(",", ":"))
     search_payload = json.dumps(search_index, ensure_ascii=True, separators=(",", ":"))
     js = (
         "(function () {\n"
         "  'use strict';\n"
+        f"  window.POLYGLOT_SITE = {site_payload};\n"
         f"  window.POLYGLOT_LANGUAGES = {languages_payload};\n"
         "  window.POLYGLOT_LANGUAGES.sort(function (a, b) {\n"
         "    return Number(a.order || 0) - Number(b.order || 0);\n"

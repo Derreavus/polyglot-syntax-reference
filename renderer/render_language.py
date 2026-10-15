@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from theme import language_theme_style
+from chrome import relative_asset_path, render_head, render_header
 
 from versioning import features_for, has_versioning, lifecycle_facts, release_text, short_label, track_page_rel, tracks_for, version_orders, versions_for
 
@@ -99,9 +99,6 @@ def version_notes_html(topic_slug: str, features: list[dict[str, Any]], tracks: 
     )
 
 
-def relative_asset_path(page_rel: str, target_rel: str) -> str:
-    return os.path.relpath(target_rel, start=str(Path(page_rel).parent)).replace('\\', '/')
-
 
 def render_language_page(language: dict[str, Any], data: dict[str, Any], page_rel: str) -> str:
     site = data["site"]
@@ -179,33 +176,12 @@ def render_language_page(language: dict[str, Any], data: dict[str, Any], page_re
             f'</section>'
         )
 
+    head_title = f'{language["name"]} — {site["brand"]}'
     return f'''<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{html.escape(language["name"]) } — {html.escape(site["brand"])}</title>
-  <script>document.documentElement.classList.add("js");</script>
-  <link rel="stylesheet" href="{css_path}">
-  {language_theme_style(data)}
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-</head>
+{render_head(data, page_rel, head_title, language.get("description"))}
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="{relative_asset_path(page_rel, 'index.html')}" class="logo"><span class="logo-mark">{{ }}</span><span class="logo-text">{html.escape(site["brand_short"])}</span></a>
-      <nav class="lang-nav" aria-label="Language navigation">
-        <details class="language-menu">
-          <summary class="language-menu-toggle" aria-label="Choose a language">
-            <span>{html.escape(language["name"])}</span><span class="language-menu-chevron" aria-hidden="true"></span>
-          </summary>
-          <div class="language-menu-panel" aria-label="Available languages"></div>
-        </details>
-      </nav>
-      <a href="{relative_asset_path(page_rel, 'compare/index.html')}" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Compare</a>
-      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
-    </div>
-  </header>
+  {render_header(data, page_rel, language["name"])}
 
   <div class="lang-layout container">
     <aside class="sidebar" id="sections-drawer" aria-label="Sections">

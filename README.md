@@ -1,37 +1,40 @@
-# Polyglot Syntax Reference
+# CodeReference
 
-A quick reference for anyone who works with multiple programming languages.
+A fast, consistent quick reference for technical things you look up while you work.
 
-Polyglot Syntax Reference makes it easier to switch between programming languages by organizing equivalent syntax, concepts, patterns, and common gotchas into a consistent reference format.
+CodeReference organizes syntax, concepts, patterns, gotchas and version history into one reference format, so you can find what you need quickly and get back to work. It started as the Polyglot Syntax Reference and is growing from a comparison of programming languages into a reference for the tools around them.
 
 ## Website
 
-**[Open Polyglot Syntax Reference](https://derreavus.github.io/polyglot-syntax-reference/)**
+**[Open CodeReference](https://derreavus.github.io/polyglot-syntax-reference/)**
 
 The website is the primary way to use the reference.
 
 ---
 
-## What Is Polyglot Syntax Reference?
+## What Is CodeReference?
 
-Polyglot Syntax Reference is designed for programmers who already know one or more programming languages and need a quick way to remember how familiar concepts are expressed in another language.
+CodeReference is designed for people who already know their way around code and need a quick way to recall how something is done: in another language, in an older version, or in a tool they use only now and then.
 
-Instead of searching through full language documentation for something like:
+Instead of searching through full documentation for something like:
 
 - “How do I make a dictionary in Rust?”
 - “What's the C++ equivalent of this Python pattern?”
 - “How does C# handle async?”
-- “What's the syntax for generics in Rust again?”
+- “What did this code do in the version it was written for, and what replaced it?”
 
-Polyglot provides a concise reference organized around the concepts and syntax you're likely to need.
+CodeReference provides a concise reference organized around the concepts and syntax you're likely to need.
 
-It is a **quick reference and comparison tool**, not a replacement for official language documentation.
+It is a **quick reference**, not a replacement for official documentation. Comparing languages side by side is one of its tools, not its identity.
 
----
+## How it is organized
 
-## Why “Polyglot”?
+- **References** are grouped into categories. Programming languages are the first category.
+- **Search** finds a concept, a piece of syntax or a feature across every reference.
+- **Version history** shows what was added, changed, deprecated and removed between versions, so old code can be understood and moved forward.
+- **Compare** puts the same concept in several languages side by side.
 
-The same programming concept can look very different between languages.
+The same concept can look very different between languages.
 
 | Language | Common type |
 | --- | --- |
@@ -40,7 +43,7 @@ The same programming concept can look very different between languages.
 | C++ | `std::unordered_map<K, V>` |
 | C# | `Dictionary<TKey, TValue>` |
 
-Polyglot Syntax Reference presents these concepts in a consistent format so you can quickly translate what you already know into another language.
+CodeReference presents these concepts in a consistent format so you can quickly translate what you already know into another language.
 
 ---
 
@@ -122,7 +125,7 @@ The exact organization varies where a language's design requires it, but the ove
 
 ## Who Is It For?
 
-Polyglot Syntax Reference is useful for anyone who switches between programming languages, including:
+CodeReference is useful for anyone who switches between programming languages or works with old code, including:
 
 - Developers working with multiple languages
 - Developers learning a new language
@@ -258,7 +261,7 @@ Examples should use valid, current syntax and avoid misleading shortcuts or lang
 
 ## Project Status
 
-Polyglot Syntax Reference currently covers C++, C#, JavaScript, Python, and Rust. JavaScript also has version history; the other languages do not yet.
+CodeReference currently covers C++, C#, JavaScript, Python, and Rust. JavaScript also has version history; the other languages do not yet.
 
 The project continues to evolve, with a focus on content accuracy, practical guidance, validated examples, accessibility, and cross-language navigation.
 
@@ -317,7 +320,7 @@ Before submitting changes, run the available validation and CI checks to ensure 
 
 ## License
 
-Polyglot Syntax Reference is licensed under the MIT License.
+CodeReference is licensed under the MIT License.
 
 See [`LICENSE`](LICENSE) for the full license text.
 

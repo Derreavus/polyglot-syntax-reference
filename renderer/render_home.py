@@ -1,94 +1,88 @@
 from __future__ import annotations
 
 import html
-import os
-from pathlib import Path
 from typing import Any
 
-from theme import language_theme_style
+from chrome import relative_asset_path, render_footer, render_head, render_header
+from versioning import has_versioning
 
-
-def relative_asset_path(page_rel: str, target_rel: str) -> str:
-    return os.path.relpath(target_rel, start=str(Path(page_rel).parent)).replace('\\', '/')
+SEARCH_ICON = (
+    '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
+    'aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>'
+)
 
 
 def render_home_page(data: dict[str, Any], page_rel: str = "index.html") -> str:
-    languages = sorted(data.get("languages", []), key=lambda item: int(item.get("order", 0)))
     site = data["site"]
-    css_path = relative_asset_path(page_rel, "css/style.css")
+    languages = sorted(data.get("languages", []), key=lambda item: int(item.get("order", 0)))
+    categories = sorted(data.get("categories", []), key=lambda item: int(item.get("order", 0)))
     js_path = relative_asset_path(page_rel, "js/site-data.js")
     main_js_path = relative_asset_path(page_rel, "js/main.js")
+    topic_counts: dict[str, int] = {}
+    for topic in data.get("topics", []):
+        topic_counts[topic["language"]] = topic_counts.get(topic["language"], 0) + 1
 
     def card_for(lang: dict[str, Any]) -> str:
         slug = lang["slug"]
         href = relative_asset_path(page_rel, f"{slug}/index.html")
+        count = topic_counts.get(slug, 0)
+        facts = [f"{count} topic" + ("" if count == 1 else "s")]
+        if has_versioning(data, slug):
+            facts.append(site["card_version_history"])
         return (
             f'<a href="{href}" class="hero-card {html.escape(slug)}">'
             f'<h2>{html.escape(lang["name"])}</h2>'
             f'<p>{html.escape(lang.get("description", ""))}</p>'
-            f'</a>'
+            f'<p class="card-meta">{html.escape(" · ".join(facts))}</p>'
+            f"</a>"
         )
 
-    cards_html = "\n".join(card_for(lang) for lang in languages)
+    sections: list[str] = []
+    for category in categories:
+        members = [lang for lang in languages if lang["category"] == category["slug"]]
+        if not members:
+            continue
+        heading_id = f'category-{html.escape(category["slug"])}'
+        sections.append(
+            f'<section class="home-section" aria-labelledby="{heading_id}">'
+            f'<div class="container"><h2 id="{heading_id}">{html.escape(category["name"])}</h2>'
+            f'<p class="home-section-sub">{html.escape(category["description"])}</p>'
+            f'<div class="hero-cards">{"".join(card_for(lang) for lang in members)}</div></div></section>'
+        )
 
     compare_href = relative_asset_path(page_rel, "compare/index.html")
-
-    brand = site["brand"]
-    brand_short = site["brand_short"]
-    home_heading = "<br>".join(
-        html.escape(line) for line in site["home_heading_lines"]
+    tools = (
+        '<section class="home-section" aria-labelledby="tools-heading">'
+        f'<div class="container"><h2 id="tools-heading">{html.escape(site["home_tools_heading"])}</h2>'
+        '<div class="hero-cards">'
+        f'<a href="{compare_href}" class="hero-card tool-card"><h2>{html.escape(site["home_compare_title"])}</h2>'
+        f'<p>{html.escape(site["home_compare_description"])}</p></a>'
+        "</div></div></section>"
     )
-    home_description = site["home_description"]
 
+    heading = "<br>".join(html.escape(line) for line in site["home_heading_lines"])
     return f'''<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{html.escape(brand)}</title>
-  <meta name="description" content="{html.escape(site["home_meta_description"], quote=True)}">
-  <script>document.documentElement.classList.add("js");</script>
-  <link rel="stylesheet" href="{css_path}">
-  {language_theme_style(data)}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-</head>
+{render_head(data, page_rel, site["brand"], site["home_meta_description"])}
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="{relative_asset_path(page_rel, 'index.html')}" class="logo">
-        <span class="logo-mark">{{ }}</span>
-        <span class="logo-text">{html.escape(brand_short)}</span>
-      </a>
-      <nav class="lang-nav" aria-label="Language navigation">
-        <details class="language-menu">
-          <summary class="language-menu-toggle" aria-label="Choose a language">
-            <span>Languages</span><span class="language-menu-chevron" aria-hidden="true"></span>
-          </summary>
-          <div class="language-menu-panel" aria-label="Available languages"></div>
-        </details>
-      </nav>
-      <a href="{compare_href}" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Compare</a>
-      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
-    </div>
-  </header>
+  {render_header(data, page_rel)}
 
   <main>
     <section class="hero">
       <div class="container">
-        <h1>{home_heading}</h1>
-        <p class="hero-sub">{html.escape(home_description)}</p>
-        <div class="hero-cards" aria-label="Language cards">{cards_html}</div>
+        <h1>{heading}</h1>
+        <p class="hero-sub">{html.escape(site["home_description"])}</p>
+        <button type="button" class="hero-search" id="hero-search" aria-label="{html.escape(site["home_search_label"], quote=True)}">
+          {SEARCH_ICON}<span>{html.escape(site["home_search_prompt"])}</span><kbd>/</kbd>
+        </button>
       </div>
     </section>
+    <h2 class="sr-only">{html.escape(site["home_browse_heading"])}</h2>
+    {"".join(sections)}
+    {tools}
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>{html.escape(site["footer"])}</p>
-    </div>
-  </footer>
+  {render_footer(site)}
 
   <script src="{js_path}"></script>
   <script src="{main_js_path}"></script>

@@ -30,6 +30,7 @@
   const scriptEl = document.currentScript || document.querySelector('script[src$="js/main.js"]');
   const siteRoot = scriptEl && scriptEl.src ? new URL("../", scriptEl.src).href : "";
   const path = location.pathname;
+  const siteInfo = window.POLYGLOT_SITE || {};
   const registry = Array.isArray(window.POLYGLOT_LANGUAGES) ? window.POLYGLOT_LANGUAGES.slice() : [];
 
   // Marks a scrollable element with data-fade="start|end|both|none" so CSS can fade the edge
@@ -172,27 +173,6 @@
         if (summary) summary.focus();
       });
     });
-  }
-
-  function renderHomepageCards() {
-    const homepageCards = document.querySelector(".hero-cards");
-    if (!homepageCards) return;
-
-    homepageCards.innerHTML = "";
-    registry.forEach(function (lang) {
-      const card = document.createElement("a");
-      card.href = siteRoot + lang.slug + "/index.html";
-      card.className = "hero-card " + lang.slug;
-      card.innerHTML = "<h2>" + escapeHtml(lang.name) + "</h2><p>" + escapeHtml(lang.description || "") + "</p>";
-      homepageCards.appendChild(card);
-    });
-
-    const compareCard = document.createElement("a");
-    compareCard.href = siteRoot + "compare/index.html";
-    compareCard.className = "hero-card";
-    compareCard.style.borderColor = "var(--accent)";
-    compareCard.innerHTML = '<h2 style="color:var(--accent);">Compare</h2><p>Same concept, different language — compare syntax and approaches across languages.</p>';
-    homepageCards.appendChild(compareCard);
   }
 
   // ---- Support end dates: say "ended" once the date has passed, using the reader's clock ----
@@ -676,7 +656,7 @@
     overlay.id = "cmd-overlay";
     overlay.hidden = true;
     overlay.innerHTML =
-      '<div id="cmd-palette" role="dialog" aria-label="Search Polyglot" aria-modal="true">' +
+      '<div id="cmd-palette" role="dialog" aria-label="Search ' + (siteInfo.brand || "all references") + '" aria-modal="true">' +
       '<div class="cmd-header">' +
       '<input type="search" id="cmd-input" placeholder="Search all languages\u2026" autocomplete="off" aria-label="Search" />' +
       '<kbd class="cmd-hint">esc</kbd></div>' +
@@ -809,6 +789,8 @@
     }, true);
 
     injectSearchTrigger(openPalette);
+    const heroSearch = document.getElementById("hero-search");
+    if (heroSearch) heroSearch.addEventListener("click", openPalette);
   }
 
   function injectSearchTrigger(openFn) {
@@ -830,7 +812,6 @@
   }
 
   renderLanguageNavigation();
-  renderHomepageCards();
   initCompareBoard();
   initVersionsPage();
   initSupportDates();
@@ -940,7 +921,7 @@
     nav.className = "breadcrumbs";
     nav.setAttribute("aria-label", "Breadcrumb");
     nav.innerHTML =
-      '<a href="../index.html">Polyglot</a><span class="bc-sep">/</span>' +
+      '<a href="../index.html">' + (siteInfo.brand_short || "Home") + '</a><span class="bc-sep">/</span>' +
       '<span class="bc-current">' + LANG_META[currentLang].label + "</span>";
     article.insertBefore(nav, h1);
   }

@@ -5,9 +5,7 @@ from __future__ import annotations
 import html
 from typing import Any
 
-from theme import language_theme_style
-
-from render_language import relative_asset_path
+from chrome import relative_asset_path, render_head, render_header
 from versioning import (
     KIND_LABELS,
     STATES,
@@ -345,34 +343,16 @@ def render_versions_page(
     )
     title_suffix = "" if is_primary else f": {track['label']}"
 
+    head_title = f"{language['name']} version history{title_suffix} — {site['brand']}"
+    head_description = (
+        f"What was added, changed, deprecated and removed in each {track['label']} {noun} for {language['name']}, "
+        "with before-and-after examples for upgrading old code."
+    )
     return f'''<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{name} version history{html.escape(title_suffix)} — {html.escape(site["brand"])}</title>
-  <meta name="description" content="What was added, changed, deprecated and removed in each {track_label} {noun} for {name}, with before-and-after examples for upgrading old code.">
-  <script>document.documentElement.classList.add("js");</script>
-  <link rel="stylesheet" href="{css_path}">
-  {language_theme_style(data)}
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-</head>
+{render_head(data, page_rel, head_title, head_description)}
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="{home_path}" class="logo"><span class="logo-mark">{{ }}</span><span class="logo-text">{html.escape(site["brand_short"])}</span></a>
-      <nav class="lang-nav" aria-label="Language navigation">
-        <details class="language-menu">
-          <summary class="language-menu-toggle" aria-label="Choose a language">
-            <span>{name}</span><span class="language-menu-chevron" aria-hidden="true"></span>
-          </summary>
-          <div class="language-menu-panel" aria-label="Available languages"></div>
-        </details>
-      </nav>
-      <a href="{compare_path}" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Compare</a>
-      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
-    </div>
-  </header>
+  {render_header(data, page_rel, language["name"])}
 
   <main class="container versions-main">
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="{home_path}">Home</a> / <a href="{language_path}">{name}</a> / {crumb_track}</nav>

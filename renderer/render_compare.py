@@ -5,11 +5,8 @@ import os
 from pathlib import Path
 from typing import Any
 
-from theme import language_theme_style
+from chrome import relative_asset_path, render_head, render_header
 
-
-def relative_asset_path(page_rel: str, target_rel: str) -> str:
-    return os.path.relpath(target_rel, start=str(Path(page_rel).parent)).replace('\\', '/')
 
 
 def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.html") -> str:
@@ -63,34 +60,12 @@ def render_compare_page(data: dict[str, Any], page_rel: str = "compare/index.htm
     page_title = site["compare_title"]
     page_description = site["compare_description"]
 
+    head_title = f'{page_title} — {site["brand"]}'
     return f'''<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{html.escape(page_title)} — {html.escape(site["brand"])}</title>
-  <meta name="description" content="{html.escape(page_description, quote=True)}">
-  <script>document.documentElement.classList.add("js");</script>
-  <link rel="stylesheet" href="{css_path}">
-  {language_theme_style(data)}
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-</head>
+{render_head(data, page_rel, head_title, page_description)}
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="{relative_asset_path(page_rel, 'index.html')}" class="logo"><span class="logo-mark">{{ }}</span><span class="logo-text">{html.escape(site["brand_short"])}</span></a>
-      <nav class="lang-nav" aria-label="Language navigation">
-        <details class="language-menu">
-          <summary class="language-menu-toggle" aria-label="Choose a language">
-            <span>Languages</span><span class="language-menu-chevron" aria-hidden="true"></span>
-          </summary>
-          <div class="language-menu-panel" aria-label="Available languages"></div>
-        </details>
-      </nav>
-      <a href="{relative_asset_path(page_rel, 'index.html')}" class="lang-btn" style="color: var(--accent); border: 1px solid var(--accent);">Home</a>
-      <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">☾</button>
-    </div>
-  </header>
+  {render_header(data, page_rel, action="home")}
 
   <main class="container compare-main">
     <div class="compare-hero">

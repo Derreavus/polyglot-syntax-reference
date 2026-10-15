@@ -1,18 +1,32 @@
 {
   "site": {
-    "brand": "Polyglot Syntax Reference",
-    "brand_short": "Polyglot Syntax",
-    "home_meta_description": "An extensible syntax reference for switching between languages.",
+    "brand": "CodeReference",
+    "brand_short": "CodeReference",
+    "home_meta_description": "CodeReference is a fast, consistent quick reference for programming languages and, over time, other technical tools. Look up syntax, concepts and gotchas, and see what changed between versions.",
     "home_heading_lines": [
-      "One reference.",
-      "Every language."
+      "Look it up.",
+      "Get back to work."
     ],
-    "home_description": "A practical reference for anyone who works with multiple programming languages. Quickly find familiar syntax, concepts, patterns, and common gotchas — no matter which language you are working in.",
-    "footer": "Polyglot Syntax Reference · Open source · For every programmer",
+    "home_description": "A fast, consistent quick reference for programming languages and the tools around them. Search a concept, browse a reference, or check what changed between versions.",
+    "footer": "CodeReference · Open source · Quick technical reference",
     "compare_title": "Compare Languages",
     "compare_description": "Side-by-side syntax comparison across the supported languages.",
     "compare_heading": "Same Concept, Different Language",
-    "compare_intro": "Jump between the supported languages without losing your place."
+    "compare_intro": "Jump between the supported languages without losing your place.",
+    "home_search_prompt": "Search any concept or syntax",
+    "home_search_label": "Search all references",
+    "home_browse_heading": "Browse references",
+    "home_tools_heading": "Tools",
+    "home_compare_title": "Compare languages",
+    "home_compare_description": "Same concept, different language: see syntax and approaches side by side.",
+    "card_version_history": "Version history",
+    "nav_references_label": "References",
+    "nav_references_aria": "Reference navigation",
+    "nav_references_choose": "Choose a reference",
+    "nav_references_available": "Available references",
+    "nav_compare_label": "Compare",
+    "nav_home_label": "Home",
+    "theme_toggle_label": "Toggle theme"
   },
   "categories": [
     {
