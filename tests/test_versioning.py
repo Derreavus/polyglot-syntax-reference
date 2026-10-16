@@ -142,7 +142,7 @@ class VersioningValidationTests(unittest.TestCase):
     # ---- features and history
     def test_feature_language_must_exist_and_have_versions(self) -> None:
         self.assert_invalid("unknown language", lambda d: d["features"][0].update(language="cobol"))
-        self.assert_invalid("has features but no versions", lambda d: d["features"][0].update(language="python"))
+        self.assert_invalid("has features but no versions", lambda d: d["features"][0].update(language="rust"))
 
     def test_history_must_name_known_tracks(self) -> None:
         self.assert_invalid("unknown track", lambda d: feature(d, "let-const")["history"].update(deno=[{"version": "x", "kind": "added"}]))
@@ -251,7 +251,9 @@ class VersioningLogicTests(unittest.TestCase):
         self.assertEqual([t["id"] for t in tracks_for(self.data, "javascript")], [ES, NODE])
         self.assertEqual(primary_track(self.data, "javascript")["id"], ES)
         self.assertTrue(has_versioning(self.data, "javascript"))
-        self.assertFalse(has_versioning(self.data, "python"))
+        self.assertTrue(has_versioning(self.data, "python"))
+        self.assertEqual([t["id"] for t in tracks_for(self.data, "python")], ["python"])
+        self.assertFalse(has_versioning(self.data, "rust"))
 
     def test_page_paths(self) -> None:
         self.assertEqual(track_page_rel(self.data, "javascript", ES), "javascript/versions/index.html")
@@ -449,8 +451,11 @@ class VersionPageRenderingTests(unittest.TestCase):
         javascript_page = render_language_page(self.language, self.data, page_rel="javascript/index.html")
         python = next(l for l in self.data["languages"] if l["slug"] == "python")
         python_page = render_language_page(python, self.data, page_rel="python/index.html")
+        rust = next(l for l in self.data["languages"] if l["slug"] == "rust")
+        rust_page = render_language_page(rust, self.data, page_rel="rust/index.html")
         self.assertIn('href="versions/index.html"', javascript_page)
-        self.assertNotIn("version-history-link", python_page)
+        self.assertIn('href="versions/index.html"', python_page)
+        self.assertNotIn("version-history-link", rust_page)
 
     def test_runtime_assets_support_the_pages_and_resolve_urls_from_the_script(self) -> None:
         runtime = (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8")
@@ -508,9 +513,9 @@ class TopicNotesAndAvailabilityTests(unittest.TestCase):
         self.assertIn("Node.js: Removed in Node.js 22", modules)
 
     def test_topics_without_features_and_other_languages_have_no_notes(self) -> None:
-        python = next(l for l in self.data["languages"] if l["slug"] == "python")
-        python_page = render_language_page(python, self.data, page_rel="python/index.html")
-        self.assertNotIn("version-notes", python_page)
+        rust = next(l for l in self.data["languages"] if l["slug"] == "rust")
+        rust_page = render_language_page(rust, self.data, page_rel="rust/index.html")
+        self.assertNotIn("version-notes", rust_page)
         linked = {f["topic"] for f in features_for(self.data, "javascript") if f.get("topic")}
         for slug in {t["slug"] for t in self.data["topics"] if t["language"] == "javascript"} - linked:
             self.assertNotIn("version-notes", self.topic_section(slug))

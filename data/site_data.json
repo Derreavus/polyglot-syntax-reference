@@ -2353,6 +2353,178 @@
       "lts_from": "2026-10-28",
       "end_of_life": "2029-04-30",
       "engine": "V8 14.6"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py2",
+      "label": "Python 2.7 (baseline)",
+      "released": "2008-10-01",
+      "order": 1,
+      "status": "released",
+      "end_of_life": "2020-01-01",
+      "note": "Baseline for the Python 2 line (2.6 and 2.7), which ran alongside the early Python 3 releases. It is dated at the release of Python 2.6 so it sorts before 3.0; Python 2.7 itself came out on 2010-07-03. Features that already existed in Python 2 are recorded as added here."
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.0",
+      "label": "Python 3.0",
+      "released": "2008-12-03",
+      "order": 2,
+      "status": "released",
+      "end_of_life": "2009-06-27",
+      "note": "The first release that deliberately broke compatibility with Python 2."
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.1",
+      "label": "Python 3.1",
+      "released": "2009-06-27",
+      "order": 3,
+      "status": "released",
+      "end_of_life": "2012-04-09"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.2",
+      "label": "Python 3.2",
+      "released": "2011-02-20",
+      "order": 4,
+      "status": "released",
+      "end_of_life": "2016-02-20"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.3",
+      "label": "Python 3.3",
+      "released": "2012-09-29",
+      "order": 5,
+      "status": "released",
+      "end_of_life": "2017-09-29"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.4",
+      "label": "Python 3.4",
+      "released": "2014-03-16",
+      "order": 6,
+      "status": "released",
+      "end_of_life": "2019-03-18"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.5",
+      "label": "Python 3.5",
+      "released": "2015-09-13",
+      "order": 7,
+      "status": "released",
+      "end_of_life": "2020-09-30"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.6",
+      "label": "Python 3.6",
+      "released": "2016-12-23",
+      "order": 8,
+      "status": "released",
+      "end_of_life": "2021-12-23"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.7",
+      "label": "Python 3.7",
+      "released": "2018-06-27",
+      "order": 9,
+      "status": "released",
+      "end_of_life": "2023-06-27"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.8",
+      "label": "Python 3.8",
+      "released": "2019-10-14",
+      "order": 10,
+      "status": "released",
+      "end_of_life": "2024-10-07"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.9",
+      "label": "Python 3.9",
+      "released": "2020-10-05",
+      "order": 11,
+      "status": "released",
+      "end_of_life": "2025-10-31"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.10",
+      "label": "Python 3.10",
+      "released": "2021-10-04",
+      "order": 12,
+      "status": "released",
+      "end_of_life": "2026-10-01"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.11",
+      "label": "Python 3.11",
+      "released": "2022-10-24",
+      "order": 13,
+      "status": "released",
+      "end_of_life": "2027-10"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.12",
+      "label": "Python 3.12",
+      "released": "2023-10-02",
+      "order": 14,
+      "status": "released",
+      "end_of_life": "2028-10"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.13",
+      "label": "Python 3.13",
+      "released": "2024-10-07",
+      "order": 15,
+      "status": "released",
+      "end_of_life": "2029-10"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.14",
+      "label": "Python 3.14",
+      "released": "2025-10-07",
+      "order": 16,
+      "status": "released",
+      "end_of_life": "2030-10"
+    },
+    {
+      "language": "python",
+      "track": "python",
+      "id": "py3.15",
+      "label": "Python 3.15",
+      "released": "2026-10-09",
+      "order": 17,
+      "status": "released",
+      "end_of_life": "2031-10"
     }
   ],
   "features": [
@@ -5319,6 +5491,2091 @@
           }
         ]
       }
+    },
+    {
+      "language": "python",
+      "slug": "print-statement",
+      "title": "print statement",
+      "category": "syntax",
+      "summary": "The Python 2 statement form of print, as in print \"total\", n.",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "print is a function in Python 3, so the statement form is a SyntaxError."
+          }
+        ]
+      },
+      "replaced_by": [
+        "print-function"
+      ],
+      "migration": {
+        "legacy": "print \"error:\", message",
+        "modern": "print(\"error:\", message)",
+        "note": "Redirecting with print >>sys.stderr became the file= keyword argument."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "unicode-type",
+      "title": "unicode type and u\"\" literals",
+      "category": "behavior",
+      "summary": "Python 2 had separate str (bytes) and unicode types, with u\"\" for Unicode text literals.",
+      "topic": "types",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "str now holds Unicode text and bytes holds binary data, so there is no separate unicode type. The u\"\" prefix was accepted again in Python 3.3 (PEP 414)."
+          }
+        ]
+      },
+      "replaced_by": [
+        "text-and-bytes"
+      ],
+      "migration": {
+        "legacy": "text = unicode(data, \"utf-8\")",
+        "modern": "text = data.decode(\"utf-8\")",
+        "note": "Decode bytes to get text, and encode text to get bytes."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "true-division",
+      "title": "Division with /",
+      "category": "behavior",
+      "summary": "In Python 2, / on two integers truncated the result, so 7 / 2 was 3.",
+      "topic": "operators",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "changed",
+            "note": "/ always returns a float, so 7 / 2 is 3.5. Use // for floor division.",
+            "breaking": true
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "average = total / count  # integer division when both are ints",
+        "modern": "average = total // count  # floor division, as before",
+        "note": "Use // wherever the old truncating result is wanted."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "dict-has-key",
+      "title": "dict.has_key()",
+      "category": "library",
+      "summary": "Tests whether a dictionary contains a key.",
+      "topic": "collections",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "dict.has_key() was removed. Use the in operator."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "if config.has_key(\"debug\"):\n    enable_debug()",
+        "modern": "if \"debug\" in config:\n    enable_debug()"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "xrange",
+      "title": "xrange()",
+      "category": "library",
+      "summary": "A lazy sequence of integers. In Python 2, range() built a full list.",
+      "topic": "iterators",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "range() now returns a lazy sequence like the old xrange(), and xrange() was removed."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "for i in xrange(1000000):\n    work(i)",
+        "modern": "for i in range(1000000):\n    work(i)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "raw-input",
+      "title": "raw_input()",
+      "category": "library",
+      "summary": "Reads a line of text from the user. In Python 2, input() evaluated what was typed.",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "raw_input() was renamed to input(), and the old input() that evaluated the text was removed."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "name = raw_input(\"Name: \")",
+        "modern": "name = input(\"Name: \")"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "except-comma",
+      "title": "except X, e",
+      "category": "syntax",
+      "summary": "The Python 2 way to name a caught exception: except ValueError, err.",
+      "topic": "exceptions",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "Only except X as e is accepted. (Python 3.14 allows except A, B without parentheses, but with a different meaning: it catches both types.)"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "try:\n    risky()\nexcept ValueError, err:\n    handle(err)",
+        "modern": "try:\n    risky()\nexcept ValueError as err:\n    handle(err)",
+        "note": "The as form has worked since Python 2.6."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "exec-statement",
+      "title": "exec statement",
+      "category": "syntax",
+      "summary": "The Python 2 statement form of exec, as in exec code in namespace.",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "exec is a function in Python 3, so the statement form is a SyntaxError."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "exec code in namespace",
+        "modern": "exec(code, namespace)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "backtick-repr",
+      "title": "Backtick repr",
+      "category": "syntax",
+      "summary": "Backticks around an expression, as in `value`, produced its repr().",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "Backticks were removed. Call repr() instead."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "text = `value`",
+        "modern": "text = repr(value)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "diamond-not-equal",
+      "title": "<> operator",
+      "category": "syntax",
+      "summary": "An alternative spelling of !=.",
+      "topic": "operators",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "<> was removed. Use !=."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "if a <> b:\n    differ()",
+        "modern": "if a != b:\n    differ()"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "long-type",
+      "title": "long type and the L suffix",
+      "category": "syntax",
+      "summary": "Python 2 had a separate long type for large integers, written with an L suffix such as 10000000000L.",
+      "topic": "types",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "int is now arbitrary precision, so the long type and the L suffix were removed."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "big = 10000000000L",
+        "modern": "big = 10000000000"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "classic-classes",
+      "title": "Old-style classes",
+      "category": "behavior",
+      "summary": "In Python 2, a class that did not inherit from object was an old-style class with different rules.",
+      "topic": "classes",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "Every class is new-style and inherits from object, so (object) is no longer needed."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "class Point(object):  # needed in Python 2 to get a new-style class\n    pass",
+        "modern": "class Point:\n    pass"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "dict-iter-methods",
+      "title": "dict.iteritems(), iterkeys() and itervalues()",
+      "category": "library",
+      "summary": "Dictionary methods that returned iterators in Python 2.",
+      "topic": "collections",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "keys(), values() and items() now return lightweight views, and the iter* methods were removed."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "for key, value in table.iteritems():\n    use(key, value)",
+        "modern": "for key, value in table.items():\n    use(key, value)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "cmp-and-ordering",
+      "title": "cmp(), __cmp__ and cmp= sorting",
+      "category": "behavior",
+      "summary": "A three-way comparison function, the __cmp__ method, and the cmp argument to sort().",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "cmp() and __cmp__ were removed. Ordering uses rich comparisons and sort() takes key=. functools.cmp_to_key() wraps an old comparison function."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "items.sort(cmp=lambda a, b: cmp(a.rank, b.rank))",
+        "modern": "items.sort(key=lambda item: item.rank)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "implicit-relative-imports",
+      "title": "Implicit relative imports",
+      "category": "behavior",
+      "summary": "Inside a package, import sibling found a module next to the current one without a dot.",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "removed",
+            "note": "Imports are absolute by default, so a sibling module needs from . import sibling or its full package path."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import helpers  # found a module next to this file",
+        "modern": "from . import helpers"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "stdlib-renames",
+      "title": "Standard library reorganisation",
+      "category": "library",
+      "summary": "Many modules were renamed, merged or moved into packages (PEP 3108), such as ConfigParser, Queue and urllib2.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.0",
+            "kind": "changed",
+            "note": "Modules were renamed to lowercase names or grouped into packages, for example ConfigParser to configparser, Queue to queue, and urllib2 into the urllib package.",
+            "breaking": true
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import ConfigParser\nimport Queue",
+        "modern": "import configparser\nimport queue"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "print-function",
+      "title": "print() function",
+      "category": "syntax",
+      "summary": "print is an ordinary function with sep, end, file and flush keyword arguments.",
+      "history": {
+        "python": [
+          {
+            "version": "py3.0",
+            "kind": "added",
+            "note": "Python 2.6 and 2.7 can use it with from __future__ import print_function."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "print >>sys.stderr, \"error:\", message",
+        "modern": "print(\"error:\", message, file=sys.stderr)",
+        "note": "sep, end, file and flush are keyword arguments."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "text-and-bytes",
+      "title": "Text and bytes",
+      "category": "behavior",
+      "summary": "str holds Unicode text. bytes and bytearray hold binary data, and mixing the two raises TypeError.",
+      "topic": "types",
+      "history": {
+        "python": [
+          {
+            "version": "py3.0",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "data = \"abc\"  # was a byte string in Python 2",
+        "modern": "data = b\"abc\"  # a bytes literal for binary data",
+        "note": "Convert explicitly: text.encode(\"utf-8\") gives bytes, and data.decode(\"utf-8\") gives text."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "nonlocal-statement",
+      "title": "nonlocal",
+      "category": "syntax",
+      "summary": "Lets an inner function rebind a variable in the nearest enclosing function.",
+      "topic": "functions",
+      "history": {
+        "python": [
+          {
+            "version": "py3.0",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "def counter():\n    count = [0]\n    def increment():\n        count[0] += 1\n        return count[0]\n    return increment",
+        "modern": "def counter():\n    count = 0\n    def increment():\n        nonlocal count\n        count += 1\n        return count\n    return increment"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "keyword-only-arguments",
+      "title": "Keyword-only arguments",
+      "category": "syntax",
+      "summary": "Parameters after a bare * or *args can only be passed by name.",
+      "topic": "functions",
+      "history": {
+        "python": [
+          {
+            "version": "py3.0",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "def connect(host, **options):\n    timeout = options.pop(\"timeout\", 10)\n    return open_socket(host, timeout)",
+        "modern": "def connect(host, *, timeout=10):\n    return open_socket(host, timeout)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "function-annotations",
+      "title": "Function annotations",
+      "category": "syntax",
+      "summary": "Expressions after parameters and after -> are stored in __annotations__. The language gives them no meaning of their own.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "extended-unpacking",
+      "title": "Extended iterable unpacking",
+      "category": "syntax",
+      "summary": "A starred name in an assignment collects the remaining items, as in first, *rest = items.",
+      "topic": "variables",
+      "history": {
+        "python": [
+          {
+            "version": "py3.0",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "first = items[0]\nrest = items[1:]",
+        "modern": "first, *rest = items"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "ordereddict",
+      "title": "collections.OrderedDict",
+      "category": "library",
+      "summary": "A dictionary that remembers insertion order. It also has move_to_end() and order-sensitive equality.",
+      "topic": "collections",
+      "history": {
+        "python": [
+          {
+            "version": "py3.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "concurrent-futures",
+      "title": "concurrent.futures",
+      "category": "library",
+      "summary": "ThreadPoolExecutor and ProcessPoolExecutor, which run calls in a pool and return Future objects.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.2",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import threading\n\nresults = []\n\ndef work(n):\n    results.append(n * n)\n\nthreads = [threading.Thread(target=work, args=(n,)) for n in range(4)]\nfor t in threads:\n    t.start()\nfor t in threads:\n    t.join()",
+        "modern": "from concurrent.futures import ThreadPoolExecutor\n\nwith ThreadPoolExecutor() as pool:\n    results = list(pool.map(lambda n: n * n, range(4)))"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "lru-cache",
+      "title": "functools.lru_cache",
+      "category": "library",
+      "summary": "A decorator that caches a function's results, keeping only the most recently used ones.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.2",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "_cache = {}\n\ndef fib(n):\n    if n not in _cache:\n        _cache[n] = n if n < 2 else fib(n - 1) + fib(n - 2)\n    return _cache[n]",
+        "modern": "from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fib(n):\n    return n if n < 2 else fib(n - 1) + fib(n - 2)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "yield-from",
+      "title": "yield from",
+      "category": "syntax",
+      "summary": "Delegates to a sub-generator, passing values and exceptions through.",
+      "topic": "iterators",
+      "history": {
+        "python": [
+          {
+            "version": "py3.3",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "def outer():\n    for item in inner():\n        yield item",
+        "modern": "def outer():\n    yield from inner()"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "venv",
+      "title": "venv module",
+      "category": "tooling",
+      "summary": "Creates virtual environments with python -m venv.",
+      "topic": "packaging",
+      "history": {
+        "python": [
+          {
+            "version": "py3.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "namespace-packages",
+      "title": "Implicit namespace packages",
+      "category": "behavior",
+      "summary": "A directory of modules can be imported as a package without an __init__.py file.",
+      "topic": "packaging",
+      "history": {
+        "python": [
+          {
+            "version": "py3.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "unittest-mock",
+      "title": "unittest.mock",
+      "category": "library",
+      "summary": "Mock objects and patch(), now part of the standard library.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.3",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import mock  # third-party package",
+        "modern": "from unittest import mock"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "asyncio-module",
+      "title": "asyncio",
+      "category": "library",
+      "summary": "An event loop with coroutines, tasks and streams for asynchronous code.",
+      "topic": "async",
+      "history": {
+        "python": [
+          {
+            "version": "py3.4",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "pathlib",
+      "title": "pathlib",
+      "category": "library",
+      "summary": "Object-oriented filesystem paths, joined with the / operator.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.4",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import os.path\n\npath = os.path.join(base, \"data\", \"input.txt\")",
+        "modern": "from pathlib import Path\n\npath = Path(base) / \"data\" / \"input.txt\""
+      }
+    },
+    {
+      "language": "python",
+      "slug": "enum-module",
+      "title": "enum module",
+      "category": "library",
+      "summary": "Enumerations as classes with named, unique members.",
+      "topic": "classes",
+      "history": {
+        "python": [
+          {
+            "version": "py3.4",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "class Color:\n    RED = 1\n    GREEN = 2",
+        "modern": "from enum import Enum\n\nclass Color(Enum):\n    RED = 1\n    GREEN = 2"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "async-await",
+      "title": "async def and await",
+      "category": "syntax",
+      "summary": "Coroutines are declared with async def and suspended with await.",
+      "topic": "async",
+      "history": {
+        "python": [
+          {
+            "version": "py3.5",
+            "kind": "added"
+          },
+          {
+            "version": "py3.7",
+            "kind": "changed",
+            "note": "async and await became reserved keywords, so they can no longer be used as names.",
+            "breaking": true
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "@asyncio.coroutine\ndef fetch(url):\n    data = yield from read(url)\n    return data",
+        "modern": "async def fetch(url):\n    data = await read(url)\n    return data",
+        "note": "@asyncio.coroutine was deprecated in 3.8 and removed in 3.11."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "matrix-multiplication",
+      "title": "@ matrix multiplication operator",
+      "category": "syntax",
+      "summary": "The @ operator, with __matmul__ for classes that define it.",
+      "topic": "operators",
+      "history": {
+        "python": [
+          {
+            "version": "py3.5",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "result = numpy.dot(a, b)",
+        "modern": "result = a @ b",
+        "note": "No built-in type implements @. It is meant for libraries such as NumPy."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "type-hints-module",
+      "title": "typing module and type hints",
+      "category": "library",
+      "summary": "The typing module and a standard notation for type hints (PEP 484), checked by external tools.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "unpacking-generalizations",
+      "title": "Additional unpacking generalizations",
+      "category": "syntax",
+      "summary": "* and ** can appear several times in calls and in list, tuple, set and dict displays.",
+      "topic": "collections",
+      "history": {
+        "python": [
+          {
+            "version": "py3.5",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "merged = dict(defaults)\nmerged.update(overrides)",
+        "modern": "merged = {**defaults, **overrides}",
+        "note": "The same works for sequences: [*first, *second]."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "os-scandir",
+      "title": "os.scandir()",
+      "category": "library",
+      "summary": "Iterates over a directory and returns entries that carry file type information.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.5",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "for name in os.listdir(path):\n    if os.path.isdir(os.path.join(path, name)):\n        visit(name)",
+        "modern": "for entry in os.scandir(path):\n    if entry.is_dir():\n        visit(entry.name)",
+        "note": "scandir is faster for large directories because it avoids extra system calls."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "subprocess-run",
+      "title": "subprocess.run()",
+      "category": "library",
+      "summary": "Runs a command, waits for it and returns a CompletedProcess.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.5",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)\noutput, _ = proc.communicate()",
+        "modern": "result = subprocess.run(cmd, stdout=subprocess.PIPE, check=True)\noutput = result.stdout"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "typing-collection-aliases",
+      "title": "typing.List, Dict, Set and similar aliases",
+      "category": "library",
+      "summary": "Generic aliases in typing for the built-in collections, such as List[int] and Dict[str, int].",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.5",
+            "kind": "added"
+          },
+          {
+            "version": "py3.9",
+            "kind": "deprecated",
+            "note": "Importing these aliases from typing is deprecated in favour of the built-in generics. They emit no warning, and removal can happen no sooner than Python 3.9's end of life."
+          }
+        ]
+      },
+      "replaced_by": [
+        "builtin-generics"
+      ],
+      "migration": {
+        "legacy": "from typing import Dict, List\n\ndef group(items: List[str]) -> Dict[str, int]:\n    ...",
+        "modern": "def group(items: list[str]) -> dict[str, int]:\n    ..."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "f-strings",
+      "title": "f-strings",
+      "category": "syntax",
+      "summary": "String literals with a f prefix that evaluate expressions inside braces.",
+      "topic": "types",
+      "history": {
+        "python": [
+          {
+            "version": "py3.6",
+            "kind": "added"
+          },
+          {
+            "version": "py3.12",
+            "kind": "changed",
+            "note": "PEP 701 lifted the old limits: the same quote type can be reused inside the braces, expressions can span lines, and backslashes and comments are allowed."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "message = \"Hello, {}! You have {} messages.\".format(name, count)",
+        "modern": "message = f\"Hello, {name}! You have {count} messages.\""
+      }
+    },
+    {
+      "language": "python",
+      "slug": "numeric-underscores",
+      "title": "Underscores in numeric literals",
+      "category": "syntax",
+      "summary": "Underscores can separate digits, as in 1_000_000.",
+      "topic": "types",
+      "history": {
+        "python": [
+          {
+            "version": "py3.6",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "million = 1000000",
+        "modern": "million = 1_000_000"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "variable-annotations",
+      "title": "Variable annotations",
+      "category": "syntax",
+      "summary": "A variable can be annotated where it is assigned: count: int = 0.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.6",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "count = 0  # type: int",
+        "modern": "count: int = 0"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "async-generators",
+      "title": "Asynchronous generators and comprehensions",
+      "category": "syntax",
+      "summary": "async def functions can contain yield, and comprehensions can use async for and await.",
+      "topic": "async",
+      "history": {
+        "python": [
+          {
+            "version": "py3.6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "secrets-module",
+      "title": "secrets module",
+      "category": "library",
+      "summary": "Generates cryptographically strong random values for tokens and passwords.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.6",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "token = \"\".join(random.choice(alphabet) for _ in range(32))",
+        "modern": "token = secrets.token_urlsafe(32)",
+        "note": "The random module is not suitable for security-sensitive values."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "dict-insertion-order",
+      "title": "Dictionary insertion order",
+      "category": "behavior",
+      "summary": "Dictionaries iterate in the order their keys were first inserted.",
+      "topic": "collections",
+      "history": {
+        "python": [
+          {
+            "version": "py3.6",
+            "kind": "added",
+            "note": "CPython 3.6 kept insertion order as an implementation detail that code should not rely on."
+          },
+          {
+            "version": "py3.7",
+            "kind": "changed",
+            "note": "Insertion order became part of the language specification, so every implementation must keep it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "dataclasses-module",
+      "title": "dataclasses",
+      "category": "library",
+      "summary": "The @dataclass decorator generates __init__, __repr__ and comparison methods from annotated fields.",
+      "topic": "dataclasses",
+      "history": {
+        "python": [
+          {
+            "version": "py3.7",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n    def __repr__(self):\n        return f\"Point(x={self.x!r}, y={self.y!r})\"\n\n    def __eq__(self, other):\n        return (self.x, self.y) == (other.x, other.y)",
+        "modern": "from dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: float\n    y: float"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "postponed-annotations",
+      "title": "from __future__ import annotations",
+      "category": "behavior",
+      "summary": "Stores annotations as strings instead of evaluating them when a definition runs.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.7",
+            "kind": "added"
+          },
+          {
+            "version": "py3.14",
+            "kind": "deprecated",
+            "note": "Deprecated now that annotations are evaluated lazily by default. Its behaviour is unchanged in 3.14, and removal will not happen until after Python 3.13 reaches its end of life in 2029."
+          }
+        ]
+      },
+      "replaced_by": [
+        "deferred-annotations"
+      ]
+    },
+    {
+      "language": "python",
+      "slug": "breakpoint-function",
+      "title": "breakpoint()",
+      "category": "library",
+      "summary": "Starts the debugger. The PYTHONBREAKPOINT environment variable chooses which one.",
+      "topic": "ecosystem",
+      "history": {
+        "python": [
+          {
+            "version": "py3.7",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import pdb; pdb.set_trace()",
+        "modern": "breakpoint()"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "module-getattr",
+      "title": "Module __getattr__ and __dir__",
+      "category": "behavior",
+      "summary": "A module can define __getattr__ and __dir__ to customise attribute access, for example to deprecate a name.",
+      "history": {
+        "python": [
+          {
+            "version": "py3.7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "contextvars-module",
+      "title": "contextvars",
+      "category": "library",
+      "summary": "Context-local variables that stay correct across asyncio tasks and threads.",
+      "topic": "async",
+      "history": {
+        "python": [
+          {
+            "version": "py3.7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "assignment-expressions",
+      "title": "Assignment expressions (:=)",
+      "category": "syntax",
+      "summary": "The walrus operator assigns a value inside an expression.",
+      "topic": "variables",
+      "history": {
+        "python": [
+          {
+            "version": "py3.8",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "match = pattern.search(text)\nif match:\n    use(match)",
+        "modern": "if match := pattern.search(text):\n    use(match)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "positional-only-parameters",
+      "title": "Positional-only parameters",
+      "category": "syntax",
+      "summary": "Parameters before a / in a signature cannot be passed by keyword.",
+      "topic": "functions",
+      "history": {
+        "python": [
+          {
+            "version": "py3.8",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "fstring-equals",
+      "title": "f-string = specifier",
+      "category": "syntax",
+      "summary": "f\"{expr=}\" prints the expression, an equals sign and the value, which helps with debugging.",
+      "topic": "types",
+      "history": {
+        "python": [
+          {
+            "version": "py3.8",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "print(f\"x={x!r}\")",
+        "modern": "print(f\"{x=}\")"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "typing-protocols",
+      "title": "Protocol, TypedDict, Literal and Final",
+      "category": "library",
+      "summary": "Structural subtyping with Protocol, dictionaries with fixed keys, exact-value types, and constants that cannot be rebound.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.8",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "cached-property",
+      "title": "functools.cached_property",
+      "category": "library",
+      "summary": "A property that is computed once per instance and then stored.",
+      "topic": "classes",
+      "history": {
+        "python": [
+          {
+            "version": "py3.8",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "class Report:\n    def __init__(self, rows):\n        self.rows = rows\n        self._total = None\n\n    @property\n    def total(self):\n        if self._total is None:\n            self._total = sum(self.rows)\n        return self._total",
+        "modern": "from functools import cached_property\n\nclass Report:\n    def __init__(self, rows):\n        self.rows = rows\n\n    @cached_property\n    def total(self):\n        return sum(self.rows)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "dict-union",
+      "title": "dict | and |=",
+      "category": "library",
+      "summary": "Merges two dictionaries with |, or updates one in place with |=.",
+      "topic": "collections",
+      "history": {
+        "python": [
+          {
+            "version": "py3.9",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "merged = {**defaults, **overrides}",
+        "modern": "merged = defaults | overrides",
+        "note": "When both have a key, the right-hand value wins."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "removeprefix-suffix",
+      "title": "str.removeprefix() and removesuffix()",
+      "category": "library",
+      "summary": "Remove a known prefix or suffix from a string, if it is present.",
+      "topic": "types",
+      "history": {
+        "python": [
+          {
+            "version": "py3.9",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "if name.startswith(\"test_\"):\n    name = name[len(\"test_\"):]",
+        "modern": "name = name.removeprefix(\"test_\")"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "builtin-generics",
+      "title": "Generics on built-in types",
+      "category": "library",
+      "summary": "list[int], dict[str, int] and similar can be used as types without importing from typing.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.9",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "from typing import List\n\ndef total(values: List[int]) -> int:\n    ...",
+        "modern": "def total(values: list[int]) -> int:\n    ..."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "zoneinfo-module",
+      "title": "zoneinfo",
+      "category": "library",
+      "summary": "Time zones from the IANA database, usable with datetime.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.9",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import pytz\n\nnow = datetime.now(pytz.timezone(\"Europe/Paris\"))",
+        "modern": "from zoneinfo import ZoneInfo\n\nnow = datetime.now(ZoneInfo(\"Europe/Paris\"))"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "structural-pattern-matching",
+      "title": "match statement",
+      "category": "syntax",
+      "summary": "match and case select code by the shape of a value and bind names from it.",
+      "topic": "control",
+      "history": {
+        "python": [
+          {
+            "version": "py3.10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "union-operator-types",
+      "title": "X | Y union types",
+      "category": "syntax",
+      "summary": "A union of types is written with |, as in int | None.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.10",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "from typing import Optional\n\ndef find(key: str) -> Optional[int]:\n    ...",
+        "modern": "def find(key: str) -> int | None:\n    ..."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "parenthesized-context-managers",
+      "title": "Parenthesized context managers",
+      "category": "syntax",
+      "summary": "Several context managers in one with statement can be wrapped in parentheses and split across lines.",
+      "topic": "context",
+      "history": {
+        "python": [
+          {
+            "version": "py3.10",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "with open(source) as f, \\\n     open(target, \"w\") as g:\n    g.write(f.read())",
+        "modern": "with (\n    open(source) as f,\n    open(target, \"w\") as g,\n):\n    g.write(f.read())"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "zip-strict",
+      "title": "zip(strict=True)",
+      "category": "library",
+      "summary": "zip() can raise ValueError when its iterables have different lengths instead of stopping silently.",
+      "topic": "iterators",
+      "history": {
+        "python": [
+          {
+            "version": "py3.10",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "if len(names) != len(ages):\n    raise ValueError(\"length mismatch\")\npairs = list(zip(names, ages))",
+        "modern": "pairs = list(zip(names, ages, strict=True))"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "exception-groups",
+      "title": "Exception groups and except*",
+      "category": "syntax",
+      "summary": "ExceptionGroup bundles several exceptions, and except* handles the ones that match a type.",
+      "topic": "exceptions",
+      "history": {
+        "python": [
+          {
+            "version": "py3.11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "exception-notes",
+      "title": "Exception notes",
+      "category": "library",
+      "summary": "add_note() attaches extra context to an exception, shown in its traceback.",
+      "topic": "exceptions",
+      "history": {
+        "python": [
+          {
+            "version": "py3.11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "tomllib-module",
+      "title": "tomllib",
+      "category": "library",
+      "summary": "Reads TOML files. It parses only; it cannot write TOML.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.11",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import tomli\n\nwith open(path, \"rb\") as f:\n    data = tomli.load(f)",
+        "modern": "import tomllib\n\nwith open(path, \"rb\") as f:\n    data = tomllib.load(f)",
+        "note": "tomllib is based on tomli. The file must be opened in binary mode."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "asyncio-taskgroup",
+      "title": "asyncio.TaskGroup",
+      "category": "library",
+      "summary": "Runs tasks together in an async with block. If one fails, the others are cancelled and the errors are raised as an exception group.",
+      "topic": "async",
+      "history": {
+        "python": [
+          {
+            "version": "py3.11",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "await asyncio.gather(fetch_a(), fetch_b())",
+        "modern": "async with asyncio.TaskGroup() as tg:\n    tg.create_task(fetch_a())\n    tg.create_task(fetch_b())"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "typing-self",
+      "title": "typing.Self",
+      "category": "library",
+      "summary": "Annotates a method that returns an instance of its own class, including subclasses.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "type-parameter-syntax",
+      "title": "Type parameter syntax and the type statement",
+      "category": "syntax",
+      "summary": "Generic functions and classes declare their type parameters inline, and type creates type aliases.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.12",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "from typing import TypeVar\n\nT = TypeVar(\"T\")\n\ndef first(items: list[T]) -> T:\n    return items[0]",
+        "modern": "def first[T](items: list[T]) -> T:\n    return items[0]"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "override-decorator",
+      "title": "typing.override",
+      "category": "library",
+      "summary": "Marks a method that is meant to override a base class method, so a type checker can catch typos.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "itertools-batched",
+      "title": "itertools.batched()",
+      "category": "library",
+      "summary": "Splits an iterable into tuples of a given length. The last tuple can be shorter.",
+      "topic": "iterators",
+      "history": {
+        "python": [
+          {
+            "version": "py3.12",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "for i in range(0, len(items), 3):\n    chunk = items[i:i + 3]\n    process(chunk)",
+        "modern": "from itertools import batched\n\nfor chunk in batched(items, 3):\n    process(chunk)",
+        "note": "batched yields tuples, and it works on any iterable, not only sequences."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "free-threaded-build",
+      "title": "Free-threaded build (no GIL)",
+      "category": "tooling",
+      "summary": "An optional build of CPython without the global interpreter lock, so threads can run Python code in parallel.",
+      "history": {
+        "python": [
+          {
+            "version": "py3.13",
+            "kind": "added",
+            "note": "Experimental in 3.13."
+          },
+          {
+            "version": "py3.14",
+            "kind": "changed",
+            "note": "Free-threaded Python is officially supported (PEP 779). It is still a separate, optional build, and single-threaded code runs roughly 5-10% slower in it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "experimental-jit",
+      "title": "Experimental JIT compiler",
+      "category": "tooling",
+      "summary": "A build-time option that adds a just-in-time compiler to CPython.",
+      "history": {
+        "python": [
+          {
+            "version": "py3.13",
+            "kind": "added"
+          },
+          {
+            "version": "py3.15",
+            "kind": "changed",
+            "note": "The experimental JIT compiler was significantly upgraded. It is still experimental."
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "warnings-deprecated",
+      "title": "warnings.deprecated()",
+      "category": "library",
+      "summary": "A decorator that marks a function or class as deprecated, so callers get a warning and type checkers can flag the use.",
+      "history": {
+        "python": [
+          {
+            "version": "py3.13",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "template-strings",
+      "title": "Template strings (t-strings)",
+      "category": "syntax",
+      "summary": "A t prefix creates a Template object that keeps the literal text and the interpolated values apart, instead of building a str.",
+      "topic": "types",
+      "history": {
+        "python": [
+          {
+            "version": "py3.14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "deferred-annotations",
+      "title": "Deferred evaluation of annotations",
+      "category": "behavior",
+      "summary": "Annotations on functions, classes and modules are no longer evaluated when the definition runs, so forward references work without quotes.",
+      "topic": "typing",
+      "history": {
+        "python": [
+          {
+            "version": "py3.14",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "class Node:\n    def next(self) -> \"Node\":\n        ...",
+        "modern": "class Node:\n    def next(self) -> Node:\n        ...",
+        "note": "Quoted forward references and the __future__ import are no longer needed."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "except-without-parentheses",
+      "title": "except without parentheses",
+      "category": "syntax",
+      "summary": "except A, B: catches either type. Parentheses can be left out when there is no as clause.",
+      "topic": "exceptions",
+      "history": {
+        "python": [
+          {
+            "version": "py3.14",
+            "kind": "added",
+            "note": "This is not the Python 2 form except A, e, which bound a name. To bind the exception, use as, which still needs parentheses around several types."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "try:\n    connect()\nexcept (TimeoutError, ConnectionRefusedError):\n    retry()",
+        "modern": "try:\n    connect()\nexcept TimeoutError, ConnectionRefusedError:\n    retry()"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "compression-zstd",
+      "title": "compression.zstd",
+      "category": "library",
+      "summary": "Zstandard compression in the standard library, in a new compression package.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "lazy-imports",
+      "title": "Explicit lazy imports",
+      "category": "syntax",
+      "summary": "lazy import defers loading a module until its name is first used.",
+      "history": {
+        "python": [
+          {
+            "version": "py3.15",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "def parse(text):\n    import json  # inside the function to keep startup fast\n    return json.loads(text)",
+        "modern": "lazy import json\n\ndef parse(text):\n    return json.loads(text)",
+        "note": "lazy is a soft keyword and also works as lazy from module import name."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "frozendict",
+      "title": "frozendict",
+      "category": "library",
+      "summary": "A built-in immutable mapping that is hashable when its keys and values are. It is not a subclass of dict.",
+      "topic": "collections",
+      "history": {
+        "python": [
+          {
+            "version": "py3.15",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "from types import MappingProxyType\n\nsettings = MappingProxyType({\"debug\": False})",
+        "modern": "settings = frozendict(debug=False)",
+        "note": "A mappingproxy is only a read-only view, so the dict behind it can still change."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "sentinel",
+      "title": "sentinel",
+      "category": "library",
+      "summary": "A built-in type for unique placeholder values with a readable repr that keep their identity when copied.",
+      "history": {
+        "python": [
+          {
+            "version": "py3.15",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "MISSING = object()  # repr is <object object at 0x...>",
+        "modern": "MISSING = sentinel(\"MISSING\")"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "default-text-encoding",
+      "title": "Default text encoding",
+      "category": "behavior",
+      "summary": "The encoding that open() and other text I/O use when no encoding is given.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py3.0",
+            "kind": "added",
+            "note": "Text files opened without an encoding used a platform-dependent default, normally the system locale's encoding."
+          },
+          {
+            "version": "py3.15",
+            "kind": "changed",
+            "note": "UTF-8 is the default, whatever the system locale says. Set PYTHONUTF8=0 or -X utf8=0 to keep the old behaviour, or pass encoding=\"locale\".",
+            "breaking": true
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "with open(path) as f:  # encoding depended on the system locale\n    text = f.read()",
+        "modern": "with open(path, encoding=\"utf-8\") as f:\n    text = f.read()",
+        "note": "Passing an encoding explicitly works the same in every version."
+      }
+    },
+    {
+      "language": "python",
+      "slug": "unpacking-in-comprehensions",
+      "title": "Unpacking in comprehensions",
+      "category": "syntax",
+      "summary": "* and ** work inside comprehensions and generator expressions to flatten iterables or merge dictionaries.",
+      "topic": "comprehensions",
+      "history": {
+        "python": [
+          {
+            "version": "py3.15",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "flat = [x for group in groups for x in group]",
+        "modern": "flat = [*group for group in groups]"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "profiling-sampling",
+      "title": "profiling.sampling (Tachyon)",
+      "category": "tooling",
+      "summary": "A statistical sampling profiler in the new profiling package, with low overhead on a running program.",
+      "topic": "ecosystem",
+      "history": {
+        "python": [
+          {
+            "version": "py3.15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "time-clock",
+      "title": "time.clock()",
+      "category": "library",
+      "summary": "Returned processor time on Unix but wall-clock time on Windows, so its meaning depended on the platform.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.3",
+            "kind": "deprecated",
+            "note": "Deprecated because its behaviour depends on the platform. Use time.perf_counter() for elapsed time or time.process_time() for CPU time."
+          },
+          {
+            "version": "py3.8",
+            "kind": "removed",
+            "note": "Removed after being deprecated since 3.3. Use time.perf_counter() or time.process_time()."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "start = time.clock()",
+        "modern": "start = time.perf_counter()"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "collections-abc-aliases",
+      "title": "ABCs imported from collections",
+      "category": "library",
+      "summary": "Abstract base classes such as Mapping and Iterable could be imported directly from collections.",
+      "topic": "collections",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.3",
+            "kind": "deprecated",
+            "note": "Importing the ABCs from collections is deprecated in favour of collections.abc. The aliases kept working, with a DeprecationWarning, until 3.9."
+          },
+          {
+            "version": "py3.10",
+            "kind": "removed",
+            "note": "The aliases were removed. Import the ABCs from collections.abc."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "from collections import Mapping",
+        "modern": "from collections.abc import Mapping"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "asyncio-loop-parameter",
+      "title": "asyncio loop= parameter",
+      "category": "library",
+      "summary": "An explicit event loop passed to asyncio functions such as sleep() and gather().",
+      "topic": "async",
+      "history": {
+        "python": [
+          {
+            "version": "py3.4",
+            "kind": "added"
+          },
+          {
+            "version": "py3.8",
+            "kind": "deprecated",
+            "note": "Passing an explicit loop was deprecated and was scheduled for removal in 3.10."
+          },
+          {
+            "version": "py3.10",
+            "kind": "removed",
+            "note": "The loop parameter was removed from most of asyncio's high-level API. The functions use the running loop.",
+            "scope": "most of the high-level API"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "await asyncio.sleep(1, loop=loop)",
+        "modern": "await asyncio.sleep(1)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "asyncio-coroutine-decorator",
+      "title": "@asyncio.coroutine",
+      "category": "library",
+      "summary": "A decorator that made a generator function usable as a coroutine, before async def existed.",
+      "topic": "async",
+      "history": {
+        "python": [
+          {
+            "version": "py3.4",
+            "kind": "added"
+          },
+          {
+            "version": "py3.8",
+            "kind": "deprecated",
+            "note": "Deprecated in favour of async def, and scheduled for removal in 3.10. The removal was postponed to 3.11."
+          },
+          {
+            "version": "py3.11",
+            "kind": "removed",
+            "note": "Removed. Use async def and await."
+          }
+        ]
+      },
+      "replaced_by": [
+        "async-await"
+      ],
+      "migration": {
+        "legacy": "@asyncio.coroutine\ndef main():\n    yield from asyncio.sleep(1)",
+        "modern": "async def main():\n    await asyncio.sleep(1)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "getargspec",
+      "title": "inspect.getargspec()",
+      "category": "library",
+      "summary": "Returns the names and defaults of a function's arguments, but cannot represent keyword-only arguments or annotations.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.5",
+            "kind": "deprecated",
+            "note": "Deprecated in favour of inspect.signature() and inspect.getfullargspec(). The 3.11 notes date the deprecation back to 3.0, but 3.5 is where it was announced and scheduled for removal."
+          },
+          {
+            "version": "py3.11",
+            "kind": "removed",
+            "note": "Removed. Use inspect.signature() or inspect.getfullargspec()."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "spec = inspect.getargspec(func)",
+        "modern": "spec = inspect.getfullargspec(func)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "distutils",
+      "title": "distutils",
+      "category": "tooling",
+      "summary": "The original standard library package for building and installing Python packages.",
+      "topic": "packaging",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.10",
+            "kind": "deprecated",
+            "note": "Deprecated by PEP 632 because packaging tools outside the standard library replaced it."
+          },
+          {
+            "version": "py3.12",
+            "kind": "removed",
+            "note": "Removed from the standard library. Packaging tools such as setuptools replace it."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "from distutils.core import setup",
+        "modern": "from setuptools import setup"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "imp-module",
+      "title": "imp module",
+      "category": "library",
+      "summary": "The old interface to the import system, for example to load a module from a file path.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.4",
+            "kind": "deprecated",
+            "note": "The 3.4 documentation marks the imp package as pending deprecation in favour of importlib."
+          },
+          {
+            "version": "py3.12",
+            "kind": "removed",
+            "note": "Removed. Use importlib."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "import imp\n\nmodule = imp.load_source(\"plugin\", path)",
+        "modern": "import importlib.util\n\nspec = importlib.util.spec_from_file_location(\"plugin\", path)\nmodule = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(module)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "asyncore-asynchat-smtpd",
+      "title": "asyncore, asynchat and smtpd",
+      "category": "library",
+      "summary": "Old modules for writing asynchronous network servers and clients, and an SMTP server.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.6",
+            "kind": "deprecated",
+            "note": "asyncore and asynchat were deprecated in favour of asyncio. smtpd had been deprecated earlier, in 3.4.7 and 3.5.4."
+          },
+          {
+            "version": "py3.12",
+            "kind": "removed",
+            "note": "Removed. Use asyncio, or the aiosmtpd package for an SMTP server."
+          }
+        ]
+      },
+      "replaced_by": [
+        "asyncio-module"
+      ]
+    },
+    {
+      "language": "python",
+      "slug": "unittest-assert-aliases",
+      "title": "unittest assertEquals() and other aliases",
+      "category": "library",
+      "summary": "Long-standing alias names for TestCase assertion methods, such as assertEquals and assert_.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.2",
+            "kind": "deprecated",
+            "note": "Aliases such as assertEquals and assert_ were deprecated in favour of the preferred names, for example assertEqual. The older failUnless-style names had already been deprecated in 3.1."
+          },
+          {
+            "version": "py3.12",
+            "kind": "removed",
+            "note": "The deprecated aliases were removed, among them assertEquals, assertNotEquals, assert_, assertRegexpMatches and the failUnless family."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "self.assertEquals(result, expected)",
+        "modern": "self.assertEqual(result, expected)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "ssl-wrap-socket",
+      "title": "ssl.wrap_socket()",
+      "category": "library",
+      "summary": "A module-level function that wrapped a socket in TLS, without a context object.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.7",
+            "kind": "deprecated",
+            "note": "Deprecated in favour of creating an SSLContext and calling its wrap_socket() method."
+          },
+          {
+            "version": "py3.12",
+            "kind": "removed",
+            "note": "Removed. Create an ssl.SSLContext and call its wrap_socket()."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "conn = ssl.wrap_socket(sock)",
+        "modern": "context = ssl.create_default_context()\nconn = context.wrap_socket(sock, server_hostname=host)"
+      }
+    },
+    {
+      "language": "python",
+      "slug": "dead-batteries",
+      "title": "Legacy standard library modules (PEP 594)",
+      "category": "library",
+      "summary": "Old modules such as cgi, crypt, telnetlib and pipes that PEP 594 retired.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.11",
+            "kind": "deprecated",
+            "note": "Many legacy modules were deprecated by PEP 594, with removal planned for 3.13."
+          },
+          {
+            "version": "py3.13",
+            "kind": "removed",
+            "note": "The modules deprecated by PEP 594 were removed, among them cgi, crypt, telnetlib and pipes."
+          }
+        ]
+      }
+    },
+    {
+      "language": "python",
+      "slug": "datetime-utcnow",
+      "title": "datetime.utcnow() and utcfromtimestamp()",
+      "category": "library",
+      "summary": "Return the current or a given time in UTC as a naive datetime, without a time zone attached.",
+      "topic": "stdlib",
+      "history": {
+        "python": [
+          {
+            "version": "py2",
+            "kind": "added"
+          },
+          {
+            "version": "py3.12",
+            "kind": "deprecated",
+            "note": "Deprecated and expected to be removed in a future version. Use timezone-aware datetimes instead."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "now = datetime.utcnow()",
+        "modern": "now = datetime.now(timezone.utc)",
+        "note": "The result is timezone-aware instead of naive."
+      }
     }
   ],
   "tracks": [
@@ -5369,6 +7626,33 @@
           "url": "https://github.com/mdn/browser-compat-data"
         }
       ]
+    },
+    {
+      "language": "python",
+      "id": "python",
+      "label": "Python",
+      "kind": "standard",
+      "order": 1,
+      "description": "Versions of the Python language and its standard library. Python 2 is recorded as a single baseline, so the page can show what changed for code moving from Python 2 to Python 3 and between 3.x releases.",
+      "changelog_links": [
+        {
+          "title": "What's New in Python, one page per version",
+          "url": "https://docs.python.org/3/whatsnew/index.html"
+        },
+        {
+          "title": "Status of Python versions, with release and end-of-life dates",
+          "url": "https://devguide.python.org/versions/"
+        },
+        {
+          "title": "Python Enhancement Proposals (PEPs)",
+          "url": "https://peps.python.org/"
+        },
+        {
+          "title": "CPython What's New sources",
+          "url": "https://github.com/python/cpython/tree/main/Doc/whatsnew"
+        }
+      ],
+      "version_noun": "version"
     }
   ]
 }

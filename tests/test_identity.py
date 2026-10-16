@@ -61,9 +61,11 @@ class HomePageTests(unittest.TestCase):
     def test_cards_show_topic_counts_and_version_history_only_where_it_exists(self) -> None:
         javascript = re.search(r'<a href="javascript/index.html".*?</a>', self.home, re.S).group(0)
         python = re.search(r'<a href="python/index.html".*?</a>', self.home, re.S).group(0)
+        rust = re.search(r'<a href="rust/index.html".*?</a>', self.home, re.S).group(0)
         self.assertRegex(javascript, r"\d+ topics · Version history")
-        self.assertIn("topics</p>", python)
-        self.assertNotIn("Version history", python)
+        self.assertRegex(python, r"\d+ topics · Version history")
+        self.assertIn("topics</p>", rust)
+        self.assertNotIn("Version history", rust)
 
     def test_categories_are_rendered_in_order_and_empty_ones_are_skipped(self) -> None:
         data = copy.deepcopy(self.data)
