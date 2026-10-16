@@ -68,6 +68,17 @@ class VersioningValidationTests(unittest.TestCase):
         self.assert_invalid("kind must be one of", lambda d: track(d, NODE).update(kind="compiler"))
         self.assert_invalid("description must be a non-empty", lambda d: track(d, NODE).update(description=" "))
 
+    def test_version_noun_is_optional_and_must_be_text(self) -> None:
+        data = copy.deepcopy(self.data)
+        track(data, ES)["version_noun"] = "version"
+        validate_data_model(data)
+        self.assertNotIn("version_noun", track(self.data, NODE))
+        for bad in ("", "  ", 5, None, ["version"]):
+            self.assert_invalid(
+                "version_noun must be a non-empty string",
+                lambda d, bad=bad: track(d, ES).update(version_noun=bad),
+            )
+
     def test_every_track_needs_versions_and_https_sources(self) -> None:
         def no_versions(d: dict) -> None:
             d["versions"] = [v for v in d["versions"] if v["track"] != NODE]
@@ -381,6 +392,26 @@ class VersionPageRenderingTests(unittest.TestCase):
         self.assertIn("Deprecated, with no removal planned", self.page)
         self.assertIn("No edition has deprecated", self.page)
         self.assertNotIn('id="v-undated"', self.node_page)
+
+    def test_the_track_kind_chooses_the_version_noun_unless_the_track_names_one(self) -> None:
+        self.assertIn("between ECMAScript editions.", self.page)
+        self.assertIn("No edition has deprecated", self.page)
+        self.assertIn("between Node.js releases.", self.node_page)
+        data = copy.deepcopy(self.data)
+        track(data, ES)["version_noun"] = "version"
+        page = render_versions_page(self.language, track(data, ES), data, page_rel="javascript/versions/index.html")
+        self.assertIn("between ECMAScript versions.", page)
+        self.assertIn("No version has deprecated", page)
+        self.assertIn("in each ECMAScript version for JavaScript", page)
+        intro = page.split('class="versions-intro"')[1].split("</p>")[0]
+        self.assertNotIn("edition", intro)
+
+    def test_version_noun_is_escaped(self) -> None:
+        data = copy.deepcopy(self.data)
+        track(data, ES)["version_noun"] = "<b>edition"
+        page = render_versions_page(self.language, track(data, ES), data, page_rel="javascript/versions/index.html")
+        self.assertIn("&lt;b&gt;edition", page)
+        self.assertNotIn("<b>edition", page)
 
     def test_each_page_shows_its_own_track_sources(self) -> None:
         for link in self.es_track["changelog_links"]:

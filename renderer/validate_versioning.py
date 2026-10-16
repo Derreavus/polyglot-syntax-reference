@@ -7,7 +7,8 @@ from typing import Any
 
 from versioning import CATEGORIES, EVENT_KINDS, TRACK_KINDS, VERSION_STATUSES
 
-TRACK_KEYS = {"language", "id", "label", "kind", "order", "description", "changelog_links"}
+TRACK_KEYS = {"language", "id", "label", "kind", "order", "description", "changelog_links", "version_noun"}
+REQUIRED_TRACK_KEYS = TRACK_KEYS - {"version_noun"}
 VERSION_KEYS = {
     "language", "track", "id", "label", "aliases", "released", "order", "status", "note",
     "codename", "lts_from", "end_of_life", "engine",
@@ -74,7 +75,7 @@ def _validate_tracks(tracks: list[Any], languages: dict[str, Any]) -> dict[str, 
     for index, track in enumerate(tracks):
         label = f"tracks[{index}]"
         _require(isinstance(track, dict), f"{label} must be an object")
-        missing = sorted(TRACK_KEYS - set(track))
+        missing = sorted(REQUIRED_TRACK_KEYS - set(track))
         _require(not missing, f"{label} missing keys: {', '.join(missing)}")
         unknown = sorted(set(track) - TRACK_KEYS)
         _require(not unknown, f"{label} has unknown keys: {', '.join(unknown)}")
@@ -92,6 +93,10 @@ def _validate_tracks(tracks: list[Any], languages: dict[str, Any]) -> dict[str, 
             f"{label}: order must be a positive integer",
         )
         _require(_non_empty_str(track["description"]), f"{label}: description must be a non-empty string")
+        _require(
+            "version_noun" not in track or _non_empty_str(track["version_noun"]),
+            f"{label}: version_noun must be a non-empty string when present",
+        )
         _validate_links(label, track["changelog_links"])
         by_language.setdefault(language, []).append(track)
 

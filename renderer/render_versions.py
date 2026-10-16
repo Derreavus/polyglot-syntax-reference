@@ -236,7 +236,8 @@ def render_versions_page(
     site = data["site"]
     ctx = TrackContext(data, language, track)
     slug = ctx.slug
-    noun = KIND_NOUN[track["kind"]]
+    noun = track.get("version_noun") or KIND_NOUN[track["kind"]]
+    noun_html = html.escape(noun)
     name = html.escape(language["name"])
     track_label = html.escape(track["label"])
 
@@ -282,7 +283,7 @@ def render_versions_page(
         blocks.append(
             '<section class="version-block version-undated" id="v-undated" data-order="">'
             '<h2>Deprecated, with no removal planned</h2>'
-            f'<p class="version-note">These are discouraged but still work. No {noun} has deprecated or removed them, so they are not tied to a version.</p>'
+            f'<p class="version-note">These are discouraged but still work. No {noun_html} has deprecated or removed them, so they are not tied to a version.</p>'
             f'<ul class="change-list">{list_html}</ul></section>'
         )
 
@@ -359,7 +360,7 @@ def render_versions_page(
     <h1>{name} version history</h1>
     {tabs}
     <p class="track-description"><strong>{track_label}.</strong> {html.escape(track["description"])}</p>
-    <p class="versions-intro">What was added, changed, deprecated and removed between {track_label} {noun}s. See everything that changes between the {noun} your code was written for and the one you are moving to, or check what a particular {noun} can and cannot use.</p>
+    <p class="versions-intro">What was added, changed, deprecated and removed between {track_label} {noun_html}s. See everything that changes between the {noun_html} your code was written for and the one you are moving to, or check what a particular {noun_html} can and cannot use.</p>
 
     <div class="view-switch" role="group" aria-label="Choose a view">
       <button type="button" class="view-tab" data-view="changes" aria-pressed="true">Upgrade changes</button>
