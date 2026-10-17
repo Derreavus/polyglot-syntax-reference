@@ -39,3 +39,6 @@ jobs:
 
       - name: HTML well-formed smoke check
         run: python3 scripts/validate_html_smoke.py
+
+      - name: Python version-history examples and probes
+        run: python3 scripts/check_python_examples.py --strict
