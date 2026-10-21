@@ -21,7 +21,7 @@ const fs = require("fs");
 const path = require("path");
 const acorn = require("acorn");
 
-const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "site_data.json"), "utf8"));
+const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "data", "site_data.json"), "utf8"));
 const ECMA = { es3: 3, es5: 5 };
 for (let year = 2015; year <= 2027; year += 1) ECMA["es" + year] = year;
 const NOT_PARSEABLE = new Set(["explicit-resource-management"]); // acorn has no support for `using` yet

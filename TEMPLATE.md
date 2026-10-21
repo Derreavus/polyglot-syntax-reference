@@ -28,7 +28,7 @@ consistency with the existing reference, current language standards.
       (see [Version history](#6-version-history-optional))
 - [ ] `python renderer/build_site.py` succeeds and the checks in the
       [Verify](#verify) section pass
-- [ ] Reviewed the built site locally (`python scripts/serve_staging.py`)
+- [ ] Reviewed the built site locally (`python scripts/dev/serve_staging.py`)
 
 ---
 
@@ -229,10 +229,10 @@ feature can be on one track or on several:
 ```bash
 python renderer/build_site.py
 python -m unittest discover -s tests
-python scripts/validate_staging_parity.py
-python scripts/validate_syntax_html.py
-python scripts/validate_links.py
-python scripts/validate_html_smoke.py
+python scripts/validate/validate_staging_parity.py
+python scripts/validate/validate_syntax_html.py
+python scripts/validate/validate_links.py
+python scripts/validate/validate_html_smoke.py
 ```
 
 `validate_syntax_html.py` checks every language page for missing structure, raw

@@ -16,7 +16,7 @@ import re
 import sys
 from pathlib import Path
 
-SITE = Path(__file__).resolve().parents[1] / "dist"  # generated site; run renderer/build_site.py first
+SITE = Path(__file__).resolve().parents[2] / "dist"  # generated site; run renderer/build_site.py first
 
 
 def check_file(path: Path) -> list[str]:

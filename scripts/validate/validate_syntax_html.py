@@ -14,9 +14,10 @@ import re
 import sys
 from pathlib import Path
 
-from language_registry import language_entry, language_slugs
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "lib"))  # shared helpers in scripts/lib
+from language_registry import language_entry, language_slugs  # noqa: E402
 
-SITE = Path(__file__).resolve().parents[1] / "dist"  # generated site; run renderer/build_site.py first
+SITE = Path(__file__).resolve().parents[2] / "dist"  # generated site; run renderer/build_site.py first
 LANGS = tuple(language_slugs())
 
 UNICODE_SUBSTITUTES = {

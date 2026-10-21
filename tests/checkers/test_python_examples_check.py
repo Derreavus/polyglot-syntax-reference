@@ -1,4 +1,4 @@
-"""Tests for scripts/check_python_examples.py, the checker that compares the Python version history with
+"""Tests for scripts/check/check_python_examples.py, the checker that compares the Python version history with
 Python itself. Each test hands the real script deliberately wrong data and requires a specific complaint,
 so a checker that quietly stopped checking would fail here.
 
@@ -16,9 +16,9 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "renderer"))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "scripts" / "check"))
 
 import check_python_examples as checker
 from load_data import load_data
@@ -87,7 +87,7 @@ class CheckerSetupTests(unittest.TestCase):
         self.assertIsNotNone(python, "ci.yml no longer pins a Python version")
         self.assertEqual(python.group(1), f"{checker.PROBED[0]}.{checker.PROBED[1]}",
                          "CI uses a different Python from the one the probes are written for; update PROBED and the probes together")
-        self.assertIn("python3 scripts/check_python_examples.py --strict", workflow)
+        self.assertIn("python3 scripts/check/check_python_examples.py --strict", workflow)
 
 
 @unittest.skipUnless(ON_PROBED_PYTHON, "the checker's probes are written for Python 3.12, which CI runs")

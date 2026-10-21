@@ -22,7 +22,7 @@ from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DIRECTORY = ROOT / "dist"
 BUILD_SCRIPT = ROOT / "renderer" / "build_site.py"
 WATCH_PATHS = (ROOT / "data", ROOT / "src", ROOT / "renderer")

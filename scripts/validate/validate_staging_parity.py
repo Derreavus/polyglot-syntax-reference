@@ -16,7 +16,7 @@ from pathlib import Path
 # Content tables are wrapped in a scroll container at render time; compare against the unwrapped markup.
 TABLE_WRAPPER = re.compile(r'<div class="table-scroll scroll-fade">(<table\b.*?</table>)</div>', re.DOTALL)
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "dist"
 DATA_PATH = ROOT / "data" / "site_data.json"
 # Every language must publish at least one topic; the topic-by-topic comparison below checks the rest.

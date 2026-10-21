@@ -13,9 +13,9 @@ import sys
 import unittest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "renderer"))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "scripts" / "lib"))
 
 from build_site import render_site_data_js
 from load_data import get_languages, load_data
@@ -147,10 +147,13 @@ class CodeIsLanguageNeutralTests(unittest.TestCase):
         self.assertEqual(offenders, [])
 
     def test_validation_scripts_take_their_expectations_from_data(self) -> None:
-        for name in ("validate_staging_parity.py", "validate_syntax_html.py", "validate_links.py", "validate_html_smoke.py", "language_registry.py"):
-            text = (ROOT / "scripts" / name).read_text(encoding="utf-8")
+        # scripts/validate and scripts/lib are language-neutral by design; scripts/check is language-specific
+        neutral = sorted((ROOT / "scripts" / "validate").glob("*.py")) + sorted((ROOT / "scripts" / "lib").glob("*.py"))
+        self.assertGreaterEqual(len(neutral), 5, "expected the validators and the shared helpers")
+        for path in neutral:
+            text = path.read_text(encoding="utf-8")
             for slug in self.slugs:
-                self.assertNotRegex(text, rf'''["']{slug}["']''', f"{name} names {slug}")
+                self.assertNotRegex(text, rf'''["']{slug}["']''', f"{path.name} names {slug}")
 
 
 class CategoriesAndTrackKindsTests(unittest.TestCase):

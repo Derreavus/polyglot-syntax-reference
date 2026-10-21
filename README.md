@@ -157,7 +157,7 @@ The JSON source contains:
 - search titles and keywords
 - comparison rows and their section/group configuration
 
-Each topic stores its complete authored body as `content_html`. The build validates that every topic and body is rendered, and parity validation checks the expected coverage and browser data. Treat `content_html` as trusted, authored repository content. The one-time importer [scripts/import_legacy_content.py](scripts/import_legacy_content.py) accepts an explicit Git revision to import topic content from an existing set of pages.
+Each topic stores its complete authored body as `content_html`. The build validates that every topic and body is rendered, and parity validation checks the expected coverage and browser data. Treat `content_html` as trusted, authored repository content. The one-time importer [scripts/content/import_legacy_content.py](scripts/content/import_legacy_content.py) accepts an explicit Git revision to import topic content from an existing set of pages.
 
 The header language dropdown is populated at runtime from the generated language registry. Each menu item shows only the language name, in a compact card-style panel that matches the site's colors and borders. Adding a language entry makes it appear in the dropdown; no per-language header link needs to be added to the page templates.
 
@@ -168,7 +168,7 @@ The comparison page uses the same registry to build its **Add language** menu. I
 To preview the built site locally:
 
 ```bash
-python scripts/serve_staging.py
+python scripts/dev/serve_staging.py
 ```
 
 This builds the site, serves `dist/`, and rebuilds automatically when you save a change under `data/`, `src/` or `renderer/`. Refresh the browser after the "Rebuilt" message. Responses are sent uncached, so a refresh always shows the latest build. Options: `--port 8123` to change the port, `--no-watch` to disable auto-rebuild, `--no-build` to serve existing output.
@@ -179,7 +179,7 @@ Then open:
 
 Preview only through this script (or by opening files inside `dist/`). A server started at the repository root, such as an editor's "Go Live" button or `python -m http.server`, serves the frozen legacy pages at the root, not the current build. If the script reports that the port is already in use, an older preview server is still running; stop it or pick another port.
 
-Run the checks separately with `python -m unittest discover -s tests` and the scripts in `scripts/validate_*.py`.
+Run the checks separately with `python -m unittest discover -s tests` and the scripts in `scripts/validate/`.
 
 This is a local-only workflow. The remote deployment remains unchanged until you explicitly choose to publish.
 
@@ -214,7 +214,7 @@ The Node.js availability of language features comes from [MDN's browser compatib
 
 The build rejects data that breaks the rules: duplicate or out-of-order versions within a track, a track with no versions or no https changelog links, a history that names an unknown track, a first event that is not `added`, events out of order or after a removal, a removal in the same version as its deprecation, unknown versions, topics or replacements, replacement cycles, and support dates in the wrong order.
 
-For JavaScript, `node scripts/check_js_examples.js` (after `npm install --no-save acorn`) also checks the before-and-after snippets by parsing them in the edition they belong to, and parses every code block in the JavaScript reference topics. It is optional and not part of CI.
+For JavaScript, `node scripts/check/check_js_examples.js` (after `npm install --no-save acorn`) also checks the before-and-after snippets by parsing them in the edition they belong to, and parses every code block in the JavaScript reference topics. It is optional and not part of CI.
 
 A feature with a `topic` appears in that topic's **Version notes**. The **What can I use?** view computes each feature's state in the browser with the same rules as `lifecycle_state()` in `renderer/versioning.py`, and the tests keep the two in step.
 

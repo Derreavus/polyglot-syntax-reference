@@ -30,8 +30,8 @@ data/site_data.json and checks three things. Standard library only.
    that really cannot be probed goes in NOT_PROBEABLE, with the reason.
 
 Run from the repo root:
-    python3 scripts/check_python_examples.py            # probes are skipped on a Python other than 3.12
-    python3 scripts/check_python_examples.py --strict   # a different Python is an error
+    python3 scripts/check/check_python_examples.py            # probes are skipped on a Python other than 3.12
+    python3 scripts/check/check_python_examples.py --strict   # a different Python is an error
 
 Exit code 0 = OK, 1 = problems found.
 """
@@ -55,7 +55,7 @@ import warnings
 from pathlib import Path
 from typing import Callable, NamedTuple
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "renderer"))
 
 from load_data import load_data  # noqa: E402

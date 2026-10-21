@@ -19,9 +19,10 @@ import sys
 from pathlib import Path
 from urllib.parse import urlparse, unquote
 
-from language_registry import language_slugs
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "lib"))  # shared helpers in scripts/lib
+from language_registry import language_slugs  # noqa: E402
 
-SITE = Path(__file__).resolve().parents[1] / "dist"  # generated site; run renderer/build_site.py first
+SITE = Path(__file__).resolve().parents[2] / "dist"  # generated site; run renderer/build_site.py first
 
 REQUIRED_PAGES = ["index.html", "compare/index.html"] + [f"{slug}/index.html" for slug in language_slugs()]
 

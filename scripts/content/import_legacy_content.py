@@ -11,7 +11,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = ROOT / "data" / "site_data.json"
 LANGUAGE_SLUGS = ("python", "rust", "cpp", "csharp")
 
