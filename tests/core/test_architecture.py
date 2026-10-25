@@ -15,6 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "renderer"))
+sys.path.insert(0, str(ROOT / "tests"))
 sys.path.insert(0, str(ROOT / "scripts" / "lib"))
 
 from build_site import render_site_data_js
@@ -24,6 +25,7 @@ from render_home import render_home_page
 from render_language import render_language_page
 from render_versions import render_versions_page
 from theme import language_theme_css, readable_on
+from support import add_made_up_language
 from validate_data import validate_data_model
 from versioning import TRACK_KINDS, tracks_for, versions_for
 
@@ -31,42 +33,6 @@ CODE_FILES = (
     sorted((ROOT / "renderer").glob("*.py"))
     + [ROOT / "src" / "static" / "js" / "main.js", ROOT / "src" / "static" / "css" / "style.css"]
 )
-
-
-def add_made_up_language(data: dict, slug: str = "zig") -> dict:
-    """A complete sixth language, defined purely as data."""
-    language = {
-        "slug": slug, "name": "Zig", "status": "available", "order": 6, "category": "programming",
-        "color": "#f7a41d", "description": "A made-up language used by the architecture test.",
-        "version_label": "Zig 0.13 · systems",
-    }
-    data["languages"].append(language)
-    data["sections"].append({"language": slug, "slug": "basics", "title": "Basics", "sort_order": 1})
-    data["topics"].append({
-        "language": slug, "section": "basics", "slug": "variables", "title": "Variables", "concept": "variables",
-        "sort_order": 1, "content_html": "<pre><code>const x: u32 = 1;</code></pre>", "search_keywords": "const var",
-    })
-    for concept in data["concepts"]:
-        if concept["slug"] == "variables":
-            concept["topics"][slug] = "variables"
-    for row in data["compare"]:
-        row[slug] = "const x = 1;"
-    data["tracks"].append({
-        "language": slug, "id": slug, "label": "Zig", "kind": "standard", "order": 1,
-        "description": "Releases of the Zig language.",
-        "changelog_links": [{"title": "Release notes", "url": "https://ziglang.org/download/"}],
-    })
-    data["versions"] += [
-        {"language": slug, "track": slug, "id": "zig-0.12", "label": "Zig 0.12", "released": "2024-04", "order": 1, "status": "released"},
-        {"language": slug, "track": slug, "id": "zig-0.13", "label": "Zig 0.13", "released": "2024-06", "order": 2, "status": "released"},
-    ]
-    data["features"].append({
-        "language": slug, "slug": "comptime-vars", "title": "comptime variables", "category": "syntax",
-        "summary": "Variables evaluated at compile time.", "topic": "variables",
-        "history": {slug: [{"version": "zig-0.13", "kind": "added"}]},
-        "migration": {"legacy": "var x = 1;", "modern": "comptime var x = 1;"},
-    })
-    return language
 
 
 class SixthLanguageTests(unittest.TestCase):
@@ -182,7 +148,7 @@ class CategoriesAndTrackKindsTests(unittest.TestCase):
         data["tracks"][0]["kind"] = "language"
         with self.assertRaisesRegex(ValueError, "kind must be one of"):
             validate_data_model(data)
-        self.assertEqual({t["kind"] for t in self.data["tracks"]}, {"standard", "runtime"})
+        self.assertLessEqual({t["kind"] for t in self.data["tracks"]}, set(TRACK_KINDS))
 
     def test_syntax_checks_are_validated(self) -> None:
         data = copy.deepcopy(self.data)

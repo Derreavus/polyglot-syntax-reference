@@ -240,6 +240,11 @@ def render_versions_page(
     noun_html = html.escape(noun)
     name = html.escape(language["name"])
     track_label = html.escape(track["label"])
+    # A label that already ends with its noun ("Rust editions") must not be followed by the noun again.
+    lowered, singular = track["label"].lower(), noun.lower()
+    label_has_noun = lowered.endswith(singular) or lowered.endswith(singular + "s")
+    plural_phrase = track_label if label_has_noun else f"{track_label} {noun_html}s"
+    each_phrase = noun if label_has_noun else f"{track['label']} {noun}"
 
     events_by_version: dict[str, list[tuple[dict[str, Any], dict[str, Any]]]] = {v["id"]: [] for v in ctx.versions}
     undated: list[tuple[dict[str, Any], dict[str, Any]]] = []
@@ -346,7 +351,7 @@ def render_versions_page(
 
     head_title = f"{language['name']} version history{title_suffix} — {site['brand']}"
     head_description = (
-        f"What was added, changed, deprecated and removed in each {track['label']} {noun} for {language['name']}, "
+        f"What was added, changed, deprecated and removed in each {each_phrase} for {language['name']}, "
         "with before-and-after examples for upgrading old code."
     )
     return f'''<!DOCTYPE html>
@@ -360,7 +365,7 @@ def render_versions_page(
     <h1>{name} version history</h1>
     {tabs}
     <p class="track-description"><strong>{track_label}.</strong> {html.escape(track["description"])}</p>
-    <p class="versions-intro">What was added, changed, deprecated and removed between {track_label} {noun_html}s. See everything that changes between the {noun_html} your code was written for and the one you are moving to, or check what a particular {noun_html} can and cannot use.</p>
+    <p class="versions-intro">What was added, changed, deprecated and removed between {plural_phrase}. See everything that changes between the {noun_html} your code was written for and the one you are moving to, or check what a particular {noun_html} can and cannot use.</p>
 
     <div class="view-switch" role="group" aria-label="Choose a view">
       <button type="button" class="view-tab" data-view="changes" aria-pressed="true">Upgrade changes</button>

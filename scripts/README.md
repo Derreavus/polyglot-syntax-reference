@@ -22,11 +22,15 @@ python scripts/validate/validate_syntax_html.py
 python scripts/validate/validate_links.py
 python scripts/validate/validate_html_smoke.py
 python scripts/check/check_python_examples.py --strict
+rustup toolchain install 1.75.0 1.95.0 --profile minimal --no-self-update
+python scripts/check/check_rust_examples.py --strict --rustc "rustup run 1.75.0 rustc"
+python scripts/check/check_rust_examples.py --strict --rustc "rustup run 1.95.0 rustc"
 ```
 
 ## The per-language checkers
 
 - `check/check_python_examples.py` compares the Python data with a real Python 3.12 interpreter. On any other Python it skips its probes with a notice; `--strict` (what CI uses) fails instead.
+- `check/check_rust_examples.py` compiles the Rust examples and small feature probes with a real Rust compiler, and adapts to whichever compiler it is given (`--rustc "<command>"`, default `rustc`). Features newer than the compiler must fail to compile; features it has must compile. It also compiles edition probes (code that builds in one edition and not the next). CI runs it on an old and a new toolchain (1.75.0 and 1.95.0), so each run checks the data in both directions. A missing compiler is skipped with a notice, or an error with `--strict`.
 - `check/check_js_examples.js` parses the JavaScript examples in the edition they belong to. Install its parser once with `npm install --no-save acorn`.
 
 Each new language that gets version history gets its own checker here, and a matching test in `tests/checkers/`.

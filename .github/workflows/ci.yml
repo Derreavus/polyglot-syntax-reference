@@ -42,3 +42,11 @@ jobs:
 
       - name: Python version-history examples and probes
         run: python3 scripts/check/check_python_examples.py --strict
+
+      - name: Install the Rust toolchains the checker runs on
+        run: rustup toolchain install 1.75.0 1.95.0 --profile minimal --no-self-update
+
+      - name: Rust examples and probes (oldest and newest toolchain)
+        run: |
+          python3 scripts/check/check_rust_examples.py --strict --rustc "rustup run 1.75.0 rustc"
+          python3 scripts/check/check_rust_examples.py --strict --rustc "rustup run 1.95.0 rustc"

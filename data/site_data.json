@@ -2525,6 +2525,400 @@
       "order": 17,
       "status": "released",
       "end_of_life": "2031-10"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.0",
+      "label": "Rust 1.0 (baseline)",
+      "released": "2015-05-15",
+      "order": 1,
+      "status": "released",
+      "note": "The first stable release. Features that already existed then, and were later changed or retired, are recorded as added here."
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.13",
+      "label": "Rust 1.13",
+      "released": "2016-11-10",
+      "order": 2,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.15",
+      "label": "Rust 1.15",
+      "released": "2017-02-02",
+      "order": 3,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.20",
+      "label": "Rust 1.20",
+      "released": "2017-08-31",
+      "order": 4,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.22",
+      "label": "Rust 1.22",
+      "released": "2017-11-22",
+      "order": 5,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.26",
+      "label": "Rust 1.26",
+      "released": "2018-05-10",
+      "order": 6,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.27",
+      "label": "Rust 1.27",
+      "released": "2018-06-21",
+      "order": 7,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.28",
+      "label": "Rust 1.28",
+      "released": "2018-08-02",
+      "order": 8,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.30",
+      "label": "Rust 1.30",
+      "released": "2018-10-25",
+      "order": 9,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.31",
+      "label": "Rust 1.31",
+      "released": "2018-12-06",
+      "order": 10,
+      "status": "released",
+      "note": "The 2018 edition was stabilised in this release."
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.33",
+      "label": "Rust 1.33",
+      "released": "2019-02-28",
+      "order": 11,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.36",
+      "label": "Rust 1.36",
+      "released": "2019-07-04",
+      "order": 12,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.37",
+      "label": "Rust 1.37",
+      "released": "2019-08-15",
+      "order": 13,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.39",
+      "label": "Rust 1.39",
+      "released": "2019-11-07",
+      "order": 14,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.42",
+      "label": "Rust 1.42",
+      "released": "2020-03-12",
+      "order": 15,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.50",
+      "label": "Rust 1.50",
+      "released": "2021-02-11",
+      "order": 16,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.51",
+      "label": "Rust 1.51",
+      "released": "2021-03-25",
+      "order": 17,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.52",
+      "label": "Rust 1.52",
+      "released": "2021-05-06",
+      "order": 18,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.53",
+      "label": "Rust 1.53",
+      "released": "2021-06-17",
+      "order": 19,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.58",
+      "label": "Rust 1.58",
+      "released": "2022-01-13",
+      "order": 20,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.61",
+      "label": "Rust 1.61",
+      "released": "2022-05-19",
+      "order": 21,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.62",
+      "label": "Rust 1.62",
+      "released": "2022-06-30",
+      "order": 22,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.63",
+      "label": "Rust 1.63",
+      "released": "2022-08-11",
+      "order": 23,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.64",
+      "label": "Rust 1.64",
+      "released": "2022-09-22",
+      "order": 24,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.65",
+      "label": "Rust 1.65",
+      "released": "2022-11-03",
+      "order": 25,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.68",
+      "label": "Rust 1.68",
+      "released": "2023-03-09",
+      "order": 26,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.70",
+      "label": "Rust 1.70",
+      "released": "2023-06-01",
+      "order": 27,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.74",
+      "label": "Rust 1.74",
+      "released": "2023-11-16",
+      "order": 28,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.75",
+      "label": "Rust 1.75",
+      "released": "2023-12-28",
+      "order": 29,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.77",
+      "label": "Rust 1.77",
+      "released": "2024-03-21",
+      "order": 30,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.79",
+      "label": "Rust 1.79",
+      "released": "2024-06-13",
+      "order": 31,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.80",
+      "label": "Rust 1.80",
+      "released": "2024-07-25",
+      "order": 32,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.81",
+      "label": "Rust 1.81",
+      "released": "2024-09-05",
+      "order": 33,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.82",
+      "label": "Rust 1.82",
+      "released": "2024-10-17",
+      "order": 34,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.84",
+      "label": "Rust 1.84",
+      "released": "2025-01-09",
+      "order": 35,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.85",
+      "label": "Rust 1.85",
+      "released": "2025-02-20",
+      "order": 36,
+      "status": "released",
+      "note": "The 2024 edition was stabilised in this release."
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.86",
+      "label": "Rust 1.86",
+      "released": "2025-04-03",
+      "order": 37,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.88",
+      "label": "Rust 1.88",
+      "released": "2025-06-26",
+      "order": 38,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "rust",
+      "id": "rust-1.95",
+      "label": "Rust 1.95",
+      "released": "2026-04-16",
+      "order": 39,
+      "status": "released"
+    },
+    {
+      "language": "rust",
+      "track": "edition",
+      "id": "ed2015",
+      "label": "Rust 2015 (baseline)",
+      "released": "2015-05-15",
+      "order": 1,
+      "status": "released",
+      "note": "The original edition, in use since Rust 1.0. Features that already existed then, and were later changed or retired, are recorded as added here."
+    },
+    {
+      "language": "rust",
+      "track": "edition",
+      "id": "ed2018",
+      "label": "Rust 2018",
+      "released": "2018-12-06",
+      "order": 2,
+      "status": "released",
+      "note": "Stabilised in Rust 1.31."
+    },
+    {
+      "language": "rust",
+      "track": "edition",
+      "id": "ed2021",
+      "label": "Rust 2021",
+      "released": "2021-10-21",
+      "order": 3,
+      "status": "released",
+      "note": "Stabilised in Rust 1.56."
+    },
+    {
+      "language": "rust",
+      "track": "edition",
+      "id": "ed2024",
+      "label": "Rust 2024",
+      "released": "2025-02-20",
+      "order": 4,
+      "status": "released",
+      "note": "Stabilised in Rust 1.85."
     }
   ],
   "features": [
@@ -7576,6 +7970,1485 @@
         "modern": "now = datetime.now(timezone.utc)",
         "note": "The result is timezone-aware instead of naive."
       }
+    },
+    {
+      "language": "rust",
+      "slug": "question-mark",
+      "title": "? operator",
+      "category": "syntax",
+      "summary": "A postfix operator that returns early with the error when a Result is Err (or with None for an Option), and otherwise gives you the value.",
+      "topic": "error",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.13",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.22",
+            "kind": "changed",
+            "note": "It also works on Option, so a function that returns an Option can return None early with ?."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "use std::fs::File;\nuse std::io::{self, Read};\n\nfn read_config(path: &str) -> io::Result<String> {\n    let mut text = String::new();\n    try!(try!(File::open(path)).read_to_string(&mut text));\n    Ok(text)\n}",
+        "modern": "use std::fs::File;\nuse std::io::{self, Read};\n\nfn read_config(path: &str) -> io::Result<String> {\n    let mut text = String::new();\n    File::open(path)?.read_to_string(&mut text)?;\n    Ok(text)\n}",
+        "note": "try! was the macro form of the same idea."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "try-macro",
+      "title": "try! macro",
+      "category": "library",
+      "summary": "The macro form of early return on error, written try!(expr), used before the ? operator existed.",
+      "topic": "error",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.0",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.39",
+            "kind": "deprecated",
+            "note": "Deprecated in favour of the ? operator. From the 2018 edition try is a reserved keyword."
+          }
+        ]
+      },
+      "replaced_by": [
+        "question-mark"
+      ],
+      "migration": {
+        "legacy": "use std::num::ParseIntError;\n\nfn double(text: &str) -> Result<i32, ParseIntError> {\n    let value = try!(text.parse::<i32>());\n    Ok(value * 2)\n}",
+        "modern": "use std::num::ParseIntError;\n\nfn double(text: &str) -> Result<i32, ParseIntError> {\n    let value = text.parse::<i32>()?;\n    Ok(value * 2)\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "impl-trait",
+      "title": "impl Trait",
+      "category": "syntax",
+      "summary": "In argument position, impl Trait accepts any type that implements the trait. In return position it returns a type you do not have to name.",
+      "topic": "traits",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.26",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn evens(limit: u32) -> Box<Iterator<Item = u32>> {\n    Box::new((0..limit).filter(|n| n % 2 == 0))\n}",
+        "modern": "fn evens(limit: u32) -> impl Iterator<Item = u32> {\n    (0..limit).filter(|n| n % 2 == 0)\n}",
+        "note": "No heap allocation is needed, and the concrete type stays hidden from callers."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "dyn-trait",
+      "title": "dyn Trait",
+      "category": "syntax",
+      "summary": "dyn marks a trait object type explicitly, as in Box<dyn Shape> or &dyn Shape.",
+      "topic": "traits",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.27",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "bare-trait-objects",
+      "title": "Trait objects without dyn",
+      "category": "syntax",
+      "summary": "Writing a trait object type without dyn, such as Box<Shape>.",
+      "topic": "traits",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.0",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.37",
+            "kind": "deprecated",
+            "note": "A trait object written without dyn now produces a warning. Write dyn Trait."
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "removed",
+            "note": "A hard error in the 2021 edition. Write dyn Trait."
+          }
+        ]
+      },
+      "replaced_by": [
+        "dyn-trait"
+      ],
+      "migration": {
+        "legacy": "trait Shape {\n    fn area(&self) -> f64;\n}\n\nfn total_area(shapes: &[Box<Shape>]) -> f64 {\n    shapes.iter().map(|shape| shape.area()).sum()\n}",
+        "modern": "trait Shape {\n    fn area(&self) -> f64;\n}\n\nfn total_area(shapes: &[Box<dyn Shape>]) -> f64 {\n    shapes.iter().map(|shape| shape.area()).sum()\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "inclusive-ranges",
+      "title": "Inclusive ranges (..=)",
+      "category": "syntax",
+      "summary": "..= writes a range that includes its end, such as 1..=10.",
+      "topic": "control",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.26",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn sum_to(n: u32) -> u32 {\n    let mut total = 0;\n    for i in 1..(n + 1) {\n        total += i;\n    }\n    total\n}",
+        "modern": "fn sum_to(n: u32) -> u32 {\n    let mut total = 0;\n    for i in 1..=n {\n        total += i;\n    }\n    total\n}",
+        "note": "..= also avoids the overflow that n + 1 causes when n is the largest value of its type."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "ellipsis-range-patterns",
+      "title": "... in range patterns",
+      "category": "syntax",
+      "summary": "The older spelling of an inclusive range in a pattern, as in 'a'...'z'.",
+      "topic": "pattern",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.0",
+            "kind": "added"
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "removed",
+            "note": "A hard error in the 2021 edition. Write ..= instead."
+          }
+        ]
+      },
+      "replaced_by": [
+        "inclusive-ranges"
+      ],
+      "migration": {
+        "legacy": "fn is_lower(c: char) -> bool {\n    match c {\n        'a'...'z' => true,\n        _ => false,\n    }\n}",
+        "modern": "fn is_lower(c: char) -> bool {\n    match c {\n        'a'..='z' => true,\n        _ => false,\n    }\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "const-fn",
+      "title": "const fn",
+      "category": "syntax",
+      "summary": "Functions that can be called in constant contexts, such as statics, array lengths and const items.",
+      "topic": "functions",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.31",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "async-await",
+      "title": "async and await",
+      "category": "syntax",
+      "summary": "async fn and async blocks produce futures, and .await waits for one inside another async context.",
+      "topic": "concurrency",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.39",
+            "kind": "added"
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2018",
+            "kind": "added",
+            "note": "async and await are keywords only from the 2018 edition. In the 2015 edition they are ordinary identifiers."
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "gats",
+      "title": "Generic associated types",
+      "category": "syntax",
+      "summary": "Associated types in a trait can have their own generic parameters, such as lifetimes, which makes lending iterators and similar APIs expressible.",
+      "topic": "traits",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.65",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "let-else",
+      "title": "let else",
+      "category": "syntax",
+      "summary": "let Some(x) = value else { ... }; binds on a match and runs the else block, which must diverge, when the pattern does not match.",
+      "topic": "control",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.65",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn first_word(text: &str) -> Option<&str> {\n    let word = match text.split_whitespace().next() {\n        Some(word) => word,\n        None => return None,\n    };\n    Some(word)\n}",
+        "modern": "fn first_word(text: &str) -> Option<&str> {\n    let Some(word) = text.split_whitespace().next() else {\n        return None;\n    };\n    Some(word)\n}",
+        "note": "The else block must diverge: return, break, continue or panic."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "const-generics",
+      "title": "Const generics",
+      "category": "syntax",
+      "summary": "Types and functions can take a constant value as a generic parameter, such as the length of an array in [T; N].",
+      "topic": "types",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.51",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn first_and_last(values: &[i32; 4]) -> (i32, i32) {\n    (values[0], values[3])\n}",
+        "modern": "fn first_and_last<const N: usize>(values: &[i32; N]) -> (i32, i32) {\n    (values[0], values[N - 1])\n}",
+        "note": "The function now accepts an array of any length. It panics on an empty array."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "slice-patterns",
+      "title": "Slice patterns",
+      "category": "syntax",
+      "summary": "Patterns that match the shape of a slice or array, as in [first, .., last] or [head, tail @ ..].",
+      "topic": "pattern",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.26",
+            "kind": "added",
+            "note": "Matching a slice or array by its leading elements."
+          },
+          {
+            "version": "rust-1.42",
+            "kind": "changed",
+            "note": "Subslice patterns: .. and name @ .. can match any run of elements, including in the middle."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn describe(values: &[i32]) -> &'static str {\n    if values.is_empty() {\n        \"empty\"\n    } else if values.len() == 1 {\n        \"one\"\n    } else {\n        \"many\"\n    }\n}",
+        "modern": "fn describe(values: &[i32]) -> &'static str {\n    match values {\n        [] => \"empty\",\n        [_] => \"one\",\n        [_, ..] => \"many\",\n    }\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "inline-format-args",
+      "title": "Inline format arguments",
+      "category": "syntax",
+      "summary": "Format strings can name variables directly: format!(\"{name} is {age}\").",
+      "topic": "strings",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.58",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn describe(name: &str, age: u32) -> String {\n    format!(\"{} is {}\", name, age)\n}",
+        "modern": "fn describe(name: &str, age: u32) -> String {\n    format!(\"{name} is {age}\")\n}",
+        "note": "Only plain identifiers can be captured, not expressions such as {user.name}."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "inline-const",
+      "title": "Inline const blocks",
+      "category": "syntax",
+      "summary": "A const { ... } block is an expression that is evaluated at compile time, for example to fill an array with a value that is not Copy.",
+      "topic": "variables",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.79",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn rows() -> [Vec<u8>; 3] {\n    const EMPTY: Vec<u8> = Vec::new();\n    [EMPTY; 3]\n}",
+        "modern": "fn rows() -> [Vec<u8>; 3] {\n    [const { Vec::new() }; 3]\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "exclusive-range-patterns",
+      "title": "Exclusive range patterns",
+      "category": "syntax",
+      "summary": "Patterns can use a range that excludes its end, such as 0..10, as well as the inclusive 0..=9.",
+      "topic": "pattern",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.80",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn bucket(n: u8) -> &'static str {\n    match n {\n        0..=9 => \"small\",\n        10..=99 => \"medium\",\n        _ => \"large\",\n    }\n}",
+        "modern": "fn bucket(n: u8) -> &'static str {\n    match n {\n        0..10 => \"small\",\n        10..100 => \"medium\",\n        _ => \"large\",\n    }\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "async-fn-in-traits",
+      "title": "async fn in traits",
+      "category": "syntax",
+      "summary": "Traits can declare async fn and functions that return impl Trait, without boxing the future.",
+      "topic": "traits",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.75",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "precise-capturing",
+      "title": "Precise capturing (use<..>)",
+      "category": "syntax",
+      "summary": "A use<..> bound on an impl Trait return type says exactly which generic parameters and lifetimes the hidden type captures.",
+      "topic": "lifetimes",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.82",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "raw-borrow",
+      "title": "&raw const and &raw mut",
+      "category": "syntax",
+      "summary": "&raw const place and &raw mut place create a raw pointer directly, without first making a reference. That matters for packed fields and uninitialised memory.",
+      "topic": "advanced",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.82",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "#[repr(packed)]\nstruct Header {\n    tag: u8,\n    length: u32,\n}\n\nfn length_ptr(header: &Header) -> *const u32 {\n    std::ptr::addr_of!(header.length)\n}",
+        "modern": "#[repr(packed)]\nstruct Header {\n    tag: u8,\n    length: u32,\n}\n\nfn length_ptr(header: &Header) -> *const u32 {\n    &raw const header.length\n}",
+        "note": "std::ptr::addr_of! does the same job in older versions."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "c-string-literals",
+      "title": "C string literals",
+      "category": "syntax",
+      "summary": "c\"text\" is a null-terminated &CStr literal, handy when calling C functions.",
+      "topic": "strings",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.77",
+            "kind": "added"
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2021",
+            "kind": "added",
+            "note": "C string literals need the 2021 edition or later."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "use std::ffi::CStr;\n\nfn greeting() -> &'static CStr {\n    CStr::from_bytes_with_nul(b\"hello\\0\").unwrap()\n}",
+        "modern": "use std::ffi::CStr;\n\nfn greeting() -> &'static CStr {\n    c\"hello\"\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "trait-upcasting",
+      "title": "Trait upcasting",
+      "category": "syntax",
+      "summary": "A &dyn Sub or Box<dyn Sub> can be used as a dyn Super when Super is a supertrait of Sub.",
+      "topic": "traits",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.86",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "async-closures",
+      "title": "Async closures",
+      "category": "syntax",
+      "summary": "async |x| { ... } closures can borrow from what they capture across .await points, and the AsyncFn traits describe them.",
+      "topic": "functions",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.85",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "let-chains",
+      "title": "let chains",
+      "category": "syntax",
+      "summary": "if and while conditions can chain let patterns and boolean expressions with &&.",
+      "topic": "control",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.88",
+            "kind": "added"
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2024",
+            "kind": "added",
+            "note": "Only available in the 2024 edition."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn even_number(text: &str) -> Option<u32> {\n    if let Ok(n) = text.parse::<u32>() {\n        if n % 2 == 0 {\n            return Some(n);\n        }\n    }\n    None\n}",
+        "modern": "fn even_number(text: &str) -> Option<u32> {\n    if let Ok(n) = text.parse::<u32>() && n % 2 == 0 {\n        return Some(n);\n    }\n    None\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "if-let-guards",
+      "title": "if let guards",
+      "category": "syntax",
+      "summary": "A match arm's guard can itself be an if let, which binds more names for the arm without a nested match.",
+      "topic": "pattern",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.95",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn parse_or_zero(value: Option<&str>) -> u32 {\n    match value {\n        Some(text) => match text.parse::<u32>() {\n            Ok(n) => n,\n            Err(_) => 0,\n        },\n        None => 0,\n    }\n}",
+        "modern": "fn parse_or_zero(value: Option<&str>) -> u32 {\n    match value {\n        Some(text) if let Ok(n) = text.parse::<u32>() => n,\n        _ => 0,\n    }\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "nll",
+      "title": "Non-lexical lifetimes",
+      "category": "behavior",
+      "summary": "The borrow checker ends a borrow at the last use of a reference rather than at the end of its scope, so more correct code compiles.",
+      "topic": "lifetimes",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.31",
+            "kind": "added",
+            "note": "At first only for code on the 2018 edition."
+          },
+          {
+            "version": "rust-1.36",
+            "kind": "changed",
+            "note": "Also enabled for code on the 2015 edition."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn append_after_print() -> Vec<i32> {\n    let mut scores = vec![1, 2, 3];\n    {\n        let first = &scores[0];\n        println!(\"{}\", first);\n    }\n    scores.push(4);\n    scores\n}",
+        "modern": "fn append_after_print() -> Vec<i32> {\n    let mut scores = vec![1, 2, 3];\n    let first = &scores[0];\n    println!(\"{}\", first);\n    scores.push(4);\n    scores\n}",
+        "note": "The extra block that ended the borrow early is no longer needed."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "associated-consts",
+      "title": "Associated constants",
+      "category": "syntax",
+      "summary": "Traits and impl blocks can declare constants that belong to the type, such as const MAX: u32.",
+      "topic": "traits",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.20",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "procedural-macros",
+      "title": "Procedural macros",
+      "category": "syntax",
+      "summary": "Macros written as Rust functions that transform code: #[derive(...)] macros, attribute macros and function-like macros.",
+      "topic": "advanced",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.15",
+            "kind": "added",
+            "note": "Custom #[derive] macros came first."
+          },
+          {
+            "version": "rust-1.30",
+            "kind": "changed",
+            "note": "Attribute-like and function-like procedural macros became available too."
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "u128",
+      "title": "128-bit integers",
+      "category": "syntax",
+      "summary": "u128 and i128 are 128-bit integer types.",
+      "topic": "types",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.26",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "main-return-values",
+      "title": "main returning Result and ExitCode",
+      "category": "behavior",
+      "summary": "main can return a Result, or an ExitCode, to choose the program's exit status.",
+      "topic": "error",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.26",
+            "kind": "added",
+            "note": "main can return Result<(), E> where E implements Debug. An Err prints the error and exits with a failure status."
+          },
+          {
+            "version": "rust-1.61",
+            "kind": "changed",
+            "note": "std::process::ExitCode and Termination let main return a specific exit code."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "use std::process;\n\nfn run() -> Result<(), String> {\n    Err(\"failed\".to_string())\n}\n\nfn main() {\n    if let Err(message) = run() {\n        eprintln!(\"error: {}\", message);\n        process::exit(1);\n    }\n}",
+        "modern": "fn run() -> Result<(), String> {\n    Err(\"failed\".to_string())\n}\n\nfn main() -> Result<(), String> {\n    run()\n}",
+        "note": "The error is printed with its Debug format."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "derive-default-enum",
+      "title": "#[derive(Default)] on enums",
+      "category": "syntax",
+      "summary": "An enum can derive Default when one variant is marked #[default].",
+      "topic": "structs",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.62",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "enum Mode {\n    Fast,\n    Safe,\n}\n\nimpl Default for Mode {\n    fn default() -> Self {\n        Mode::Safe\n    }\n}",
+        "modern": "#[derive(Default)]\nenum Mode {\n    Fast,\n    #[default]\n    Safe,\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "disjoint-closure-capture",
+      "title": "Disjoint closure capture",
+      "category": "behavior",
+      "summary": "How a closure captures the variables it uses.",
+      "topic": "functions",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "changed",
+            "note": "A closure captures only the fields it uses instead of the whole variable. Things can be dropped at different times, and whether the closure implements Send or Clone can change.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "unsafe-op-in-unsafe-fn",
+      "title": "unsafe_op_in_unsafe_fn",
+      "category": "behavior",
+      "summary": "A lint on unsafe operations inside an unsafe fn that are not wrapped in their own unsafe block.",
+      "topic": "advanced",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.52",
+            "kind": "added",
+            "note": "Added as a lint that is allowed by default."
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "The lint warns by default."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "unsafe fn read(ptr: *const u32) -> u32 {\n    *ptr\n}",
+        "modern": "unsafe fn read(ptr: *const u32) -> u32 {\n    unsafe { *ptr }\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "static-mut-references",
+      "title": "References to static mut",
+      "category": "behavior",
+      "summary": "A lint on taking a reference to a static mut, which is easy to turn into undefined behaviour.",
+      "topic": "advanced",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.77",
+            "kind": "added",
+            "note": "Added as a lint that warns on references to mutable statics."
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "The lint is deny by default, so such code is an error.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "unsafe-extern",
+      "title": "unsafe extern blocks",
+      "category": "syntax",
+      "summary": "An extern block can be marked unsafe, and individual items inside it can be declared safe.",
+      "topic": "advanced",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.82",
+            "kind": "added"
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "extern blocks must be written unsafe extern.",
+            "breaking": true
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "extern \"C\" {\n    fn abs(input: i32) -> i32;\n}\n\nfn absolute(value: i32) -> i32 {\n    unsafe { abs(value) }\n}",
+        "modern": "unsafe extern \"C\" {\n    safe fn abs(input: i32) -> i32;\n}\n\nfn absolute(value: i32) -> i32 {\n    abs(value)\n}",
+        "note": "Marking an item safe is a promise by the author of the block that calling it cannot cause undefined behaviour."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "unsafe-attributes",
+      "title": "Unsafe attributes",
+      "category": "syntax",
+      "summary": "Attributes that can cause undefined behaviour are written inside unsafe(...), as in #[unsafe(no_mangle)].",
+      "topic": "advanced",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.82",
+            "kind": "added"
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "export_name, link_section and no_mangle must be written inside unsafe(...).",
+            "breaking": true
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "#[no_mangle]\npub extern \"C\" fn entry() {}",
+        "modern": "#[unsafe(no_mangle)]\npub extern \"C\" fn entry() {}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "thread-scope",
+      "title": "Scoped threads",
+      "category": "library",
+      "summary": "std::thread::scope runs threads that may borrow from the surrounding function, because the scope waits for all of them to finish.",
+      "topic": "concurrency",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.63",
+            "kind": "added"
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "use std::thread;\n\nfn sum_halves(values: &[i32]) -> i32 {\n    let (left, right) = values.split_at(values.len() / 2);\n    let left = left.to_vec(); // spawn needs data it owns\n    let handle = thread::spawn(move || left.iter().sum::<i32>());\n    handle.join().unwrap() + right.iter().sum::<i32>()\n}",
+        "modern": "use std::thread;\n\nfn sum_halves(values: &[i32]) -> i32 {\n    let (left, right) = values.split_at(values.len() / 2);\n    thread::scope(|scope| {\n        let handle = scope.spawn(|| left.iter().sum::<i32>());\n        handle.join().unwrap() + right.iter().sum::<i32>()\n    })\n}",
+        "note": "The scoped thread borrows the slice directly, so nothing is copied."
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "lazy-statics",
+      "title": "OnceLock and LazyLock",
+      "category": "library",
+      "summary": "Initialise a static or a cell once, on first use, without an external crate.",
+      "topic": "concurrency",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.70",
+            "kind": "added",
+            "note": "OnceCell and OnceLock hold a value that is set once."
+          },
+          {
+            "version": "rust-1.80",
+            "kind": "changed",
+            "note": "LazyCell and LazyLock compute their value on first access."
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "maybe-uninit",
+      "title": "MaybeUninit",
+      "category": "library",
+      "summary": "A wrapper for memory that may not be initialised yet, without the undefined behaviour of treating it as an initialised value.",
+      "topic": "advanced",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.36",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "mem-uninitialized",
+      "title": "mem::uninitialized",
+      "category": "library",
+      "summary": "Returned a value of any type without initialising it, which is undefined behaviour for most types.",
+      "topic": "advanced",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.0",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.39",
+            "kind": "deprecated",
+            "note": "Deprecated in favour of MaybeUninit. The 1.36 release notes had announced the replacement and the 1.39 deprecation."
+          }
+        ]
+      },
+      "replaced_by": [
+        "maybe-uninit"
+      ],
+      "migration": {
+        "legacy": "use std::mem;\n\nfn buffer() -> [u8; 16] {\n    let mut data: [u8; 16] = unsafe { mem::uninitialized() };\n    data = [1; 16];\n    data\n}",
+        "modern": "use std::mem::MaybeUninit;\n\nfn buffer() -> [u8; 16] {\n    let mut data = MaybeUninit::<[u8; 16]>::uninit();\n    unsafe {\n        data.as_mut_ptr().write([1; 16]);\n        data.assume_init()\n    }\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "nonzero",
+      "title": "NonZero integer types",
+      "category": "library",
+      "summary": "NonZeroU32 and the other NonZero types cannot hold zero, so Option<NonZeroU32> takes no more space than a u32.",
+      "topic": "types",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.28",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "array-into-iter",
+      "title": "Arrays by value in for loops",
+      "category": "behavior",
+      "summary": "Arrays implement IntoIterator by value, so for x in [1, 2, 3] yields values rather than references.",
+      "topic": "iterators",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.53",
+            "kind": "added",
+            "note": "In editions before 2021 the method call array.into_iter() still yields references, for compatibility."
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "changed",
+            "note": "array.into_iter() iterates by value.",
+            "breaking": true
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn doubled(values: [i32; 3]) -> Vec<i32> {\n    values.iter().map(|value| value * 2).collect()\n}",
+        "modern": "fn doubled(values: [i32; 3]) -> Vec<i32> {\n    values.into_iter().map(|value| value * 2).collect()\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "core-error",
+      "title": "core::error::Error",
+      "category": "library",
+      "summary": "The Error trait is available in core, so code that does not use the standard library can implement and use it.",
+      "topic": "error",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.81",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "error-description",
+      "title": "Error::description",
+      "category": "library",
+      "summary": "A method of the Error trait that returned a static string describing the error.",
+      "topic": "error",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.0",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.42",
+            "kind": "deprecated",
+            "note": "Deprecated. Implement Display for the message, and source() to expose an underlying cause."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "use std::error::Error;\nuse std::fmt;\n\n#[derive(Debug)]\nstruct MissingKey;\n\nimpl fmt::Display for MissingKey {\n    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {\n        write!(f, \"{}\", self.description())\n    }\n}\n\nimpl Error for MissingKey {\n    fn description(&self) -> &str {\n        \"missing key\"\n    }\n}",
+        "modern": "use std::error::Error;\nuse std::fmt;\n\n#[derive(Debug)]\nstruct MissingKey;\n\nimpl fmt::Display for MissingKey {\n    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {\n        write!(f, \"missing key\")\n    }\n}\n\nimpl Error for MissingKey {}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "trim-left-right",
+      "title": "trim_left and trim_right",
+      "category": "library",
+      "summary": "String methods that trim from one end of a string, named for left and right.",
+      "topic": "strings",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.0",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.33",
+            "kind": "deprecated",
+            "note": "Deprecated in favour of trim_start and trim_end, and the matching *_matches methods."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "fn without_indent(text: &str) -> &str {\n    text.trim_left()\n}",
+        "modern": "fn without_indent(text: &str) -> &str {\n    text.trim_start()\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "atomic-compare-and-swap",
+      "title": "Atomic compare_and_swap",
+      "category": "library",
+      "summary": "The atomic types' compare_and_swap method, which takes one memory ordering for both outcomes.",
+      "topic": "concurrency",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.0",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.50",
+            "kind": "deprecated",
+            "note": "Deprecated in favour of compare_exchange and compare_exchange_weak, which take separate orderings for success and failure."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "use std::sync::atomic::{AtomicUsize, Ordering};\n\nfn claim(flag: &AtomicUsize) -> bool {\n    flag.compare_and_swap(0, 1, Ordering::SeqCst) == 0\n}",
+        "modern": "use std::sync::atomic::{AtomicUsize, Ordering};\n\nfn claim(flag: &AtomicUsize) -> bool {\n    flag.compare_exchange(0, 1, Ordering::SeqCst, Ordering::SeqCst).is_ok()\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "box-slice-into-iter",
+      "title": "IntoIterator for Box<[T]>",
+      "category": "behavior",
+      "summary": "Box<[T]> implements IntoIterator by value.",
+      "topic": "iterators",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.80",
+            "kind": "added",
+            "note": "In editions before 2024 the method call boxed_slice.into_iter() still yields references, for compatibility."
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "boxed_slice.into_iter() iterates by value.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "cargo-add",
+      "title": "cargo add",
+      "category": "tooling",
+      "summary": "Adds a dependency to Cargo.toml from the command line.",
+      "topic": "ecosystem",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.62",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "workspace-inheritance",
+      "title": "Workspace inheritance",
+      "category": "tooling",
+      "summary": "Packages in a workspace inherit settings and dependency versions from the root Cargo.toml.",
+      "topic": "ecosystem",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.64",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "sparse-registry",
+      "title": "Sparse registry protocol",
+      "category": "tooling",
+      "summary": "Cargo fetches the crates.io index over HTTP, only the entries it needs, instead of cloning a Git repository.",
+      "topic": "ecosystem",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.68",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.70",
+            "kind": "changed",
+            "note": "The sparse protocol is the default for crates.io."
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "cargo-lints-table",
+      "title": "Cargo [lints] table",
+      "category": "tooling",
+      "summary": "A [lints] table in Cargo.toml sets rustc and Clippy lint levels for a package or a whole workspace.",
+      "topic": "ecosystem",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.74",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "cargo-resolver",
+      "title": "Cargo feature resolver",
+      "category": "tooling",
+      "summary": "How Cargo chooses dependency versions and unifies features.",
+      "topic": "ecosystem",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.51",
+            "kind": "added",
+            "note": "resolver = \"2\" opts in to the version 2 feature resolver, which avoids unifying features of dependencies where that would be unwanted."
+          },
+          {
+            "version": "rust-1.84",
+            "kind": "changed",
+            "note": "resolver = \"3\" prefers dependency versions that are compatible with the package's rust-version."
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "changed",
+            "note": "edition = \"2021\" implies resolver = \"2\"."
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "edition = \"2024\" implies resolver = \"3\"."
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "reserved-keywords",
+      "title": "Reserved keywords",
+      "category": "syntax",
+      "summary": "Words the language reserves so that they cannot be used as plain identifiers.",
+      "topic": "gotchas",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2018",
+            "kind": "changed",
+            "note": "async, await and dyn became keywords, and try is reserved.",
+            "breaking": true
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "gen is reserved for the generator blocks planned for a future release.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "module-paths",
+      "title": "Module paths",
+      "category": "syntax",
+      "summary": "How paths in use declarations and elsewhere are resolved, including crate:: paths and extern crate.",
+      "topic": "modules",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2018",
+            "kind": "changed",
+            "note": "Paths in use declarations work like other paths, and a path starting with :: must be followed by an external crate.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "anonymous-trait-params",
+      "title": "Anonymous trait parameters",
+      "category": "syntax",
+      "summary": "Trait method parameters written without a name, as in fn foo(&self, u8);.",
+      "topic": "traits",
+      "history": {
+        "rust": [
+          {
+            "version": "rust-1.0",
+            "kind": "added"
+          },
+          {
+            "version": "rust-1.30",
+            "kind": "deprecated",
+            "note": "Using anonymous parameters in traits now warns."
+          }
+        ],
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2018",
+            "kind": "removed",
+            "note": "Every parameter must have a name, even if it is just _."
+          }
+        ]
+      },
+      "migration": {
+        "legacy": "trait Counter {\n    fn add(&mut self, u32);\n}",
+        "modern": "trait Counter {\n    fn add(&mut self, amount: u32);\n}"
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "or-patterns-in-macros",
+      "title": "Or patterns in macro_rules",
+      "category": "syntax",
+      "summary": "How the pat fragment specifier treats patterns joined with | in macro_rules macros.",
+      "topic": "advanced",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "changed",
+            "note": "$x:pat now matches A | B as well. $x:pat_param keeps the old behaviour and is available in all editions.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "prelude-additions",
+      "title": "Prelude additions",
+      "category": "library",
+      "summary": "The names every Rust file can use without importing them.",
+      "topic": "modules",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "changed",
+            "note": "TryFrom, TryInto and FromIterator joined the prelude. This can make a call to a trait method ambiguous, so some code stops compiling.",
+            "breaking": true
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "Future and IntoFuture joined the prelude, with the same caveat.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "panic-macro-consistency",
+      "title": "Consistent panic! macros",
+      "category": "behavior",
+      "summary": "How the panic! macro treats its arguments.",
+      "topic": "error",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "changed",
+            "note": "panic! always formats its arguments like println!. panic!(\"{\") is no longer accepted without escaping, and panic!(x) needs a string literal; use std::panic::panic_any(x) for another payload.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "reserved-prefixes",
+      "title": "Reserved prefixes",
+      "category": "syntax",
+      "summary": "Prefixes and sequences that the language reserves for future syntax.",
+      "topic": "gotchas",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2021",
+            "kind": "changed",
+            "note": "any_identifier#, any_identifier\"...\", any_identifier'...' and 'any_identifier# no longer tokenise. This mostly affects macros.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "rpit-lifetime-capture",
+      "title": "Return-position impl Trait lifetime capture",
+      "category": "behavior",
+      "summary": "Which generic parameters and lifetimes a return-position impl Trait captures.",
+      "topic": "lifetimes",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "All in-scope generic parameters, including lifetimes, are captured unless a use<..> bound says otherwise.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "if-let-temporary-scope",
+      "title": "if let temporary scope",
+      "category": "behavior",
+      "summary": "When the temporary values created while evaluating an if let are dropped.",
+      "topic": "ownership",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "Temporaries from the expression of an if let are dropped before the else branch runs, instead of after it.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "tail-expression-temporary-scope",
+      "title": "Tail expression temporary scope",
+      "category": "behavior",
+      "summary": "When the temporary values created in the last expression of a block are dropped.",
+      "topic": "ownership",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "Temporaries in the tail expression of a function, closure or block may be dropped before the local variables, and are sometimes not extended to the next larger temporary scope.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "newly-unsafe-functions",
+      "title": "Newly unsafe functions",
+      "category": "behavior",
+      "summary": "Standard library functions that were safe to call but can cause undefined behaviour, such as std::env::set_var.",
+      "topic": "advanced",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "std::env::set_var, std::env::remove_var and std::os::unix::process::CommandExt::before_exec are unsafe to call.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "match-ergonomics-reservations",
+      "title": "Match ergonomics reservations",
+      "category": "behavior",
+      "summary": "Rules about writing mut, ref and & inside patterns that rely on default binding modes.",
+      "topic": "pattern",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "Writing mut, ref or ref mut on a binding, or a reference pattern, is an error when the surrounding pattern relies on match ergonomics.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "rust",
+      "slug": "macro-fragment-specifiers",
+      "title": "Macro fragment specifiers",
+      "category": "syntax",
+      "summary": "What the expr fragment specifier matches in macro_rules macros.",
+      "topic": "advanced",
+      "history": {
+        "edition": [
+          {
+            "version": "ed2015",
+            "kind": "added"
+          },
+          {
+            "version": "ed2024",
+            "kind": "changed",
+            "note": "expr also matches const blocks and _ expressions. expr_2021 keeps the old behaviour.",
+            "breaking": true
+          }
+        ]
+      }
     }
   ],
   "tracks": [
@@ -7653,6 +9526,43 @@
         }
       ],
       "version_noun": "version"
+    },
+    {
+      "language": "rust",
+      "id": "rust",
+      "label": "Rust",
+      "kind": "implementation",
+      "order": 1,
+      "description": "Releases of the Rust compiler and standard library, listed only where a release introduced something this reference tracks. If your toolchain is not listed, use the nearest earlier release: a feature stays available in later releases unless it is marked removed.",
+      "changelog_links": [
+        {
+          "title": "Release notes for every Rust release",
+          "url": "https://github.com/rust-lang/rust/blob/master/RELEASES.md"
+        },
+        {
+          "title": "Rust blog, with a post for each release",
+          "url": "https://blog.rust-lang.org/"
+        }
+      ],
+      "version_noun": "release"
+    },
+    {
+      "language": "rust",
+      "id": "edition",
+      "label": "Rust editions",
+      "kind": "standard",
+      "order": 2,
+      "description": "Rust's editions (2015, 2018, 2021 and 2024) are opt-in sets of language rules that each crate chooses for itself. They change how code is parsed and how a few features behave, and crates on different editions work together. This track shows what changes when you move a crate to a newer edition.",
+      "changelog_links": [
+        {
+          "title": "The Rust Edition Guide",
+          "url": "https://doc.rust-lang.org/edition-guide/"
+        },
+        {
+          "title": "The Rust Reference",
+          "url": "https://doc.rust-lang.org/reference/"
+        }
+      ]
     }
   ]
 }

@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "renderer"))
+sys.path.insert(0, str(ROOT / "tests"))
 
 from build_site import render_site_data_js
 from chrome import render_header
@@ -18,6 +19,7 @@ from render_compare import render_compare_page
 from render_home import render_home_page
 from render_language import render_language_page
 from render_versions import render_versions_page
+from support import add_made_up_language
 from validate_data import validate_data_model
 from versioning import tracks_for
 
@@ -59,13 +61,14 @@ class HomePageTests(unittest.TestCase):
         self.assertNotIn("compare/index.html", self.home[:self.home.index('id="tools-heading"')].split("</header>")[1])
 
     def test_cards_show_topic_counts_and_version_history_only_where_it_exists(self) -> None:
-        javascript = re.search(r'<a href="javascript/index.html".*?</a>', self.home, re.S).group(0)
-        python = re.search(r'<a href="python/index.html".*?</a>', self.home, re.S).group(0)
-        rust = re.search(r'<a href="rust/index.html".*?</a>', self.home, re.S).group(0)
-        self.assertRegex(javascript, r"\d+ topics · Version history")
-        self.assertRegex(python, r"\d+ topics · Version history")
-        self.assertIn("topics</p>", rust)
-        self.assertNotIn("Version history", rust)
+        for slug in ("javascript", "python", "rust"):
+            card = re.search(rf'<a href="{slug}/index.html".*?</a>', self.home, re.S).group(0)
+            self.assertRegex(card, r"\d+ topics · Version history", slug)
+        data = copy.deepcopy(self.data)
+        add_made_up_language(data, versions=False)
+        card = re.search(r'<a href="zig/index.html".*?</a>', render_home_page(data), re.S).group(0)
+        self.assertIn("1 topic</p>", card)
+        self.assertNotIn("Version history", card)
 
     def test_categories_are_rendered_in_order_and_empty_ones_are_skipped(self) -> None:
         data = copy.deepcopy(self.data)

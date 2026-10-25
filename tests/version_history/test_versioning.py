@@ -7,10 +7,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "renderer"))
+sys.path.insert(0, str(ROOT / "tests"))
 
 from load_data import load_data
 from render_language import render_language_page
 from render_versions import render_versions_page
+from support import add_made_up_language
 from validate_data import validate_data_model
 from versioning import (
     changes_between,
@@ -142,7 +144,7 @@ class VersioningValidationTests(unittest.TestCase):
     # ---- features and history
     def test_feature_language_must_exist_and_have_versions(self) -> None:
         self.assert_invalid("unknown language", lambda d: d["features"][0].update(language="cobol"))
-        self.assert_invalid("has features but no versions", lambda d: d["features"][0].update(language="rust"))
+        self.assert_invalid("has features but no versions", lambda d: (add_made_up_language(d, versions=False), d["features"][0].update(language="zig")))
 
     def test_history_must_name_known_tracks(self) -> None:
         self.assert_invalid("unknown track", lambda d: feature(d, "let-const")["history"].update(deno=[{"version": "x", "kind": "added"}]))
@@ -253,7 +255,12 @@ class VersioningLogicTests(unittest.TestCase):
         self.assertTrue(has_versioning(self.data, "javascript"))
         self.assertTrue(has_versioning(self.data, "python"))
         self.assertEqual([t["id"] for t in tracks_for(self.data, "python")], ["python"])
-        self.assertFalse(has_versioning(self.data, "rust"))
+        self.assertTrue(has_versioning(self.data, "rust"))
+        self.assertEqual([t["id"] for t in tracks_for(self.data, "rust")], ["rust", "edition"])
+        self.assertEqual(primary_track(self.data, "rust")["id"], "rust")
+        unversioned = copy.deepcopy(self.data)
+        add_made_up_language(unversioned, versions=False)
+        self.assertFalse(has_versioning(unversioned, "zig"))
 
     def test_page_paths(self) -> None:
         self.assertEqual(track_page_rel(self.data, "javascript", ES), "javascript/versions/index.html")
@@ -408,6 +415,15 @@ class VersionPageRenderingTests(unittest.TestCase):
         intro = page.split('class="versions-intro"')[1].split("</p>")[0]
         self.assertNotIn("edition", intro)
 
+    def test_a_track_label_that_already_ends_with_its_noun_is_not_repeated(self) -> None:
+        data = copy.deepcopy(self.data)
+        track(data, ES)["label"] = "ECMAScript editions"
+        page = render_versions_page(self.language, track(data, ES), data, page_rel="javascript/versions/index.html")
+        self.assertIn("between ECMAScript editions.", page)
+        self.assertIn("in each edition for JavaScript", page)
+        self.assertNotIn("editions editions", page)
+        self.assertNotIn("edition edition", page)
+
     def test_version_noun_is_escaped(self) -> None:
         data = copy.deepcopy(self.data)
         track(data, ES)["version_noun"] = "<b>edition"
@@ -453,9 +469,13 @@ class VersionPageRenderingTests(unittest.TestCase):
         python_page = render_language_page(python, self.data, page_rel="python/index.html")
         rust = next(l for l in self.data["languages"] if l["slug"] == "rust")
         rust_page = render_language_page(rust, self.data, page_rel="rust/index.html")
+        data = copy.deepcopy(self.data)
+        zig = add_made_up_language(data, versions=False)
+        zig_page = render_language_page(zig, data, page_rel="zig/index.html")
         self.assertIn('href="versions/index.html"', javascript_page)
         self.assertIn('href="versions/index.html"', python_page)
-        self.assertNotIn("version-history-link", rust_page)
+        self.assertIn('href="versions/index.html"', rust_page)
+        self.assertNotIn("version-history-link", zig_page)
 
     def test_runtime_assets_support_the_pages_and_resolve_urls_from_the_script(self) -> None:
         runtime = (ROOT / "src" / "static" / "js" / "main.js").read_text(encoding="utf-8")
@@ -513,9 +533,9 @@ class TopicNotesAndAvailabilityTests(unittest.TestCase):
         self.assertIn("Node.js: Removed in Node.js 22", modules)
 
     def test_topics_without_features_and_other_languages_have_no_notes(self) -> None:
-        rust = next(l for l in self.data["languages"] if l["slug"] == "rust")
-        rust_page = render_language_page(rust, self.data, page_rel="rust/index.html")
-        self.assertNotIn("version-notes", rust_page)
+        data = copy.deepcopy(self.data)
+        zig = add_made_up_language(data, versions=False)
+        self.assertNotIn("version-notes", render_language_page(zig, data, page_rel="zig/index.html"))
         linked = {f["topic"] for f in features_for(self.data, "javascript") if f.get("topic")}
         for slug in {t["slug"] for t in self.data["topics"] if t["language"] == "javascript"} - linked:
             self.assertNotIn("version-notes", self.topic_section(slug))
