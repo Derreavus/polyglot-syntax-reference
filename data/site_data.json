@@ -99,7 +99,7 @@
       "order": 4,
       "category": "programming",
       "description": "Expressive and powerful. Explore LINQ, async/await, and the .NET libraries.",
-      "version_label": "C# 12 / .NET 8+ · modern .NET",
+      "version_label": "C# 14 / .NET 10 · modern .NET",
       "color": "#239120",
       "color_text": "#3ddc84",
       "syntax_checks": {
@@ -2919,6 +2919,418 @@
       "order": 4,
       "status": "released",
       "note": "Stabilised in Rust 1.85."
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs1.0",
+      "label": "C# 1.0 (baseline)",
+      "released": "2002-01",
+      "order": 1,
+      "status": "released",
+      "note": "The first release. Features that already existed then are recorded as added here."
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs1.2",
+      "label": "C# 1.2",
+      "released": "2003-04",
+      "order": 2,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs2.0",
+      "label": "C# 2.0",
+      "released": "2005-11",
+      "order": 3,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs3.0",
+      "label": "C# 3.0",
+      "released": "2007-11",
+      "order": 4,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs4.0",
+      "label": "C# 4.0",
+      "released": "2010-04",
+      "order": 5,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs5.0",
+      "label": "C# 5.0",
+      "released": "2012-08",
+      "order": 6,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs6.0",
+      "label": "C# 6.0",
+      "released": "2015-07",
+      "order": 7,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs7.0",
+      "label": "C# 7.0",
+      "released": "2017-03",
+      "order": 8,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs7.1",
+      "label": "C# 7.1",
+      "released": "2017-08",
+      "order": 9,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs7.2",
+      "label": "C# 7.2",
+      "released": "2017-11",
+      "order": 10,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs7.3",
+      "label": "C# 7.3",
+      "released": "2018-05",
+      "order": 11,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs8.0",
+      "label": "C# 8.0",
+      "released": "2019-09",
+      "order": 12,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs9.0",
+      "label": "C# 9.0",
+      "released": "2020-11",
+      "order": 13,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs10.0",
+      "label": "C# 10.0",
+      "released": "2021-11",
+      "order": 14,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs11.0",
+      "label": "C# 11.0",
+      "released": "2022-11",
+      "order": 15,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs12.0",
+      "label": "C# 12.0",
+      "released": "2023-11",
+      "order": 16,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs13.0",
+      "label": "C# 13.0",
+      "released": "2024-11",
+      "order": 17,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "csharp",
+      "id": "cs14.0",
+      "label": "C# 14.0",
+      "released": "2025-11",
+      "order": 18,
+      "status": "released"
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "core1.0",
+      "label": ".NET Core 1.0 (baseline)",
+      "released": "2016-06-27",
+      "order": 1,
+      "status": "released",
+      "end_of_life": "2019-06-27",
+      "lts_from": "2016-06-27",
+      "note": "The first release. Features that already existed then are recorded as added here."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "core2.0",
+      "label": ".NET Core 2.0",
+      "released": "2017-08-14",
+      "order": 2,
+      "status": "released",
+      "end_of_life": "2018-10-01",
+      "note": "Default C# version: 7.3."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "core2.1",
+      "label": ".NET Core 2.1",
+      "released": "2018-05-30",
+      "order": 3,
+      "status": "released",
+      "end_of_life": "2021-08-21",
+      "lts_from": "2018-05-30",
+      "note": "Default C# version: 7.3."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "core2.2",
+      "label": ".NET Core 2.2",
+      "released": "2018-12-04",
+      "order": 4,
+      "status": "released",
+      "end_of_life": "2019-12-23",
+      "note": "Default C# version: 7.3."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "core3.0",
+      "label": ".NET Core 3.0",
+      "released": "2019-09-23",
+      "order": 5,
+      "status": "released",
+      "end_of_life": "2020-03-03",
+      "note": "Default C# version: 8.0."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "core3.1",
+      "label": ".NET Core 3.1",
+      "released": "2019-12-03",
+      "order": 6,
+      "status": "released",
+      "end_of_life": "2022-12-13",
+      "lts_from": "2019-12-03",
+      "note": "Default C# version: 8.0."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "net5.0",
+      "label": ".NET 5",
+      "released": "2020-11-10",
+      "order": 7,
+      "status": "released",
+      "end_of_life": "2022-05-10",
+      "note": "Default C# version: 9.0."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "net6.0",
+      "label": ".NET 6",
+      "released": "2021-11-08",
+      "order": 8,
+      "status": "released",
+      "end_of_life": "2024-11-12",
+      "lts_from": "2021-11-08",
+      "note": "Default C# version: 10."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "net7.0",
+      "label": ".NET 7",
+      "released": "2022-11-08",
+      "order": 9,
+      "status": "released",
+      "end_of_life": "2024-05-14",
+      "note": "Default C# version: 11."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "net8.0",
+      "label": ".NET 8",
+      "released": "2023-11-14",
+      "order": 10,
+      "status": "released",
+      "end_of_life": "2026-11-10",
+      "lts_from": "2023-11-14",
+      "note": "Default C# version: 12."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "net9.0",
+      "label": ".NET 9",
+      "released": "2024-12-03",
+      "order": 11,
+      "status": "released",
+      "end_of_life": "2026-11-10",
+      "note": "Default C# version: 13."
+    },
+    {
+      "language": "csharp",
+      "track": "dotnet",
+      "id": "net10.0",
+      "label": ".NET 10",
+      "released": "2025-11-11",
+      "order": 12,
+      "status": "released",
+      "end_of_life": "2028-11-14",
+      "lts_from": "2025-11-11",
+      "note": "Default C# version: 14."
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.5",
+      "label": ".NET Framework 4.5 (baseline)",
+      "released": "2012-10-09",
+      "order": 1,
+      "status": "released",
+      "end_of_life": "2016-01-12",
+      "note": "The first release this track covers. Features that already existed then are recorded as added here."
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.5.1",
+      "label": ".NET Framework 4.5.1",
+      "released": "2014-01-15",
+      "order": 2,
+      "status": "released",
+      "end_of_life": "2016-01-12"
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.5.2",
+      "label": ".NET Framework 4.5.2",
+      "released": "2014-05-05",
+      "order": 3,
+      "status": "released",
+      "end_of_life": "2022-04-26"
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.6",
+      "label": ".NET Framework 4.6",
+      "released": "2015-07-29",
+      "order": 4,
+      "status": "released",
+      "end_of_life": "2022-04-26"
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.6.1",
+      "label": ".NET Framework 4.6.1",
+      "released": "2015-11-30",
+      "order": 5,
+      "status": "released",
+      "end_of_life": "2022-04-26"
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.6.2",
+      "label": ".NET Framework 4.6.2",
+      "released": "2016-08-02",
+      "order": 6,
+      "status": "released",
+      "end_of_life": "2027-01-12"
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.7",
+      "label": ".NET Framework 4.7",
+      "released": "2017-04-11",
+      "order": 7,
+      "status": "released",
+      "note": "Microsoft publishes no end date for this release; it falls under the Component Lifecycle Policy."
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.7.1",
+      "label": ".NET Framework 4.7.1",
+      "released": "2017-10-17",
+      "order": 8,
+      "status": "released",
+      "note": "Microsoft publishes no end date for this release; it falls under the Component Lifecycle Policy."
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.7.2",
+      "label": ".NET Framework 4.7.2",
+      "released": "2018-04-30",
+      "order": 9,
+      "status": "released",
+      "note": "Microsoft publishes no end date for this release; it falls under the Component Lifecycle Policy."
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.8",
+      "label": ".NET Framework 4.8",
+      "released": "2019-04-18",
+      "order": 10,
+      "status": "released",
+      "note": "Microsoft publishes no end date for this release; it falls under the Component Lifecycle Policy."
+    },
+    {
+      "language": "csharp",
+      "track": "netfx",
+      "id": "fx4.8.1",
+      "label": ".NET Framework 4.8.1",
+      "released": "2022-08-09",
+      "order": 11,
+      "status": "released",
+      "note": "Microsoft publishes no end date for this release; it falls under the Component Lifecycle Policy."
     }
   ],
   "features": [
@@ -9449,6 +9861,4052 @@
           }
         ]
       }
+    },
+    {
+      "language": "csharp",
+      "slug": "classes",
+      "title": "Classes",
+      "category": "syntax",
+      "summary": "Reference types that bundle data and behaviour, with single inheritance, fields, methods, properties and events.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "structs",
+      "title": "Structs",
+      "category": "syntax",
+      "summary": "Value types that are copied on assignment, suited to small data holders; they can have fields, methods and constructors but no inheritance.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "interfaces",
+      "title": "Interfaces",
+      "category": "syntax",
+      "summary": "Contracts that list members a type promises to provide; a class or struct can implement any number of them.",
+      "topic": "inheritance",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "events",
+      "title": "Events",
+      "category": "syntax",
+      "summary": "Members that let a type announce that something happened, with subscribers attached through += and -=.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "properties",
+      "title": "Properties",
+      "category": "syntax",
+      "summary": "Members that read and write like fields but run code in get and set accessors.",
+      "topic": "properties",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "delegates",
+      "title": "Delegates",
+      "category": "syntax",
+      "summary": "Type-safe references to methods, the basis of callbacks and events.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "attributes",
+      "title": "Attributes",
+      "category": "syntax",
+      "summary": "Declarative metadata attached to types and members in square brackets, readable by tools and through reflection.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "foreach-dispose",
+      "title": "foreach disposes its enumerator",
+      "category": "behavior",
+      "summary": "A foreach loop calls Dispose on its enumerator when the loop ends, even if it exits early or throws.",
+      "topic": "collections",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "generics",
+      "title": "Generics",
+      "category": "syntax",
+      "summary": "Types and methods parameterised by type, written List<T>, giving compile-time type safety without casts or boxing.",
+      "topic": "generics",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs2.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "partial-types",
+      "title": "Partial types",
+      "category": "syntax",
+      "summary": "A class, struct or interface split across several source files with the partial keyword and merged by the compiler.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs2.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "nullable-value-types",
+      "title": "Nullable value types",
+      "category": "syntax",
+      "summary": "T? wraps a value type so it can also hold null, as in int? or DateTime?.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs2.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "anonymous-methods",
+      "title": "Anonymous methods",
+      "category": "syntax",
+      "summary": "Inline method bodies written with the delegate keyword and no name, which can capture local variables.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs2.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "iterators",
+      "title": "Iterators (yield)",
+      "category": "syntax",
+      "summary": "A method using yield return (or yield break) that produces a sequence lazily, one element at a time.",
+      "topic": "collections",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs2.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "static-classes",
+      "title": "Static classes",
+      "category": "syntax",
+      "summary": "A class marked static that cannot be instantiated or inherited and holds only static members.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs2.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "accessor-accessibility",
+      "title": "Separate accessibility for get and set",
+      "category": "syntax",
+      "summary": "One accessor of a property can be more restricted than the other, as in public get with private set.",
+      "topic": "properties",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs2.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "lambdas",
+      "title": "Lambda expressions",
+      "category": "syntax",
+      "summary": "Compact anonymous functions written x => expression or (x, y) => { statements }, convertible to delegates or expression trees.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "var",
+      "title": "Implicitly typed locals (var)",
+      "category": "syntax",
+      "summary": "var lets the compiler infer a local variable's type from its initialiser; the variable stays statically typed.",
+      "topic": "variables",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "extension-methods",
+      "title": "Extension methods",
+      "category": "syntax",
+      "summary": "Static methods in a static class that are called as if they were instance methods of another type, using this on the first parameter.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "object-initializers",
+      "title": "Object and collection initializers",
+      "category": "syntax",
+      "summary": "Set properties or add collection items right after new, as in new Point { X = 1, Y = 2 }.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "auto-properties",
+      "title": "Auto-implemented properties",
+      "category": "syntax",
+      "summary": "A property written { get; set; } for which the compiler generates the backing field.",
+      "topic": "properties",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "anonymous-types",
+      "title": "Anonymous types",
+      "category": "syntax",
+      "summary": "Unnamed reference types created with new { Name = value }, used mainly for query results.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "query-expressions",
+      "title": "Query expressions (LINQ)",
+      "category": "syntax",
+      "summary": "SQL-like from, where, select and orderby syntax that the compiler translates into LINQ method calls.",
+      "topic": "linq",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "expression-trees",
+      "title": "Expression trees",
+      "category": "syntax",
+      "summary": "Code represented as a data structure that providers such as LINQ to SQL can inspect and translate.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "partial-methods",
+      "title": "Partial methods",
+      "category": "syntax",
+      "summary": "A method declared in one part of a partial type and optionally implemented in another; with no implementation the calls are removed.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "dynamic",
+      "title": "dynamic",
+      "category": "syntax",
+      "summary": "A type whose members are looked up at run time instead of compile time, used for COM interop and loosely typed data.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs4.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "named-optional-args",
+      "title": "Named and optional arguments",
+      "category": "syntax",
+      "summary": "Arguments can be passed by name, and parameters can have default values so callers may omit them.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs4.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "generic-variance",
+      "title": "Generic covariance and contravariance",
+      "category": "syntax",
+      "summary": "Interfaces and delegates can be marked out (covariant) or in (contravariant) so IEnumerable<Derived> converts to IEnumerable<Base>.",
+      "topic": "generics",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs4.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "foreach-loop-variable",
+      "title": "foreach loop variable",
+      "category": "behavior",
+      "summary": "The foreach iteration variable is read-only, and since C# 5 each iteration gets its own copy, so lambdas created in the loop capture that iteration's value.",
+      "topic": "gotchas",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs1.0",
+            "kind": "added"
+          },
+          {
+            "version": "cs5.0",
+            "kind": "changed",
+            "note": "In C# 4 and earlier all iterations shared one variable, so a closure created in the loop saw the last value; since C# 5 each iteration has its own variable. A for loop still shares its variable.",
+            "breaking": true
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "async-await",
+      "title": "async and await",
+      "category": "syntax",
+      "summary": "async methods return Task and use await to wait for work without blocking the calling thread.",
+      "topic": "async",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs5.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "caller-info",
+      "title": "Caller info attributes",
+      "category": "library",
+      "summary": "CallerMemberName, CallerFilePath and CallerLineNumber attributes make the compiler pass the caller's name, file and line as argument values.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs5.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "using-static",
+      "title": "using static",
+      "category": "syntax",
+      "summary": "using static imports a type's static members so they can be called without the type name.",
+      "topic": "ecosystem",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "exception-filters",
+      "title": "Exception filters (when)",
+      "category": "syntax",
+      "summary": "A catch clause can add when (condition) and only catches the exception if the condition is true, before the stack unwinds.",
+      "topic": "exceptions",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "auto-property-initializers",
+      "title": "Auto-property initializers",
+      "category": "syntax",
+      "summary": "An auto-property can have an initial value, as in public int Count { get; } = 1;, and a getter-only one can be set in the constructor.",
+      "topic": "properties",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "expression-bodied-members",
+      "title": "Expression-bodied members",
+      "category": "syntax",
+      "summary": "A method or property whose body is a single expression can be written with => instead of braces.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          },
+          {
+            "version": "cs7.0",
+            "kind": "changed",
+            "note": "Expression bodies were extended to constructors, finalizers, and property and indexer accessors."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "null-conditional",
+      "title": "Null-conditional operators (?.)",
+      "category": "syntax",
+      "summary": "?. and ?[] stop evaluating and produce null when the left side is null, instead of throwing NullReferenceException.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "string-interpolation",
+      "title": "String interpolation",
+      "category": "syntax",
+      "summary": "$\"...{expression}...\" builds a string by embedding expressions directly in the text.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "nameof",
+      "title": "nameof",
+      "category": "syntax",
+      "summary": "nameof(x) produces the name of a variable, type or member as a string that stays correct when you rename it.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "index-initializers",
+      "title": "Index initializers",
+      "category": "syntax",
+      "summary": "Collection initializers can set elements by index or key, as in new Dictionary<string,int> { [\"a\"] = 1 }.",
+      "topic": "collections",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "await-in-catch",
+      "title": "await in catch and finally",
+      "category": "syntax",
+      "summary": "await is allowed inside catch and finally blocks.",
+      "topic": "async",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "out-var",
+      "title": "out variable declarations",
+      "category": "syntax",
+      "summary": "An out argument can be declared at the call, as in int.TryParse(s, out var n), and the variable is usable after the call.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "tuples",
+      "title": "Tuples",
+      "category": "syntax",
+      "summary": "Lightweight value-type groupings written (int, string) with optional element names, backed by System.ValueTuple.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It compiles against .NET Framework from 4.7 but not before (CS8179); netstandard 2.1 accepts it; .NET 8 and .NET 10 accept it."
+          }
+        ],
+        "netfx": [
+          {
+            "version": "fx4.7",
+            "kind": "added",
+            "note": "System.ValueTuple is part of the framework from 4.7; tuple syntax does not compile against the 4.6.2 and earlier reference assemblies."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "deconstruction",
+      "title": "Deconstruction",
+      "category": "syntax",
+      "summary": "Split a tuple, or any type with a Deconstruct method, into separate variables with var (a, b) = pair;.",
+      "topic": "variables",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "pattern-matching",
+      "title": "Pattern matching (is and switch patterns)",
+      "category": "syntax",
+      "summary": "The is operator and switch can test a value's type and shape and bind variables, as in o is int n.",
+      "topic": "pattern",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added"
+          },
+          {
+            "version": "cs7.1",
+            "kind": "changed",
+            "note": "Patterns can now be matched against a value whose type is a generic type parameter."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "local-functions",
+      "title": "Local functions",
+      "category": "syntax",
+      "summary": "A method declared inside another method that can use the enclosing method's locals.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "digit-separators",
+      "title": "Digit separators and binary literals",
+      "category": "syntax",
+      "summary": "Underscores in numeric literals (1_000_000) and binary literals (0b1010) make long numbers readable.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added"
+          },
+          {
+            "version": "cs7.2",
+            "kind": "changed",
+            "note": "A separator is allowed straight after the base prefix, as in 0x_FF or 0b_1."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ref-locals-returns",
+      "title": "Ref locals and ref returns",
+      "category": "syntax",
+      "summary": "Methods can return a reference to storage, and locals can hold such a reference, to avoid copying large structs.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added"
+          },
+          {
+            "version": "cs7.2",
+            "kind": "changed",
+            "note": "Ref returns can be ref readonly, and a conditional expression can produce a ref (ref flag ? ref a : ref b)."
+          },
+          {
+            "version": "cs7.3",
+            "kind": "changed",
+            "note": "A ref local can be reassigned to refer to a different variable, as in r = ref other;."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "discards",
+      "title": "Discards",
+      "category": "syntax",
+      "summary": "The underscore _ ignores an out argument, tuple element or lambda parameter you do not need.",
+      "topic": "variables",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "throw-expressions",
+      "title": "throw expressions",
+      "category": "syntax",
+      "summary": "throw can be used as an expression, for example after ?? or in a conditional or expression-bodied member.",
+      "topic": "exceptions",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "async-main",
+      "title": "async Main",
+      "category": "syntax",
+      "summary": "Main can be async and return Task or Task<int>, so a program can await at its entry point.",
+      "topic": "async",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "default-literal",
+      "title": "default literal",
+      "category": "syntax",
+      "summary": "default without a type, as in int x = default;, takes its type from the context.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "inferred-tuple-names",
+      "title": "Inferred tuple element names",
+      "category": "syntax",
+      "summary": "A tuple built as (a, b) takes its element names from the variables a and b.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "in-parameters",
+      "title": "in parameters",
+      "category": "syntax",
+      "summary": "An in parameter passes a value by read-only reference, avoiding a copy of a large struct.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "readonly-struct",
+      "title": "readonly struct",
+      "category": "syntax",
+      "summary": "A struct marked readonly guarantees it cannot change after construction, letting the compiler avoid defensive copies.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ref-struct",
+      "title": "ref struct",
+      "category": "syntax",
+      "summary": "A struct that can only live on the stack, which makes it safe to hold references to stack memory such as Span<T>.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "non-trailing-named-args",
+      "title": "Non-trailing named arguments",
+      "category": "syntax",
+      "summary": "Named arguments may be followed by positional ones as long as the names are in the right position.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "private-protected",
+      "title": "private protected",
+      "category": "syntax",
+      "summary": "An accessibility level meaning the member is visible only in the containing class and derived classes in the same assembly.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "generic-constraints-unmanaged-enum",
+      "title": "unmanaged, Enum and Delegate constraints",
+      "category": "syntax",
+      "summary": "Generic constraints where T : unmanaged, System.Enum or System.Delegate restrict a type argument to those kinds of types.",
+      "topic": "generics",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "stackalloc-initializers",
+      "title": "stackalloc initializers",
+      "category": "syntax",
+      "summary": "A stackalloc array can be initialised inline, as in stackalloc int[] { 1, 2, 3 }.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "fixed-buffers-no-pinning",
+      "title": "Fixed buffers without pinning",
+      "category": "syntax",
+      "summary": "Elements of a fixed-size buffer field in a movable struct can be accessed without a fixed statement.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "custom-fixed",
+      "title": "fixed on any type with GetPinnableReference",
+      "category": "syntax",
+      "summary": "A fixed statement works on any type that has an accessible GetPinnableReference method.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "tuple-equality",
+      "title": "Tuple equality (== and !=)",
+      "category": "syntax",
+      "summary": "Tuples can be compared with == and !=, element by element.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "expression-variables-initializers",
+      "title": "Expression variables in initializers and queries",
+      "category": "syntax",
+      "summary": "out variables and pattern variables can be declared in field initializers, constructor initializers and query clauses.",
+      "topic": "variables",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "backing-field-attributes",
+      "title": "Attributes on auto-property backing fields",
+      "category": "syntax",
+      "summary": "An attribute with the field: target on an auto-property is applied to its compiler-generated backing field.",
+      "topic": "properties",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs7.3",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "readonly-members",
+      "title": "readonly members",
+      "category": "syntax",
+      "summary": "Individual struct members can be marked readonly to promise they do not modify the struct's state.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "default-interface-members",
+      "title": "Default interface members",
+      "category": "syntax",
+      "summary": "An interface can provide a default implementation of a member that implementing types inherit unless they override it.",
+      "topic": "inheritance",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS8701); netstandard 2.1 accepts it; .NET 8 and .NET 10 accept it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "switch-expressions",
+      "title": "Switch expressions",
+      "category": "syntax",
+      "summary": "A switch written as an expression, value switch { pattern => result, _ => fallback }, that produces a value.",
+      "topic": "pattern",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "property-patterns",
+      "title": "Property patterns",
+      "category": "syntax",
+      "summary": "A pattern that tests properties of an object, as in person is { Age: >= 18 }.",
+      "topic": "pattern",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "positional-patterns",
+      "title": "Positional and tuple patterns",
+      "category": "syntax",
+      "summary": "A pattern that matches the parts of a tuple or deconstructable type by position, as in point is (0, 0).",
+      "topic": "pattern",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "using-declarations",
+      "title": "using declarations",
+      "category": "syntax",
+      "summary": "using var x = ...; disposes the variable at the end of the enclosing scope, without an extra block.",
+      "topic": "exceptions",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "static-local-functions",
+      "title": "Static local functions",
+      "category": "syntax",
+      "summary": "A local function marked static cannot capture the enclosing method's variables.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "disposable-ref-structs",
+      "title": "Disposable ref structs",
+      "category": "syntax",
+      "summary": "A ref struct with a public Dispose method can be used in a using statement without implementing IDisposable.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "nullable-reference-types",
+      "title": "Nullable reference types",
+      "category": "syntax",
+      "summary": "Reference types are non-nullable by default and string? marks the ones that may be null, with compiler warnings for likely null errors.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "async-streams",
+      "title": "Async streams (await foreach)",
+      "category": "syntax",
+      "summary": "await foreach consumes an IAsyncEnumerable<T>, and an async method can yield return elements as they become available.",
+      "topic": "async",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0234); netstandard 2.1 accepts it; .NET 8 and .NET 10 accept it."
+          }
+        ],
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added",
+            "note": "IAsyncEnumerable<T> and IAsyncEnumerator<T>, which the C# 8 syntax needs, arrive with .NET Core 3.0."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "indices-ranges",
+      "title": "Indices and ranges",
+      "category": "syntax",
+      "summary": "The ^ operator counts from the end and .. selects a range, as in items[^1] and items[1..3].",
+      "topic": "collections",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0518); netstandard 2.1 accepts it; .NET 8 and .NET 10 accept it."
+          }
+        ],
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added",
+            "note": "System.Index and System.Range, which the C# 8 syntax compiles to, arrive with .NET Core 3.0."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "null-coalescing-assignment",
+      "title": "Null-coalescing assignment (??=)",
+      "category": "syntax",
+      "summary": "a ??= b assigns b to a only when a is null.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "unmanaged-constructed-types",
+      "title": "Unmanaged constructed types",
+      "category": "syntax",
+      "summary": "A generic struct whose type arguments are unmanaged types is itself unmanaged, so pointers to it are allowed.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "verbatim-interpolated",
+      "title": "@$ interpolated verbatim strings",
+      "category": "syntax",
+      "summary": "@$\"...\" and $@\"...\" can be written in either order to combine verbatim and interpolated strings.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "records",
+      "title": "Records",
+      "category": "syntax",
+      "summary": "A type declared with record whose equality, printing and with-copies are based on its values rather than its identity.",
+      "topic": "records",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0518); netstandard 2.1 rejects it (CS0518); .NET 8 and .NET 10 accept it. Defining System.Runtime.CompilerServices.IsExternalInit in your own code makes it compile there; this was checked at compile time only."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "init-setters",
+      "title": "Init-only setters",
+      "category": "syntax",
+      "summary": "An init accessor can be set only while the object is being created, giving immutable properties with initialiser syntax.",
+      "topic": "properties",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0518); netstandard 2.1 rejects it (CS0518); .NET 8 and .NET 10 accept it. Defining System.Runtime.CompilerServices.IsExternalInit in your own code makes it compile there; this was checked at compile time only."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "top-level-statements",
+      "title": "Top-level statements",
+      "category": "syntax",
+      "summary": "A program's entry-point statements can be written directly in a file, without a Main method or class.",
+      "topic": "ecosystem",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "relational-logical-patterns",
+      "title": "Relational and logical patterns",
+      "category": "syntax",
+      "summary": "Patterns can compare with <, >, <=, >= and combine with and, or and not, as in x is > 0 and < 10.",
+      "topic": "pattern",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "native-ints",
+      "title": "nint and nuint",
+      "category": "syntax",
+      "summary": "nint and nuint are integers sized to the platform's pointer width.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "function-pointers",
+      "title": "Function pointers",
+      "category": "syntax",
+      "summary": "delegate*<int, void> declares an unmanaged-style pointer to a method that can be called without delegate overhead.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "module-initializers",
+      "title": "Module initializers",
+      "category": "library",
+      "summary": "A static method marked [ModuleInitializer] runs once, before any other code in the assembly.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0234); netstandard 2.1 rejects it (CS0234); .NET 8 and .NET 10 accept it. Defining System.Runtime.CompilerServices.ModuleInitializerAttribute in your own code makes it compile there; this was checked at compile time only."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "partial-method-returns",
+      "title": "Partial methods with any signature",
+      "category": "syntax",
+      "summary": "Partial methods can have any return type, out parameters and accessibility, as long as an implementation is supplied.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "target-typed-new",
+      "title": "Target-typed new",
+      "category": "syntax",
+      "summary": "new() without a type creates an object of the type the context expects.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "static-anonymous-functions",
+      "title": "Static anonymous functions",
+      "category": "syntax",
+      "summary": "A lambda or anonymous method marked static cannot capture local variables or this.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "target-typed-conditional",
+      "title": "Target-typed conditional expressions",
+      "category": "syntax",
+      "summary": "The ?: operator can take its type from the context when its two branches have no common type.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "covariant-returns",
+      "title": "Covariant return types",
+      "category": "syntax",
+      "summary": "An overriding method can return a more derived type than the method it overrides.",
+      "topic": "inheritance",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS8830); netstandard 2.1 rejects it (CS8830); .NET 8 and .NET 10 accept it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "extension-getenumerator",
+      "title": "Extension GetEnumerator in foreach",
+      "category": "syntax",
+      "summary": "foreach works on a type that gets its GetEnumerator method from an extension method.",
+      "topic": "collections",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "lambda-discard-params",
+      "title": "Lambda discard parameters",
+      "category": "syntax",
+      "summary": "Several unused lambda parameters can all be written _.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "attributes-on-local-functions",
+      "title": "Attributes on local functions",
+      "category": "syntax",
+      "summary": "Attributes can be applied to local functions, their parameters and their type parameters.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "record-structs",
+      "title": "Record structs",
+      "category": "syntax",
+      "summary": "record struct gives a value type the generated equality, ToString and with-expression support of records.",
+      "topic": "records",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "global-using",
+      "title": "global using",
+      "category": "syntax",
+      "summary": "A using directive marked global applies to every file in the project.",
+      "topic": "ecosystem",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "file-scoped-namespaces",
+      "title": "File-scoped namespaces",
+      "category": "syntax",
+      "summary": "namespace N; applies to the whole file and removes one level of indentation.",
+      "topic": "ecosystem",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "extended-property-patterns",
+      "title": "Extended property patterns",
+      "category": "syntax",
+      "summary": "A property pattern can reach nested properties with a dot, as in o is { Address.City: \"Oslo\" }.",
+      "topic": "pattern",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "lambda-improvements",
+      "title": "Lambda natural type, return type and attributes",
+      "category": "syntax",
+      "summary": "Lambdas can have attributes and an explicit return type, and a lambda with explicit parameter types has a natural delegate type that var can use.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "const-interpolated-strings",
+      "title": "Constant interpolated strings",
+      "category": "syntax",
+      "summary": "A const string can be built with interpolation when every embedded value is itself a constant string.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "sealed-record-tostring",
+      "title": "sealed ToString in records",
+      "category": "syntax",
+      "summary": "A record can seal its ToString override so derived records do not regenerate it.",
+      "topic": "records",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "mixed-deconstruction",
+      "title": "Mixed assignment and declaration in deconstruction",
+      "category": "syntax",
+      "summary": "A deconstruction can assign to existing variables and declare new ones in the same statement.",
+      "topic": "variables",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "parameterless-struct-ctors",
+      "title": "Parameterless struct constructors",
+      "category": "syntax",
+      "summary": "A struct can declare its own parameterless constructor and field initialisers.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "interpolated-string-handlers",
+      "title": "Interpolated string handlers",
+      "category": "library",
+      "summary": "Types marked [InterpolatedStringHandler] let an interpolated string be built without allocating, for example in logging.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "caller-argument-expression",
+      "title": "CallerArgumentExpression",
+      "category": "library",
+      "summary": "[CallerArgumentExpression] fills a parameter with the source text of the argument passed for another parameter.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "raw-string-literals",
+      "title": "Raw string literals",
+      "category": "syntax",
+      "summary": "Strings delimited by three or more double quotes can contain quotes and newlines without escaping.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "static-abstract-members",
+      "title": "Static abstract interface members and generic math",
+      "category": "syntax",
+      "summary": "An interface can declare static abstract members that implementing types must provide, which is what makes generic math possible.",
+      "topic": "generics",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS8919); netstandard 2.1 rejects it (CS8919); .NET 8 and .NET 10 accept it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "generic-attributes",
+      "title": "Generic attributes",
+      "category": "syntax",
+      "summary": "An attribute class can be generic, so [Validate<int>] carries its type argument.",
+      "topic": "generics",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "utf8-literals",
+      "title": "UTF-8 string literals",
+      "category": "syntax",
+      "summary": "A string literal followed by u8 is a UTF-8 encoded ReadOnlySpan<byte>.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0234); netstandard 2.1 accepts it; .NET 8 and .NET 10 accept it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "newlines-in-interpolations",
+      "title": "Newlines in interpolation holes",
+      "category": "syntax",
+      "summary": "The expression inside an interpolation hole in $\"{...}\" can span several lines.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "list-patterns",
+      "title": "List patterns",
+      "category": "syntax",
+      "summary": "Patterns match arrays and lists by their elements, as in values is [1, 2, ..].",
+      "topic": "pattern",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "file-local-types",
+      "title": "file-local types",
+      "category": "syntax",
+      "summary": "A type marked file is visible only within its own source file.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "required-members",
+      "title": "required members",
+      "category": "syntax",
+      "summary": "A member marked required must be set by the object initialiser or constructor that creates the object.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0656); netstandard 2.1 rejects it (CS0656); .NET 8 and .NET 10 accept it. Defining RequiredMemberAttribute, CompilerFeatureRequiredAttribute and SetsRequiredMembersAttribute in your own code makes it compile there; this was checked at compile time only."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "auto-default-structs",
+      "title": "Auto-default structs",
+      "category": "behavior",
+      "summary": "A struct constructor no longer has to assign every field; the compiler sets the rest to their defaults.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "span-char-constant-pattern",
+      "title": "Pattern match Span<char> on a constant string",
+      "category": "syntax",
+      "summary": "A Span<char> or ReadOnlySpan<char> can be matched against a constant string in a pattern.",
+      "topic": "pattern",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "extended-nameof-scope",
+      "title": "nameof of parameters in attributes",
+      "category": "syntax",
+      "summary": "nameof can refer to a method's parameters and type parameters inside attributes on that method.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ref-fields",
+      "title": "ref fields and scoped",
+      "category": "syntax",
+      "summary": "A ref struct can declare a ref field, and the scoped modifier limits how long a reference may live.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS9064); netstandard 2.1 rejects it (CS9064); .NET 8 and .NET 10 accept it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "unsigned-right-shift",
+      "title": "Unsigned right shift (>>>)",
+      "category": "syntax",
+      "summary": "The >>> operator shifts right without sign extension.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "checked-operators",
+      "title": "User-defined checked operators",
+      "category": "syntax",
+      "summary": "A type can define separate checked and unchecked versions of an arithmetic operator.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs11.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "primary-constructors",
+      "title": "Primary constructors",
+      "category": "syntax",
+      "summary": "Parameters written after a class or struct name are in scope throughout the type, like a constructor whose parameters are captured.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs12.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "collection-expressions",
+      "title": "Collection expressions",
+      "category": "syntax",
+      "summary": "[1, 2, 3] creates an array, list, span or other collection type, and .. spreads another collection into it.",
+      "topic": "collections",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs12.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "inline-arrays",
+      "title": "Inline arrays",
+      "category": "syntax",
+      "summary": "A struct marked [InlineArray(n)] holds n elements of one type in a fixed-size buffer that can be indexed like an array.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs12.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0234); netstandard 2.1 rejects it (CS0234); .NET 8 and .NET 10 accept it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "lambda-default-params",
+      "title": "Default values for lambda parameters",
+      "category": "syntax",
+      "summary": "A lambda parameter can have a default value, and a lambda can use params.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs12.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ref-readonly-params",
+      "title": "ref readonly parameters",
+      "category": "syntax",
+      "summary": "A ref readonly parameter is passed by reference and cannot be modified; unlike in, callers are expected to write ref or in at the call.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs12.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "alias-any-type",
+      "title": "using alias for any type",
+      "category": "syntax",
+      "summary": "A using alias can name any type, including tuples and pointer types, as in using Point = (int X, int Y);.",
+      "topic": "ecosystem",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs12.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "nameof-instance-members",
+      "title": "nameof with instance members",
+      "category": "syntax",
+      "summary": "nameof can name an instance member of a field or property, as in nameof(f.ToString), in places such as field initializers and attributes where this is not available.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs12.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "experimental-attribute",
+      "title": "ExperimentalAttribute",
+      "category": "library",
+      "summary": "[Experimental] marks a type or member as experimental, so using it produces a diagnostic that must be suppressed on purpose.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs12.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "params-collections",
+      "title": "params collections",
+      "category": "syntax",
+      "summary": "A params parameter can be any collection type such as Span<T>, ReadOnlySpan<T> or IEnumerable<T>, not just an array.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs13.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "lock-type",
+      "title": "System.Threading.Lock and lock",
+      "category": "behavior",
+      "summary": "The lock statement recognises System.Threading.Lock and uses its dedicated, faster locking instead of Monitor.",
+      "topic": "async",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs13.0",
+            "kind": "added"
+          }
+        ],
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added",
+            "note": "System.Threading.Lock is introduced in .NET 9."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "escape-e",
+      "title": "\\e escape sequence",
+      "category": "syntax",
+      "summary": "The \\e escape sequence writes the ESC character (U+001B) in a string or char literal.",
+      "topic": "types",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs13.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "implicit-index-initializers",
+      "title": "Implicit index (^) in object initializers",
+      "category": "syntax",
+      "summary": "An object initializer can use the from-the-end index ^ for array elements, as in { [^1] = 5 }.",
+      "topic": "collections",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs13.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ref-in-async",
+      "title": "ref locals and unsafe in iterators and async",
+      "category": "syntax",
+      "summary": "ref locals and ref struct locals can be used in async methods and iterators as long as they do not live across an await or yield.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs13.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ref-struct-interfaces",
+      "title": "ref struct interfaces and allows ref struct",
+      "category": "syntax",
+      "summary": "A ref struct can implement interfaces, and a generic parameter marked allows ref struct can be a ref struct.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs13.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "partial-properties",
+      "title": "Partial properties and indexers",
+      "category": "syntax",
+      "summary": "Properties and indexers can be declared in one part of a partial type and implemented in another.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs13.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "overload-resolution-priority",
+      "title": "OverloadResolutionPriority",
+      "category": "library",
+      "summary": "[OverloadResolutionPriority] lets a library author prefer one overload over another when more than one applies.",
+      "topic": "advanced",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs13.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "extension-members",
+      "title": "Extension members",
+      "category": "syntax",
+      "summary": "An extension block can add extension properties, operators and static members, not only instance methods.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs14.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "null-conditional-assignment",
+      "title": "Null-conditional assignment",
+      "category": "syntax",
+      "summary": "?. and ?[] can be on the left of an assignment, so a?.b = c assigns only when a is not null.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs14.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "unbound-generic-nameof",
+      "title": "nameof with unbound generic types",
+      "category": "syntax",
+      "summary": "nameof accepts an unbound generic type such as List<>, and returns the name without type arguments.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs14.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "first-class-span",
+      "title": "First-class Span conversions",
+      "category": "behavior",
+      "summary": "Arrays, Span<T> and ReadOnlySpan<T> convert to each other implicitly, including when calling extension methods.",
+      "topic": "memory",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs14.0",
+            "kind": "added",
+            "note": "Needs library or runtime support. It does not compile against any .NET Framework 4.5 to 4.8 reference assembly (CS0234); netstandard 2.1 accepts it; .NET 8 and .NET 10 accept it."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "lambda-modifiers",
+      "title": "Modifiers on simple lambda parameters",
+      "category": "syntax",
+      "summary": "A lambda parameter can carry ref, out, in, scoped or ref readonly without writing its type.",
+      "topic": "methods",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs14.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "field-keyword",
+      "title": "field keyword in properties",
+      "category": "syntax",
+      "summary": "Inside a property accessor, field refers to the compiler-generated backing field, so you can add logic without declaring one yourself.",
+      "topic": "properties",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs14.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "partial-events-constructors",
+      "title": "Partial events and constructors",
+      "category": "syntax",
+      "summary": "Events and instance constructors can be declared in one part of a partial type and implemented in another.",
+      "topic": "classes",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs14.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "user-defined-compound-assignment",
+      "title": "User-defined compound assignment operators",
+      "category": "syntax",
+      "summary": "A type can define += and the other compound assignment operators directly, so they update in place instead of calling + and assigning.",
+      "topic": "operators",
+      "history": {
+        "csharp": [
+          {
+            "version": "cs14.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "cross-platform-runtime",
+      "title": ".NET Core cross-platform runtime",
+      "category": "tooling",
+      "summary": "A cross-platform, open-source .NET runtime and class library for Windows, macOS and Linux, separate from the Windows-only .NET Framework.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "dotnet-cli",
+      "title": "dotnet command-line interface",
+      "category": "tooling",
+      "summary": "The dotnet command, used to create, restore, build, test, run and publish projects from a terminal.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core1.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "netstandard-2-0",
+      "title": ".NET Standard 2.0 support",
+      "category": "tooling",
+      "summary": ".NET Standard 2.0 is supported, so a library built for that API set runs on the runtime.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core2.0",
+            "kind": "added"
+          }
+        ],
+        "netfx": [
+          {
+            "version": "fx4.7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "implicit-restore",
+      "title": "Implicit dotnet restore",
+      "category": "tooling",
+      "summary": "Commands such as dotnet build and dotnet run restore NuGet packages automatically; a separate dotnet restore is no longer needed.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core2.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "span-memory",
+      "title": "Span<T> and Memory<T>",
+      "category": "library",
+      "summary": "Span<T> and Memory<T> give safe, allocation-free access to slices of arrays, stack memory and native memory.",
+      "topic": "memory",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core2.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "brotli",
+      "title": "Brotli compression",
+      "category": "library",
+      "summary": "Built-in Brotli compression through BrotliStream, BrotliEncoder and BrotliDecoder.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core2.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "global-tools",
+      "title": "dotnet tool (global tools)",
+      "category": "tooling",
+      "summary": "dotnet tool install -g installs command-line tools distributed as NuGet packages.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core2.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "windows-compat-pack",
+      "title": "Windows Compatibility Pack",
+      "category": "library",
+      "summary": "A package that provides about 20,000 more Windows-oriented APIs to .NET Core, including System.Drawing, the event log, WMI and Windows services.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core2.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "framework-dependent-executables",
+      "title": "Framework-dependent executables",
+      "category": "tooling",
+      "summary": "A framework-dependent app can be published as a platform-specific executable that runs against the installed shared runtime.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core2.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "default-executables",
+      "title": "Default native executables (apphost)",
+      "category": "tooling",
+      "summary": "dotnet build and publish produce a native executable for the current platform alongside the app's dll.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "single-file-executables",
+      "title": "Single-file executables",
+      "category": "tooling",
+      "summary": "An app and its dependencies can be published as one executable file.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "assembly-trimming",
+      "title": "Assembly trimming",
+      "category": "tooling",
+      "summary": "The publish step can remove unused assemblies to make a self-contained app smaller.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "tiered-compilation",
+      "title": "Tiered compilation",
+      "category": "behavior",
+      "summary": "Methods are first compiled quickly and then recompiled with full optimisation when they prove hot, improving start-up and steady-state speed.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ready-to-run",
+      "title": "ReadyToRun images",
+      "category": "tooling",
+      "summary": "Assemblies can be compiled ahead of time to native code in ReadyToRun format to cut JIT work at start-up.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "major-version-roll-forward",
+      "title": "Major-version runtime roll-forward",
+      "category": "behavior",
+      "summary": "An app can opt in to run on a newer major runtime version when the exact one it was built for is not installed.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "local-tools",
+      "title": "Local tools",
+      "category": "tooling",
+      "summary": "Tools can be installed per repository and pinned in a manifest, so each project uses its own versions.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "system-text-json",
+      "title": "System.Text.Json",
+      "category": "library",
+      "summary": "A built-in, high-performance JSON reader, writer and serializer in the System.Text.Json namespace.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          },
+          {
+            "version": "net5.0",
+            "kind": "changed",
+            "note": "Adds support for preserving references and circular references, HttpClient serialization extensions, and reading or writing numbers as quoted strings."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "http2",
+      "title": "HTTP/2 in HttpClient",
+      "category": "library",
+      "summary": "HttpClient can send requests over HTTP/2.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "windows-desktop",
+      "title": "Windows Forms and WPF on .NET Core",
+      "category": "tooling",
+      "summary": "Windows Forms and WPF apps can run on .NET Core on Windows.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "platform-intrinsics",
+      "title": "Platform-dependent hardware intrinsics",
+      "category": "library",
+      "summary": "The System.Runtime.Intrinsics APIs expose CPU-specific instructions such as SSE and AVX for hand-tuned code.",
+      "topic": "memory",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "tls13-linux",
+      "title": "TLS 1.3 on Linux",
+      "category": "behavior",
+      "summary": "TLS 1.3 is supported where the operating system's OpenSSL supports it.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "netstandard-2-1",
+      "title": ".NET Standard 2.1 support",
+      "category": "tooling",
+      "summary": ".NET Standard 2.1 is supported, which adds APIs such as Span<T> and the range types for libraries.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "cpp-cli-windows",
+      "title": "C++/CLI on Windows",
+      "category": "tooling",
+      "summary": "C++/CLI projects can be built against .NET Core on Windows.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "core3.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "source-generators",
+      "title": "Source generators",
+      "category": "tooling",
+      "summary": "Compiler plugins that inspect your code and add generated source files during compilation.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net5.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "priority-queue",
+      "title": "PriorityQueue<TElement,TPriority>",
+      "category": "library",
+      "summary": "PriorityQueue<TElement,TPriority> removes elements in order of priority rather than insertion.",
+      "topic": "collections",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "json-source-generator",
+      "title": "System.Text.Json source generator",
+      "category": "library",
+      "summary": "System.Text.Json can generate serialization code at compile time, which avoids reflection and works with trimming.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "json-writeable-dom",
+      "title": "Writeable JSON DOM (JsonNode)",
+      "category": "library",
+      "summary": "JsonNode, JsonObject and JsonArray let you build and edit a JSON document in memory.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "dateonly-timeonly",
+      "title": "DateOnly and TimeOnly",
+      "category": "library",
+      "summary": "DateOnly and TimeOnly represent a calendar date and a time of day without the other part or a time zone.",
+      "topic": "types",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "http3",
+      "title": "HTTP/3 in HttpClient",
+      "category": "library",
+      "summary": "HttpClient can send requests over HTTP/3 (a preview in this release).",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "hot-reload",
+      "title": "Hot reload",
+      "category": "tooling",
+      "summary": "Edit running code and apply the change without restarting the app.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "crossgen2",
+      "title": "Crossgen2",
+      "category": "tooling",
+      "summary": "The ReadyToRun compiler is rewritten as Crossgen2, a managed compiler that replaces the earlier native tool.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "profile-guided-optimization",
+      "title": "Dynamic profile-guided optimization",
+      "category": "behavior",
+      "summary": "The runtime can use dynamic profile data gathered while the app runs to optimise hot paths.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net6.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "generic-math",
+      "title": "Generic math (INumber<T> and friends)",
+      "category": "library",
+      "summary": "Interfaces such as INumber<T> and IAdditionOperators<T> let one generic algorithm work across every numeric type.",
+      "topic": "generics",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "regex-source-generator",
+      "title": "Regular expression source generator",
+      "category": "library",
+      "summary": "[GeneratedRegex] makes the compiler generate the matching code for a regular expression at build time.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "libraryimport",
+      "title": "P/Invoke source generation (LibraryImport)",
+      "category": "library",
+      "summary": "[LibraryImport] generates P/Invoke marshalling code at compile time instead of at run time.",
+      "topic": "advanced",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "container-publish",
+      "title": "Publish to a container image",
+      "category": "tooling",
+      "summary": "dotnet publish can build a container image of an app without a Dockerfile.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "central-package-management",
+      "title": "Central package management",
+      "category": "tooling",
+      "summary": "NuGet package versions for a whole solution can be set in one Directory.Packages.props file.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net7.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "frozen-collections",
+      "title": "Frozen collections",
+      "category": "library",
+      "summary": "FrozenDictionary and FrozenSet are immutable collections optimised for fast lookups after creation.",
+      "topic": "collections",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "search-values",
+      "title": "SearchValues<T>",
+      "category": "library",
+      "summary": "SearchValues<T> precomputes an optimised way to search spans for any of a set of values.",
+      "topic": "memory",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "time-provider",
+      "title": "TimeProvider",
+      "category": "library",
+      "summary": "TimeProvider is an abstraction over the clock and timers that can be replaced in tests.",
+      "topic": "types",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "composite-format",
+      "title": "CompositeFormat",
+      "category": "library",
+      "summary": "CompositeFormat parses a format string once so it can be reused for many string.Format calls.",
+      "topic": "types",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "imeterfactory",
+      "title": "IMeterFactory (metrics)",
+      "category": "library",
+      "summary": "IMeterFactory creates metrics Meter instances that are scoped to a dependency injection container.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "keyed-di",
+      "title": "Keyed dependency injection services",
+      "category": "library",
+      "summary": "Dependency injection services can be registered and resolved by key.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "source-generated-com",
+      "title": "Source-generated COM interop",
+      "category": "library",
+      "summary": "[GeneratedComInterface] generates COM interop code at compile time.",
+      "topic": "advanced",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "native-aot",
+      "title": "Native AOT publishing",
+      "category": "tooling",
+      "summary": "An app can be compiled ahead of time into a self-contained native executable with no JIT.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net8.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ordered-dictionary",
+      "title": "OrderedDictionary<TKey,TValue>",
+      "category": "library",
+      "summary": "OrderedDictionary<TKey,TValue> is a generic dictionary that keeps entries in insertion order and supports access by index.",
+      "topic": "collections",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "readonly-set",
+      "title": "ReadOnlySet<T>",
+      "category": "library",
+      "summary": "ReadOnlySet<T> is a read-only wrapper around an ISet<T>.",
+      "topic": "collections",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "base64url",
+      "title": "Base64Url",
+      "category": "library",
+      "summary": "The Base64Url class encodes and decodes the URL-safe variant of Base64.",
+      "topic": "types",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "server-sent-events",
+      "title": "Server-sent events parser",
+      "category": "library",
+      "summary": "System.Net.ServerSentEvents parses text/event-stream responses.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "json-schema-exporter",
+      "title": "JsonSchemaExporter",
+      "category": "library",
+      "summary": "JsonSchemaExporter generates a JSON Schema for a .NET type.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "kmac",
+      "title": "KMAC algorithm",
+      "category": "library",
+      "summary": "Kmac128, Kmac256 and the related classes implement the KMAC message authentication algorithm.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "linq-countby",
+      "title": "LINQ CountBy, AggregateBy and Index",
+      "category": "library",
+      "summary": "LINQ gains CountBy and AggregateBy for grouping without building groups, and Index for element-with-position pairs.",
+      "topic": "linq",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "regex-enumeratesplits",
+      "title": "Regex.EnumerateSplits",
+      "category": "library",
+      "summary": "Regex.EnumerateSplits splits a span without allocating an array of strings.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "persisted-assemblies",
+      "title": "Persisted dynamic assemblies",
+      "category": "library",
+      "summary": "PersistedAssemblyBuilder lets Reflection.Emit write a dynamically built assembly to disk.",
+      "topic": "advanced",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "faster-exceptions",
+      "title": "Managed exception handling by default",
+      "category": "behavior",
+      "summary": "CoreCLR uses a new exception-handling implementation based on the NativeAOT model, which the documentation measures as 2 to 4 times faster in micro-benchmarks.",
+      "topic": "exceptions",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "dynamic-gc-adaptation",
+      "title": "Dynamic adaptation to application sizes (GC)",
+      "category": "behavior",
+      "summary": "Garbage collection uses a dynamic adaptation to application size by default, instead of the traditional Server GC.",
+      "topic": "memory",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net9.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "post-quantum-crypto",
+      "title": "Post-quantum cryptography (ML-KEM)",
+      "category": "library",
+      "summary": "System.Security.Cryptography adds ML-KEM and other post-quantum algorithms.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "websocket-stream",
+      "title": "WebSocketStream",
+      "category": "library",
+      "summary": "WebSocketStream wraps a WebSocket in the Stream API.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "json-strict-options",
+      "title": "Strict JSON serialization options",
+      "category": "library",
+      "summary": "JsonSerializerOptions.Strict turns on a strict set of serializer options in one step.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "async-zip",
+      "title": "Async ZIP APIs",
+      "category": "library",
+      "summary": "ZipFile and ZipArchive have async methods for reading and writing archives.",
+      "topic": "dotnet",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "numeric-string-ordering",
+      "title": "Numeric ordering for string comparison",
+      "category": "library",
+      "summary": "A comparison option that orders digit sequences in strings by numeric value, so \"2\" sorts before \"10\".",
+      "topic": "types",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "stack-allocated-arrays",
+      "title": "Stack allocation of small arrays",
+      "category": "behavior",
+      "summary": "The JIT can allocate small arrays of value types on the stack when they do not escape.",
+      "topic": "memory",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "escape-analysis",
+      "title": "Escape analysis",
+      "category": "behavior",
+      "summary": "The JIT analyses whether objects escape a method and can allocate non-escaping ones on the stack.",
+      "topic": "memory",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "avx10-2",
+      "title": "AVX10.2 support",
+      "category": "behavior",
+      "summary": "The runtime supports the AVX10.2 instruction set extensions.",
+      "topic": "memory",
+      "history": {
+        "dotnet": [
+          {
+            "version": "net10.0",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "httpclient",
+      "title": "HttpClient",
+      "category": "library",
+      "summary": "HttpClient and the System.Net.Http types give a modern, async-friendly API for sending HTTP requests.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "async-file-operations",
+      "title": "Asynchronous file operations",
+      "category": "library",
+      "summary": "Stream, StreamReader, StreamWriter and related file classes gain Task-returning async methods such as ReadAsync and WriteAsync.",
+      "topic": "async",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "zip-compression",
+      "title": "ZIP archive API (System.IO.Compression.ZipFile)",
+      "category": "library",
+      "summary": "System.IO.Compression.ZipFile and ZipArchive read and write ZIP archives.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "regex-timeout",
+      "title": "Regular expression match timeout",
+      "category": "library",
+      "summary": "A Regex can be given a match timeout so a runaway pattern throws RegexMatchTimeoutException instead of hanging.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "typeinfo-reflection",
+      "title": "TypeInfo reflection split",
+      "category": "library",
+      "summary": "TypeInfo, returned by GetTypeInfo, separates a type's declared members from the full Type object in the reflection API.",
+      "topic": "advanced",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "background-server-gc",
+      "title": "Background garbage collection for servers",
+      "category": "behavior",
+      "summary": "Background garbage collection is enabled automatically when server garbage collection is used.",
+      "topic": "memory",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "arrays-over-2gb",
+      "title": "Arrays larger than 2 GB on 64-bit",
+      "category": "behavior",
+      "summary": "On 64-bit platforms, an opt-in setting allows arrays larger than 2 GB in total size.",
+      "topic": "memory",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "background-jit",
+      "title": "Background JIT compilation",
+      "category": "behavior",
+      "summary": "Methods can be JIT-compiled on a background thread, which speeds up start-up when multicore JIT is used.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "mef-conventions",
+      "title": "MEF convention-based programming model",
+      "category": "library",
+      "summary": "The Managed Extensibility Framework can discover parts by naming convention instead of attributes.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "portable-class-libraries",
+      "title": "Portable Class Libraries",
+      "category": "tooling",
+      "summary": "A single library project can target several Microsoft platforms and use the APIs they share.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "loh-compaction",
+      "title": "On-demand large object heap compaction",
+      "category": "library",
+      "summary": "GCSettings.LargeObjectHeapCompactionMode lets code ask for the large object heap to be compacted on the next full blocking collection.",
+      "topic": "memory",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "automatic-binding-redirection",
+      "title": "Automatic binding redirection",
+      "category": "tooling",
+      "summary": "Visual Studio can add assembly binding redirects to an app's configuration file automatically.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "winforms-dpi-resizing",
+      "title": "DPI-aware resizing in Windows Forms controls",
+      "category": "behavior",
+      "summary": "Windows Forms controls can resize their internal parts, such as property grid icons, to the system DPI setting when the app opts in through its configuration file.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5.1",
+            "kind": "added"
+          },
+          {
+            "version": "fx4.5.2",
+            "kind": "changed",
+            "note": "DPI-aware resizing is extended to more Windows Forms controls."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "async-aware-debugging",
+      "title": "Async-aware debugging in Visual Studio",
+      "category": "tooling",
+      "summary": "The Visual Studio debugger understands async call chains, so Call Stack and Tasks windows show the logical flow.",
+      "topic": "async",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "httpresponse-onsendingheaders",
+      "title": "HttpResponse.AddOnSendingHeaders",
+      "category": "library",
+      "summary": "HttpResponse.AddOnSendingHeaders lets ASP.NET code run just before response headers are sent.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.5.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "unix-time",
+      "title": "Unix time conversion (DateTimeOffset)",
+      "category": "library",
+      "summary": "DateTimeOffset.FromUnixTimeSeconds, ToUnixTimeSeconds and their millisecond variants convert to and from Unix time.",
+      "topic": "types",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "rsacng",
+      "title": "RSACng and RSA extension methods",
+      "category": "library",
+      "summary": "RSACng and the RSA certificate extension methods give access to CNG-based RSA keys.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "httpresponse-flushasync",
+      "title": "Task-based response flushing",
+      "category": "library",
+      "summary": "HttpResponse.FlushAsync lets ASP.NET apps flush a response without blocking a thread.",
+      "topic": "async",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ireadonlycollection-impls",
+      "title": "IReadOnlyCollection<T> on built-in collections",
+      "category": "library",
+      "summary": "More built-in collections, such as Stack<T> and Queue<T>, implement IReadOnlyCollection<T>.",
+      "topic": "collections",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ryujit",
+      "title": "64-bit RyuJIT compiler",
+      "category": "behavior",
+      "summary": "The 64-bit JIT compiler is replaced by RyuJIT, which compiles faster and produces better code.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "simd-types",
+      "title": "SIMD-enabled vector types",
+      "category": "library",
+      "summary": "System.Numerics vector types use the processor's SIMD instructions for faster numeric work, when RyuJIT is in use.",
+      "topic": "memory",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "culture-async-flow",
+      "title": "CultureInfo.CurrentCulture flows across async",
+      "category": "behavior",
+      "summary": "CultureInfo.CurrentCulture and CurrentUICulture flow with the logical call context across async operations.",
+      "topic": "async",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "ecdsa-x509",
+      "title": "ECDSA X.509 certificates",
+      "category": "library",
+      "summary": "X.509 certificates can provide ECDSA keys, and ECDSA certificates can be created and used through the new extension methods.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "outputcache-async",
+      "title": "Async output-cache providers",
+      "category": "library",
+      "summary": "ASP.NET output-cache providers can implement OutputCacheProviderAsync to read and write the cache asynchronously.",
+      "topic": "async",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "unicode-8-categories",
+      "title": "Unicode 8.0 character categories",
+      "category": "behavior",
+      "summary": "Characters are classified by Unicode 8.0 instead of 6.3 in CharUnicodeInfo, StringInfo, Char.GetUnicodeCategory and the regular expression engine's character classes.",
+      "topic": "types",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.6.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "runtime-feature",
+      "title": "RuntimeFeature capability checks",
+      "category": "library",
+      "summary": "RuntimeFeature reports whether the running runtime supports a capability such as portable PDBs.",
+      "topic": "advanced",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "isreadonly-attribute",
+      "title": "IsReadOnlyAttribute",
+      "category": "library",
+      "summary": "IsReadOnlyAttribute is part of the framework, so compilers can mark read-only structs and in parameters.",
+      "topic": "advanced",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "configuration-builders",
+      "title": "Configuration builders",
+      "category": "library",
+      "summary": "Configuration builders let an app read parts of its configuration from external sources such as environment variables or secret stores.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "httpcookie-tryparse",
+      "title": "HttpCookie.TryParse",
+      "category": "library",
+      "summary": "HttpCookie.TryParse parses a cookie string without throwing on bad input.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "gc-loh-performance",
+      "title": "Garbage collection performance improvements",
+      "category": "behavior",
+      "summary": "Separate locks for small and large object heap allocations let large-object allocations proceed while background GC sweeps the small heap, reducing lock contention.",
+      "topic": "memory",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "hashset-trygetvalue",
+      "title": "HashSet<T>.TryGetValue",
+      "category": "library",
+      "summary": "HashSet<T>.TryGetValue returns the stored element equal to a given value.",
+      "topic": "collections",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "enumerable-tohashset",
+      "title": "Enumerable.ToHashSet",
+      "category": "library",
+      "summary": "Enumerable.ToHashSet builds a HashSet<T> from any sequence.",
+      "topic": "collections",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "rsa-create-size",
+      "title": "RSA.Create and DSA.Create overloads",
+      "category": "library",
+      "summary": "RSA.Create and DSA.Create have overloads that take a key size or parameters.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "cryptostream-leaveopen",
+      "title": "CryptoStream leaveOpen",
+      "category": "library",
+      "summary": "A CryptoStream constructor overload can leave the underlying stream open when the CryptoStream is disposed.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "rfc2898-hash-algorithm",
+      "title": "Rfc2898DeriveBytes hash algorithm name",
+      "category": "library",
+      "summary": "Rfc2898DeriveBytes constructors accept a HashAlgorithmName, so PBKDF2 can use SHA-2 hashes instead of only SHA-1.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "httpclienthandler-properties",
+      "title": "HttpClientHandler.SslProtocols and CheckCertificateRevocationList",
+      "category": "library",
+      "summary": "HttpClientHandler's SslProtocols and CheckCertificateRevocationList properties, added so the type matches .NET Standard 2.0.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.1",
+            "kind": "added"
+          },
+          {
+            "version": "fx4.7.2",
+            "kind": "changed",
+            "note": "SslProtocols and CheckCertificateRevocationList, which threw an exception when used in 4.7.1, are now implemented."
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "pkcs10-requests",
+      "title": "Programmatic PKCS#10 certificate requests",
+      "category": "library",
+      "summary": "Certificate signing requests (PKCS#10) can be created and processed in code.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "deflatestream-decompression",
+      "title": "DeflateStream decompression changes",
+      "category": "behavior",
+      "summary": "DeflateStream decompression uses native Windows APIs by default for apps targeting 4.7.2, which typically makes it substantially faster.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.7.2",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "wcf-service-health",
+      "title": "WCF service health endpoint",
+      "category": "library",
+      "summary": "A WCF service can expose a health endpoint that reports its status over HTTP.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.8",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "reduced-fips-blocking",
+      "title": "Reduced FIPS impact on cryptography",
+      "category": "behavior",
+      "summary": "Managed cryptographic provider classes such as SHA256Managed no longer throw in FIPS mode; they redirect their operations to the system cryptographic libraries.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.8",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "arm64-native",
+      "title": "Native Arm64 support",
+      "category": "tooling",
+      "summary": "Native Arm64 support, so .NET Framework apps and libraries can run on Arm64 without x64 emulation.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.8.1",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "csharp",
+      "slug": "accessible-tooltips",
+      "title": "WCAG 2.1 accessible tooltips",
+      "category": "behavior",
+      "summary": "Windows Forms tooltips are compliant with the WCAG 2.1 accessibility guidelines.",
+      "topic": "dotnet",
+      "history": {
+        "netfx": [
+          {
+            "version": "fx4.8.1",
+            "kind": "added"
+          }
+        ]
+      }
     }
   ],
   "tracks": [
@@ -9561,6 +14019,60 @@
         {
           "title": "The Rust Reference",
           "url": "https://doc.rust-lang.org/reference/"
+        }
+      ]
+    },
+    {
+      "language": "csharp",
+      "id": "csharp",
+      "label": "C# language versions",
+      "kind": "standard",
+      "order": 1,
+      "description": "Versions of the C# language, from 1.0 to 14. Each C# version needs a compiler that understands it and, for some features, a runtime that supports it; the compiler's default version depends on the target framework (.NET 10 uses C# 14, .NET 8 uses C# 12, .NET Framework uses 7.3). Features that depend on runtime support say which runtimes accept them.",
+      "changelog_links": [
+        {
+          "title": "C# language version history",
+          "url": "https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-version-history"
+        },
+        {
+          "title": "C# language versioning and defaults",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning"
+        }
+      ]
+    },
+    {
+      "language": "csharp",
+      "id": "dotnet",
+      "label": ".NET (Core and 5+)",
+      "kind": "runtime",
+      "order": 2,
+      "description": "Releases of modern .NET: .NET Core 1.0 to 3.1, then .NET 5 to 10. Listed only where a release introduced something this reference tracks, so if your release is missing use the nearest earlier one. Each release shows its default C# version, long-term-support status and end-of-support date from the .NET release feed.",
+      "changelog_links": [
+        {
+          "title": ".NET release notes",
+          "url": "https://github.com/dotnet/core/tree/main/release-notes"
+        },
+        {
+          "title": "What's new in .NET",
+          "url": "https://learn.microsoft.com/dotnet/core/whats-new/"
+        }
+      ]
+    },
+    {
+      "language": "csharp",
+      "id": "netfx",
+      "label": ".NET Framework",
+      "kind": "runtime",
+      "order": 3,
+      "description": "Releases of the Windows-only .NET Framework, 4.5 to 4.8.1. Its compiler default is C# 7.3, and several newer C# features do not compile against its reference assemblies (for example default interface members, static abstract members, ref fields, records, ranges and async streams). The release date shown is the start of Microsoft's support lifecycle for that release.",
+      "changelog_links": [
+        {
+          "title": "What's new in .NET Framework",
+          "url": "https://learn.microsoft.com/dotnet/framework/whats-new/"
+        },
+        {
+          "title": "Microsoft lifecycle for .NET Framework",
+          "url": "https://learn.microsoft.com/lifecycle/products/microsoft-net-framework"
         }
       ]
     }

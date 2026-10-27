@@ -50,3 +50,18 @@ jobs:
         run: |
           python3 scripts/check/check_rust_examples.py --strict --rustc "rustup run 1.75.0 rustc"
           python3 scripts/check/check_rust_examples.py --strict --rustc "rustup run 1.95.0 rustc"
+
+      - name: Install the .NET SDKs the C# checker compiles with
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Install Mono for the .NET Framework reference assemblies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mono-devel
+
+      - name: C# examples, compatibility notes and probes
+        run: python3 scripts/check/check_csharp_examples.py --strict

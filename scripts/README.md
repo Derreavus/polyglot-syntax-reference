@@ -25,12 +25,15 @@ python scripts/check/check_python_examples.py --strict
 rustup toolchain install 1.75.0 1.95.0 --profile minimal --no-self-update
 python scripts/check/check_rust_examples.py --strict --rustc "rustup run 1.75.0 rustc"
 python scripts/check/check_rust_examples.py --strict --rustc "rustup run 1.95.0 rustc"
+# .NET SDKs 8 and 10 (actions/setup-dotnet) and Mono (sudo apt-get install -y mono-devel), then:
+python scripts/check/check_csharp_examples.py --strict
 ```
 
 ## The per-language checkers
 
 - `check/check_python_examples.py` compares the Python data with a real Python 3.12 interpreter. On any other Python it skips its probes with a notice; `--strict` (what CI uses) fails instead.
 - `check/check_rust_examples.py` compiles the Rust examples and small feature probes with a real Rust compiler, and adapts to whichever compiler it is given (`--rustc "<command>"`, default `rustc`). Features newer than the compiler must fail to compile; features it has must compile. It also compiles edition probes (code that builds in one edition and not the next). CI runs it on an old and a new toolchain (1.75.0 and 1.95.0), so each run checks the data in both directions. A missing compiler is skipped with a notice, or an error with `--strict`.
+- `check/check_csharp_examples.py` compiles small probes with the Roslyn compiler from a .NET SDK (probe code is in `check/csharp_probe_data.py`). For each C# language event the probe must compile at that `-langversion` and fail one version earlier. For each .NET Framework event it must compile against Mono's reference assemblies for that release and fail against the previous one, and for each .NET API it must exist in the .NET 10 reference pack (and in the .NET 8 pack only up to .NET 8). It also compiles the runtime-dependent language features against .NET Framework 4.5 to 4.8, netstandard 2.1, .NET 8 and .NET 10 and requires the data's compatibility notes to say exactly what those results say, and it reads the default C# version of net8.0 and net10.0 from a real SDK build. `--strict` (what CI uses) turns a missing SDK, reference pack or Mono into an error; without it the checker skips with a notice. Options: `--dotnet`, `--mono`, `--jobs`.
 - `check/check_js_examples.js` parses the JavaScript examples in the edition they belong to. Install its parser once with `npm install --no-save acorn`.
 
 Each new language that gets version history gets its own checker here, and a matching test in `tests/checkers/`.
