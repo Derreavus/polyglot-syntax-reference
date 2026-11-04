@@ -65,3 +65,22 @@ jobs:
 
       - name: C# examples, compatibility notes and probes
         run: python3 scripts/check/check_csharp_examples.py --strict
+
+  cpp-toolchains:
+    name: C++ toolchain checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the GCC and Clang configurations the C++ checker compiles with
+        run: bash scripts/ci/setup_cpp_toolchains.sh
+
+      - name: C++ examples, version markers and standard boundaries
+        run: python3 scripts/check/check_cpp_examples.py --strict
