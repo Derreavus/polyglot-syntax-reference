@@ -16,7 +16,8 @@ What it checks:
 2. Implementation events. For every GCC and Clang event at a verified version, the first configuration whose feature-test macro or
    probe supports the feature must be that version. An event the evidence confirms must not carry the "Documented by the vendor"
    note, and one it does not confirm must carry it, so the markers in the data stay honest in both directions.
-3. Standard boundaries. A language or header probe must compile at its own standard and fail at the one before on at least one strict
+3. Standard boundaries. Library features (one per __cpp_lib_* macro) must have their macro defined at their own standard and not at the one before on a strict
+   configuration, unless listed in LIBRARY_LEAKAGE. A language or header probe must compile at its own standard and fail at the one before on at least one strict
    configuration, unless it is listed in STANDARD_LEAKAGE (compilers accept it early, or none implements it yet).
 4. Lifecycle. For each removed facility, Clang with libc++ and GCC with libstdc++ must behave as recorded in the data at the
    standard that removed it (rejects, still accepts, or changes meaning).
@@ -48,7 +49,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "renderer"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from cpp_probe_data import HEADER_PROBES, LANGUAGE_EVIDENCE, LIFECYCLE_PROBES, STANDARD_LEAKAGE  # noqa: E402
+from cpp_probe_data import HEADER_PROBES, LANGUAGE_EVIDENCE, LIBRARY_EVIDENCE, LIBRARY_LEAKAGE, LIFECYCLE_PROBES, STANDARD_LEAKAGE  # noqa: E402
 from load_data import load_data  # noqa: E402
 
 LANGUAGE = "cpp"
@@ -63,7 +64,7 @@ STRICT_CONFIGS = (("gcc", 16), ("clang", 23))
 class Config:
     def __init__(self, track: str, version: int, cxx: list[str], flags: list[str], stdlib: str):
         self.track, self.version, self.cxx, self.flags, self.stdlib = track, version, cxx, flags, stdlib
-        self._std: dict[str, str | None] = {}
+        self._std: dict = {}
         self._macros: dict[str, int] | None = None
 
     def key(self) -> str:
@@ -82,6 +83,19 @@ class Config:
         for std in ("26", "23", "20", "17"):
             if self.std_flag(std): return std
         return None
+
+    def lib_macros(self, std: str | None = None) -> dict[str, int] | None:
+        """The __cpp_lib_* macros that <version> defines at a standard (default: the newest the configuration knows), as name -> value."""
+        std = std or self.newest_std() or "17"
+        key = ("lib", std)
+        if key not in self._std:
+            flag = self.std_flag(std)
+            if flag is None:
+                self._std[key] = None
+            else:
+                out = subprocess.run([*self.cxx, f"-std={flag}", *self.flags, "-dM", "-E", "-x", "c++", "-"], input="#include <version>\n", capture_output=True, text=True).stdout
+                self._std[key] = {m: int(v) for m, v in re.findall(r"#define __cpp_lib_(\w+) (\d+)", out)}
+        return self._std[key]
 
     def macros(self) -> dict[str, int]:
         if self._macros is None:
@@ -175,7 +189,10 @@ def check_markers(data: dict, report: Report) -> None:
 def evidence_first(slug: str, track: str, cfgs: dict, versions: list[int]) -> tuple[set[int], bool]:
     """Versions at which the macro or the probe first supports the feature, and whether every needed configuration was found."""
     found = set(); complete = True
-    if slug.startswith("header-"):
+    if slug.startswith("lib-"):
+        name, low = LIBRARY_EVIDENCE[slug]["macro"].removeprefix("__cpp_lib_"), LIBRARY_EVIDENCE[slug].get("min_value", 1)
+        tests = [lambda cfg, name=name, low=low: cfg.lib_macros().get(name, 0) >= low]
+    elif slug.startswith("header-"):
         std, code = HEADER_PROBES[slug]
         tests = [lambda cfg, std=std, code=code: compiles(cfg, std, code)]
     else:
@@ -200,7 +217,8 @@ def check_events(data: dict, cfgs: dict, report: Report, strict: bool) -> None:
                 v = major(e["version"], track)
                 if v not in versions: continue
                 has_note = DOCUMENTED in e.get("note", "")
-                if slug.startswith("header-") and slug not in HEADER_PROBES or (not slug.startswith("header-") and slug not in LANGUAGE_EVIDENCE):
+                known = LIBRARY_EVIDENCE if slug.startswith("lib-") else HEADER_PROBES if slug.startswith("header-") else LANGUAGE_EVIDENCE
+                if slug not in known:
                     if not has_note: report.problem(f"{track} {e['version']} {slug}: no evidence table entry, so the event must carry the documented-only note")
                     continue
                 found, complete = evidence_first(slug, track, cfgs, versions)
@@ -238,6 +256,32 @@ def check_boundaries(data: dict, cfgs: dict, report: Report, strict: bool) -> No
         if slug not in feats: report.problem(f"STANDARD_LEAKAGE has {slug}, which is not a feature in the data")
 
 
+def check_library_boundaries(data: dict, cfgs: dict, report: Report, strict: bool) -> None:
+    strict_cfgs = [cfgs[k] for k in STRICT_CONFIGS if k in cfgs]
+    if not strict_cfgs:
+        (report.problem if strict else report.skipped.append)("GCC 16 and Clang 23 are both missing, so no library boundary was checked")
+        return
+    feats = features(data)
+    for slug, ev in LIBRARY_EVIDENCE.items():
+        if slug not in feats: report.problem(f"LIBRARY_EVIDENCE has {slug}, which is not a feature in the data"); continue
+        report.count("library boundaries")
+        name, std, low = ev["macro"].removeprefix("__cpp_lib_"), ev["std"], ev.get("min_value", 1)
+        got = [e["version"] for e in feats[slug]["history"]["cpp"] if e["kind"] == "added"]
+        if got != [f"cpp{std}"]: report.problem(f"{slug}: the data adds it in {got} but its macro evidence belongs to C++{std}")
+        prev = PREVIOUS[std]
+        results = []
+        for c in strict_cfgs:
+            a, b = c.lib_macros(std), c.lib_macros(prev)
+            results.append((a is not None and a.get(name, 0) >= low, b is not None and b.get(name, 0) < low))
+        confirmed = any(a and b for a, b in results)
+        if slug in LIBRARY_LEAKAGE:
+            if confirmed: report.problem(f"{slug}: listed as leaking, but a strict configuration does confirm its boundary")
+        elif not confirmed:
+            report.problem(f"{slug}: no strict configuration defines {ev['macro']} at C++{std} and not at C++{prev}: {results}")
+    for slug in LIBRARY_LEAKAGE:
+        if slug not in LIBRARY_EVIDENCE: report.problem(f"LIBRARY_LEAKAGE has {slug}, which is not in LIBRARY_EVIDENCE")
+
+
 # ---------------------------------------------------------------- 4. lifecycle
 def behaviour(cfg: Config, probe: dict) -> str:
     std = probe["removed"]; before = PREVIOUS[std]
@@ -269,7 +313,11 @@ def check_coverage(data: dict, report: Report) -> None:
         if slug not in feats: report.problem(f"HEADER_PROBES has {slug}, which is not a feature in the data")
     for slug in LANGUAGE_EVIDENCE:
         if slug not in feats: report.problem(f"LANGUAGE_EVIDENCE has {slug}, which is not a feature in the data")
-    report.count("probe table entries", len(HEADER_PROBES) + len(LANGUAGE_EVIDENCE) + len(LIFECYCLE_PROBES))
+    for slug in feats:
+        if slug.startswith("lib-") and slug not in LIBRARY_EVIDENCE: report.problem(f"library feature {slug} has no evidence entry")
+    for slug in LIBRARY_EVIDENCE:
+        if slug not in feats: report.problem(f"LIBRARY_EVIDENCE has {slug}, which is not a feature in the data")
+    report.count("probe table entries", len(HEADER_PROBES) + len(LANGUAGE_EVIDENCE) + len(LIFECYCLE_PROBES) + len(LIBRARY_EVIDENCE))
 
 
 def run(data: dict, cfgs: dict, strict: bool, jobs: int) -> Report:
@@ -283,6 +331,7 @@ def run(data: dict, cfgs: dict, strict: bool, jobs: int) -> Report:
         list(pool.map(lambda c: c.macros(), list(cfgs.values())))
     check_events(data, cfgs, report, strict)
     check_boundaries(data, cfgs, report, strict)
+    check_library_boundaries(data, cfgs, report, strict)
     check_lifecycle(data, cfgs, report, strict)
     return report
 

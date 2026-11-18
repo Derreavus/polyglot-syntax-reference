@@ -35,7 +35,7 @@ CLANG_RELEASES = {
     "clang2.9": "2011-04", "clang3.0": "2011-12", "clang3.1": "2012-05", "clang3.2": "2012-12", "clang3.3": "2013-06", "clang3.4": "2014-01", "clang3.5": "2014-09",
     "clang3.6": "2015-02", "clang3.9": "2016-09", "clang4": "2017-03", "clang5": "2017-09", "clang6": "2018-03", "clang7": "2018-09", "clang8": "2019-03",
     "clang9": "2019-09", "clang10": "2020-03", "clang11": "2020-10", "clang12": "2021-04", "clang13": "2021-09", "clang14": "2022-03", "clang15": "2022-09",
-    "clang16": "2023-03", "clang17": "2023-09", "clang18": "2024-03", "clang19": "2024-09", "clang20": "2025-03", "clang21": "2025-08", "clang23": "2026-08",
+    "clang16": "2023-03", "clang17": "2023-09", "clang18": "2024-03", "clang19": "2024-09", "clang20": "2025-03", "clang21": "2025-08", "clang22": "2026-02", "clang23": "2026-08",
 }
 MSVC_DATES = {"vs2013": "2013-10", "vs2015": "2015-07-20", "vs2015.3": "2016-06-27", "vs2017-15.0": "2017-03-07", "vs2017-15.7": "2018-05-07", "vs2019-16.0": "2019-04-02",
               "vs2019-16.4": "2019-12-03", "vs2019-16.10": "2021-05-25", "vs2022-17.0": "2021-11-08", "vs2022-17.14": "2025-05-13"}
@@ -76,6 +76,11 @@ FIRST = {
     "header-print": {STD: "cpp23", GCC: "gcc14", CLANG: "clang17", MSVC: None},
     "header-flat-map": {STD: "cpp23", GCC: "gcc15", CLANG: "clang20", MSVC: None},
     "header-optional": {STD: "cpp17", GCC: None, CLANG: None, MSVC: None},   # present from the oldest verified version, so no first release is claimed
+    "lib-ranges-to-container": {STD: "cpp23", GCC: "gcc14", CLANG: "clang17", MSVC: None},
+    "lib-constexpr-string": {STD: "cpp20", GCC: "gcc12", CLANG: "clang15", MSVC: None},   # the macro first existed for constexpr char_traits; std::string needs value 201907
+    "lib-clamp": {STD: "cpp17", GCC: "gcc7", CLANG: None, MSVC: None},   # GCC 7 is libstdc++'s documented version, not confirmed here
+    "lib-copyable-function": {STD: "cpp26", GCC: "gcc16", CLANG: None, MSVC: None},
+    "lib-span-at": {STD: "cpp26", GCC: None, CLANG: "clang18", MSVC: None},
 }
 
 
@@ -140,7 +145,7 @@ class CppVersionDataTests(unittest.TestCase):
 
     def test_every_feature_is_on_the_standards_timeline(self) -> None:
         self.assertTrue(all(history(f, STD) for f in self.features.values()))
-        self.assertEqual({t: sum(1 for f in self.features.values() if history(f, t)) for t in (STD, GCC, CLANG, MSVC)}, {STD: 245, GCC: 178, CLANG: 161, MSVC: 81})
+        self.assertEqual({t: sum(1 for f in self.features.values() if history(f, t)) for t in (STD, GCC, CLANG, MSVC)}, {STD: 452, GCC: 353, CLANG: 226, MSVC: 81})
 
     def test_documented_only_notes_appear_only_inside_the_verified_range(self) -> None:
         marker = "Documented by the vendor; no probe here confirmed"
@@ -196,6 +201,32 @@ class CppVersionDataTests(unittest.TestCase):
                 for e in history(f, GCC): self.assertNotEqual(e["version"], "gcc9", slug)
                 for e in history(f, CLANG): self.assertNotEqual(e["version"], "clang14", slug)
 
+    def test_library_features_come_from_feature_test_macros(self) -> None:
+        lib = {s: f for s, f in self.features.items() if s.startswith("lib-")}
+        self.assertEqual(len(lib), 207)
+        self.assertTrue(all(f["category"] == "library" for f in lib.values()))
+        from collections import Counter
+        self.assertEqual(Counter(history(f, STD)[0]["version"] for f in lib.values()), {"cpp14": 19, "cpp17": 40, "cpp20": 45, "cpp23": 48, "cpp26": 55})
+        for slug, std in (("lib-make-unique", "cpp14"), ("lib-void-t", "cpp17"), ("lib-scoped-lock", "cpp17"), ("lib-bit-cast", "cpp20"), ("lib-erase-if", "cpp20"),
+                          ("lib-string-contains", "cpp23"), ("lib-ranges-zip", "cpp23"), ("lib-saturation-arithmetic", "cpp26"), ("lib-function-ref", "cpp26")):
+            self.assertEqual(history(self.features[slug], STD)[0]["version"], std, slug)
+
+    def test_library_features_the_header_features_already_cover_are_not_repeated(self) -> None:
+        for slug in ("lib-ranges", "lib-concepts", "lib-optional", "lib-format", "lib-span", "lib-gcd", "lib-lcm", "lib-char8-t", "lib-destroying-delete"):
+            self.assertNotIn(slug, self.features, slug)
+
+    def test_a_standard_placed_by_a_macro_value_says_so(self) -> None:
+        placed = [s for s, f in self.features.items() if s.startswith("lib-") and "Placed in this standard by the value of its feature-test macro" in history(f, STD)[0].get("note", "")]
+        self.assertEqual(len(placed), 95)
+        self.assertIn("(__cpp_lib_to_string)", history(self.features["lib-to-string"], STD)[0].get("note", "") + "(__cpp_lib_to_string)")
+        self.assertIn("std::string became constexpr in C++20", history(self.features["lib-constexpr-string"], STD)[0]["note"])
+
+    def test_library_events_on_the_implementation_tracks(self) -> None:
+        lib = [f for s, f in self.features.items() if s.startswith("lib-")]
+        self.assertEqual((sum(1 for f in lib if history(f, GCC)), sum(1 for f in lib if history(f, CLANG)), sum(1 for f in lib if history(f, MSVC))), (175, 65, 0))
+        self.assertNotIn("clang14", {e["version"] for f in lib for e in history(f, CLANG)}, "a library feature present at the oldest verified Clang claims no first release")
+        self.assertEqual({e["version"] for f in lib for e in history(f, GCC) if e["version"] == "gcc9"} - {"gcc9"}, set())
+
 
 class CppVersionPageTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -205,8 +236,8 @@ class CppVersionPageTests(unittest.TestCase):
         rels = {STD: "cpp/versions/index.html", GCC: "cpp/versions/gcc/index.html", CLANG: "cpp/versions/clang/index.html", MSVC: "cpp/versions/msvc/index.html"}
         self.pages = {t: render_versions_page(self.language, self.tracks[t], self.data, page_rel=rel) for t, rel in rels.items()}
 
-    def test_the_pages_list_245_178_161_and_81_features(self) -> None:
-        self.assertEqual({t: p.count('class="feature-card"') for t, p in self.pages.items()}, {STD: 245, GCC: 178, CLANG: 161, MSVC: 81})
+    def test_the_pages_list_452_353_226_and_81_features(self) -> None:
+        self.assertEqual({t: p.count('class="feature-card"') for t, p in self.pages.items()}, {STD: 452, GCC: 353, CLANG: 226, MSVC: 81})
 
     def test_every_version_has_a_block(self) -> None:
         for track, page in self.pages.items():

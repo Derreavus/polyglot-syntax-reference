@@ -54,6 +54,14 @@ def tables(leakage: dict | None = None, lifecycle: dict | None = None):
         yield
 
 
+@contextlib.contextmanager
+def lib_tables(evidence: tuple[str, ...] = (), leakage: dict | None = None):
+    """Limit the library evidence and leakage tables to the named features, so a reduced-data test is not told the others are missing."""
+    with mock.patch.dict(checker.LIBRARY_EVIDENCE, {k: v for k, v in checker.LIBRARY_EVIDENCE.items() if k in evidence}, clear=True), \
+         mock.patch.dict(checker.LIBRARY_LEAKAGE, leakage or {}, clear=True):
+        yield
+
+
 class CheckerSetupTests(unittest.TestCase):
     """Rules that need no compiler."""
 
@@ -97,8 +105,18 @@ class CheckerSetupTests(unittest.TestCase):
         with mock.patch.dict(checker.LANGUAGE_EVIDENCE, {"ghost-feature": {"std": "17", "macros": [], "probe": "int x;"}}):
             self.assertEqual(run(checker.check_coverage, self.data), ["LANGUAGE_EVIDENCE has ghost-feature, which is not a feature in the data"])
 
+    def test_a_library_feature_without_an_evidence_entry_is_reported(self) -> None:
+        data = copy.deepcopy(self.data)
+        data["features"].append({"language": "cpp", "slug": "lib-newthing", "title": "x", "category": "library", "summary": "x", "topic": "headers",
+                                 "history": {"cpp": [{"version": "cpp26", "kind": "added"}]}})
+        self.assertEqual(run(checker.check_coverage, data), ["library feature lib-newthing has no evidence entry"])
+
+    def test_a_library_evidence_entry_for_a_missing_feature_is_reported(self) -> None:
+        with mock.patch.dict(checker.LIBRARY_EVIDENCE, {"lib-ghost": {"macro": "__cpp_lib_ghost", "std": "20"}}):
+            self.assertEqual(run(checker.check_coverage, self.data), ["LIBRARY_EVIDENCE has lib-ghost, which is not a feature in the data"])
+
     def test_the_probe_tables_have_the_documented_sizes(self) -> None:
-        self.assertEqual((len(checker.LANGUAGE_EVIDENCE), len(checker.HEADER_PROBES), len(checker.LIFECYCLE_PROBES), len(checker.STANDARD_LEAKAGE)), (141, 63, 20, 11))
+        self.assertEqual((len(checker.LANGUAGE_EVIDENCE), len(checker.HEADER_PROBES), len(checker.LIFECYCLE_PROBES), len(checker.STANDARD_LEAKAGE), len(checker.LIBRARY_EVIDENCE), len(checker.LIBRARY_LEAKAGE)), (141, 63, 20, 11, 207, 14))
         self.assertEqual(sum(1 for e in checker.LANGUAGE_EVIDENCE.values() if e["probe"]), 76)
         self.assertEqual(sum(1 for e in checker.LANGUAGE_EVIDENCE.values() if e["macros"]), 65)
 
@@ -129,7 +147,10 @@ class CheckerSetupTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
         self.assertIn("scripts/ci/setup_cpp_toolchains.sh", workflow)
         self.assertIn("check_cpp_examples.py --strict", workflow)
+        job = workflow[workflow.index("  cpp-toolchains:"):]
+        self.assertIn("runs-on: ubuntu-24.04", job.split("steps:")[0], "the C++ job must run on the Ubuntu release that has the pinned package versions, not ubuntu-latest")
         setup = (ROOT / "scripts" / "ci" / "setup_cpp_toolchains.sh").read_text(encoding="utf-8")
+        self.assertIn('"${VERSION_ID:-}" != "24.04"', setup)
         for needle in ("g++-9", "g++-14", "clang-14", "clang-20", "libc++-$v-dev", "/opt/libcxx", "gxx_linux-64=$v", "clangxx=$v", "libcxx-devel=$v", "for v in 15 16", "for v in 21 22 23"):
             self.assertIn(needle, setup)
 
@@ -196,6 +217,51 @@ class CheckerCompilerTests(unittest.TestCase):
             problems = run(checker.check_lifecycle, data, False)
         self.assertEqual(len(problems), 1)
         self.assertIn("auto-ptr: gcc 16 accepts at C++17, the data records rejects", problems[0])
+
+    def test_library_events_and_boundaries_for_representative_features_pass(self) -> None:
+        names = ("lib-constexpr-string", "lib-ranges-to-container", "lib-bit-cast", "lib-copyable-function")
+        data = only(self.data, *names)
+        self.assertEqual(run(checker.check_events, data, False), [])
+        with lib_tables(names):
+            self.assertEqual(run(checker.check_library_boundaries, data, False), [])
+
+    def test_a_library_version_set_too_early_is_reported(self) -> None:
+        data = only(self.data, "lib-constexpr-string")
+        feature(data, "lib-constexpr-string")["history"]["gcc"][0]["version"] = "gcc8"
+        problems = run(checker.check_events, data, False)
+        self.assertEqual(len(problems), 0, "gcc8 is outside the verified range, so only documentation could support it")
+        feature(data, "lib-constexpr-string")["history"]["gcc"][0]["version"] = "gcc11"
+        problems = run(checker.check_events, data, False)
+        self.assertEqual(len(problems), 1)
+        self.assertIn("evidence first supports [12]", problems[0])
+
+    def test_the_minimum_macro_value_matters_for_a_macro_that_was_first_defined_for_another_feature(self) -> None:
+        with mock.patch.dict(checker.LIBRARY_EVIDENCE, {"lib-constexpr-string": {"macro": "__cpp_lib_constexpr_string", "std": "20"}}):
+            data = only(self.data, "lib-constexpr-string")
+            problems = run(checker.check_events, data, False)
+        self.assertEqual(len(problems), 2, problems)
+        self.assertTrue(any("evidence first supports [9]" in p for p in problems), problems)    # GCC defines the macro for char_traits from GCC 9
+        self.assertTrue(any("evidence first supports [14]" in p for p in problems), problems)   # and libc++ from Clang 14
+
+    def test_a_library_feature_added_in_the_wrong_standard_is_reported(self) -> None:
+        data = only(self.data, "lib-bit-cast")
+        feature(data, "lib-bit-cast")["history"]["cpp"][0]["version"] = "cpp23"
+        with lib_tables(("lib-bit-cast",)):
+            problems = run(checker.check_library_boundaries, data, False)
+        self.assertTrue(any("the data adds it in ['cpp23'] but its macro evidence belongs to C++20" in p for p in problems), problems)
+
+    def test_a_library_leakage_entry_that_a_strict_configuration_contradicts_is_reported(self) -> None:
+        data = only(self.data, "lib-bit-cast")
+        with lib_tables(("lib-bit-cast",), leakage={"lib-bit-cast": "claimed"}):
+            problems = run(checker.check_library_boundaries, data, False)
+        self.assertTrue(any("lib-bit-cast: listed as leaking, but a strict configuration does confirm its boundary" in p for p in problems), problems)
+
+    def test_a_library_boundary_no_strict_configuration_confirms_must_be_listed(self) -> None:
+        slug = sorted(checker.LIBRARY_LEAKAGE)[0]
+        data = only(self.data, slug)
+        with lib_tables((slug,)):
+            problems = run(checker.check_library_boundaries, data, False)
+        self.assertTrue(any(f"{slug}: no strict configuration defines" in p for p in problems), problems)
 
     def test_a_missing_configuration_is_an_error_when_strict_and_a_skip_otherwise(self) -> None:
         data = only(self.data, "concepts")

@@ -68,7 +68,9 @@ jobs:
 
   cpp-toolchains:
     name: C++ toolchain checks
-    runs-on: ubuntu-latest
+    # Pinned: scripts/ci/setup_cpp_toolchains.sh installs g++-9 to 14 and clang-14 to 20, which only Ubuntu 24.04 packages
+    # (ubuntu-latest moved to 26.04, where g++-9, g++-10 and clang-14 to 16 no longer exist).
+    runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
       - name: Checkout

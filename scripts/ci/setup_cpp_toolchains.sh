@@ -10,6 +10,13 @@
 # It mirrors how the configurations were first set up by hand; it has not been run on a GitHub-hosted runner yet.
 set -euo pipefail
 
+# The package names below only exist on Ubuntu 24.04 (g++-9, g++-10 and clang-14 to 16 are gone from later releases), so fail early and clearly elsewhere.
+. /etc/os-release
+if [ "${ID:-}" != "ubuntu" ] || [ "${VERSION_ID:-}" != "24.04" ]; then
+  echo "This script needs Ubuntu 24.04 (found ${PRETTY_NAME:-unknown}); run the job on runs-on: ubuntu-24.04." >&2
+  exit 1
+fi
+
 echo "Freeing disk space"
 sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
 

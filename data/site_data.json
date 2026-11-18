@@ -3880,10 +3880,20 @@
     {
       "language": "cpp",
       "track": "clang",
+      "id": "clang22",
+      "label": "Clang 22",
+      "released": "2026-02",
+      "order": 28,
+      "status": "released",
+      "note": "Verified here: clang++ with libc++ 22, compiled with -pedantic-errors."
+    },
+    {
+      "language": "cpp",
+      "track": "clang",
       "id": "clang23",
       "label": "Clang 23",
       "released": "2026-08",
-      "order": 28,
+      "order": 29,
       "status": "released",
       "note": "Verified here: clang++ with libc++ 23, compiled with -pedantic-errors."
     },
@@ -20882,6 +20892,4855 @@
         "clang": [
           {
             "version": "clang23",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-adaptor-iterator-pair-constructor",
+      "title": "Iterator-pair constructors for adaptors",
+      "category": "library",
+      "summary": "std::stack and std::queue can be constructed from an iterator pair.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-addressof-constexpr",
+      "title": "constexpr std::addressof",
+      "category": "library",
+      "summary": "std::addressof can be used in constant expressions.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_addressof_constexpr); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-algorithm-default-value-type",
+      "title": "Default value type for algorithms",
+      "category": "library",
+      "summary": "Algorithms with a value parameter, such as std::ranges::find, deduce its type from the range instead of the argument.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_algorithm_default_value_type); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-algorithm-iterator-requirements",
+      "title": "Range-friendly algorithm iterator requirements",
+      "category": "library",
+      "summary": "Some algorithms, such as std::ranges::copy, accept views and iterators that were previously too restricted.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-aligned-accessor",
+      "title": "std::aligned_accessor",
+      "category": "library",
+      "summary": "A std::mdspan accessor that promises its pointer has a given alignment.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_aligned_accessor); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-allocate-at-least",
+      "title": "allocate_at_least",
+      "category": "library",
+      "summary": "An allocator can report how many elements it actually allocated, which may be more than requested, through allocator_traits::allocate_at_least and std::allocator::allocate_at_least.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-allocator-traits-is-always-equal",
+      "title": "allocator_traits::is_always_equal",
+      "category": "library",
+      "summary": "A trait that tells whether all instances of an allocator are interchangeable, which lets containers skip work when moving.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-apply",
+      "title": "std::apply",
+      "category": "library",
+      "summary": "Calls a function with the elements of a tuple as its arguments.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-array-constexpr",
+      "title": "constexpr std::array",
+      "category": "library",
+      "summary": "More of std::array's members, such as iterators and element access, work in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-as-const",
+      "title": "std::as_const",
+      "category": "library",
+      "summary": "Returns a const reference to its argument.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-associative-heterogeneous-erasure",
+      "title": "Heterogeneous erasure",
+      "category": "library",
+      "summary": "erase and extract on ordered and unordered associative containers accept keys of another type.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-associative-heterogeneous-insertion",
+      "title": "Heterogeneous insertion",
+      "category": "library",
+      "summary": "insert and try_emplace on associative containers accept keys of another type.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_associative_heterogeneous_insertion); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-assume-aligned",
+      "title": "std::assume_aligned",
+      "category": "library",
+      "summary": "Tells the compiler that a pointer is aligned to a given boundary so it can generate faster code.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-flag-test",
+      "title": "atomic_flag::test",
+      "category": "library",
+      "summary": "Reads a std::atomic_flag without changing it.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_atomic_flag_test); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-float",
+      "title": "Atomic floating-point operations",
+      "category": "library",
+      "summary": "std::atomic<float> and std::atomic<double> support fetch_add and fetch_sub.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang20",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-is-always-lock-free",
+      "title": "atomic::is_always_lock_free",
+      "category": "library",
+      "summary": "A constant that says whether an atomic type never needs a lock.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-lock-free-type-aliases",
+      "title": "Lock-free atomic type aliases",
+      "category": "library",
+      "summary": "std::atomic_signed_lock_free and std::atomic_unsigned_lock_free name the best always-lock-free integer atomics.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added",
+            "note": "libstdc++'s status table lists GCC 11.1; the feature-test macro is first defined here."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-min-max",
+      "title": "atomic fetch_min and fetch_max",
+      "category": "library",
+      "summary": "std::atomic gets operations that atomically store the smaller or larger of the current and a given value.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_atomic_min_max); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-ref",
+      "title": "std::atomic_ref",
+      "category": "library",
+      "summary": "Applies atomic operations to an ordinary object that already exists.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-shared-ptr",
+      "title": "std::atomic<std::shared_ptr>",
+      "category": "library",
+      "summary": "Atomic specialisations for std::shared_ptr and std::weak_ptr, replacing the free atomic_load and atomic_store overloads.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-value-initialization",
+      "title": "Value-initialised atomics",
+      "category": "library",
+      "summary": "A default-constructed std::atomic is value-initialised, so it starts at zero.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic-wait",
+      "title": "Atomic wait and notify",
+      "category": "library",
+      "summary": "std::atomic can block until its value changes with wait, and wake waiters with notify_one and notify_all.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_atomic_wait); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-bind-back",
+      "title": "std::bind_back",
+      "category": "library",
+      "summary": "Binds the last arguments of a callable and returns a new callable for the rest.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_bind_back); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-bind-front",
+      "title": "std::bind_front",
+      "category": "library",
+      "summary": "Binds the first arguments of a callable and returns a new callable for the rest.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-bit-cast",
+      "title": "std::bit_cast",
+      "category": "library",
+      "summary": "Reinterprets the bytes of one type as another type of the same size, safely and in constant expressions.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-bitset",
+      "title": "std::bitset string_view constructor",
+      "category": "library",
+      "summary": "std::bitset can be constructed from a std::string_view.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_bitset); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang18",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-bool-constant",
+      "title": "std::bool_constant",
+      "category": "library",
+      "summary": "An alias for std::integral_constant<bool, B>.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-bounded-array-traits",
+      "title": "std::is_bounded_array and std::is_unbounded_array",
+      "category": "library",
+      "summary": "Type traits that tell whether a type is an array with a known or an unknown bound.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-boyer-moore-searcher",
+      "title": "Boyer-Moore searchers",
+      "category": "library",
+      "summary": "std::boyer_moore_searcher and std::boyer_moore_horspool_searcher plug fast string search into std::search.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-byte",
+      "title": "std::byte",
+      "category": "library",
+      "summary": "A type for raw memory that supports bitwise operations but not arithmetic.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-byteswap",
+      "title": "std::byteswap",
+      "category": "library",
+      "summary": "Reverses the byte order of an integer.",
+      "topic": "operators",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-chrono-udls",
+      "title": "Chrono literal suffixes",
+      "category": "library",
+      "summary": "Suffixes such as 5s, 100ms and 2h create std::chrono durations from literals.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_chrono_udls); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-clamp",
+      "title": "std::clamp",
+      "category": "library",
+      "summary": "Limits a value to a range between a minimum and a maximum.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-common-reference",
+      "title": "std::common_reference",
+      "category": "library",
+      "summary": "A type trait that finds a type that two reference types can both convert to.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-common-reference-wrapper",
+      "title": "common_reference for reference_wrapper",
+      "category": "library",
+      "summary": "std::reference_wrapper participates in std::common_reference, so it works with the ranges concepts.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_common_reference_wrapper); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-complex-udls",
+      "title": "Complex literal suffixes",
+      "category": "library",
+      "summary": "The suffixes i, if and il create std::complex values from literals, as in 2.5i.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_complex_udls); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constant-wrapper",
+      "title": "std::constant_wrapper",
+      "category": "library",
+      "summary": "Wraps a constant expression as a type so its value can be passed through the type system.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constant_wrapper); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang23",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-algorithms",
+      "title": "constexpr algorithms",
+      "category": "library",
+      "summary": "Most of <algorithm> works in constant expressions.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-bitset",
+      "title": "constexpr std::bitset",
+      "category": "library",
+      "summary": "std::bitset works in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-char-traits",
+      "title": "constexpr char_traits",
+      "category": "library",
+      "summary": "The character-traits functions can run at compile time, which also makes std::string_view operations constexpr.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_char_traits); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-charconv",
+      "title": "constexpr std::to_chars and from_chars",
+      "category": "library",
+      "summary": "The integer overloads of std::to_chars and std::from_chars work in constant expressions.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-complex",
+      "title": "constexpr std::complex",
+      "category": "library",
+      "summary": "std::complex operations work in constant expressions.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-dynamic-alloc",
+      "title": "constexpr std::allocator",
+      "category": "library",
+      "summary": "std::allocator and std::construct_at can allocate and construct objects during constant evaluation.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-exceptions",
+      "title": "constexpr exception types",
+      "category": "library",
+      "summary": "The standard exception classes can be used in constant expressions, together with constexpr exceptions in the language.",
+      "topic": "exceptions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_exceptions); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-flat-map",
+      "title": "constexpr std::flat_map",
+      "category": "library",
+      "summary": "std::flat_map and std::flat_multimap work in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_flat_map); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang22",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-flat-set",
+      "title": "constexpr std::flat_set",
+      "category": "library",
+      "summary": "std::flat_set and std::flat_multiset work in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_flat_set); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang22",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-forward-list",
+      "title": "constexpr std::forward_list",
+      "category": "library",
+      "summary": "std::forward_list works in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_forward_list); the standard's own text was not checked for this feature."
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-functional",
+      "title": "constexpr <functional>",
+      "category": "library",
+      "summary": "std::invoke, the operator functors and other <functional> parts work in constant expressions.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-iterator",
+      "title": "constexpr iterator adaptors",
+      "category": "library",
+      "summary": "The standard iterator adaptors and iterator functions work in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_iterator); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-list",
+      "title": "constexpr std::list",
+      "category": "library",
+      "summary": "std::list works in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_list); the standard's own text was not checked for this feature."
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-map",
+      "title": "constexpr std::map",
+      "category": "library",
+      "summary": "std::map and std::multimap work in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_map); the standard's own text was not checked for this feature."
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang23",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-memory",
+      "title": "constexpr <memory> utilities",
+      "category": "library",
+      "summary": "Functions such as std::addressof and the uninitialised-memory algorithms work in constant expressions.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-new",
+      "title": "constexpr placement new",
+      "category": "library",
+      "summary": "Placement new can be used in constant expressions.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_new); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang20",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-numeric",
+      "title": "constexpr <numeric>",
+      "category": "library",
+      "summary": "std::accumulate, std::iota and the other numeric algorithms work in constant expressions.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-queue",
+      "title": "constexpr std::queue and std::stack",
+      "category": "library",
+      "summary": "The container adaptors work in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_queue); the standard's own text was not checked for this feature."
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-set",
+      "title": "constexpr std::set",
+      "category": "library",
+      "summary": "std::set and std::multiset work in constant expressions.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_set); the standard's own text was not checked for this feature."
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang23",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-string",
+      "title": "constexpr std::string",
+      "category": "library",
+      "summary": "std::string can be used in constant expressions as long as the memory is freed before evaluation ends.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added",
+            "note": "std::string became constexpr in C++20; the macro's earlier value belonged to constexpr char_traits."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-string-view",
+      "title": "constexpr std::string_view",
+      "category": "library",
+      "summary": "More of std::string_view works in constant expressions.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_string_view); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-tuple",
+      "title": "constexpr std::tuple",
+      "category": "library",
+      "summary": "std::tuple works in constant expressions.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_tuple); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-typeinfo",
+      "title": "constexpr type_info comparison",
+      "category": "library",
+      "summary": "std::type_info objects can be compared in constant expressions.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-utility",
+      "title": "constexpr <utility>",
+      "category": "library",
+      "summary": "std::pair, std::swap, std::exchange and related utilities work in constant expressions.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constexpr_utility); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constexpr-vector",
+      "title": "constexpr std::vector",
+      "category": "library",
+      "summary": "std::vector can be used in constant expressions as long as the memory is freed before evaluation ends.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-constrained-equality",
+      "title": "Constrained equality for std::pair, tuple and optional",
+      "category": "library",
+      "summary": "operator== of these types participates in overload resolution only when their members are comparable.",
+      "topic": "operators",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_constrained_equality); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang22",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-containers-ranges",
+      "title": "Range construction and insertion",
+      "category": "library",
+      "summary": "Containers can be constructed from a range, and gain assign_range, insert_range, append_range and prepend_range members.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_containers_ranges); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-copyable-function",
+      "title": "std::copyable_function",
+      "category": "library",
+      "summary": "A function wrapper that can hold copyable callables and supports const, noexcept and reference qualifiers.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_copyable_function); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-enable-shared-from-this",
+      "title": "weak_from_this",
+      "category": "library",
+      "summary": "enable_shared_from_this gains weak_from_this, which returns a std::weak_ptr to the object.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-endian",
+      "title": "std::endian",
+      "category": "library",
+      "summary": "An enumeration that tells whether the platform is little-endian or big-endian.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc8",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-erase-if",
+      "title": "std::erase and std::erase_if",
+      "category": "library",
+      "summary": "Remove elements equal to a value, or matching a predicate, from a container in one call.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-exception-ptr-cast",
+      "title": "std::exception_ptr_cast",
+      "category": "library",
+      "summary": "Gets a pointer to the exception object held by a std::exception_ptr, without rethrowing it.",
+      "topic": "exceptions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_exception_ptr_cast); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-exchange-function",
+      "title": "std::exchange",
+      "category": "library",
+      "summary": "Replaces a value with a new one and returns the old value in one call.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_exchange_function); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-format-path",
+      "title": "Formatting std::filesystem::path",
+      "category": "library",
+      "summary": "std::format and std::print can format a std::filesystem::path.",
+      "topic": "modern",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_format_path); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-format-ranges",
+      "title": "Formatting ranges",
+      "category": "library",
+      "summary": "std::format can format ranges, tuples and pairs directly, as in [1, 2, 3].",
+      "topic": "modern",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-format-uchar",
+      "title": "Formatting unsigned char as an integer",
+      "category": "library",
+      "summary": "std::format treats unsigned char and signed char as integers, not characters.",
+      "topic": "modern",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_format_uchar); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang18",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-formatters",
+      "title": "More std::formatter specialisations",
+      "category": "library",
+      "summary": "std::format supports types such as std::thread::id and std::stacktrace.",
+      "topic": "modern",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-forward-like",
+      "title": "std::forward_like",
+      "category": "library",
+      "summary": "Forwards an object with the value category and constness of another expression.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_forward_like); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-freestanding-algorithm",
+      "title": "Freestanding <algorithm>",
+      "category": "library",
+      "summary": "Parts of <algorithm> are required in freestanding implementations.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_freestanding_algorithm); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-freestanding-array",
+      "title": "Freestanding <array>",
+      "category": "library",
+      "summary": "std::array is required in freestanding implementations.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_freestanding_array); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-freestanding-cstring",
+      "title": "Freestanding <cstring>",
+      "category": "library",
+      "summary": "Parts of <cstring> are required in freestanding implementations.",
+      "topic": "headers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_freestanding_cstring); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-freestanding-expected",
+      "title": "Freestanding std::expected",
+      "category": "library",
+      "summary": "std::expected is required in freestanding implementations.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_freestanding_expected); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-freestanding-optional",
+      "title": "Freestanding std::optional",
+      "category": "library",
+      "summary": "std::optional is required in freestanding implementations.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_freestanding_optional); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-freestanding-string-view",
+      "title": "Freestanding std::string_view",
+      "category": "library",
+      "summary": "std::string_view is required in freestanding implementations.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_freestanding_string_view); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-freestanding-variant",
+      "title": "Freestanding std::variant",
+      "category": "library",
+      "summary": "std::variant is required in freestanding implementations.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_freestanding_variant); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-fstream-native-handle",
+      "title": "native_handle for file streams",
+      "category": "library",
+      "summary": "std::basic_filebuf and the file stream classes expose the operating system's file handle.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_fstream_native_handle); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang18",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-function-ref",
+      "title": "std::function_ref",
+      "category": "library",
+      "summary": "A non-owning, lightweight reference to a callable, for parameters that only call it.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_function_ref); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-gcd-lcm",
+      "title": "std::gcd and std::lcm",
+      "category": "library",
+      "summary": "Compute the greatest common divisor and least common multiple of two integers.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-generic-associative-lookup",
+      "title": "Heterogeneous lookup in ordered containers",
+      "category": "library",
+      "summary": "find, count and lower_bound on std::set and std::map accept keys of another type when the comparator is transparent.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_generic_associative_lookup); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-generic-unordered-lookup",
+      "title": "Heterogeneous lookup in unordered containers",
+      "category": "library",
+      "summary": "Lookup functions of the unordered containers accept keys of another type when the hash and equality are transparent.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-hardware-interference-size",
+      "title": "Hardware interference sizes",
+      "category": "library",
+      "summary": "std::hardware_destructive_interference_size and std::hardware_constructive_interference_size give cache-line sizes for avoiding false sharing.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-has-unique-object-representations",
+      "title": "std::has_unique_object_representations",
+      "category": "library",
+      "summary": "A type trait that tells whether equal values always have equal bytes, so a type can be hashed by its bytes.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-hypot",
+      "title": "Three-argument std::hypot",
+      "category": "library",
+      "summary": "std::hypot accepts three arguments, giving the length of a vector in three dimensions.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-incomplete-container-elements",
+      "title": "Containers of incomplete types",
+      "category": "library",
+      "summary": "std::vector, std::list and std::forward_list can be declared with an element type that is still incomplete.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-indirect",
+      "title": "std::indirect",
+      "category": "library",
+      "summary": "A value-semantic wrapper that owns a heap-allocated object, copying it deeply.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_indirect); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-int-pow2",
+      "title": "std::has_single_bit, bit_ceil, bit_floor and bit_width",
+      "category": "library",
+      "summary": "Functions that work with powers of two in unsigned integers.",
+      "topic": "operators",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-integer-comparison-functions",
+      "title": "Safe integer comparison",
+      "category": "library",
+      "summary": "std::cmp_equal, std::cmp_less and related functions compare signed and unsigned integers without surprising conversions, and std::in_range tests a value against a type's range.",
+      "topic": "operators",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-integer-sequence",
+      "title": "std::integer_sequence",
+      "category": "library",
+      "summary": "A compile-time sequence of integers, used with std::index_sequence to expand a parameter pack by index.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_integer_sequence); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-integral-constant-callable",
+      "title": "Callable std::integral_constant",
+      "category": "library",
+      "summary": "std::integral_constant objects can be called like a function to get their value.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_integral_constant_callable); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-interpolate",
+      "title": "std::lerp and std::midpoint",
+      "category": "library",
+      "summary": "std::lerp interpolates between two values and std::midpoint returns their average without overflow.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-invoke",
+      "title": "std::invoke",
+      "category": "library",
+      "summary": "Calls any callable, including member function pointers, with one uniform syntax.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-invoke-r",
+      "title": "std::invoke_r",
+      "category": "library",
+      "summary": "Calls a callable and converts its result to a given return type.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ios-noreplace",
+      "title": "std::ios::noreplace",
+      "category": "library",
+      "summary": "A file open mode that makes opening an existing file for writing fail.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ios_noreplace); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang18",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-aggregate",
+      "title": "std::is_aggregate",
+      "category": "library",
+      "summary": "A type trait that tells whether a type is an aggregate.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_is_aggregate); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-constant-evaluated",
+      "title": "std::is_constant_evaluated",
+      "category": "library",
+      "summary": "Reports whether the call is being evaluated at compile time.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-final",
+      "title": "std::is_final",
+      "category": "library",
+      "summary": "A type trait that tells whether a class is declared final.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_is_final); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-implicit-lifetime",
+      "title": "std::is_implicit_lifetime",
+      "category": "library",
+      "summary": "A type trait that tells whether objects of a type can come into existence implicitly in raw storage.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang20",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-invocable",
+      "title": "std::is_invocable",
+      "category": "library",
+      "summary": "Type traits that tell whether a type can be called with given arguments, and what it returns.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-layout-compatible",
+      "title": "std::is_layout_compatible",
+      "category": "library",
+      "summary": "A type trait that tells whether two types have the same layout.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-nothrow-convertible",
+      "title": "std::is_nothrow_convertible",
+      "category": "library",
+      "summary": "A type trait that tells whether a conversion cannot throw.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-null-pointer",
+      "title": "std::is_null_pointer",
+      "category": "library",
+      "summary": "A type trait that tells whether a type is std::nullptr_t.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_is_null_pointer); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-pointer-interconvertible",
+      "title": "Pointer-interconvertible traits",
+      "category": "library",
+      "summary": "std::is_pointer_interconvertible_with_class and related functions tell whether a pointer to a struct and its first member are interchangeable.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_is_pointer_interconvertible); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-scoped-enum",
+      "title": "std::is_scoped_enum",
+      "category": "library",
+      "summary": "A type trait that tells whether a type is an enum class.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-structural",
+      "title": "std::is_structural",
+      "category": "library",
+      "summary": "A type trait that tells whether a type can be used as a non-type template parameter.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_is_structural); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-sufficiently-aligned",
+      "title": "std::is_sufficiently_aligned",
+      "category": "library",
+      "summary": "Tests whether a pointer satisfies a given alignment at run time.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_is_sufficiently_aligned); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-swappable",
+      "title": "std::is_swappable",
+      "category": "library",
+      "summary": "Type traits that tell whether two values can be swapped, and whether that can throw.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-virtual-base-of",
+      "title": "std::is_virtual_base_of",
+      "category": "library",
+      "summary": "A type trait that tells whether a class is a virtual base of another.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_is_virtual_base_of); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang20",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-is-within-lifetime",
+      "title": "std::is_within_lifetime",
+      "category": "library",
+      "summary": "Tests, during constant evaluation, whether an object's lifetime has begun, such as which union member is active.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_is_within_lifetime); the standard's own text was not checked for this feature."
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang22",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-launder",
+      "title": "std::launder",
+      "category": "library",
+      "summary": "Gives a usable pointer to an object that was created in storage that held a different object.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-list-remove-return-type",
+      "title": "remove, remove_if and unique return counts",
+      "category": "library",
+      "summary": "std::list and std::forward_list remove, remove_if and unique return how many elements they removed.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-logical-traits",
+      "title": "std::conjunction, std::disjunction and std::negation",
+      "category": "library",
+      "summary": "Type traits that combine other traits with short-circuit logic.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-make-from-tuple",
+      "title": "std::make_from_tuple",
+      "category": "library",
+      "summary": "Constructs an object using a tuple's elements as the constructor arguments.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-make-reverse-iterator",
+      "title": "std::make_reverse_iterator",
+      "category": "library",
+      "summary": "Builds a reverse iterator with its template argument deduced.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_make_reverse_iterator); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-make-unique",
+      "title": "std::make_unique",
+      "category": "library",
+      "summary": "Creates an object and returns it in a std::unique_ptr without writing new.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_make_unique); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-map-try-emplace",
+      "title": "try_emplace and insert_or_assign",
+      "category": "library",
+      "summary": "std::map and std::unordered_map get members that insert without moving from the argument when the key exists, or that overwrite the value.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-math-special-functions",
+      "title": "Mathematical special functions",
+      "category": "library",
+      "summary": "<cmath> gains functions such as std::beta, std::riemann_zeta, std::legendre and the Bessel functions.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-modules",
+      "title": "Standard library modules",
+      "category": "library",
+      "summary": "import std; and import std.compat; make the whole standard library available as modules.",
+      "topic": "modern",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-move-iterator-concept",
+      "title": "move_iterator and iterator concepts",
+      "category": "library",
+      "summary": "std::move_iterator supports the ranges iterator concepts.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_move_iterator_concept); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-move-only-function",
+      "title": "std::move_only_function",
+      "category": "library",
+      "summary": "A function wrapper that can hold callables that cannot be copied.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-node-extract",
+      "title": "Node handles and merge",
+      "category": "library",
+      "summary": "extract removes an element from a map or set as a node that can be changed and reinserted, and merge moves elements between containers without copying.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-nonmember-container-access",
+      "title": "std::size, std::empty and std::data",
+      "category": "library",
+      "summary": "Free functions that work on containers, arrays and initializer lists alike.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-not-fn",
+      "title": "std::not_fn",
+      "category": "library",
+      "summary": "Wraps a callable so that it returns the logical negation of its result.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-null-iterators",
+      "title": "Null forward iterators",
+      "category": "library",
+      "summary": "Value-initialised forward iterators compare equal to each other, so they can represent an empty range.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_null_iterators); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-observable-checkpoint",
+      "title": "std::observable_checkpoint",
+      "category": "library",
+      "summary": "Marks a point at which preceding observable behaviour must have happened even if later code has undefined behaviour.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_observable_checkpoint); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-optional-range-support",
+      "title": "std::optional as a range",
+      "category": "library",
+      "summary": "std::optional has begin and end, so it can be used with range-based for and range algorithms.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_optional_range_support); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-out-ptr",
+      "title": "std::out_ptr and std::inout_ptr",
+      "category": "library",
+      "summary": "Adapt smart pointers to C-style APIs that return a pointer through an output parameter.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-parallel-algorithm",
+      "title": "Parallel algorithm overloads",
+      "category": "library",
+      "summary": "Most standard algorithms accept an execution policy as their first argument, so they can run in parallel.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-philox-engine",
+      "title": "std::philox_engine",
+      "category": "library",
+      "summary": "A counter-based random number engine that supports parallel generation.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_philox_engine); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-polymorphic",
+      "title": "std::polymorphic",
+      "category": "library",
+      "summary": "A value-semantic wrapper that owns a heap-allocated object of a base type or a derived type, copying it with the right type.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_polymorphic); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-polymorphic-allocator",
+      "title": "Default argument for polymorphic_allocator",
+      "category": "library",
+      "summary": "std::pmr::polymorphic_allocator can be used with no template argument.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-quoted-string-io",
+      "title": "std::quoted",
+      "category": "library",
+      "summary": "Reads and writes strings surrounded by quotes, handling escapes.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_quoted_string_io); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-as-const",
+      "title": "std::views::as_const",
+      "category": "library",
+      "summary": "A view that gives read-only access to the elements of a range.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-as-input",
+      "title": "std::views::as_input",
+      "category": "library",
+      "summary": "A view that presents a range as an input range.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ranges_as_input); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-as-rvalue",
+      "title": "std::views::as_rvalue",
+      "category": "library",
+      "summary": "A view that yields each element as an rvalue, so algorithms move from them.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-cache-latest",
+      "title": "std::views::cache_latest",
+      "category": "library",
+      "summary": "A view that stores the latest element computed by an earlier view, so it is computed once.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ranges_cache_latest); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-cartesian-product",
+      "title": "std::views::cartesian_product",
+      "category": "library",
+      "summary": "A view of every combination of elements taken from several ranges.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-chunk",
+      "title": "std::views::chunk",
+      "category": "library",
+      "summary": "Splits a range into consecutive chunks of a given size.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ranges_chunk); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-chunk-by",
+      "title": "std::views::chunk_by",
+      "category": "library",
+      "summary": "Splits a range into runs of adjacent elements that satisfy a predicate.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang18",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-concat",
+      "title": "std::views::concat",
+      "category": "library",
+      "summary": "Joins several ranges end to end into one view.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ranges_concat); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang23",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-contains",
+      "title": "std::ranges::contains",
+      "category": "library",
+      "summary": "Tests whether a range holds a value or a subrange.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-enumerate",
+      "title": "std::views::enumerate",
+      "category": "library",
+      "summary": "Pairs each element of a range with its index.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang23",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-filter",
+      "title": "Extensions to std::views::filter",
+      "category": "library",
+      "summary": "Additions to filter_view that make it usable with input ranges.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ranges_filter); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-find-last",
+      "title": "std::ranges::find_last",
+      "category": "library",
+      "summary": "Finds the last element that matches a value or a predicate.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-fold",
+      "title": "std::ranges::fold_left and fold_right",
+      "category": "library",
+      "summary": "Reduce a range with a binary operation, starting from either end.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang23",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-indices",
+      "title": "std::views::indices",
+      "category": "library",
+      "summary": "A view of the integers from 0 up to a given size.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ranges_indices); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang22",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-iota",
+      "title": "std::ranges::iota",
+      "category": "library",
+      "summary": "Fills a range with consecutively increasing values.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ranges_iota); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-join-with",
+      "title": "std::views::join_with",
+      "category": "library",
+      "summary": "Joins a range of ranges, putting a separator between them.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang21",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-repeat",
+      "title": "std::views::repeat",
+      "category": "library",
+      "summary": "A view that repeats a value, either endlessly or a given number of times.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-slide",
+      "title": "std::views::slide",
+      "category": "library",
+      "summary": "A view of every window of a given size over a range.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-starts-ends-with",
+      "title": "std::ranges::starts_with and ends_with",
+      "category": "library",
+      "summary": "Test whether a range begins or ends with another range.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-stride",
+      "title": "std::views::stride",
+      "category": "library",
+      "summary": "A view of every nth element of a range.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang23",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-to-container",
+      "title": "std::ranges::to",
+      "category": "library",
+      "summary": "Converts a range into a container, as in std::ranges::to<std::vector>(range).",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_ranges_to_container); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ranges-zip",
+      "title": "std::views::zip",
+      "category": "library",
+      "summary": "Combines several ranges into a range of tuples, with zip_transform, adjacent and similar views.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang22",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-raw-memory-algorithms",
+      "title": "Uninitialised-memory algorithms",
+      "category": "library",
+      "summary": "std::uninitialized_default_construct, uninitialized_value_construct, uninitialized_move and destroy operate on raw memory.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-reference-from-temporary",
+      "title": "std::reference_constructs_from_temporary",
+      "category": "library",
+      "summary": "Type traits that detect when a reference would bind to a temporary object.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_reference_from_temporary); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc13",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-reference-wrapper",
+      "title": "reference_wrapper comparisons",
+      "category": "library",
+      "summary": "std::reference_wrapper supports comparison operators.",
+      "topic": "operators",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_reference_wrapper); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-remove-cvref",
+      "title": "std::remove_cvref",
+      "category": "library",
+      "summary": "A type trait that removes references and then const and volatile.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-replaceable-contract-violation-handler",
+      "title": "Replaceable contract-violation handler",
+      "category": "library",
+      "summary": "A program can supply its own function that is called when a contract assertion fails.",
+      "topic": "modern",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_replaceable_contract_violation_handler); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-result-of-sfinae",
+      "title": "SFINAE-friendly std::result_of",
+      "category": "library",
+      "summary": "std::result_of has no member type, instead of causing an error, when the call is invalid.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_result_of_sfinae); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-robust-nonmodifying-seq-ops",
+      "title": "Two-range overloads of equal, mismatch and is_permutation",
+      "category": "library",
+      "summary": "These algorithms take the end of both ranges, so they stop safely when the ranges differ in length.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_robust_nonmodifying_seq_ops); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-sample",
+      "title": "std::sample",
+      "category": "library",
+      "summary": "Picks a random sample of elements from a range.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-saturation-arithmetic",
+      "title": "Saturation arithmetic",
+      "category": "library",
+      "summary": "std::add_sat, std::sub_sat, std::mul_sat, std::div_sat and std::saturate_cast clamp to the type's limits instead of overflowing.",
+      "topic": "operators",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_saturation_arithmetic); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang18",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-scoped-lock",
+      "title": "std::scoped_lock",
+      "category": "library",
+      "summary": "Locks several mutexes at once without risking deadlock and unlocks them at scope exit.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-shared-ptr-arrays",
+      "title": "std::shared_ptr for arrays",
+      "category": "library",
+      "summary": "std::shared_ptr<T[]> manages an array and supports operator[].",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-shared-ptr-weak-type",
+      "title": "shared_ptr::weak_type",
+      "category": "library",
+      "summary": "A member type naming the std::weak_ptr that corresponds to a shared_ptr.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-shared-timed-mutex",
+      "title": "std::shared_timed_mutex",
+      "category": "library",
+      "summary": "A mutex that allows many readers or one writer, with timed waits.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_shared_timed_mutex); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-shift",
+      "title": "std::shift_left and std::shift_right",
+      "category": "library",
+      "summary": "Move the elements of a range toward the beginning or end.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-smart-ptr-for-overwrite",
+      "title": "make_unique_for_overwrite and make_shared_for_overwrite",
+      "category": "library",
+      "summary": "Create a smart-pointer-owned object whose value is left uninitialised instead of being zeroed.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang20",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-smart-ptr-owner-equality",
+      "title": "Owner-based comparison of smart pointers",
+      "category": "library",
+      "summary": "std::owner_equal and std::owner_hash compare shared_ptr and weak_ptr by ownership, which lets them be keys in unordered containers.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_smart_ptr_owner_equality); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-span-at",
+      "title": "std::span::at",
+      "category": "library",
+      "summary": "A bounds-checked element access that throws on a bad index.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_span_at); the standard's own text was not checked for this feature."
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang18",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ssize",
+      "title": "std::ssize",
+      "category": "library",
+      "summary": "Returns a container's size as a signed integer.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-sstream-from-string-view",
+      "title": "String streams from string_view",
+      "category": "library",
+      "summary": "The string stream classes can be constructed from, and have their buffer set from, a std::string_view.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_sstream_from_string_view); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-start-lifetime-as",
+      "title": "std::start_lifetime_as",
+      "category": "library",
+      "summary": "Begins the lifetime of an object in existing storage, such as a buffer read from a file or network.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-starts-ends-with",
+      "title": "string::starts_with and ends_with",
+      "category": "library",
+      "summary": "std::string and std::string_view can test whether they begin or end with a given text.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-stdatomic-h",
+      "title": "<stdatomic.h>",
+      "category": "library",
+      "summary": "A header that lets C++ code use the C atomic names, such as atomic_int, with the same meaning as in C.",
+      "topic": "headers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-stdbit-h",
+      "title": "<stdbit.h>",
+      "category": "library",
+      "summary": "A header that gives C++ code the C bit utilities, such as stdc_count_ones.",
+      "topic": "headers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_stdbit_h); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-stdckdint-h",
+      "title": "<stdckdint.h>",
+      "category": "library",
+      "summary": "A header that gives C++ code the C checked-integer macros, such as ckd_add.",
+      "topic": "headers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_stdckdint_h); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-string-contains",
+      "title": "string::contains",
+      "category": "library",
+      "summary": "std::string and std::string_view can test whether they hold a given character or text.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-string-resize-and-overwrite",
+      "title": "string::resize_and_overwrite",
+      "category": "library",
+      "summary": "Resizes a std::string and lets a callback fill its buffer directly, avoiding a zero-fill first.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_string_resize_and_overwrite); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-string-subview",
+      "title": "basic_string::subview",
+      "category": "library",
+      "summary": "Returns a std::basic_string_view for part of a string, without copying.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_string_subview); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang22",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-string-udls",
+      "title": "String literal suffix s",
+      "category": "library",
+      "summary": "\"text\"s creates a std::string directly from a literal.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_string_udls); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-submdspan",
+      "title": "std::submdspan",
+      "category": "library",
+      "summary": "Takes a slice of a std::mdspan as another std::mdspan.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_submdspan); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-syncbuf",
+      "title": "std::basic_syncbuf",
+      "category": "library",
+      "summary": "A stream buffer that collects output and writes it in one piece, used by std::osyncstream.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-to-address",
+      "title": "std::to_address",
+      "category": "library",
+      "summary": "Gets the raw address from a pointer-like object, including fancy pointers and iterators.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc8",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-to-array",
+      "title": "std::to_array",
+      "category": "library",
+      "summary": "Creates a std::array from a built-in array or an initializer list, deducing the size.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-to-string",
+      "title": "std::to_string for floating point",
+      "category": "library",
+      "summary": "std::to_string produces the shortest accurate text for floating-point values, matching std::format.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_to_string); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-to-underlying",
+      "title": "std::to_underlying",
+      "category": "library",
+      "summary": "Converts an enumeration value to its underlying integer type.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-transformation-trait-aliases",
+      "title": "Transformation trait aliases",
+      "category": "library",
+      "summary": "Alias templates such as std::remove_const_t and std::enable_if_t give the result of a type trait without ::type.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_transformation_trait_aliases); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-transparent-operators",
+      "title": "Transparent operator functors",
+      "category": "library",
+      "summary": "std::less<>, std::plus<> and the other operator functors with no type argument accept arguments of any types.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-tuple-element-t",
+      "title": "std::tuple_element_t",
+      "category": "library",
+      "summary": "An alias for the type of a tuple element, without typename and ::type.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_tuple_element_t); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-tuple-like",
+      "title": "Tuple-like protocol",
+      "category": "library",
+      "summary": "std::pair, std::tuple and std::array can be constructed from, and compared with, any tuple-like object.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc14",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-tuples-by-type",
+      "title": "Tuple access by type",
+      "category": "library",
+      "summary": "std::get<T>(tuple) selects an element by its type when that type appears only once.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_tuples_by_type); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-type-identity",
+      "title": "std::type_identity",
+      "category": "library",
+      "summary": "A type trait that returns its argument unchanged, used to block template argument deduction.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-type-order",
+      "title": "std::type_order",
+      "category": "library",
+      "summary": "Gives a compile-time ordering of types, for sorting them.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp26",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_type_order); the standard's own text was not checked for this feature."
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-type-trait-variable-templates",
+      "title": "Type trait variable templates",
+      "category": "library",
+      "summary": "Variable templates such as std::is_integral_v give a trait's value without ::value.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-uncaught-exceptions",
+      "title": "std::uncaught_exceptions",
+      "category": "library",
+      "summary": "Returns how many exceptions are currently propagating, which lets a destructor tell whether it runs during unwinding.",
+      "topic": "exceptions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-unordered-map-try-emplace",
+      "title": "try_emplace for unordered_map",
+      "category": "library",
+      "summary": "std::unordered_map gets try_emplace and insert_or_assign.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-unreachable",
+      "title": "std::unreachable",
+      "category": "library",
+      "summary": "Marks a point in the code that can never be reached, so the compiler can optimise on that basis.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp23",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc12",
+            "kind": "added"
+          }
+        ],
+        "clang": [
+          {
+            "version": "clang15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-unwrap-ref",
+      "title": "std::unwrap_reference",
+      "category": "library",
+      "summary": "A type trait that turns std::reference_wrapper<T> into T& and leaves other types alone.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp20",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc9",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-void-t",
+      "title": "std::void_t",
+      "category": "library",
+      "summary": "An alias that maps any list of types to void, used to detect whether an expression is valid.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added"
+          }
+        ],
+        "gcc": [
+          {
+            "version": "gcc6",
             "kind": "added"
           }
         ]
