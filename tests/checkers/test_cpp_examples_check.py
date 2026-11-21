@@ -124,7 +124,7 @@ class CheckerSetupTests(unittest.TestCase):
             self.assertEqual(run(checker.check_coverage, self.data), ["lib-unique-ptr is in both LIBRARY_EVIDENCE and LIBRARY_PROBES"])
 
     def test_the_probe_tables_have_the_documented_sizes(self) -> None:
-        self.assertEqual((len(checker.LANGUAGE_EVIDENCE), len(checker.HEADER_PROBES), len(checker.LIFECYCLE_PROBES), len(checker.STANDARD_LEAKAGE), len(checker.LIBRARY_EVIDENCE), len(checker.LIBRARY_LEAKAGE), len(checker.LIBRARY_PROBES)), (141, 63, 20, 11, 207, 14, 57))
+        self.assertEqual((len(checker.LANGUAGE_EVIDENCE), len(checker.HEADER_PROBES), len(checker.LIFECYCLE_PROBES), len(checker.STANDARD_LEAKAGE), len(checker.LIBRARY_EVIDENCE), len(checker.LIBRARY_LEAKAGE), len(checker.LIBRARY_PROBES)), (141, 63, 20, 11, 208, 13, 68))
         self.assertEqual(sum(1 for e in checker.LANGUAGE_EVIDENCE.values() if e["probe"]), 76)
         self.assertEqual(sum(1 for e in checker.LANGUAGE_EVIDENCE.values() if e["macros"]), 65)
 

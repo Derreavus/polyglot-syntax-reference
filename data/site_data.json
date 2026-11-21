@@ -20076,12 +20076,12 @@
       "slug": "header-shared-mutex",
       "title": "<shared_mutex>",
       "category": "library",
-      "summary": "std::shared_mutex allows many readers or one writer at a time.",
+      "summary": "Declares std::shared_timed_mutex and std::shared_lock, which allow many readers or one writer at a time; C++17 adds std::shared_mutex.",
       "topic": "headers",
       "history": {
         "cpp": [
           {
-            "version": "cpp17",
+            "version": "cpp14",
             "kind": "added"
           }
         ]
@@ -21629,6 +21629,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-bitset-to-ullong",
+      "title": "std::bitset::to_ullong",
+      "category": "library",
+      "summary": "Converts a std::bitset to unsigned long long, which can hold more bits than the unsigned long returned by to_ulong on some platforms, and throws std::overflow_error if the value does not fit.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-bool-constant",
       "title": "std::bool_constant",
       "category": "library",
@@ -22593,6 +22609,38 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-container-const-iterators",
+      "title": "cbegin, cend, crbegin and crend members",
+      "category": "library",
+      "summary": "Container and std::string members that always return const iterators, even when called on a non-const object.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-container-emplace",
+      "title": "emplace, emplace_back, emplace_front and emplace_hint",
+      "category": "library",
+      "summary": "Construct an element directly inside a container from constructor arguments instead of building a temporary and moving it: emplace_back on vector, emplace_front on list and deque, emplace_hint on the associative containers, and emplace on the queue adaptors.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-containers-ranges",
       "title": "Range construction and insertion",
       "category": "library",
@@ -22654,6 +22702,22 @@
         "gcc": [
           {
             "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ctype-blank",
+      "title": "std::ctype_base::blank",
+      "category": "library",
+      "summary": "A character-class mask for blank characters (space and tab in the C locale), matching isblank.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -24500,6 +24564,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-numeric-limits-lowest",
+      "title": "numeric_limits::lowest and max_digits10",
+      "category": "library",
+      "summary": "std::numeric_limits<T>::lowest() is the most negative finite value (for floating-point types min() is the smallest positive one), and max_digits10 is the number of decimal digits needed to write a value and read back the same one.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-observable-checkpoint",
       "title": "std::observable_checkpoint",
       "category": "library",
@@ -25607,6 +25687,23 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-shared-mutex",
+      "title": "std::shared_mutex",
+      "category": "library",
+      "summary": "A mutex that allows many readers or one writer, without the timed waits of std::shared_timed_mutex.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp17",
+            "kind": "added",
+            "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_shared_mutex); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-shared-ptr",
       "title": "std::shared_ptr and std::weak_ptr",
       "category": "library",
@@ -25699,6 +25796,22 @@
         "gcc": [
           {
             "version": "gcc10",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-shrink-to-fit",
+      "title": "shrink_to_fit",
+      "category": "library",
+      "summary": "A non-binding request on vector, deque and std::string to release unused capacity.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -25981,6 +26094,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-stream-swap-move",
+      "title": "Swappable and movable streams",
+      "category": "library",
+      "summary": "Stream and stream-buffer classes gain a swap member, and std::basic_ios gains move and set_rdbuf so that streams can be moved.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-string-contains",
       "title": "string::contains",
       "category": "library",
@@ -25996,6 +26125,22 @@
         "gcc": [
           {
             "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-string-front-back-pop-back",
+      "title": "std::string front, back and pop_back",
+      "category": "library",
+      "summary": "front and back access the first and last character of a std::string, and pop_back removes the last one.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -26111,6 +26256,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-swap-members",
+      "title": "swap members of pair, valarray and the container adaptors",
+      "category": "library",
+      "summary": "std::pair, std::valarray, std::queue, std::stack and std::priority_queue gain a swap member function.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-syncbuf",
       "title": "std::basic_syncbuf",
       "category": "library",
@@ -26154,6 +26315,22 @@
       "category": "library",
       "summary": "std::thread starts a new thread of execution, and std::this_thread offers sleep_for, yield and get_id for the current one.",
       "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-time-get-format",
+      "title": "time_get::get with a format string",
+      "category": "library",
+      "summary": "std::time_get::get parses a date and time according to a format string, which std::get_time builds on.",
+      "topic": "functions",
       "history": {
         "cpp": [
           {
@@ -26279,14 +26456,9 @@
       "history": {
         "cpp": [
           {
-            "version": "cpp17",
-            "kind": "added"
-          }
-        ],
-        "gcc": [
-          {
-            "version": "gcc7",
-            "kind": "added"
+            "version": "cpp14",
+            "kind": "added",
+            "note": "N3421 added these in C++14. The feature-test macro reached its C++17 value (201510) later with other changes, which is why the macro alone would place this feature in C++17."
           }
         ]
       }
@@ -26391,6 +26563,22 @@
       "title": "std::type_index",
       "category": "library",
       "summary": "A copyable, hashable wrapper around std::type_info that can be used as a key in associative containers.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-type-info-hash-code",
+      "title": "std::type_info::hash_code",
+      "category": "library",
+      "summary": "Returns a hash of a type that is the same for equal types, which std::type_index builds on so types can be keys in hashed containers.",
       "topic": "types",
       "history": {
         "cpp": [
