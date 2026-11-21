@@ -115,8 +115,16 @@ class CheckerSetupTests(unittest.TestCase):
         with mock.patch.dict(checker.LIBRARY_EVIDENCE, {"lib-ghost": {"macro": "__cpp_lib_ghost", "std": "20"}}):
             self.assertEqual(run(checker.check_coverage, self.data), ["LIBRARY_EVIDENCE has lib-ghost, which is not a feature in the data"])
 
+    def test_a_library_probe_for_a_missing_feature_is_reported(self) -> None:
+        with mock.patch.dict(checker.LIBRARY_PROBES, {"lib-ghost": ("11", "int x;")}):
+            self.assertEqual(run(checker.check_coverage, self.data), ["LIBRARY_PROBES has lib-ghost, which is not a feature in the data"])
+
+    def test_a_feature_in_both_library_tables_is_reported(self) -> None:
+        with mock.patch.dict(checker.LIBRARY_EVIDENCE, {"lib-unique-ptr": {"macro": "__cpp_lib_ghost", "std": "11"}}):
+            self.assertEqual(run(checker.check_coverage, self.data), ["lib-unique-ptr is in both LIBRARY_EVIDENCE and LIBRARY_PROBES"])
+
     def test_the_probe_tables_have_the_documented_sizes(self) -> None:
-        self.assertEqual((len(checker.LANGUAGE_EVIDENCE), len(checker.HEADER_PROBES), len(checker.LIFECYCLE_PROBES), len(checker.STANDARD_LEAKAGE), len(checker.LIBRARY_EVIDENCE), len(checker.LIBRARY_LEAKAGE)), (141, 63, 20, 11, 207, 14))
+        self.assertEqual((len(checker.LANGUAGE_EVIDENCE), len(checker.HEADER_PROBES), len(checker.LIFECYCLE_PROBES), len(checker.STANDARD_LEAKAGE), len(checker.LIBRARY_EVIDENCE), len(checker.LIBRARY_LEAKAGE), len(checker.LIBRARY_PROBES)), (141, 63, 20, 11, 207, 14, 57))
         self.assertEqual(sum(1 for e in checker.LANGUAGE_EVIDENCE.values() if e["probe"]), 76)
         self.assertEqual(sum(1 for e in checker.LANGUAGE_EVIDENCE.values() if e["macros"]), 65)
 

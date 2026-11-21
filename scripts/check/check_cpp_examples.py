@@ -16,12 +16,12 @@ What it checks:
 2. Implementation events. For every GCC and Clang event at a verified version, the first configuration whose feature-test macro or
    probe supports the feature must be that version. An event the evidence confirms must not carry the "Documented by the vendor"
    note, and one it does not confirm must carry it, so the markers in the data stay honest in both directions.
-3. Standard boundaries. Library features (one per __cpp_lib_* macro) must have their macro defined at their own standard and not at the one before on a strict
-   configuration, unless listed in LIBRARY_LEAKAGE. A language or header probe must compile at its own standard and fail at the one before on at least one strict
+3. Standard boundaries. Library features with a __cpp_lib_* macro must have it defined at their own standard and not at the one before on a strict
+   configuration, unless listed in LIBRARY_LEAKAGE. A language, header or macro-less library probe (LIBRARY_PROBES) must compile at its own standard and fail at the one before on at least one strict
    configuration, unless it is listed in STANDARD_LEAKAGE (compilers accept it early, or none implements it yet).
 4. Lifecycle. For each removed facility, Clang with libc++ and GCC with libstdc++ must behave as recorded in the data at the
    standard that removed it (rejects, still accepts, or changes meaning).
-5. Coverage. Every header and lifecycle feature in the data has a probe table entry, and every table entry belongs to a feature.
+5. Coverage. Every header and lifecycle feature, and every library feature, has a probe table entry (LIBRARY_EVIDENCE for a macro, LIBRARY_PROBES for none), and every table entry belongs to a feature.
 
 The standard's own text (Annex C, Annex D, the header tables) and the vendors' documentation are not re-read here; the data cites them.
 
@@ -49,7 +49,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "renderer"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from cpp_probe_data import HEADER_PROBES, LANGUAGE_EVIDENCE, LIBRARY_EVIDENCE, LIBRARY_LEAKAGE, LIFECYCLE_PROBES, STANDARD_LEAKAGE  # noqa: E402
+from cpp_probe_data import HEADER_PROBES, LANGUAGE_EVIDENCE, LIBRARY_EVIDENCE, LIBRARY_LEAKAGE, LIBRARY_PROBES, LIFECYCLE_PROBES, STANDARD_LEAKAGE  # noqa: E402
 from load_data import load_data  # noqa: E402
 
 LANGUAGE = "cpp"
@@ -189,7 +189,10 @@ def check_markers(data: dict, report: Report) -> None:
 def evidence_first(slug: str, track: str, cfgs: dict, versions: list[int]) -> tuple[set[int], bool]:
     """Versions at which the macro or the probe first supports the feature, and whether every needed configuration was found."""
     found = set(); complete = True
-    if slug.startswith("lib-"):
+    if slug in LIBRARY_PROBES:
+        std, code = LIBRARY_PROBES[slug]
+        tests = [lambda cfg, std=std, code=code: compiles(cfg, std, code)]
+    elif slug.startswith("lib-"):
         name, low = LIBRARY_EVIDENCE[slug]["macro"].removeprefix("__cpp_lib_"), LIBRARY_EVIDENCE[slug].get("min_value", 1)
         tests = [lambda cfg, name=name, low=low: cfg.lib_macros().get(name, 0) >= low]
     elif slug.startswith("header-"):
@@ -217,7 +220,7 @@ def check_events(data: dict, cfgs: dict, report: Report, strict: bool) -> None:
                 v = major(e["version"], track)
                 if v not in versions: continue
                 has_note = DOCUMENTED in e.get("note", "")
-                known = LIBRARY_EVIDENCE if slug.startswith("lib-") else HEADER_PROBES if slug.startswith("header-") else LANGUAGE_EVIDENCE
+                known = LIBRARY_PROBES if slug in LIBRARY_PROBES else LIBRARY_EVIDENCE if slug.startswith("lib-") else HEADER_PROBES if slug.startswith("header-") else LANGUAGE_EVIDENCE
                 if slug not in known:
                     if not has_note: report.problem(f"{track} {e['version']} {slug}: no evidence table entry, so the event must carry the documented-only note")
                     continue
@@ -238,7 +241,7 @@ def check_boundaries(data: dict, cfgs: dict, report: Report, strict: bool) -> No
         (report.problem if strict else report.skipped.append)("GCC 16 and Clang 23 are both missing, so no standard boundary was checked")
         return
     feats = features(data)
-    items = [(s, ev["std"], ev["probe"]) for s, ev in LANGUAGE_EVIDENCE.items() if ev["probe"]] + [(s, std, code) for s, (std, code) in HEADER_PROBES.items()]
+    items = [(s, ev["std"], ev["probe"]) for s, ev in LANGUAGE_EVIDENCE.items() if ev["probe"]] + [(s, std, code) for s, (std, code) in HEADER_PROBES.items()] + [(s, std, code) for s, (std, code) in LIBRARY_PROBES.items()]
     for slug, std, code in items:
         if slug not in feats: continue
         report.count("standard boundaries")
@@ -314,10 +317,13 @@ def check_coverage(data: dict, report: Report) -> None:
     for slug in LANGUAGE_EVIDENCE:
         if slug not in feats: report.problem(f"LANGUAGE_EVIDENCE has {slug}, which is not a feature in the data")
     for slug in feats:
-        if slug.startswith("lib-") and slug not in LIBRARY_EVIDENCE: report.problem(f"library feature {slug} has no evidence entry")
+        if slug.startswith("lib-") and slug not in LIBRARY_EVIDENCE and slug not in LIBRARY_PROBES: report.problem(f"library feature {slug} has no evidence entry")
     for slug in LIBRARY_EVIDENCE:
         if slug not in feats: report.problem(f"LIBRARY_EVIDENCE has {slug}, which is not a feature in the data")
-    report.count("probe table entries", len(HEADER_PROBES) + len(LANGUAGE_EVIDENCE) + len(LIFECYCLE_PROBES) + len(LIBRARY_EVIDENCE))
+    for slug in LIBRARY_PROBES:
+        if slug not in feats: report.problem(f"LIBRARY_PROBES has {slug}, which is not a feature in the data")
+        if slug in LIBRARY_EVIDENCE: report.problem(f"{slug} is in both LIBRARY_EVIDENCE and LIBRARY_PROBES")
+    report.count("probe table entries", len(HEADER_PROBES) + len(LANGUAGE_EVIDENCE) + len(LIFECYCLE_PROBES) + len(LIBRARY_EVIDENCE) + len(LIBRARY_PROBES))
 
 
 def run(data: dict, cfgs: dict, strict: bool, jobs: int) -> Report:

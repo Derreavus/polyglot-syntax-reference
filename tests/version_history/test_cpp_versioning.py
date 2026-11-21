@@ -145,7 +145,7 @@ class CppVersionDataTests(unittest.TestCase):
 
     def test_every_feature_is_on_the_standards_timeline(self) -> None:
         self.assertTrue(all(history(f, STD) for f in self.features.values()))
-        self.assertEqual({t: sum(1 for f in self.features.values() if history(f, t)) for t in (STD, GCC, CLANG, MSVC)}, {STD: 452, GCC: 353, CLANG: 226, MSVC: 81})
+        self.assertEqual({t: sum(1 for f in self.features.values() if history(f, t)) for t in (STD, GCC, CLANG, MSVC)}, {STD: 509, GCC: 353, CLANG: 226, MSVC: 81})
 
     def test_documented_only_notes_appear_only_inside_the_verified_range(self) -> None:
         marker = "Documented by the vendor; no probe here confirmed"
@@ -203,10 +203,10 @@ class CppVersionDataTests(unittest.TestCase):
 
     def test_library_features_come_from_feature_test_macros(self) -> None:
         lib = {s: f for s, f in self.features.items() if s.startswith("lib-")}
-        self.assertEqual(len(lib), 207)
+        self.assertEqual(len(lib), 264)   # 207 placed by a feature-test macro, 57 with no macro placed by a standard-boundary probe
         self.assertTrue(all(f["category"] == "library" for f in lib.values()))
         from collections import Counter
-        self.assertEqual(Counter(history(f, STD)[0]["version"] for f in lib.values()), {"cpp14": 19, "cpp17": 40, "cpp20": 45, "cpp23": 48, "cpp26": 55})
+        self.assertEqual(Counter(history(f, STD)[0]["version"] for f in lib.values()), {"cpp11": 56, "cpp14": 20, "cpp17": 40, "cpp20": 45, "cpp23": 48, "cpp26": 55})
         for slug, std in (("lib-make-unique", "cpp14"), ("lib-void-t", "cpp17"), ("lib-scoped-lock", "cpp17"), ("lib-bit-cast", "cpp20"), ("lib-erase-if", "cpp20"),
                           ("lib-string-contains", "cpp23"), ("lib-ranges-zip", "cpp23"), ("lib-saturation-arithmetic", "cpp26"), ("lib-function-ref", "cpp26")):
             self.assertEqual(history(self.features[slug], STD)[0]["version"], std, slug)
@@ -236,8 +236,8 @@ class CppVersionPageTests(unittest.TestCase):
         rels = {STD: "cpp/versions/index.html", GCC: "cpp/versions/gcc/index.html", CLANG: "cpp/versions/clang/index.html", MSVC: "cpp/versions/msvc/index.html"}
         self.pages = {t: render_versions_page(self.language, self.tracks[t], self.data, page_rel=rel) for t, rel in rels.items()}
 
-    def test_the_pages_list_452_353_226_and_81_features(self) -> None:
-        self.assertEqual({t: p.count('class="feature-card"') for t, p in self.pages.items()}, {STD: 452, GCC: 353, CLANG: 226, MSVC: 81})
+    def test_the_pages_list_509_353_226_and_81_features(self) -> None:
+        self.assertEqual({t: p.count('class="feature-card"') for t, p in self.pages.items()}, {STD: 509, GCC: 353, CLANG: 226, MSVC: 81})
 
     def test_every_version_has_a_block(self) -> None:
         for track, page in self.pages.items():

@@ -20921,6 +20921,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-addressof",
+      "title": "std::addressof",
+      "category": "library",
+      "summary": "Gets the real address of an object even when its type overloads operator&.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-addressof-constexpr",
       "title": "constexpr std::addressof",
       "category": "library",
@@ -20976,6 +20992,22 @@
         "gcc": [
           {
             "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-algorithm-predicates",
+      "title": "std::all_of, std::any_of and std::none_of",
+      "category": "library",
+      "summary": "Checks whether all, any or none of the elements in a range satisfy a predicate.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -21040,6 +21072,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-allocator-model",
+      "title": "Allocator and pointer traits",
+      "category": "library",
+      "summary": "std::allocator_traits and std::pointer_traits give generic code one interface to allocators and pointer-like types; std::scoped_allocator_adaptor and std::align come with them.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-allocator-traits-is-always-equal",
       "title": "allocator_traits::is_always_equal",
       "category": "library",
@@ -21077,6 +21125,22 @@
         "gcc": [
           {
             "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-array",
+      "title": "std::array",
+      "category": "library",
+      "summary": "A fixed-size array wrapper with a container interface and no dynamic allocation.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -21194,6 +21258,38 @@
         "clang": [
           {
             "version": "clang15",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-async-future",
+      "title": "std::async, std::future and std::promise",
+      "category": "library",
+      "summary": "Runs work asynchronously and retrieves the result through std::future, std::promise, std::packaged_task and std::shared_future.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-atomic",
+      "title": "std::atomic",
+      "category": "library",
+      "summary": "Atomic types and operations: std::atomic, std::atomic_flag, memory orderings and fences.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -21408,6 +21504,22 @@
         "gcc": [
           {
             "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-bind",
+      "title": "std::bind",
+      "category": "library",
+      "summary": "Binds some arguments to a callable and leaves the rest to be supplied later, using placeholders such as std::placeholders::_1.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -21633,6 +21745,54 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-c99-math",
+      "title": "C99 math functions in <cmath>",
+      "category": "library",
+      "summary": "C99 math functions added to <cmath>, such as std::cbrt, std::hypot, std::round, std::trunc, std::log2 and std::lgamma.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-cfenv",
+      "title": "<cfenv> floating-point environment",
+      "category": "library",
+      "summary": "Access to the floating-point environment: rounding modes, exception flags and std::fenv_t.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-chrono-clocks",
+      "title": "std::chrono durations, time points and clocks",
+      "category": "library",
+      "summary": "Durations, time points and clocks such as std::chrono::steady_clock and high_resolution_clock for measuring and comparing time.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-chrono-udls",
       "title": "Chrono literal suffixes",
       "category": "library",
@@ -21740,6 +21900,22 @@
             "version": "cpp14",
             "kind": "added",
             "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_complex_udls); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-condition-variable",
+      "title": "std::condition_variable",
+      "category": "library",
+      "summary": "Lets threads wait until another thread signals a condition, with std::condition_variable, std::condition_variable_any and std::cv_status.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
           }
         ]
       }
@@ -22446,6 +22622,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-copy-if-copy-n",
+      "title": "std::copy_if and std::copy_n",
+      "category": "library",
+      "summary": "std::copy_if copies only the elements that satisfy a predicate, and std::copy_n copies a fixed count.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-copyable-function",
       "title": "std::copyable_function",
       "category": "library",
@@ -22469,6 +22661,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-declval",
+      "title": "std::declval",
+      "category": "library",
+      "summary": "Produces a reference to a type in unevaluated contexts such as decltype or sizeof, without needing a usable constructor.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-enable-shared-from-this",
       "title": "weak_from_this",
       "category": "library",
@@ -22484,6 +22692,22 @@
         "gcc": [
           {
             "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-enable-shared-from-this-base",
+      "title": "std::enable_shared_from_this",
+      "category": "library",
+      "summary": "A base class that lets an object already owned by a std::shared_ptr hand out more shared_ptrs to itself with shared_from_this().",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -22535,6 +22759,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-exception-ptr",
+      "title": "std::exception_ptr and nested exceptions",
+      "category": "library",
+      "summary": "Captures, stores and rethrows exceptions with std::exception_ptr, and wraps one exception inside another with std::throw_with_nested.",
+      "topic": "exceptions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-exception-ptr-cast",
       "title": "std::exception_ptr_cast",
       "category": "library",
@@ -22569,6 +22809,54 @@
             "version": "cpp14",
             "kind": "added",
             "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_exchange_function); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-find-if-not",
+      "title": "std::find_if_not",
+      "category": "library",
+      "summary": "Finds the first element that does not satisfy a predicate.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-fixed-width-integers",
+      "title": "Fixed-width integer types",
+      "category": "library",
+      "summary": "Exact-width integer types such as std::int32_t and std::uint64_t, plus the fast, least and maximum-width variants.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-float-format-manipulators",
+      "title": "std::hexfloat and std::defaultfloat",
+      "category": "library",
+      "summary": "std::hexfloat prints and reads floating-point numbers in hexadecimal, and std::defaultfloat restores the default format.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
           }
         ]
       }
@@ -22699,6 +22987,54 @@
         "clang": [
           {
             "version": "clang16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-forward-list",
+      "title": "std::forward_list",
+      "category": "library",
+      "summary": "A singly linked list that stores one pointer per element.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-free-begin-end",
+      "title": "Free std::begin and std::end",
+      "category": "library",
+      "summary": "Free functions that return iterators for containers, arrays and initializer lists, so generic code can write std::begin(x).",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-free-cbegin-cend-rbegin-rend",
+      "title": "Free std::cbegin, std::cend, std::rbegin and std::rend",
+      "category": "library",
+      "summary": "Free functions that return const and reverse iterators for containers and arrays: std::cbegin, std::cend, std::crbegin, std::crend, std::rbegin and std::rend.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp14",
             "kind": "added"
           }
         ]
@@ -22896,6 +23232,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-function",
+      "title": "std::function",
+      "category": "library",
+      "summary": "A copyable wrapper that can hold any callable with a given signature, and throws std::bad_function_call when called while empty.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-function-ref",
       "title": "std::function_ref",
       "category": "library",
@@ -22980,6 +23332,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-handler-getters",
+      "title": "std::get_terminate and std::get_new_handler",
+      "category": "library",
+      "summary": "std::get_terminate and std::get_new_handler read the current handlers, and std::bad_array_new_length is thrown for invalid array sizes in new[].",
+      "topic": "exceptions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-hardware-interference-size",
       "title": "Hardware interference sizes",
       "category": "library",
@@ -23023,6 +23391,22 @@
         "gcc": [
           {
             "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-hash",
+      "title": "std::hash",
+      "category": "library",
+      "summary": "The default hash function object used by the unordered containers, specialised for the built-in and standard library types.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -23084,6 +23468,22 @@
         "gcc": [
           {
             "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-initializer-list",
+      "title": "std::initializer_list",
+      "category": "library",
+      "summary": "A lightweight view over a braced list of values, used by constructors and functions that accept {a, b, c}.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -23234,6 +23634,22 @@
         "clang": [
           {
             "version": "clang17",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-iomanip-additions",
+      "title": "std::put_time, std::get_time and monetary manipulators",
+      "category": "library",
+      "summary": "Stream manipulators std::put_time and std::get_time for dates and times, and std::put_money and std::get_money for monetary values.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -23646,6 +24062,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-lock-guards",
+      "title": "std::lock_guard and std::unique_lock",
+      "category": "library",
+      "summary": "RAII wrappers that lock a mutex on construction and unlock it on destruction; unique_lock adds deferred, timed and transferable locking.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-logical-traits",
       "title": "std::conjunction, std::disjunction and std::negation",
       "category": "library",
@@ -23701,6 +24133,22 @@
             "version": "cpp14",
             "kind": "added",
             "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_make_reverse_iterator); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-make-shared",
+      "title": "std::make_shared and std::allocate_shared",
+      "category": "library",
+      "summary": "Allocates an object and its reference count together and returns a std::shared_ptr; allocate_shared does the same with a custom allocator.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
           }
         ]
       }
@@ -23768,6 +24216,38 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-mem-fn",
+      "title": "std::mem_fn",
+      "category": "library",
+      "summary": "Turns a pointer to a member into a callable object that takes the object as its first argument.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-minmax",
+      "title": "std::minmax and std::minmax_element",
+      "category": "library",
+      "summary": "std::minmax returns the smaller and larger of two values together, and std::minmax_element finds both in a range in one pass.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-modules",
       "title": "Standard library modules",
       "category": "library",
@@ -23783,6 +24263,54 @@
         "clang": [
           {
             "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-move-algorithms",
+      "title": "std::move and std::move_backward algorithms",
+      "category": "library",
+      "summary": "Range algorithms that move elements from one range to another instead of copying them.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-move-forward",
+      "title": "std::move, std::forward and std::move_if_noexcept",
+      "category": "library",
+      "summary": "std::move casts to an rvalue to allow moves, std::forward preserves a value category through a template, and std::move_if_noexcept moves only when that cannot throw.",
+      "topic": "modern",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-move-iterator",
+      "title": "std::move_iterator",
+      "category": "library",
+      "summary": "An iterator adaptor whose dereference yields rvalues, so algorithms move elements instead of copying them; std::make_move_iterator creates one.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -23834,6 +24362,38 @@
         "gcc": [
           {
             "version": "gcc12",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-mutexes",
+      "title": "Mutex types, std::lock and std::call_once",
+      "category": "library",
+      "summary": "mutex, recursive_mutex, timed_mutex and recursive_timed_mutex, plus std::lock, std::try_lock and std::call_once with std::once_flag.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-next-prev",
+      "title": "std::next and std::prev",
+      "category": "library",
+      "summary": "Returns an iterator moved forward or backward by a count without modifying the original iterator.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -23924,6 +24484,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-nullptr-t",
+      "title": "std::nullptr_t and std::max_align_t",
+      "category": "library",
+      "summary": "std::nullptr_t is the type of nullptr, and std::max_align_t is a type whose alignment is the largest the implementation supports.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-observable-checkpoint",
       "title": "std::observable_checkpoint",
       "category": "library",
@@ -23991,6 +24567,22 @@
         "clang": [
           {
             "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-pair-piecewise",
+      "title": "Piecewise construction of std::pair",
+      "category": "library",
+      "summary": "std::piecewise_construct lets std::pair construct each of its members from its own argument list.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -24094,6 +24686,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-quick-exit",
+      "title": "std::quick_exit and std::at_quick_exit",
+      "category": "library",
+      "summary": "Ends the program without running destructors of static objects, running only handlers registered with std::at_quick_exit.",
+      "topic": "exceptions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-quoted-string-io",
       "title": "std::quoted",
       "category": "library",
@@ -24105,6 +24713,38 @@
             "version": "cpp14",
             "kind": "added",
             "note": "Placed in this standard by the value of its feature-test macro (__cpp_lib_quoted_string_io); the standard's own text was not checked for this feature."
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-random-distributions",
+      "title": "Random number distributions",
+      "category": "library",
+      "summary": "Distribution objects such as std::uniform_int_distribution and std::normal_distribution that shape the output of a random engine.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-random-engines",
+      "title": "Random number engines",
+      "category": "library",
+      "summary": "Pseudo-random engines such as std::mt19937 and std::default_random_engine, their adaptors, and std::random_device for non-deterministic seeding.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
           }
         ]
       }
@@ -24693,6 +25333,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-ratio",
+      "title": "std::ratio",
+      "category": "library",
+      "summary": "Compile-time rational numbers, with arithmetic and comparison templates such as std::ratio_add and std::ratio_less.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-raw-memory-algorithms",
       "title": "Uninitialised-memory algorithms",
       "category": "library",
@@ -24708,6 +25364,22 @@
         "gcc": [
           {
             "version": "gcc7",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-ref-and-reference-wrapper",
+      "title": "std::reference_wrapper and std::ref",
+      "category": "library",
+      "summary": "A copyable wrapper around a reference; std::ref and std::cref create them so references can pass through templates and containers.",
+      "topic": "functions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -24760,6 +25432,22 @@
         "clang": [
           {
             "version": "clang19",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-regex",
+      "title": "std::regex and regular-expression algorithms",
+      "category": "library",
+      "summary": "Regular expressions: std::regex, matching and searching with regex_match, regex_search and regex_replace, and the syntax option flags.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -24919,6 +25607,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-shared-ptr",
+      "title": "std::shared_ptr and std::weak_ptr",
+      "category": "library",
+      "summary": "Reference-counted smart pointers: std::shared_ptr shares ownership, std::weak_ptr observes without owning, and std::static_pointer_cast and its siblings convert between them.",
+      "topic": "pointers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-shared-ptr-arrays",
       "title": "std::shared_ptr for arrays",
       "category": "library",
@@ -25002,6 +25706,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-shuffle-iota",
+      "title": "std::shuffle and std::iota",
+      "category": "library",
+      "summary": "std::shuffle randomly reorders a range using a random-number generator, and std::iota fills a range with consecutive values.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-smart-ptr-for-overwrite",
       "title": "make_unique_for_overwrite and make_shared_for_overwrite",
       "category": "library",
@@ -25046,6 +25766,22 @@
         "gcc": [
           {
             "version": "gcc16",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-sortedness-queries",
+      "title": "Sortedness, heap and partition queries",
+      "category": "library",
+      "summary": "std::is_sorted, std::is_heap and std::is_partitioned test a range without changing it; std::partition_copy, std::partition_point and std::is_permutation round out the set.",
+      "topic": "algorithms",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -25267,6 +26003,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-string-numeric-conversions",
+      "title": "std::stoi, std::stod and std::to_string",
+      "category": "library",
+      "summary": "Converts between strings and numbers with std::stoi, std::stod and related functions, and with std::to_string.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-string-resize-and-overwrite",
       "title": "string::resize_and_overwrite",
       "category": "library",
@@ -25374,6 +26126,38 @@
         "gcc": [
           {
             "version": "gcc11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-system-error",
+      "title": "std::error_code and std::system_error",
+      "category": "library",
+      "summary": "std::error_code, std::error_condition and std::system_error describe errors from the operating system and libraries in a portable way.",
+      "topic": "exceptions",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-thread",
+      "title": "std::thread and std::this_thread",
+      "category": "library",
+      "summary": "std::thread starts a new thread of execution, and std::this_thread offers sleep_for, yield and get_id for the current one.",
+      "topic": "concurrency",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]
@@ -25509,6 +26293,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-tuple",
+      "title": "std::tuple",
+      "category": "library",
+      "summary": "A fixed-size heterogeneous container, with make_tuple, tie, forward_as_tuple, tuple_cat, get and the tuple_size and tuple_element traits.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-tuple-element-t",
       "title": "std::tuple_element_t",
       "category": "library",
@@ -25587,6 +26387,22 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-type-index",
+      "title": "std::type_index",
+      "category": "library",
+      "summary": "A copyable, hashable wrapper around std::type_info that can be used as a key in associative containers.",
+      "topic": "types",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-type-order",
       "title": "std::type_order",
       "category": "library",
@@ -25632,6 +26448,70 @@
     },
     {
       "language": "cpp",
+      "slug": "lib-type-traits-primary",
+      "title": "Type category traits",
+      "category": "library",
+      "summary": "Compile-time queries for the category of a type, such as std::is_integral, std::is_pointer, std::is_array and std::is_reference.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-type-traits-properties",
+      "title": "Type property traits",
+      "category": "library",
+      "summary": "Compile-time queries for properties of a type, such as std::is_const, std::is_trivial, std::is_polymorphic and std::has_virtual_destructor, plus std::alignment_of, std::rank and std::extent.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-type-traits-relations",
+      "title": "Type relationship traits",
+      "category": "library",
+      "summary": "Compile-time queries about how types relate and how they can be constructed or assigned, such as std::is_same, std::is_base_of, std::is_convertible and std::is_constructible.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-type-traits-transformations",
+      "title": "Type transformation traits",
+      "category": "library",
+      "summary": "Traits that build a new type from an old one, such as std::remove_reference, std::add_pointer, std::decay, std::enable_if, std::conditional and std::common_type.",
+      "topic": "templates",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
       "slug": "lib-uncaught-exceptions",
       "title": "std::uncaught_exceptions",
       "category": "library",
@@ -25647,6 +26527,38 @@
         "gcc": [
           {
             "version": "gcc6",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-unique-ptr",
+      "title": "std::unique_ptr",
+      "category": "library",
+      "summary": "A smart pointer with sole ownership of a dynamically allocated object, deleting it when the pointer is destroyed; includes std::default_delete.",
+      "topic": "raii",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
+            "kind": "added"
+          }
+        ]
+      }
+    },
+    {
+      "language": "cpp",
+      "slug": "lib-unordered-containers",
+      "title": "Unordered associative containers",
+      "category": "library",
+      "summary": "Hash-table containers: unordered_map, unordered_multimap, unordered_set and unordered_multiset.",
+      "topic": "containers",
+      "history": {
+        "cpp": [
+          {
+            "version": "cpp11",
             "kind": "added"
           }
         ]

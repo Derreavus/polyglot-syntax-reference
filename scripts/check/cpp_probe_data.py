@@ -2,7 +2,7 @@
 
 LANGUAGE_EVIDENCE: language feature -> the standard it belongs to, the feature-test macros that must be defined (name>=value) and an optional probe.
 
-HEADER_PROBES: header feature -> (standard, code). LIFECYCLE_PROBES: lifecycle feature -> how a removal shows up in a compiler. STANDARD_LEAKAGE: probes whose standard boundary
+HEADER_PROBES: header feature -> (standard, code). LIBRARY_PROBES: library feature that has no feature-test macro -> (standard, code). LIFECYCLE_PROBES: lifecycle feature -> how a removal shows up in a compiler. STANDARD_LEAKAGE: probes whose standard boundary
 
 no strict configuration confirms, with the reason.
 """
@@ -449,6 +449,68 @@ LIBRARY_EVIDENCE: dict[str, dict] = {
     'lib-string-subview': {'macro': '__cpp_lib_string_subview', 'std': '26'},
     'lib-submdspan': {'macro': '__cpp_lib_submdspan', 'std': '26'},
     'lib-type-order': {'macro': '__cpp_lib_type_order', 'std': '26'},
+}
+
+# Library features with no __cpp_lib_* macro, so they cannot be placed by LIBRARY_EVIDENCE. Like a header probe, the code must compile at its own standard and
+# fail at the one before. A probe whose boundary no strict configuration confirms goes in STANDARD_LEAKAGE, as for headers and language features.
+LIBRARY_PROBES: dict[str, tuple[str, str]] = {
+    'lib-addressof': ('11', '#include <memory>\nint* f(int& i){ return std::addressof(i); }'),
+    'lib-algorithm-predicates': ('11', '#include <algorithm>\nbool p(int);\nbool f(int* a){ return std::all_of(a, a + 1, p) || std::any_of(a, a + 1, p) || std::none_of(a, a + 1, p); }'),
+    'lib-allocator-model': ('11', '#include <memory>\nstruct S { typedef std::allocator_traits<std::allocator<int> >::value_type V; typedef std::pointer_traits<int*>::element_type E; };'),
+    'lib-array': ('11', '#include <array>\nstd::array<int, 2> a;'),
+    'lib-async-future': ('11', '#include <future>\nint g();\nvoid f(){ std::future<int> x = std::async(g); std::promise<int> p; std::packaged_task<int()> t(g); }'),
+    'lib-atomic': ('11', '#include <atomic>\nstd::atomic<int> a;\nstd::atomic_flag f = ATOMIC_FLAG_INIT;'),
+    'lib-bind': ('11', '#include <functional>\nint g(int a, int b){ return a + b; }\nvoid f(){ std::bind(g, 1, std::placeholders::_1); }'),
+    'lib-c99-math': ('11', '#include <cmath>\ndouble f(double x){ return std::cbrt(x) + std::trunc(x) + std::hypot(x, x); }'),
+    'lib-cfenv': ('11', '#include <cfenv>\nint f(){ return std::fetestexcept(FE_INVALID); }'),
+    'lib-chrono-clocks': ('11', '#include <chrono>\nstd::chrono::steady_clock::time_point t = std::chrono::steady_clock::now();\nstd::chrono::milliseconds d;'),
+    'lib-condition-variable': ('11', '#include <condition_variable>\nstd::condition_variable cv;'),
+    'lib-copy-if-copy-n': ('11', '#include <algorithm>\nbool p(int);\nvoid f(int* a, int* b){ std::copy_if(a, a + 1, b, p); std::copy_n(a, 1, b); }'),
+    'lib-declval': ('11', '#include <utility>\nstruct W { enum { v = sizeof(std::declval<int>()) }; };'),
+    'lib-enable-shared-from-this-base': ('11', '#include <memory>\nstruct S : std::enable_shared_from_this<S> {};'),
+    'lib-exception-ptr': ('11', '#include <exception>\nvoid f(){ std::exception_ptr p = std::current_exception(); std::rethrow_exception(p); }'),
+    'lib-find-if-not': ('11', '#include <algorithm>\nbool p(int);\nint* f(int* a){ return std::find_if_not(a, a + 1, p); }'),
+    'lib-fixed-width-integers': ('11', '#include <cstdint>\nstd::int32_t a;\nstd::uint64_t b;'),
+    'lib-float-format-manipulators': ('11', '#include <ios>\nvoid f(std::ios_base& b){ std::hexfloat(b); std::defaultfloat(b); }'),
+    'lib-forward-list': ('11', '#include <forward_list>\nstd::forward_list<int> l;'),
+    'lib-free-begin-end': ('11', '#include <iterator>\nint a[2];\nint* f(){ return std::begin(a); }\nint* g(){ return std::end(a); }'),
+    'lib-free-cbegin-cend-rbegin-rend': ('14', '#include <iterator>\nint a[2];\nconst int* f(){ return std::cbegin(a); }'),
+    'lib-function': ('11', '#include <functional>\nstd::function<int(int)> f;\nstd::bad_function_call b;'),
+    'lib-handler-getters': ('11', '#include <new>\n#include <exception>\nvoid f(){ std::get_terminate(); std::get_new_handler(); }'),
+    'lib-hash': ('11', '#include <functional>\nstd::size_t h(){ return std::hash<int>()(1); }'),
+    'lib-initializer-list': ('11', '#include <initializer_list>\nstd::initializer_list<int> il;'),
+    'lib-iomanip-additions': ('11', '#include <iomanip>\n#include <iostream>\n#include <ctime>\nvoid f(std::ostream& o, const std::tm* t){ o << std::put_time(t, "%Y"); }'),
+    'lib-lock-guards': ('11', '#include <mutex>\nstd::mutex m;\nvoid f(){ std::lock_guard<std::mutex> g(m); std::unique_lock<std::mutex> u(m); }'),
+    'lib-make-shared': ('11', '#include <memory>\nint f(){ return *std::make_shared<int>(1); }'),
+    'lib-mem-fn': ('11', '#include <functional>\nstruct S { int m(); };\nvoid f(){ std::mem_fn(&S::m); }'),
+    'lib-minmax': ('11', '#include <algorithm>\nvoid f(int a, int b, int* p){ std::minmax(a, b); std::minmax_element(p, p + 2); }'),
+    'lib-move-algorithms': ('11', '#include <algorithm>\nvoid f(int* a, int* b){ std::move(a, a + 1, b); std::move_backward(a, a + 1, b + 1); }'),
+    'lib-move-forward': ('11', '#include <utility>\nint f(int& a){ return std::move(a); }\ntemplate<class T> void g(T& t){ std::forward<T>(t); std::move_if_noexcept(t); }'),
+    'lib-move-iterator': ('11', '#include <iterator>\nvoid f(int* p){ std::move_iterator<int*> m(p); std::make_move_iterator(p); }'),
+    'lib-mutexes': ('11', '#include <mutex>\nstd::mutex m;\nstd::recursive_mutex r;\nstd::once_flag o;'),
+    'lib-next-prev': ('11', '#include <iterator>\nint a[2];\nint* f(){ return std::next(a) + (std::prev(a + 1) - a); }'),
+    'lib-nullptr-t': ('11', '#include <cstddef>\nstd::nullptr_t n;\nstd::max_align_t m;'),
+    'lib-pair-piecewise': ('11', '#include <utility>\nstd::piecewise_construct_t t = std::piecewise_construct;'),
+    'lib-quick-exit': ('11', '#include <cstdlib>\nvoid h(){}\nvoid f(){ std::at_quick_exit(h); std::quick_exit(0); }'),
+    'lib-random-distributions': ('11', '#include <random>\nstd::uniform_int_distribution<int> u(0, 1);'),
+    'lib-random-engines': ('11', '#include <random>\nstd::mt19937 g;\nstd::random_device d;'),
+    'lib-ratio': ('11', '#include <ratio>\ntypedef std::ratio_add<std::ratio<1, 2>, std::ratio<1, 3> > R;'),
+    'lib-ref-and-reference-wrapper': ('11', '#include <functional>\nvoid f(int& i){ std::ref(i); std::cref(i); }'),
+    'lib-regex': ('11', '#include <regex>\nstd::regex r("a");\nbool f(){ return std::regex_match("a", r); }'),
+    'lib-shared-ptr': ('11', '#include <memory>\nstd::shared_ptr<int> p;\nstd::weak_ptr<int> w(p);\nstd::shared_ptr<void> q = std::static_pointer_cast<void>(p);'),
+    'lib-shuffle-iota': ('11', '#include <algorithm>\n#include <numeric>\ntemplate<class G> void f(int* a, G& g){ std::shuffle(a, a + 2, g); }\nvoid h(int* a){ std::iota(a, a + 2, 0); }'),
+    'lib-sortedness-queries': ('11', '#include <algorithm>\nbool f(int* a){ return std::is_sorted(a, a + 2) && std::is_heap(a, a + 2); }'),
+    'lib-string-numeric-conversions': ('11', '#include <string>\nint f(){ return std::stoi("1") + (int)std::to_string(1).size(); }'),
+    'lib-system-error': ('11', '#include <system_error>\nstd::error_code ec;'),
+    'lib-thread': ('11', '#include <thread>\nstd::thread t;\nvoid f(){ std::this_thread::yield(); }'),
+    'lib-tuple': ('11', '#include <tuple>\nstd::tuple<int, int> t(1, 2);\nvoid f(int& a, int& b){ std::tie(a, b); std::get<0>(t); }'),
+    'lib-type-index': ('11', '#include <typeindex>\nstd::type_index t(typeid(int));'),
+    'lib-type-traits-primary': ('11', '#include <type_traits>\nstruct S { enum { a = std::is_integral<int>::value + std::is_pointer<int*>::value }; };'),
+    'lib-type-traits-properties': ('11', '#include <type_traits>\nstruct S { enum { a = std::is_const<int>::value + std::is_trivial<int>::value + std::is_polymorphic<int>::value }; };'),
+    'lib-type-traits-relations': ('11', '#include <type_traits>\nstruct A {};\nstruct S { enum { a = std::is_same<int, int>::value + std::is_base_of<A, A>::value + std::is_constructible<A>::value }; };'),
+    'lib-type-traits-transformations': ('11', '#include <type_traits>\ntypedef std::remove_reference<int&>::type T;\ntypedef std::decay<int>::type D;\ntypedef std::enable_if<true, int>::type E;'),
+    'lib-unique-ptr': ('11', '#include <memory>\nstd::unique_ptr<int> p;\nvoid f(){ std::default_delete<int> d; (void)d; }'),
+    'lib-unordered-containers': ('11', '#include <unordered_map>\n#include <unordered_set>\nstd::unordered_map<int, int> m;\nstd::unordered_set<int> s;'),
 }
 
 LIBRARY_LEAKAGE: dict[str, str] = {
