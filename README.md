@@ -197,7 +197,7 @@ They are separate on purpose. A language feature is only usable once the runtime
 The data has four parts:
 
 - **`tracks`**: `id`, `label`, `kind` (`standard`, `runtime`, `implementation` or `environment`), `order`, a `description`, and `changelog_links` to the official changelogs. The page shows these as its sources instead of citing a source for every event.
-- **`versions`**: each belongs to a `track`. It has an `id`, a `label`, a release date, an `order` number (counted separately for each track) and a `status` of `released` or `draft`. Runtime versions can also carry `codename`, `lts_from`, `end_of_life` and `engine`.
+- **`versions`**: each belongs to a `track`. It has an `id`, a `label`, a release date, an `order` number (counted separately for each track) and a `status` of `released`, `complete` or `draft`. Runtime versions can also carry `codename`, `lts_from`, `end_of_life` and `engine`.
 - **`features`**: things you can recognise in code, such as `let` and `const` or `fs.promises`. Each has a `history` that maps a track id to a list of events: `added`, `changed`, `deprecated` and `removed`. An event can name the exact `release` inside a version (`16.6.0`). A feature can link to the reference `topic` that explains it, name what replaced it (`replaced_by`, which can point at a feature on another track), and carry a `migration` pair with an older and a newer way to write it.
 
 How the model behaves:

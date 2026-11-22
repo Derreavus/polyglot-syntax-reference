@@ -3,7 +3,7 @@ the deprecation and removal history, the library headers and how the pages rende
 
 These guard the rules the data has to keep and facts checked against primary sources, not every entry. The general rules for any language live in
 test_versioning.py. Sources of the pinned facts:
-  - ISO standards: publication months from general knowledge (the ISO catalogue was not read); C++26 is a draft.
+  - ISO standards: publication months from general knowledge (the ISO catalogue was not read); C++26 is technically complete but not yet published by ISO.
   - GCC release dates: gcc.gnu.org/releases.html. Clang: llvm.org news (2.9 to 6.0) and the dates of the llvm-project release tags, month precision.
   - MSVC: Visual Studio release dates (endoflife.date and Microsoft Learn); VS 2013 is month precision and not source-checked.
   - Deprecations and removals: Annex D and Annex C of the standard drafts n3337, n4140, n4659, n4861, n4950 and the C++26 working draft.
@@ -103,10 +103,11 @@ class CppVersionDataTests(unittest.TestCase):
             for link in track["changelog_links"]:
                 self.assertTrue(link["url"].startswith("https://"), link)
 
-    def test_standard_versions_dates_and_the_cpp26_draft(self) -> None:
+    def test_standard_versions_dates_and_the_cpp26_status(self) -> None:
         self.assertEqual({k: v["released"] for k, v in self.versions[STD].items()}, CPP_VERSIONS)
-        self.assertEqual({k: v["status"] for k, v in self.versions[STD].items() if v["status"] != "released"}, {"cpp26": "draft"})
-        self.assertIn("(draft)", self.versions[STD]["cpp26"]["label"])
+        self.assertEqual({k: v["status"] for k, v in self.versions[STD].items() if v["status"] != "released"}, {"cpp26": "complete"})
+        self.assertEqual(self.versions[STD]["cpp26"]["label"], "C++26")
+        self.assertIn("ISO", self.versions[STD]["cpp26"]["note"])
         self.assertIn("baseline", self.versions[STD]["cpp98"]["label"])
         self.assertIn("general knowledge", self.tracks[STD]["description"])
 
@@ -244,8 +245,11 @@ class CppVersionPageTests(unittest.TestCase):
             for version in versions_for(self.data, LANG, track):
                 self.assertIn(f'id="v-{version["id"]}" data-order="{version["order"]}"', page)
 
-    def test_the_draft_standard_and_the_verified_markers_are_visible(self) -> None:
-        self.assertIn('data-status="draft"', self.pages[STD])
+    def test_the_technically_complete_standard_and_the_verified_markers_are_visible(self) -> None:
+        self.assertIn('data-status="complete"', self.pages[STD])
+        self.assertIn('class="complete-badge">Technically complete', self.pages[STD])
+        self.assertIn("C++26 (technically complete)</option>", self.pages[STD])
+        self.assertNotIn("draft-badge", self.pages[STD])
         self.assertIn("Verified here: g++-12 with libstdc++ 12", self.pages[GCC])
         self.assertIn("Not verified here: this version could not be run", self.pages[GCC])
         self.assertIn("Verified here: clang++-17 with libc++ 17", self.pages[CLANG])

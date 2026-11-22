@@ -183,7 +183,9 @@ page's sources, so there is no need to cite a source for each event.
 ```
 
 - `order` must be unique and increasing within a track, and dates must not go backwards. Use
-  `status: "draft"` for a release that is not out yet; drafts must come after every released version.
+  `status: "draft"` for a release that is not out yet. Use `status: "complete"` for one whose specification is finished but that has not been
+  formally published yet (the version note should say what is still pending). Within a track the statuses must run `released`, then `complete`,
+  then `draft`.
 - The first version can be a baseline for features that have existed since the beginning.
 - A runtime version can add `codename`, `lts_from`, `end_of_life` and `engine` (for example `"V8 12.4"`).
   The page shows them, and marks a version "support ended" once `end_of_life` has passed.

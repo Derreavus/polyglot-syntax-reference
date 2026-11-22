@@ -122,6 +122,8 @@ class VersioningValidationTests(unittest.TestCase):
         self.assert_invalid("duplicate version order", lambda d: d["versions"][1].update(order=1))
         self.assert_invalid("dated before", lambda d: d["versions"][3].update(released="2014-01"))
         self.assert_invalid("comes after draft", lambda d: d["versions"][12].update(status="draft"))
+        self.assert_invalid("released version .* comes after complete", lambda d: d["versions"][12].update(status="complete"))
+        self.assert_invalid("complete version .* comes after draft", lambda d: (d["versions"][12].update(status="draft"), d["versions"][13].update(status="complete")))
 
     def test_status_and_date_format(self) -> None:
         self.assert_invalid("status must be", lambda d: d["versions"][0].update(status="beta"))
@@ -385,6 +387,18 @@ class VersionPageRenderingTests(unittest.TestCase):
         self.assertIn('<option value="es2026" data-order="14" selected>', self.page)
         self.assertNotIn("draft-badge", self.node_page)
 
+    def test_a_technically_complete_version_is_badged_and_labeled_in_the_picker(self) -> None:
+        data = copy.deepcopy(self.data)
+        newest = next(v for v in data["versions"] if v["language"] == "javascript" and v["track"] == ES and v["status"] == "draft")
+        newest.update(status="complete", label="ES2027")
+        validate_data_model(data)
+        page = render_versions_page(self.language, track(data, ES), data, page_rel="javascript/versions/index.html")
+        self.assertIn('data-status="complete"', page)
+        self.assertIn('class="complete-badge">Technically complete', page)
+        self.assertNotIn("draft-badge", page)
+        self.assertIn("ES2027 (technically complete)</option>", page)
+        self.assertIn('<option value="es2026" data-order="14" selected>', page)
+
     def test_node_release_metadata_is_shown(self) -> None:
         self.assertIn('class="codename-badge">Jod', self.node_page)
         self.assertIn("V8 12.4", self.node_page)
@@ -523,6 +537,17 @@ class TopicNotesAndAvailabilityTests(unittest.TestCase):
         modules = self.topic_section("modules")
         self.assertIn('<li><a href="versions/node/index.html#feature-commonjs-modules">', modules)
         self.assertNotIn('versions/index.html#feature-commonjs-modules', modules)
+
+    def test_version_notes_say_complete_for_a_technically_complete_version(self) -> None:
+        data = copy.deepcopy(self.data)
+        next(v for v in data["versions"] if v["language"] == "javascript" and v["track"] == ES and v["status"] == "draft").update(status="complete")
+        validate_data_model(data)
+        page = render_language_page(js(data), data, page_rel="javascript/index.html")
+        start = page.index('<section class="topic" id="dates">')
+        section = page[start:page.index("</section>", start)]
+        self.assertIn("Complete in ES2027", section)
+        self.assertIn("vn-complete", section)
+        self.assertNotIn("Draft in ES2027", section)
 
     def test_version_notes_show_legacy_restricted_changed_removed_and_draft_status(self) -> None:
         self.assertIn(">Legacy<", self.topic_section("strings"))

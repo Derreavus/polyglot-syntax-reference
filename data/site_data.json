@@ -3391,11 +3391,11 @@
       "language": "cpp",
       "track": "cpp",
       "id": "cpp26",
-      "label": "C++26 (draft)",
+      "label": "C++26",
       "released": "2026-03",
       "order": 7,
-      "status": "draft",
-      "note": "Technically complete (WG21, March 2026) but not yet published by ISO; the date is the committee's completion month."
+      "status": "complete",
+      "note": "WG21 completed the technical work in March 2026, and again in November 2026 after the first ISO approval ballot did not pass. ISO had not published it when this was written; the date is the committee's first completion month."
     },
     {
       "language": "cpp",
@@ -27515,7 +27515,7 @@
       "label": "C++ standards",
       "kind": "standard",
       "order": 1,
-      "description": "The ISO C++ standards from C++98, the canonical language timeline. Each entry says which standard first specified a feature, and the lifecycle entries trace what was deprecated and then removed. C++26 is technically complete but ISO had not published it when this was written, so it is listed as a draft. The publication months of the ISO standards are from general knowledge; the ISO catalogue was not read for this.",
+      "description": "The ISO C++ standards from C++98, the canonical language timeline. Each entry says which standard first specified a feature, and the lifecycle entries trace what was deprecated and then removed. C++26 is technically complete but ISO had not published it when this was written, so it is marked technically complete rather than released. The publication months of the ISO standards are from general knowledge; the ISO catalogue was not read for this.",
       "changelog_links": [
         {
           "title": "C++ working draft (source of the standard's text)",

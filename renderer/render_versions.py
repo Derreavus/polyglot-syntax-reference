@@ -264,7 +264,10 @@ def render_versions_page(
         items = sorted(events_by_version[version["id"]], key=sort_key)
         if not items:
             continue
-        draft = '<span class="draft-badge">Draft</span>' if version["status"] == "draft" else ""
+        draft = {
+            "draft": '<span class="draft-badge">Draft</span>',
+            "complete": '<span class="complete-badge">Technically complete</span>',
+        }.get(version["status"], "")
         codename = (
             f'<span class="codename-badge">{_esc(version["codename"])}</span>' if version.get("codename") else ""
         )
@@ -300,7 +303,7 @@ def render_versions_page(
     )
 
     def option(version: dict[str, Any], selected: bool) -> str:
-        draft = " (draft)" if version["status"] == "draft" else ""
+        draft = {"draft": " (draft)", "complete": " (technically complete)"}.get(version["status"], "")
         return (
             f'<option value="{_esc(version["id"])}" data-order="{version["order"]}"'
             f'{" selected" if selected else ""}>{_esc(version["label"])}{draft}</option>'

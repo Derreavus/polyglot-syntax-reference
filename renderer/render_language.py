@@ -23,7 +23,7 @@ def _since_text(track: dict[str, Any], version: dict[str, Any], event: dict[str,
     label = release_text(version, event)
     if track["kind"] != "standard":
         return f"{label}+"
-    return f"Draft in {label}" if version["status"] == "draft" else f"Since {label}"
+    return {"draft": f"Draft in {label}", "complete": f"Complete in {label}"}.get(version["status"], f"Since {label}")
 
 
 def version_notes_html(topic_slug: str, features: list[dict[str, Any]], tracks: list[dict[str, Any]], versions: dict[str, dict[str, dict[str, Any]]], orders: dict[str, dict[str, int]], href_for) -> str:
@@ -51,7 +51,7 @@ def version_notes_html(topic_slug: str, features: list[dict[str, Any]], tracks: 
                 continue
             facts = lifecycle_facts(feature, track["id"], versions[track["id"]])
             added = facts["added"]
-            draft = " vn-draft" if added["status"] == "draft" else ""
+            draft = {"draft": " vn-draft", "complete": " vn-complete"}.get(added["status"], "")
             runtime = " vn-runtime" if track["kind"] != "standard" else ""
             target = f'{href_for(track["id"])}#feature-{html.escape(feature["slug"])}'
             chips.append(f'<a class="vn-since{draft}{runtime}" href="{target}">{html.escape(_since_text(track, added, facts["added_event"]))}</a>')

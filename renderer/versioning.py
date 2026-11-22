@@ -13,7 +13,8 @@ from typing import Any
 
 EVENT_KINDS = ("added", "changed", "deprecated", "removed")
 CATEGORIES = ("syntax", "library", "behavior", "tooling")
-VERSION_STATUSES = ("released", "draft")
+# In the order a track must keep them: published, then finished but not yet formally published, then still being drafted.
+VERSION_STATUSES = ("released", "complete", "draft")
 TRACK_KINDS = ("standard", "runtime", "implementation", "environment")
 STATES = ("not-yet", "available", "deprecated", "restricted", "removed")
 

@@ -213,7 +213,7 @@
     const labelOf = {};
     Array.from(fromSelect.options).concat(Array.from(toSelect.options), Array.from(atSelect.options)).forEach(function (option) {
       orderOf[option.value] = parseInt(option.getAttribute("data-order"), 10);
-      labelOf[option.value] = option.textContent.replace(/ \(draft\)$/, "");
+      labelOf[option.value] = option.textContent.replace(/ \((draft|technically complete)\)$/, "");
     });
     const allKinds = kindButtons.map(function (button) { return button.getAttribute("data-kind"); });
     const allStates = stateButtons.map(function (button) { return button.getAttribute("data-state"); });

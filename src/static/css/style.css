@@ -720,10 +720,11 @@ pre.code-block:hover .copy-btn, .copy-btn:focus { opacity: 1; }
 .version-block { margin-top: 2.25rem; scroll-margin-top: 5rem; }
 .version-block[hidden], .change[hidden], .version-empty[hidden] { display: none !important; }
 .version-block h2 { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem; font-size: 1.4rem; }
-.draft-badge {
+.draft-badge, .complete-badge {
   font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
   padding: 0.1rem 0.5rem; color: var(--kind-deprecated); border: 1px dashed var(--kind-deprecated); border-radius: 4px;
 }
+.complete-badge { color: var(--kind-changed); border-color: var(--kind-changed); }
 .version-date { color: var(--text-muted); font-size: 0.875rem; }
 .version-aliases { margin-left: 0.5rem; }
 .version-note { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.35rem; max-width: 70ch; }
@@ -792,6 +793,7 @@ a.change-title:hover { text-decoration-color: var(--accent); }
 .vn-since, .vn-status { font-size: 0.72rem; padding: 0 0.5rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); }
 .vn-since { color: var(--kind-added); border-color: color-mix(in srgb, var(--kind-added) 45%, transparent); }
 .vn-since.vn-draft { color: var(--kind-deprecated); border-style: dashed; border-color: var(--kind-deprecated); }
+.vn-since.vn-complete { color: var(--kind-changed); border-style: dashed; border-color: var(--kind-changed); }
 .vn-deprecated { color: var(--kind-deprecated); border-color: color-mix(in srgb, var(--kind-deprecated) 45%, transparent); }
 .vn-removed { color: var(--kind-removed); border-color: color-mix(in srgb, var(--kind-removed) 45%, transparent); }
 .vn-changed { color: var(--kind-changed); border-color: color-mix(in srgb, var(--kind-changed) 45%, transparent); }

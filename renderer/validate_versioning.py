@@ -173,8 +173,8 @@ def _validate_versions(
                 f"{where}: version '{later['id']}' is dated before '{earlier['id']}' but has a later order",
             )
             _require(
-                not (earlier["status"] == "draft" and later["status"] == "released"),
-                f"{where}: released version '{later['id']}' comes after draft version '{earlier['id']}'",
+                VERSION_STATUSES.index(earlier["status"]) <= VERSION_STATUSES.index(later["status"]),
+                f"{where}: {later['status']} version '{later['id']}' comes after {earlier['status']} version '{earlier['id']}'",
             )
         orders_by_track[(language, track)] = {v["id"]: v["order"] for v in items}
     return orders_by_track
