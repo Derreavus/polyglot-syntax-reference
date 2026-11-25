@@ -8,6 +8,7 @@ import shutil
 from load_data import ROOT, get_languages, load_data
 from render_compare import render_compare_page
 from render_home import render_home_page
+from render_propose import render_propose_page
 from render_language import render_language_page, wrap_tables
 from render_versions import render_versions_page
 from versioning import features_for, has_versioning, history_for, track_page_rel, tracks_for, versions_for
@@ -31,6 +32,7 @@ def ensure_output_dirs() -> None:
         for track in tracks_for(load_data(), lang["slug"]):
             (OUTPUT_ROOT / track_page_rel(load_data(), lang["slug"], track["id"])).parent.mkdir(parents=True, exist_ok=True)
     (OUTPUT_ROOT / "compare").mkdir(parents=True, exist_ok=True)
+    (OUTPUT_ROOT / "propose").mkdir(parents=True, exist_ok=True)
 
 
 def render_site_data_js(data: dict) -> str:
@@ -107,6 +109,11 @@ def build_homepage(data: dict) -> None:
     (OUTPUT_ROOT / "index.html").write_text(page, encoding="utf-8", newline="\n")
 
 
+def build_propose_page(data: dict) -> None:
+    page = render_propose_page(data, page_rel="propose/index.html")
+    (OUTPUT_ROOT / "propose" / "index.html").write_text(page, encoding="utf-8", newline="\n")
+
+
 def build_compare_page(data: dict) -> None:
     page = render_compare_page(data, page_rel="compare/index.html")
     (OUTPUT_ROOT / "compare" / "index.html").write_text(page, encoding="utf-8", newline="\n")
@@ -133,7 +140,7 @@ def build_versions_pages(data: dict) -> None:
 
 def validate_generated_site(data: dict) -> None:
     languages = get_languages(data)
-    required = {"index.html", "compare/index.html"}
+    required = {"index.html", "compare/index.html", "propose/index.html"}
     required.update(f"{lang['slug']}/index.html" for lang in languages)
     for lang in languages:
         required.update(
@@ -219,6 +226,7 @@ def main() -> int:
     copy_static_assets()
     build_homepage(data)
     build_compare_page(data)
+    build_propose_page(data)
     build_language_pages(data)
     build_versions_pages(data)
     validate_generated_site(data)

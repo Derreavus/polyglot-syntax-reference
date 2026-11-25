@@ -59,18 +59,42 @@ def validate_data_model(data: dict[str, Any]) -> None:
         "nav_compare_label",
         "nav_home_label",
         "theme_toggle_label",
+        "propose_nav_label",
+        "propose_title",
+        "propose_description",
+        "propose_heading",
+        "propose_intro",
+        "propose_steps_heading",
+        "propose_steps",
+        "propose_fields_heading",
+        "propose_fields_intro",
+        "propose_options_prefix",
+        "propose_required_label",
+        "propose_optional_label",
+        "propose_compare_heading",
+        "propose_compare_intro",
+        "propose_concepts_heading",
+        "propose_concepts_intro",
+        "propose_review_heading",
+        "propose_button",
+        "propose_form_url",
     }
+    list_site_keys = {"home_heading_lines", "propose_steps"}
     _require(
         required_site_keys <= set(site),
         f"data.site missing keys: {', '.join(sorted(required_site_keys - set(site)))}",
     )
-    _require(
-        isinstance(site["home_heading_lines"], list)
-        and all(isinstance(line, str) and line.strip() for line in site["home_heading_lines"]),
-        "data.site.home_heading_lines must contain non-empty strings",
-    )
-    for key in required_site_keys - {"home_heading_lines"}:
+    for key in sorted(list_site_keys):
+        _require(
+            isinstance(site[key], list) and site[key] and all(isinstance(line, str) and line.strip() for line in site[key]),
+            f"data.site.{key} must contain non-empty strings",
+        )
+    for key in required_site_keys - list_site_keys:
         _require(isinstance(site[key], str) and site[key].strip(), f"data.site.{key} must be a non-empty string")
+    _require(
+        site["propose_form_url"].startswith("https://") and not any(ch.isspace() for ch in site["propose_form_url"]),
+        "data.site.propose_form_url must be an https address",
+    )
 
     categories = data.get("categories", [])
     _require(isinstance(categories, list) and categories, "data.categories must be a non-empty list")

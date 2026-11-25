@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "lib"))  # shared helpers in scripts/lib
-from language_registry import language_entry, language_slugs  # noqa: E402
+from language_registry import language_entry, language_slugs, placeholder_counts  # noqa: E402
 
 SITE = Path(__file__).resolve().parents[2] / "dist"  # generated site; run renderer/build_site.py first
 LANGS = tuple(language_slugs())
@@ -181,8 +181,22 @@ def validate_compare() -> list[str]:
 
 
 def main() -> int:
+    """``--no-placeholders`` fails any language that still has a placeholder topic (for a release check)."""
+    forbid = "--no-placeholders" in sys.argv[1:]
+    counts = placeholder_counts()
     all_errors: list[str] = []
     for lang in LANGS:
+        placeholders, total = counts.get(lang, (0, 0))
+        if placeholders and forbid:
+            errs = [f"{lang}: {placeholders} of {total} topics are still placeholders"]
+            print(f"FAIL {lang}:")
+            for e in errs:
+                print(f"  - {e}")
+            all_errors.extend(errs)
+            continue
+        if total and placeholders == total:
+            print(f"SKIP {lang}: every topic is a placeholder, so there is no code to check yet")
+            continue
         errs = validate_lang(lang)
         if errs:
             print(f"FAIL {lang}:")

@@ -82,7 +82,7 @@ def render_home_page(data: dict[str, Any], page_rel: str = "index.html") -> str:
     {tools}
   </main>
 
-  {render_footer(site)}
+  {render_footer(site, page_rel)}
 
   <script src="{js_path}"></script>
   <script src="{main_js_path}"></script>

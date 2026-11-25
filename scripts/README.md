@@ -6,7 +6,7 @@ Everything here is run from the command line. Scripts find the repository from t
 |---|---|---|
 | `validate/` | Checks on the built site and the data: links, HTML structure, content lint, and parity with the legacy pages. Run `python renderer/build_site.py` first, because most of them read `dist/`. | No |
 | `check/` | Per-language checkers that compare the version-history data and its examples with the real language. | Yes, by design |
-| `content/` | Tools that change the data, such as the one-time legacy importer. | No |
+| `content/` | Tools that change the data: the one-time legacy importer, and `add_language.py`, which scaffolds a proposed language (see below). | No |
 | `dev/` | Local helpers, such as `serve_staging.py`, which builds and serves the site. | No |
 | `lib/` | Helpers shared by the other scripts (`language_registry.py`). | No |
 
@@ -18,6 +18,7 @@ Everything here is run from the command line. Scripts find the repository from t
 python -m unittest discover -s tests
 python renderer/build_site.py
 python scripts/validate/validate_staging_parity.py
+python scripts/content/add_language.py issue-template --check
 python scripts/validate/validate_syntax_html.py
 python scripts/validate/validate_links.py
 python scripts/validate/validate_html_smoke.py
@@ -30,6 +31,25 @@ python scripts/check/check_csharp_examples.py --strict
 # in the separate C++ job, after bash scripts/ci/setup_cpp_toolchains.sh:
 python scripts/check/check_cpp_examples.py --strict
 ```
+
+## Proposing and adding a language
+
+A visitor proposes a language through a GitHub issue form (generated, so it always asks for the current Compare rows and concepts).
+A maintainer checks the proposal against the documentation, adds the `verified` label, and runs:
+
+```
+python scripts/content/add_language.py from-issue --issue-json issue.json --out spec.json   # gh issue view N --json body,labels > issue.json
+python scripts/content/add_language.py scaffold spec.json            # dry run: prints the diff and what is still to do by hand
+python scripts/content/add_language.py scaffold spec.json --write    # writes the data, then builds and runs the validators and tests
+python scripts/content/add_language.py issue-template                # rewrite .github/ISSUE_TEMPLATE after the Compare rows or concepts change
+```
+
+`from-issue` refuses an issue that is not marked `verified`. Everything in a proposal is plain, length-limited, character-checked
+text; the scaffold never turns it into HTML. The new language gets one section with a **placeholder** topic for each concept it
+has, and no version history: a maintainer writes the topics and the version history afterwards. Until then
+`validate_syntax_html.py` skips the language and says so; run it with `--no-placeholders` to make any placeholder topic a failure
+(use that before a release). The "Propose a language" page and the issue form are both generated from `renderer/proposal.py` and the
+data, and CI fails if the checked-in form is out of date.
 
 ## The per-language checkers
 

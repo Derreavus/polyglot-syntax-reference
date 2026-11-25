@@ -22,6 +22,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install PyYAML (a real YAML parser checks the generated issue form)
+        run: python3 -m pip install pyyaml
+
       - name: Unit tests
         run: python3 -m unittest discover -s tests
 
@@ -30,6 +33,13 @@ jobs:
 
       - name: Build parity check
         run: python3 scripts/validate/validate_staging_parity.py
+
+      - name: Language proposal form is in step with the data
+        run: python3 scripts/content/add_language.py issue-template --check
+
+      - name: Proposal form address matches this repository (skipped on forks)
+        if: ${{ !github.event.repository.fork }}
+        run: python3 scripts/content/add_language.py issue-template --check --repository "${{ github.repository }}"
 
       - name: Content lint (generics, structure, version badges)
         run: python3 scripts/validate/validate_syntax_html.py

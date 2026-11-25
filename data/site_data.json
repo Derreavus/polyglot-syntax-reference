@@ -26,7 +26,31 @@
     "nav_references_available": "Available references",
     "nav_compare_label": "Compare",
     "nav_home_label": "Home",
-    "theme_toggle_label": "Toggle theme"
+    "theme_toggle_label": "Toggle theme",
+    "propose_nav_label": "Propose a language",
+    "propose_title": "Propose a Language",
+    "propose_description": "How to suggest a language for CodeReference, and what a proposal needs.",
+    "propose_heading": "Propose a language",
+    "propose_intro": "Know a language that belongs here? Send a proposal. A maintainer checks it against the official documentation before anything is added.",
+    "propose_steps_heading": "How it works",
+    "propose_steps": [
+      "Open the proposal form and fill it in. You need the language's official documentation addresses and one line of code for each comparison row.",
+      "A maintainer checks every value against the documentation and marks the proposal verified.",
+      "A maintainer adds the language with a script, writes its topics and opens a pull request that has to pass the build, the validators and the tests.",
+      "Nothing you write is run or shown as page markup, and nothing reaches the site before it has been reviewed."
+    ],
+    "propose_fields_heading": "What you fill in",
+    "propose_fields_intro": "Fields marked required must be filled in. The rest are optional.",
+    "propose_options_prefix": "One of:",
+    "propose_required_label": "Required",
+    "propose_optional_label": "Optional",
+    "propose_compare_heading": "Comparison rows",
+    "propose_compare_intro": "One line of code in the language for each row. These appear on the Compare page next to the other languages.",
+    "propose_concepts_heading": "Concepts",
+    "propose_concepts_intro": "Tick every shared concept the language has. Each one becomes a topic that a maintainer writes.",
+    "propose_review_heading": "What a maintainer checks",
+    "propose_button": "Open the proposal form",
+    "propose_form_url": "https://github.com/Derreavus/polyglot-syntax-reference/issues/new?template=add-language.yml"
   },
   "categories": [
     {

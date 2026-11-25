@@ -5,6 +5,11 @@ You do not create an `index.html`, and you do not edit any navigation: the
 header dropdown, homepage cards, compare picker, and search all read the
 language list at runtime.
 
+Someone else proposed the language? Use the proposal workflow instead of
+editing by hand: see [Proposing and adding a language](scripts/README.md#proposing-and-adding-a-language).
+`scripts/content/add_language.py` scaffolds the language from a verified issue;
+this guide then explains how to write what the script leaves as placeholders.
+
 **Before you start:** read the [Contributing](README.md#contributing) section of
 the README. Priorities in order: correctness, clarity, practical usefulness,
 consistency with the existing reference, current language standards.
@@ -243,4 +248,7 @@ small list of generic-syntax patterns that must appear on the C++, Rust, C#, and
 Python pages. A new language gets the general checks automatically; add its
 own expected patterns to that script if it has syntax that is easy to corrupt.
 
-CI runs the same steps, so a PR that skips them will fail.
+CI runs the same steps, so a PR that skips them will fail. A language that came
+from the proposal script starts with placeholder topics: replace every one, then
+run `python scripts/validate/validate_syntax_html.py --no-placeholders`, which
+fails while any placeholder is left.

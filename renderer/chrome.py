@@ -67,9 +67,13 @@ def render_header(data: dict[str, Any], page_rel: str, menu_label: str | None = 
   </header>'''
 
 
-def render_footer(site: dict[str, Any]) -> str:
+def render_footer(site: dict[str, Any], page_rel: str | None = None) -> str:
+    """The footer. Given the page's own path it also links to the "Propose a language" page (except on that page)."""
+    propose = ""
+    if page_rel is not None and page_rel != "propose/index.html":
+        propose = f'\n      <p><a href="{relative_asset_path(page_rel, "propose/index.html")}">{html.escape(site["propose_nav_label"])}</a></p>'
     return f'''<footer class="site-footer">
     <div class="container">
-      <p>{html.escape(site["footer"])}</p>
+      <p>{html.escape(site["footer"])}</p>{propose}
     </div>
   </footer>'''
