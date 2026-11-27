@@ -79,7 +79,7 @@ Language pages use a familiar structure for syntax and common concepts, with exa
 
 Entries focus on useful examples and practical details: when a pattern fits, common mistakes, recommended defaults and language-specific pitfalls. They are concise references, not complete language manuals.
 
-### Version history
+### Version information
 
 All five current language references include version history (for example, `/rust/versions/`). **Upgrade changes** shows what changed between two versions; **What can I use?** shows the status of features in a selected version. Topic pages link to relevant version notes. The [version history section](#version-history) describes how this information is represented in the project data.
 
