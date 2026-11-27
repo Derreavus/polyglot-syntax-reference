@@ -1,18 +1,17 @@
 # Adding a New Language
 
 Language pages are generated from [`data/site_data.json`](data/site_data.json).
-You do not create an `index.html`, and you do not edit any navigation: the
-header dropdown, homepage cards, compare picker, and search all read the
-language list at runtime.
+Add the language and its content there; the header menu, homepage cards,
+comparison picker and search use the shared language registry.
 
 Someone else proposed the language? Use the proposal workflow instead of
 editing by hand: see [Proposing and adding a language](scripts/README.md#proposing-and-adding-a-language).
 `scripts/content/add_language.py` scaffolds the language from a verified issue;
 this guide then explains how to write what the script leaves as placeholders.
 
-**Before you start:** read the [Contributing](README.md#contributing) section of
-the README. Priorities in order: correctness, clarity, practical usefulness,
-consistency with the existing reference, current language standards.
+Before writing, read [Contributing](README.md#contributing) for the content
+priorities: correctness, clarity, practical value and consistency with current
+language conventions.
 
 ---
 
@@ -128,8 +127,8 @@ ideas consistent so readers can find things across languages.
 | Advanced | exceptions or the language's error model, resource management (`with`, `using`, RAII, `defer`), async, key standard library, packaging |
 | Expansion | gotchas, ecosystem and tooling |
 
-If the language has no equivalent for a topic, say so briefly and show the
-closest idiomatic pattern instead of omitting it silently.
+When a language has no direct equivalent, note that and show the closest
+idiomatic approach where one exists.
 
 ## 4. Map cross-language concepts
 
@@ -161,9 +160,25 @@ here, unlike in `content_html`.
 
 ## 6. Version history (optional)
 
-A language gets version history pages once it has `tracks`. A **track** is one ordered list of versions.
-Most languages need one (the releases of the language). Add a second when a runtime or compiler has its
-own releases that differ from the language's, as Node.js does for JavaScript. Add the pieces in this order.
+A language gets version history pages once it has `tracks`. It is optional, and every language on the site
+today has it. A track is one ordered list of versions.
+
+**How many tracks.** Start with the language's own release timeline. Add a runtime or compiler track when its
+releases have a separate schedule that affects feature availability, as with Node.js for JavaScript or GCC,
+Clang and MSVC for C++. Each track needs a page and maintained release data, so include one only when it adds
+information readers need. List a version only when something being tracked changes in it.
+
+The five languages on the site today, for reference:
+
+| Language | Tracks |
+| --- | --- |
+| JavaScript | `ecmascript` (standard), `node` (runtime) |
+| Python | `python` (standard) |
+| Rust | `rust` (implementation), `edition` (standard) |
+| C# | `csharp` (standard), `dotnet` and `netfx` (runtime) |
+| C++ | `cpp` (standard), `gcc`, `clang` and `msvc` (implementation) |
+
+Add the pieces in this order.
 
 **Tracks** (the first one, by `order`, gets the short address `/<language>/versions/`; the others get
 `/<language>/versions/<track id>/`):
@@ -179,6 +194,12 @@ own releases that differ from the language's, as Node.js does for JavaScript. Ad
 `kind` is `standard` (editions of a language standard), `runtime`, `implementation` (a particular compiler or
 interpreter) or `environment` (where code runs, such as a browser). `changelog_links` are required, must use https, and are shown as the
 page's sources, so there is no need to cite a source for each event.
+
+`version_noun` is optional. It is the word the page uses for one version of the track. Leave it out and the
+page picks a word from `kind`, which is edition for `standard`, release for `runtime` and `implementation`, and
+version for `environment`. Set it when that reads wrong. Python is a `standard` track whose releases are
+versions, so it sets `"version_noun": "version"`. If the track's `label` already ends in the noun, as in
+`Rust editions`, the page doesn't say it twice.
 
 **Versions** (one per release, oldest first, each naming its track):
 
@@ -247,6 +268,10 @@ python scripts/validate/validate_html_smoke.py
 small list of generic-syntax patterns that must appear on the C++, Rust, C#, and
 Python pages. A new language gets the general checks automatically; add its
 own expected patterns to that script if it has syntax that is easy to corrupt.
+
+If the language has version history, it also gets a checker in `scripts/check/` and a test in `tests/checkers/`,
+like the other languages. [scripts/README.md](scripts/README.md#the-per-language-checkers) explains what the
+existing checkers do.
 
 CI runs the same steps, so a PR that skips them will fail. A language that came
 from the proposal script starts with placeholder topics: replace every one, then

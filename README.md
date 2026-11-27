@@ -1,8 +1,8 @@
 # CodeReference
 
-A fast, consistent quick reference for technical things you look up while you work.
+A quick reference for technical details you need while working.
 
-CodeReference organizes syntax, concepts, patterns, gotchas and version history into one reference format, so you can find what you need quickly and get back to work. It started as the Polyglot Syntax Reference and is growing from a comparison of programming languages into a reference for the tools around them.
+CodeReference brings syntax, concepts, practical patterns, common pitfalls and version history together in one place. It began as the Polyglot Syntax Reference and is expanding from programming languages to other technical references.
 
 ## Website
 
@@ -14,7 +14,7 @@ The website is the primary way to use the reference.
 
 ## What Is CodeReference?
 
-CodeReference is designed for people who already know their way around code and need a quick way to recall how something is done: in another language, in an older version, or in a tool they use only now and then.
+CodeReference is for people who know their way around code but need to check a detail: how another language handles a familiar idea, what changed between releases, or how to use a tool they don't work with every day.
 
 Instead of searching through full documentation for something like:
 
@@ -23,7 +23,7 @@ Instead of searching through full documentation for something like:
 - “How does C# handle async?”
 - “What did this code do in the version it was written for, and what replaced it?”
 
-CodeReference provides a concise reference organized around the concepts and syntax you're likely to need.
+It organizes concise answers around the concepts and syntax people commonly look up.
 
 It is a **quick reference**, not a replacement for official documentation. Comparing languages side by side is one of its tools, not its identity.
 
@@ -34,7 +34,7 @@ It is a **quick reference**, not a replacement for official documentation. Compa
 - **Version history** shows what was added, changed, deprecated and removed between versions, so old code can be understood and moved forward.
 - **Compare** puts the same concept in several languages side by side.
 
-The same concept can look very different between languages.
+For example, a dictionary has a different name in each of these languages:
 
 | Language | Common type |
 | --- | --- |
@@ -43,7 +43,7 @@ The same concept can look very different between languages.
 | C++ | `std::unordered_map<K, V>` |
 | C# | `Dictionary<TKey, TValue>` |
 
-CodeReference presents these concepts in a consistent format so you can quickly translate what you already know into another language.
+The shared format makes it easier to find the equivalent in a language you know less well.
 
 ---
 
@@ -57,90 +57,43 @@ Currently covered:
 - **Python**
 - **Rust**
 
-JavaScript has a full reference (19 topics) and is the first language with version history. New languages can be added through the JSON source without editing the shared page templates.
+All five have a version history page. This is what each one tracks:
+
+| Language | Version history tracks |
+| --- | --- |
+| C++ | The C++ standard, GCC, Clang and MSVC |
+| C# | C# language versions, .NET and .NET Framework |
+| JavaScript | ECMAScript editions and Node.js |
+| Python | Python versions |
+| Rust | Rust releases and Rust editions |
+
+Version history is optional. A language can be added without it; language pages and navigation are generated from the shared data rather than maintained as separate templates.
 
 ---
 
 ## Features
 
-### Consistent language pages
+### What you'll find
 
-Each language follows a similar organizational structure, so once you know where to find something in one language, you can find the equivalent information in another.
+Language pages use a familiar structure for syntax and common concepts, with examples written in the language's real syntax. Search works across references, and `Ctrl+K` opens it from anywhere. Compare pages put equivalent concepts side by side.
 
-### Quick syntax reference
+Entries focus on useful examples and practical details: when a pattern fits, common mistakes, recommended defaults and language-specific pitfalls. They are concise references, not complete language manuals.
 
-Concise examples for common language features, syntax, operators, collections, control flow, functions, types, and other frequently referenced concepts.
+### Version history
 
-### Cross-language comparisons
-
-Compare how different languages approach the same programming concept without searching each language's documentation separately.
-
-### Search and keyboard navigation
-
-Use the site's search to quickly find syntax and concepts across the reference. Press `Ctrl+K` to access search without manually browsing the site.
-
-### Copyable examples
-
-Code examples are designed to be copied directly and use the actual syntax of the language rather than visual substitutes.
-
-### Version information
-
-Languages that have version data get a **Version history** page (for example `javascript/versions/`). It lists what was added, changed, deprecated and removed in each version, with before-and-after examples, so you can work out what old code was doing and how to move it to a newer version. The page has two views. **Upgrade changes** lists everything between the version you are upgrading from and the one you are moving to. **What can I use?** shows, for one version, which features are available, deprecated, restricted, removed or not yet available, with the older way to write each missing one. Each topic on the language page also has a collapsed **Version notes** list that links into the history. See [Version history](#version-history).
-
-### Practical guidance
-
-Where useful, reference entries include:
-
-- When to use something
-- When to avoid it
-- Common mistakes
-- Recommended defaults
-- Language-specific gotchas
-
----
-
-## How It Is Organized
-
-The reference is organized around the things programmers commonly need to look up rather than attempting to reproduce complete language documentation.
-
-Typical sections include:
-
-- Basics
-- Variables and types
-- Operators
-- Control flow
-- Functions
-- Collections
-- Generics / templates
-- Error handling
-- Object-oriented programming
-- Asynchronous programming
-- Common patterns
-- Standard libraries
-- Language-specific gotchas
-
-The exact organization varies where a language's design requires it, but the overall goal is to keep concepts easy to locate across languages.
+All five current language references include version history (for example, `/rust/versions/`). **Upgrade changes** shows what changed between two versions; **What can I use?** shows the status of features in a selected version. Topic pages link to relevant version notes. The [version history section](#version-history) describes how this information is represented in the project data.
 
 ---
 
 ## Who Is It For?
 
-CodeReference is useful for anyone who switches between programming languages or works with old code, including:
-
-- Developers working with multiple languages
-- Developers learning a new language
-- Students studying multiple languages
-- Hobbyist programmers
-- Developers returning to a language they have not used recently
-- Anyone who occasionally forgets the exact syntax for something
-
-You do not need to be an expert in every language covered. The reference is intended to help bridge the gap between what you already know and the syntax you need to remember.
+It is especially useful when switching languages, reading older code, learning a language, or returning to one you have not used in a while. You don't need to know every language already; the examples connect familiar concepts to the syntax you're looking for.
 
 ---
 
 ## Structured Content and Local Build
 
-The canonical authored content and site configuration live in [data/site_data.json](data/site_data.json). The HTML pages and browser-facing data files are generated from that file by [renderer/build_site.py](renderer/build_site.py); do not edit generated HTML or `js/site-data.js` by hand. Hand-authored static assets (`css/style.css`, `js/main.js`) live in [src/static](src/static) and are copied into the build unchanged.
+The authored content and site configuration live in [data/site_data.json](data/site_data.json). [renderer/build_site.py](renderer/build_site.py) generates the HTML pages and browser data from it. Edit that source and the hand-authored assets in [src/static](src/static); generated HTML and `js/site-data.js` are build output.
 
 The build writes the complete site to `dist/`, which is gitignored and rebuilt from scratch on every run. Running the build changes local files only; it does not publish or push anything.
 
@@ -148,20 +101,11 @@ The build writes the complete site to `dist/`, which is gitignored and rebuilt f
 
 ### Content model
 
-The JSON source contains:
+The JSON holds language metadata, homepage content, sections and topic bodies (`content_html`), concept mappings, search terms, comparison rows and version history. The build checks that topics are rendered; parity validation checks page coverage and browser data. `content_html` is authored repository content and treated as trusted HTML. The one-time importer [scripts/content/import_legacy_content.py](scripts/content/import_legacy_content.py) can import topic content from a specified Git revision.
 
-- language metadata and the homepage content
-- language navigation populated from the available-language registry
-- language-specific sections and complete topic bodies, including examples, notes, and callouts
-- concept mappings for cross-language navigation
-- search titles and keywords
-- comparison rows and their section/group configuration
+The generated language registry supplies the header menu, homepage cards, search and comparison picker. Adding a language to the data updates these automatically; no language-specific navigation links are needed.
 
-Each topic stores its complete authored body as `content_html`. The build validates that every topic and body is rendered, and parity validation checks the expected coverage and browser data. Treat `content_html` as trusted, authored repository content. The one-time importer [scripts/content/import_legacy_content.py](scripts/content/import_legacy_content.py) accepts an explicit Git revision to import topic content from an existing set of pages.
-
-The header language dropdown is populated at runtime from the generated language registry. Each menu item shows only the language name, in a compact card-style panel that matches the site's colors and borders. Adding a language entry makes it appear in the dropdown; no per-language header link needs to be added to the page templates.
-
-The comparison page uses the same registry to build its **Add language** menu. It starts with no languages selected. Each language you add becomes a vertical lane, up to four at a time (`site.compare_max_languages` in the data file changes the limit). The selection is kept in the URL (`?lang=python,rust`), so a comparison can be bookmarked or shared.
+The comparison page starts with no languages selected. Add up to four vertical lanes (`site.compare_max_languages` sets the limit); selections appear in the URL, for example `?lang=python,rust`, so comparisons can be bookmarked or shared.
 
 ### Local preview
 
@@ -171,105 +115,100 @@ To preview the built site locally:
 python scripts/dev/serve_staging.py
 ```
 
-This builds the site, serves `dist/`, and rebuilds automatically when you save a change under `data/`, `src/` or `renderer/`. Refresh the browser after the "Rebuilt" message. Responses are sent uncached, so a refresh always shows the latest build. Options: `--port 8123` to change the port, `--no-watch` to disable auto-rebuild, `--no-build` to serve existing output.
+This builds the site, serves `dist/`, and rebuilds when you save a change under `data/`, `src/` or `renderer/`. Refresh after the "Rebuilt" message. Use `--port 8123` to change the port, `--no-watch` to disable rebuilding on save, or `--no-build` to serve existing output.
 
 Then open:
 
 - http://127.0.0.1:8000/
 
-Preview only through this script (or by opening files inside `dist/`). A server started at the repository root, such as an editor's "Go Live" button or `python -m http.server`, serves the frozen legacy pages at the root, not the current build. If the script reports that the port is already in use, an older preview server is still running; stop it or pick another port.
+Use this script or open files inside `dist/` to preview current output. A server started at the repository root (for example, an editor's "Go Live" or `python -m http.server`) serves the frozen legacy pages instead. If the port is already in use, stop the other preview server or choose another port.
 
-Run the checks separately with `python -m unittest discover -s tests` and the scripts in `scripts/validate/`.
+Run checks with `python -m unittest discover -s tests` and the scripts in `scripts/validate/`.
 
 This is a local-only workflow. The remote deployment remains unchanged until you explicitly choose to publish.
 
 ### Version history
 
-Version data lives in [data/site_data.json](data/site_data.json) next to the rest of the content and is validated on every build. It is language-neutral, so the same model is used for every language. JavaScript is the first language to use it.
+Version data lives in [data/site_data.json](data/site_data.json) next to the rest of the content, and every build validates it. The model knows nothing about any one language. All five languages use it.
 
-A language has one or more **tracks**. A track is its own ordered list of versions with its own release metadata, and a feature keeps a separate history on each track it belongs to. JavaScript has two:
+A language has one or more tracks. A track is an ordered list of versions with its own release data, and a feature keeps a separate history on each track it appears on. These are the tracks today.
 
-- **ECMAScript** (a `standard` track): editions of the standard, ES3 baseline to ES2027 draft.
-- **Node.js** (a `runtime` track): major releases from 0.10 to 26, with the V8 engine version, long-term support dates, code names and end-of-life dates.
+| Language | Track | Kind |
+| --- | --- | --- |
+| C++ | C++ standards | standard |
+| C++ | GCC | implementation |
+| C++ | Clang | implementation |
+| C++ | MSVC | implementation |
+| C# | C# language versions | standard |
+| C# | .NET (Core and 5+) | runtime |
+| C# | .NET Framework | runtime |
+| JavaScript | ECMAScript | standard |
+| JavaScript | Node.js | runtime |
+| Python | Python | standard |
+| Rust | Rust | implementation |
+| Rust | Rust editions | standard |
 
-They are separate on purpose. A language feature is only usable once the runtime's engine supports it, so `Array.prototype.at()` was added in ES2022 but first ran in Node.js 16.6. Some features exist on one track only: `crypto.createCipher()` is Node.js only, and `Math.sumPrecise()` has no Node.js entry until a release supports it.
+The first track of a language is its main one and gets the short address, `/cpp/versions/`. The others get `/cpp/versions/gcc/` and so on.
 
-The data has four parts:
+Tracks are kept apart on purpose. A language feature is only usable once the runtime's engine supports it, so `Array.prototype.at()` was added in ES2022 but first ran in Node.js 16.6. Some features exist on one track only. `crypto.createCipher()` is Node.js only, and `Math.sumPrecise()` has no Node.js entry until a release supports it.
 
-- **`tracks`**: `id`, `label`, `kind` (`standard`, `runtime`, `implementation` or `environment`), `order`, a `description`, and `changelog_links` to the official changelogs. The page shows these as its sources instead of citing a source for every event.
-- **`versions`**: each belongs to a `track`. It has an `id`, a `label`, a release date, an `order` number (counted separately for each track) and a `status` of `released`, `complete` or `draft`. Runtime versions can also carry `codename`, `lts_from`, `end_of_life` and `engine`.
-- **`features`**: things you can recognise in code, such as `let` and `const` or `fs.promises`. Each has a `history` that maps a track id to a list of events: `added`, `changed`, `deprecated` and `removed`. An event can name the exact `release` inside a version (`16.6.0`). A feature can link to the reference `topic` that explains it, name what replaced it (`replaced_by`, which can point at a feature on another track), and carry a `migration` pair with an older and a newer way to write it.
+The data has three parts.
+
+- `tracks` have an `id`, a `label`, a `kind` (`standard`, `runtime`, `implementation` or `environment`), an `order`, a `description` and `changelog_links` to the official changelogs. The page shows those links as its sources, so individual events don't each cite one. A track can also set `version_noun`, the word the page uses for one version, such as `edition`, `release` or `version`. Without it the page uses a word that fits the kind, edition for a standard and release for a runtime or an implementation.
+- `versions` each belong to a `track` and have an `id`, a `label`, a release date, an `order` number that counts separately for each track, and a `status`. `released` means published. `complete` means the specification is finished but not formally published yet, which is where C++26 sits today. `draft` means it is still being written. A track keeps its versions in that order. Runtime versions can also carry `codename`, `lts_from`, `end_of_life` and `engine`.
+- `features` are things you can recognise in code, such as `let` and `const` or `fs.promises`. Each has a `history` that maps a track id to a list of events: `added`, `changed`, `deprecated` and `removed`. An event can name the exact `release` inside a version, like `16.6.0`. A feature can link to the reference `topic` that explains it, name what replaced it with `replaced_by`, which can point at a feature on another track, and carry a `migration` pair with an older and a newer way to write it.
 
 How the model behaves:
 
-- `added: V` means available in V. `removed: V` means not available in V. A removal with a `scope` (for example strict mode only) means the feature still works elsewhere and is shown as restricted.
+- `added: V` means available in V. `removed: V` means not available in V. A removal with a `scope`, such as strict mode only, means the feature still works elsewhere and is shown as restricted.
 - A deprecation may have no version. JavaScript marks many legacy features this way without any edition deprecating them, so they appear in their own "no removal planned" section.
 - Every comparison uses the integer `order` within one track, never the label. The page shows changes with `from < version <= to`.
-- History is stored as changes, never copied per version. A fact stays true until a later event changes it, so the reference pages stay current and the version tools annotate them.
+- History is stored as changes and never copied per version. A fact stays true until a later event changes it, so the reference pages stay current and the version tools annotate them.
 - Each track is validated on its own. Events are never compared across tracks, because a runtime can ship a feature before the standard publishes it.
 
-Each track has its own page: `/javascript/versions/` for the first track and `/javascript/versions/node/` for the next. Each page has two views. **Upgrade changes** lists everything between the version you are upgrading from and the one you are moving to. **What can I use?** shows, for one version, which features are available, deprecated, restricted, removed or not yet available, with the older way to write each missing one. Each topic on the language page also has a collapsed **Version notes** list with a chip for every track. The "support ends" dates on the Node.js page switch to "support ended" in the browser once the date has passed.
+Each track has its own page with the two views described above. On the Node.js page, support labels update in the browser when an end-of-life date passes.
 
-The Node.js availability of language features comes from [MDN's browser compatibility data](https://github.com/mdn/browser-compat-data), using the first release with full, unflagged support. Release dates, support windows and end-of-life dates come from the [nodejs/Release schedule](https://github.com/nodejs/Release). Node.js-only APIs were checked against the history recorded in the Node.js type definitions, and the removal of `crypto.createCipher()` in Node.js 22 against the Node.js project's own notes. It is a snapshot: refresh it when a new Node.js version ships.
+Where the data comes from differs by language. Every track lists its official changelogs, and its page shows them. Beyond that, the scripts in `scripts/check/` compare the data with real tools where one exists: a Python interpreter, a Rust compiler, GCC and Clang, the C# compiler and a JavaScript parser. [scripts/README.md](scripts/README.md#the-per-language-checkers) says what each one checks.
 
-The build rejects data that breaks the rules: duplicate or out-of-order versions within a track, a track with no versions or no https changelog links, a history that names an unknown track, a first event that is not `added`, events out of order or after a removal, a removal in the same version as its deprecation, unknown versions, topics or replacements, replacement cycles, and support dates in the wrong order.
+For JavaScript, the Node.js availability of language features comes from [MDN's browser compatibility data](https://github.com/mdn/browser-compat-data), using the first release with full, unflagged support. Release dates, support windows and end-of-life dates come from the [nodejs/Release schedule](https://github.com/nodejs/Release). Node.js-only APIs were checked against the history recorded in the Node.js type definitions, and the removal of `crypto.createCipher()` in Node.js 22 against the Node.js project's own notes. It is a snapshot, so refresh it when a new Node.js version ships.
 
-For JavaScript, `node scripts/check/check_js_examples.js` (after `npm install --no-save acorn`) also checks the before-and-after snippets by parsing them in the edition they belong to, and parses every code block in the JavaScript reference topics. It is optional and not part of CI.
+The build rejects data that breaks the rules: duplicate or out-of-order versions within a track, versions whose statuses are out of order, a track with no versions or no https changelog links, a history that names an unknown track, a first event that is not `added`, events out of order or after a removal, a removal in the same version as its deprecation, unknown versions, topics or replacements, replacement cycles, and support dates in the wrong order.
 
-A feature with a `topic` appears in that topic's **Version notes**. The **What can I use?** view computes each feature's state in the browser with the same rules as `lifecycle_state()` in `renderer/versioning.py`, and the tests keep the two in step.
+`node scripts/check/check_js_examples.js` (after `npm install --no-save acorn`) also checks the JavaScript before-and-after snippets by parsing them in the edition they belong to, and parses every code block in the JavaScript reference topics. It is optional and not part of CI.
+
+A feature with a `topic` appears in that topic's "Version notes". The "What can I use?" view computes each feature's state in the browser with the same rules as `lifecycle_state()` in `renderer/versioning.py`, and the tests keep the two in step.
+
+### Choosing tracks
+
+The model can describe every dimension: the language standard or edition, a runtime, and an implementation such as one compiler. That doesn't mean every language gets a track for each. A track exists only when it tells readers something the other tracks don't, and the data decides that, not habit. Each extra track is another page to read and more data to keep right.
+
+Here is how that worked out.
+
+- JavaScript has ECMAScript and Node.js. A feature can sit in the standard for years before an engine runs it.
+- C++ has the standard as its main timeline, plus GCC, Clang and MSVC. Each compiler supports a standard on its own schedule.
+- C# has its language versions, .NET and .NET Framework. Framework got its own track once the compatibility checks showed it was worth separating.
+- Rust has compiler releases and editions. An edition is a setting you opt into for each crate, so it has its own timeline next to the releases.
+- Python has one track.
+
+A version is listed in a track only if something we track happens in it.
 
 ### Categories and the language-neutral rule
 
 Every language belongs to a **category** (`categories` in the data file). Today there is one, programming languages, so the site looks the same, but the data is ready for databases, spreadsheets, shells and other kinds of reference without renaming anything.
 
-Adding a language takes data and content only. Nothing in the renderers, scripts or stylesheet may name a particular language: colors are generated from each language's `color`, and the checks for generics or topic counts come from the data. `tests/test_architecture.py` enforces this. It builds a made-up sixth language from data alone, and scans the code for any reference to a real language.
+Adding a language takes data and content only. Nothing in the renderers, scripts or stylesheet may name a particular language: colors are generated from each language's `color`, and the checks for generics or topic counts come from the data. `tests/core/test_architecture.py` enforces this. It builds a made-up sixth language from data alone, and scans the code for any reference to a real language.
 
 ### Adding a new language
 
-To add a future language:
-
-1. Add the language, its sections, and complete topics to [data/site_data.json](data/site_data.json).
-2. Add or update its comparison values and concept mappings in the same file.
-3. Rebuild with [renderer/build_site.py](renderer/build_site.py).
-4. Validate and review the `dist/` build. Never author changes directly in generated HTML.
-
-This keeps the architecture static-site friendly while making the content source easier to maintain and validate offline.
-
-## Project Philosophy
-
-### Familiar concepts first
-
-The reference focuses on concepts programmers are likely to already understand and shows how those concepts are expressed in each language.
-
-### Concise over comprehensive
-
-The goal is not to document every feature of every language. It is to provide the information most useful when you need a quick answer.
-
-### Practical over academic
-
-Examples should demonstrate how syntax is actually used rather than only showing isolated grammar rules.
-
-### Consistent where possible
-
-Similar concepts should be presented in similar ways across languages, making cross-language comparison easier.
-
-### Accurate over clever
-
-Examples should use valid, current syntax and avoid misleading shortcuts or language-specific tricks unless they are clearly identified.
-
----
+To propose a language, use **Propose a language** in the home page footer. A maintainer checks the submission against its documentation and can scaffold placeholder topics. The workflow is in [scripts/README.md](scripts/README.md#proposing-and-adding-a-language). To write a language reference, use the [language template](TEMPLATE.md), which covers the data, comparisons, concept links, optional version history and checks.
 
 ## Project Status
 
-CodeReference currently covers C++, C#, JavaScript, Python, and Rust. JavaScript also has version history; the other languages do not yet.
-
-The project continues to evolve, with a focus on content accuracy, practical guidance, validated examples, accessibility, and cross-language navigation.
+CodeReference currently covers C++, C#, JavaScript, Python and Rust, each with version history. Ongoing work focuses on accuracy, checking examples against real tools, accessibility and making it easier to move between references.
 
 ---
 
 ## Contributing
-
-Contributions are welcome.
 
 Useful contributions include:
 
@@ -283,15 +222,7 @@ Useful contributions include:
 - Improving the site's tooling and validation
 - Proposing useful additions to the reference
 
-When adding or changing examples, prioritize:
-
-1. Correctness
-2. Clarity
-3. Practical usefulness
-4. Consistency with the existing reference
-5. Current language standards and conventions
-
-Avoid adding content solely to increase the size of the reference.
+For examples, prioritize correctness, clarity and practical value. Keep them consistent with the reference and current language conventions. Add material because it helps answer a question, not just to make a page longer.
 
 ---
 
@@ -306,15 +237,7 @@ git clone https://github.com/Derreavus/polyglot-syntax-reference.git
 cd polyglot-syntax-reference
 ```
 
-Then follow the project's existing development and build instructions.
-
-Before submitting changes, run the available validation and CI checks to ensure that:
-
-- HTML remains valid
-- Internal links work
-- Syntax content remains correctly formatted
-- Code examples have not been corrupted
-- Unsupported Unicode syntax substitutions have not been introduced
+For local preview and build instructions, see [Local preview](#local-preview). Before submitting, run the checks listed in [TEMPLATE.md](TEMPLATE.md#verify) or the relevant CI checks. They cover HTML, links, syntax formatting, and accidental changes to code examples.
 
 ---
 
